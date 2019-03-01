@@ -1907,7 +1907,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #def9ff;
+  background: #fff2d2;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3008,5 +3008,33 @@ ul.breadcrumb li+li:last-child {
 @media (max-width: 767px) {
   .post-body {
     text-align: justify;
+  }
+}
+@media screen and (min-width: 1200px) {
+  body {
+    background: url("https://i.loli.net/2019/03/01/5c7942720fc39.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+  #footer a {
+    color: #eee;
+  }
+  .main-inner {
+    margin-top: 10px;
+    opacity: 0.9;
+  }
+  .header-inner {
+    margin-top: 10px;
+    position: absolute;
+    top: auto;
+    overflow: hidden;
+    padding: 0;
+    width: 240px;
+    background: #fff;
+    box-shadow: initial;
+    border-radius: initial;
+    opacity: 0.9;
   }
 }
