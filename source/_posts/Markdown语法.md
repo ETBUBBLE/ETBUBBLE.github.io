@@ -7,6 +7,7 @@ tags:
 categories:
     - 语法
     - Markdown
+    - notes
 ---
 此片文章主要用于记录一些简单的Markdown语法
 </br>
@@ -73,7 +74,9 @@ categories:
 ![图片](https://i.loli.net/2019/02/27/5c767c74660a3.png)
 ```
 # 图插入
-
+```
+![图片名](images/Markdown语法/20190301060640743.png)
+```
 ![图片](https://i.loli.net/2019/02/27/5c767c74660a3.png)
 
 # 超链接
