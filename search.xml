@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HexoNext一些操作]]></title>
+    <url>%2F2019%2F03%2F16%2FHexoNext%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[更改头像1.在主题配置文件中搜索 avatar2.3.找到这个路径修改就行了。4.]]></content>
+      <categories>
+        <category>hexo</category>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HTML前端学习笔记(一)]]></title>
     <url>%2F2019%2F03%2F04%2FHTML%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)%2F</url>
     <content type="text"><![CDATA[组成 12345678910 &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;&lt;head&gt; &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=UTF-8&quot;&gt; &lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;/body&gt;&lt;/html&gt; 如上 由DOCTYPE 文档说明，上述是xhtml文档声明，html标签内部为页面开始 ，分为head头部，和body两部分，head部分为传给浏览器的数据，body为页面显示部分，主体部分。 HEAD元素titletitle标签内浏览器标题显示标签。如上图 mate这个标签内容较多，之说主要的几个 属性名属性值描述namekeywords提供网页关键字,关键字之间要用英文,隔开description提供页面描述author标注作者http-equivContent-Type设置网页字符集，例如 &lt;meta http-equiv=”Content-Type” content=”text/html;charset=UTF-8”&gt; 文本元素标题123&lt;h1&gt;&lt;/h1&gt;&lt;h2&gt;&lt;/h2&gt;&lt;h3&gt;&lt;/h3&gt; 文本修饰标签基本上用不上，主要CSS解决。 段落标签1&lt;p&gt;&lt;/p&gt; 列表有序列表12345&lt;ol&gt; &lt;li&gt;&lt;/li&gt; &lt;li&gt;&lt;/li&gt; &lt;li&gt;&lt;/li&gt; &lt;/ol&gt; 无序列表123456 &lt;ul&gt; &lt;li&gt;首页&lt;/li&gt; &lt;li&gt;比赛&lt;/li&gt; &lt;li&gt;排行&lt;/li&gt; &lt;li&gt;题目&lt;/li&gt;&lt;/ul&gt; 自定义列表1234567&lt;dl&gt; &lt;dt&gt;标题&lt;/dt&gt; &lt;!-- 标题 --&gt; &lt;dd&gt;描述&lt;/dd&gt; &lt;dt&gt;&lt;/dt&gt; &lt;dt&gt;&lt;/dt&gt;&lt;/dl&gt; div与span用于分块 图片1&lt;img src=&quot;图片地址&quot; alt=&quot;代替文字&quot; /&gt; 超文本1234567 &lt;a href=&quot;连接&quot;&gt;文字&lt;/a&gt; &lt;a href=&quot;#anchor&quot;&gt;连接锚点&lt;/a&gt;&lt;a id=&quot;anchor&quot;&gt;我的锚点&lt;/a&gt; &lt;a href=&quot;#&quot;&gt;空连接回到最上面&lt;/a&gt;]]></content>
@@ -14,6 +27,11 @@
         <tag>html</tag>
         <tag>前端</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[20190304155435]]></title>
+    <url>%2F2019%2F03%2F04%2F20190304155435%2F</url>
+    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[Deepin VSCODE安装C++环境]]></title>
@@ -50,8 +68,8 @@
         <category>配置</category>
       </categories>
       <tags>
-        <tag>JAVA</tag>
         <tag>配置</tag>
+        <tag>JAVA</tag>
       </tags>
   </entry>
   <entry>
