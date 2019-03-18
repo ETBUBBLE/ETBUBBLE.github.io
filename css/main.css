@@ -1818,13 +1818,6 @@ pre .javascript .function {
   transition: 1s all;
   opacity: 1;
 }
-.site-author-image:hover {
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -1907,7 +1900,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d59f5b;
+  background: #2603a8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3023,7 +3016,7 @@ ul.breadcrumb li+li:last-child {
   }
   .main-inner {
     margin-top: 10px;
-    opacity: 0.9;
+    opacity: 0.8;
   }
   .header-inner {
     margin-top: 10px;
@@ -3035,6 +3028,6 @@ ul.breadcrumb li+li:last-child {
     background: #fff;
     box-shadow: initial;
     border-radius: initial;
-    opacity: 0.9;
+    opacity: 1;
   }
 }

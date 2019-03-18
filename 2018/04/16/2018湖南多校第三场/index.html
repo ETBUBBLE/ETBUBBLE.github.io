@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="2018 中南多校 第三场     A(2063): Good Versus Evil SubmitPage  Summary  TimeLimit: 5 Sec MemoryLimit: 512 Mb Submitted: 85 Solved: 15   Description Middle Earth is about to go to war. The forces of goodwil">
+<meta name="keywords" content="CSDN迁移">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018湖南多校第三场">
+<meta property="og:url" content="https://etbubble.github.io/2018/04/16/2018湖南多校第三场/index.html">
+<meta property="og:site_name" content="etbubble 的博客">
+<meta property="og:description" content="2018 中南多校 第三场     A(2063): Good Versus Evil SubmitPage  Summary  TimeLimit: 5 Sec MemoryLimit: 512 Mb Submitted: 85 Solved: 15   Description Middle Earth is about to go to war. The forces of goodwil">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20180416002948935?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018041600371313?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2019-03-18T08:04:12.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018湖南多校第三场">
+<meta name="twitter:description" content="2018 中南多校 第三场     A(2063): Good Versus Evil SubmitPage  Summary  TimeLimit: 5 Sec MemoryLimit: 512 Mb Submitted: 85 Solved: 15   Description Middle Earth is about to go to war. The forces of goodwil">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180416002948935?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+
+
+
+
+
+
+  <link rel="canonical" href="https://etbubble.github.io/2018/04/16/2018湖南多校第三场/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>2018湖南多校第三场 | etbubble 的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">etbubble 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">两件事一定不能停 学习和运动</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2018/04/16/2018湖南多校第三场/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dust">
+      <meta itemprop="description" content="做自己不会做的事被称之为学习">
+      <meta itemprop="image" content="/images/tou.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="etbubble 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2018湖南多校第三场
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-16 00:38:12" itemprop="dateCreated datePublished" datetime="2018-04-16T00:38:12+08:00">2018-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-18 16:04:12" itemprop="dateModified" datetime="2019-03-18T16:04:12+08:00">2019-03-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">17k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">16 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>  <strong>2018 中南多校 第三场</strong></p>
+<p><strong>  
+</strong></p>
+<p><strong>A(<a href="http://acm.csu.edu.cn/csuoj/problemset/problem?pid=2063" target="_blank" rel="noopener">2063</a>): Good Versus Evil</strong></p>
+<p><a href>SubmitPage </a> <a href="http://acm.csu.edu.cn/csuoj/problemset/summary?pid=2063" target="_blank" rel="noopener">Summary </a> TimeLimit: 5 Sec MemoryLimit: 512 Mb Submitted: 85 Solved: 15 </p>
+<hr>
+<p><strong>Description</strong></p>
+<p>Middle Earth is about to go to war. The forces of goodwill have many battles with the forces of evil. Different races will certainlybe involved. Each race has a certain ‘worth’ when battling against others. Onthe side of good we have the following races, with their associated worth:</p>
+<p>Hobbits - 1</p>
+<p>Men - 2</p>
+<p>Elves - 3</p>
+<p>Dwarves - 3</p>
+<p>Eagles - 4</p>
+<p>Wizards - 10</p>
+<p>On the side of evil we have:</p>
+<p>Orcs - 1</p>
+<p>Men - 2</p>
+<p>Wargs - 2</p>
+<p>Goblins - 2</p>
+<p>Uruk Hai - 3</p>
+<p>Trolls - 5</p>
+<p>Wizards - 11</p>
+<p>Although weather, location, supplies and valor play apart in any battle, if you add up the worth of the side of good and compare itwith the worth of the side of evil, the side with the larger worth will tend towin. Thus, given the count of each of the races on the side of good, followedby the count of each of the races on the side of evil, determine which sidewins.</p>
+<p><strong>Input</strong></p>
+<p>The first line of input will contain an integer greaterthan 0 signifying the number of battles to process. Information for each battlewill consist of two lines of data as follows. First, there will be a linecontaining the count of each race on the side of good. Each entry will beseparated by a single space. The values will be ordered as follows: Hobbits,Men, Elves, Dwarves, Eagles, Wizards. The next line will contain the count ofeach race on the side of evil in the following order: Orcs, Men, Wargs, Goblins,Uruk Hai, Trolls, Wizards. All values are non-negative integers. The resultingsum of the worth for each side will not exceed the limit of a 32-bit integer.</p>
+<p><strong>Output</strong></p>
+<p>For each battle, print “Battle” followed by a singlespace, followed by the battle number starting at 1, followed by a “:”, followedby a single space. Then print “Good triumphs over Evil” if good wins. Print“Evil eradicates all trace of Good” if evil wins. If there is a tie, then print“No victor on this battle field”.</p>
+<p><strong>Sample Input</strong></p>
+<p>3</p>
+<p>1 1 1 1 1 1</p>
+<p>1 1 1 1 1 1 1</p>
+<p>0 0 0 0 0 10</p>
+<p>0 1 1 1 1 0 0</p>
+<p>1 0 0 0 0 0</p>
+<p>1 0 0 0 0 0 0</p>
+<p><strong>Sample Output</strong></p>
+<p>Battle 1: Evileradicates all trace of Good</p>
+<p>Battle 2: Goodtriumphs over Evil</p>
+<p>Battle 3: Novictor on this battle field</p>
+<p>这种简单题只要看懂题就能写出来，除了题面上是7个数的那个 权值 11 实际上是 10。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   int a[]= &#123;1,2,3,3,4,10&#125;,b[]= &#123;1,2,2,2,3,5,10&#125;;</span><br><span class="line"></span><br><span class="line">   long long n,x;</span><br><span class="line"></span><br><span class="line">   long sum1,sum2;</span><br><span class="line"></span><br><span class="line">   cin&gt;&gt;n;</span><br><span class="line"></span><br><span class="line">   for(int j=1; j&lt;=n; j++)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       sum1=sum2=0;</span><br><span class="line"></span><br><span class="line">       for(int i=0; i&lt;6; i++)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           cin&gt;&gt;x;</span><br><span class="line"></span><br><span class="line">           sum1+=x*a[i];</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       for(int i=0; i&lt;7; i++)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           cin&gt;&gt;x;</span><br><span class="line"></span><br><span class="line">           sum2+=x*b[i];</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       printf(&quot;Battle %d: &quot;,j);</span><br><span class="line"></span><br><span class="line">       if(sum1&gt;sum2)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           cout&lt;&lt;&quot;Good triumphs over Evil\n&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">        else if(sum1&lt;sum2)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           cout&lt;&lt;&quot;Evil eradicates all trace of Good\n&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       else</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           cout&lt;&lt;&quot;No victor on this battle field\n&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>B(<a href="http://acm.csu.edu.cn/csuoj/problemset/problem?pid=2064" target="_blank" rel="noopener">2064</a>): Magic Multiple</strong></p>
+<p><a href>SubmitPage </a> <a href="http://acm.csu.edu.cn/csuoj/problemset/summary?pid=2064" target="_blank" rel="noopener">Summary </a> TimeLimit: 5 Sec MemoryLimit: 512 Mb Submitted: 28 Solved: 18 </p>
+<hr>
+<p><strong>Description</strong></p>
+<p>The Elvish races of Middle Earth believed that certainnumbers were more significant than others. When using a particular quantity nof metal to forge a particular sword, they believed that sword would be mostpowerful if the thickness k were chosen according to the following rule: Givena nonnegative integer n, what is the smallest k such that the decimalrepresentations of the integers in the sequence: n, 2n, 3n, 4n, 5n, …, kncontain all ten digits (0 through 9) at least once? Lord Elrond of Rivendell hascommissioned you with the task to develop an algorithm to find the optimalthickness (k) for any given quantity of metal (n).</p>
+<p><strong>Input</strong></p>
+<p>Input will consist of a single integer n per line. Theend of input will be signaled by end of file. The input integer will be between1 and 200,000,000, inclusive.</p>
+<p><strong>Output</strong></p>
+<p>The output will consist of a single integer per line,indicating the value of k needed such that every digit from 0 through 9 is seenat least once.</p>
+<p><strong>Sample Input</strong></p>
+<p>1</p>
+<p>10</p>
+<p>123456789</p>
+<p>3141592</p>
+<p><strong>Sample Output</strong></p>
+<p>10</p>
+<p>9</p>
+<p>3</p>
+<p>5</p>
+<p>一个数的1 到 K倍中 0-9全部出现过，暴力K倍就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[10];</span><br><span class="line"></span><br><span class="line">int l;</span><br><span class="line"></span><br><span class="line">void check(long long x)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   while(x&gt;0)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       if(a[x%10]==0)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           l++;</span><br><span class="line"></span><br><span class="line">           a[x%10]=1;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       x/=10;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   long long n;</span><br><span class="line"></span><br><span class="line">   long sum1,sum2;</span><br><span class="line"></span><br><span class="line">   while (cin&gt;&gt;n)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       l=0;</span><br><span class="line"></span><br><span class="line">       memset(a,0,sizeof(a));</span><br><span class="line"></span><br><span class="line">       int i=1;</span><br><span class="line"></span><br><span class="line">       for (; l!=10; i++)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           check(i*n);</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       cout&lt;&lt;i-1&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Saruman’s army of orcs andother dark minions continuously mine and harvest lumber out of the landsurrounding his mighty tower for N continuous days. On day number i, Sarumaneither chooses to spend resources on mining coal and harvesting more lumber, oron raising the level (i.e., height) of his tower. He levels up his tower by oneunit only on days where the binary representation of i contains a total numberof 1’s that is an exact multiple of 3. Assume that the initial level of histower on day 0 is zero. For example, Saruman will level up his tower on day 7(binary 111), next on day 11 (binary 1011) and then day 13, day 14, day 19, andso on. Saruman would like to forecast the level of his tower after N days. Canyou write a program to help?</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>The input file will containmultiple input test cases, each on a single line. Each test case consists of apositive integer N &lt; 1016, as described above. The input ends on end offile.</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>For each test case, outputone line: “Day N: Level = L”, where N is the input N, and L is the number oflevels after N days.</p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">19</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">64</span><br></pre></td></tr></table></figure>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Day 2: Level = 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Day 19: Level = 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Day 64: Level = 21</span><br></pre></td></tr></table></figure>
+<p>这一题就是从2进制 第一个找，一个个往下找，找其中 1 的个数是3的倍数就行了。</p>
+<p><img src="https://img-blog.csdn.net/20180416002948935?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>还有一种本身就是 3的倍数要额外加一前面只是处理所有比N小的数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int l;</span><br><span class="line"></span><br><span class="line">long long gcd(long long a,long long b)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   return (b==0)?a:gcd(b,a%b);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long C(long long n,long long m)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   long long x=1,y=1;</span><br><span class="line"></span><br><span class="line">   if(n-m&lt;m)m=n-m;</span><br><span class="line"></span><br><span class="line">   for(int i=0; i&lt;m; i++)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       x*=(n-i);</span><br><span class="line"></span><br><span class="line">       y*=1+i;</span><br><span class="line"></span><br><span class="line">       int t=gcd(x,y);</span><br><span class="line"></span><br><span class="line">       x/=t;</span><br><span class="line"></span><br><span class="line">       y/=t;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   return x/y;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   int a[1000];</span><br><span class="line"></span><br><span class="line">   long long n,k,sum;</span><br><span class="line"></span><br><span class="line">   while (cin&gt;&gt;n)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       sum=0;</span><br><span class="line"></span><br><span class="line">       k=n;</span><br><span class="line"></span><br><span class="line">       long long  l=1,t=0;</span><br><span class="line"></span><br><span class="line">       while(n&gt;0)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           a[l++]=(n&amp;1);</span><br><span class="line"></span><br><span class="line">           n&gt;&gt;=1;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">       for(int i=l-1; i&gt;0; i--)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           if(a[i])                        //如果当前位为1</span><br><span class="line"></span><br><span class="line">           &#123;</span><br><span class="line"></span><br><span class="line">                for(int j=3; j-t&lt;=i-1;j+=3)        //当前位数减1,还能找出是3的倍数个 1</span><br><span class="line"></span><br><span class="line">                   if(j-t&gt;=0)sum+=C(i-1,j-t);</span><br><span class="line"></span><br><span class="line">                t++;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       if(t&gt;0&amp;&amp;t%3==0)sum+=1;                  //处理本身就是3的倍数情况。</span><br><span class="line"></span><br><span class="line">       printf(&quot;Day %lld: Level = %lld\n&quot;,k,sum);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>H(<a href="http://acm.csu.edu.cn/csuoj/problemset/problem?pid=2070" target="_blank" rel="noopener">2070</a>): Seating Chart</strong></p>
+<p><a href>SubmitPage </a> <a href="http://acm.csu.edu.cn/csuoj/problemset/summary?pid=2070" target="_blank" rel="noopener">Summary </a> TimeLimit: 10 Sec MemoryLimit: 512 Mb Submitted: 41 Solved: 15 </p>
+<hr>
+<p><strong>Description</strong></p>
+<p>Bilbo’s birthday is coming up, and Frodo and Sam are incharge of all the party planning! They have invited all the hobbits of MiddleEarth to the party, and everyone will be sitting in a single row at anextremely long dining table. However, due to poor communication, Frodo and Samhave each independently put together a seating chart for all the hobbits at thedining table. Help Frodo and Sam find out how similar their seating charts areby counting the total number of distinct pairs of hobbits who appear indifferent orders in the two charts.</p>
+<p><strong>Input</strong></p>
+<p>The input filewill contain multiple test cases. Each test case begins with a single linecontaining an integer N(1≤N≤100,000)N(1≤N≤100,000)indicating thenumber of hobbits. The next two lines represent Frodo’s and Sam’s seatingcharts, respectively. Each seating chart is specified as a single line of Nunique alphabetical strings; the set of strings in each line are guaranteed tobe identical. The end-of-input is denoted by a line containing the number 0.</p>
+<p><strong>Output</strong></p>
+<p>For each input test case, output a single integerdenoting, out of the N choose 2 distinct pairs of hobbits, how many pairsappear in different orders in Frodo’s and Sam’s seating arrangements.</p>
+<p><strong>Sample Input</strong></p>
+<p>3</p>
+<p>Frodo Sam Bilbo</p>
+<p>Sam Frodo Bilbo</p>
+<p>5</p>
+<p>A B C D E</p>
+<p>B A D E C</p>
+<p>0</p>
+<p><strong>Sample Output</strong></p>
+<p>1</p>
+<p>3</p>
+<p>这一题就是一道求逆序数，逆序数怎么求就自己找模板吧，另外这个题超了int 要用longlong。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;map&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn=1e6+5;</span><br><span class="line"></span><br><span class="line">int a[maxn];</span><br><span class="line"></span><br><span class="line">map&lt;string,int&gt;m;</span><br><span class="line"></span><br><span class="line">long long n=0;//全局变量，用于统计逆序对数</span><br><span class="line"></span><br><span class="line">void merge(int a[],int first,int mid,intlast)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   int *temp = new int[last-first+1];//临时数组，用于临时存放比较后的数字</span><br><span class="line"></span><br><span class="line">   int i=first,j=mid+1,k=0;</span><br><span class="line"></span><br><span class="line">   while(i&lt;=mid&amp;&amp;j&lt;=last)//遍历比较左右两个部分</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       if(a[i]&lt;=a[j])</span><br><span class="line"></span><br><span class="line">           temp[k++] = a[i++]; //左半部分元素小于右半部分的元素，将左边该元素存入临时数组</span><br><span class="line"></span><br><span class="line">       else</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           temp[k++] = a[j++];</span><br><span class="line"></span><br><span class="line">           n=n+(mid-i+1);//统计左半边能和右半边该元素构成的逆序对数</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   while(i&lt;=mid)</span><br><span class="line"></span><br><span class="line">       temp[k++]=a[i++];</span><br><span class="line"></span><br><span class="line">   while(j&lt;=last)</span><br><span class="line"></span><br><span class="line">       temp[k++]=a[j++];</span><br><span class="line"></span><br><span class="line">   for(i=0; i &lt; k; i++)</span><br><span class="line"></span><br><span class="line">       a[first + i] = temp[i];//从临时数组取出放回原数组</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mergesort(int a[],int first,int last)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   if(first &lt; last)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       int mid = (first+last)/2;</span><br><span class="line"></span><br><span class="line">       mergesort(a,first,mid);//递归排序左半部分</span><br><span class="line"></span><br><span class="line">       mergesort(a,mid+1,last);//递归排序右半部分</span><br><span class="line"></span><br><span class="line">       merge(a,first,mid,last);//将处理后的两个部分合并</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   int N;</span><br><span class="line"></span><br><span class="line">   string k;</span><br><span class="line"></span><br><span class="line">   while (cin&gt;&gt;N&amp;&amp;N)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       m.clear();</span><br><span class="line"></span><br><span class="line">       for(int i=0;i&lt;N;i++)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           cin&gt;&gt;k;</span><br><span class="line"></span><br><span class="line">           m[k]=i;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       for(int i=0;i&lt;N;i++)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           cin&gt;&gt;k;</span><br><span class="line"></span><br><span class="line">           a[i]=m[k];</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">    mergesort(a,0,N-1);</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    n=0;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>J(<a href="http://acm.csu.edu.cn/csuoj/problemset/problem?pid=2072" target="_blank" rel="noopener">2072</a>): Temple Build</strong></p>
+<p><a href>SubmitPage </a> <a href="http://acm.csu.edu.cn/csuoj/problemset/summary?pid=2072" target="_blank" rel="noopener">Summary </a> TimeLimit: 10 Sec MemoryLimit: 512 Mb Submitted: 8 Solved: 1 </p>
+<hr>
+<p><strong>Description</strong></p>
+<p>The Dwarves of Middle Earth are renowned for theirdelving and smithy ability, but they are also master builders. During the timeof the dragons, the dwarves found that above ground the buildings that weremost resistant to attack were truncated square pyramids (a square pyramid thatdoes not go all the way up to a point, but instead has a flat square on top).The dwarves knew what the ideal building shape should be based on the heightthey wanted and the size of the square base at the top and bottom. Theytypically had three different sizes of cubic bricks with which to work. Theirgoal was to maximize the volume of such a building based on the followingrules:</p>
+<p>The building is constructed of layers; each layer is asingle square of bricks of a single size. No part of any brick may extend outfrom the ideal shape, either to the sides or at the top. The resultingstructure will have jagged sides and may be shorter than the ideal shape, butit must fit completely within the ideal design. The picture at the right is avertical cross section of one such tower. There is no limit on how many bricksof each type can be used.</p>
+<p><strong>Input</strong></p>
+<p>Each line of input will contain six entries, eachseparated by a single space. The entries represent the ideal temple height, thesize of the square base at the bottom, the size of the square base at the top(all three as non-negative integers less than or equal to one million), thenthree sizes of cubic bricks (all three as non-negative integers less than orequal to ten thousand). Input is terminated upon reaching end of file.</p>
+<p><strong>Output</strong></p>
+<p>For each line of input, output the maximum possiblevolume based on the given rules, one output per line.</p>
+<p><strong>Sample Input</strong></p>
+<p>500000 800000300000 6931 11315 5000</p>
+<p><strong>Sample Output</strong></p>
+<p>160293750000000000</p>
+<p>这一题就是一个，dp，dp[0]=0.dp[i]=max(dp[i-a[j]]+V[a[j]])(0&lt;=j&lt;3);</p>
+<p><img src="https://img-blog.csdn.net/2018041600371313?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;map&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn=1e7+5;</span><br><span class="line"></span><br><span class="line">long long dp[maxn];</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   long long h,d,t,a[3],ans;</span><br><span class="line"></span><br><span class="line">   while(cin&gt;&gt;h&gt;&gt;d&gt;&gt;t&gt;&gt;a[0]&gt;&gt;a[1]&gt;&gt;a[2])</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       ans=0;</span><br><span class="line"></span><br><span class="line">       memset(dp,-1,sizeof(dp));</span><br><span class="line"></span><br><span class="line">       dp[0]=0;</span><br><span class="line"></span><br><span class="line">       for(int i=0;i&lt;=h;i++)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           if(dp[i]!=-1)</span><br><span class="line"></span><br><span class="line">           &#123;</span><br><span class="line"></span><br><span class="line">                for(int j=0;j&lt;3;j++)</span><br><span class="line"></span><br><span class="line">                &#123;</span><br><span class="line"></span><br><span class="line">                    if(i+a[j]&lt;=h)</span><br><span class="line"></span><br><span class="line">                    &#123;</span><br><span class="line"></span><br><span class="line">                        doubleb=1.0*d-1.0*(i+a[j])/h*(d-t);</span><br><span class="line"></span><br><span class="line">                        int cnt=floor(b/a[j]);</span><br><span class="line"></span><br><span class="line">                        long longv=cnt*cnt*pow(a[j],3);</span><br><span class="line"></span><br><span class="line">                       if(dp[i+a[j]]==-1)dp[i+a[j]]=dp[i]+v;</span><br><span class="line"></span><br><span class="line">                        elsedp[i+a[j]]=max(dp[i+a[j]],dp[i]+v);       // 我是从一个状态跳所有它可以跳到的状态。</span><br><span class="line"></span><br><span class="line">                       ans=max(ans,dp[i+a[j]]);</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>L(<a href="http://acm.csu.edu.cn/csuoj/problemset/problem?pid=2074" target="_blank" rel="noopener">2074</a>): Tongues</strong></p>
+<p><a href>SubmitPage </a> <a href="http://acm.csu.edu.cn/csuoj/problemset/summary?pid=2074" target="_blank" rel="noopener">Summary </a> TimeLimit: 5 Sec MemoryLimit: 512 Mb Submitted: 44 Solved: 18 </p>
+<hr>
+<p><strong>Description</strong></p>
+<p>Gandalf’s writings have long been available for study,but no one has yet figured out what language they are written in. Recently, dueto programming work by a hacker known only by the code name ROT13, it has beendiscovered that Gandalf used nothing but a simple letter substitution scheme,and further, that it is its own inverse—the same operation scrambles themessage as unscrambles it. This operation is performed by replacing vowels inthe sequence (a i y e o u) with the vowel three advanced, cyclicly, whilepreserving case (i.e., lower or upper). Similarly, consonants are replaced fromthe sequence (b k x z n h d c w g p v j q t s r l m f) by advancing tenletters. So for instance the phrase One ring to rule them all. translates toIta dotf ni dyca nsaw ecc. The fascinating thing about this transformation isthat the resulting language yields pronounceable words. For this problem, youwill write code to translate Gandalf’s manuscripts into plain text.</p>
+<p><strong>Input</strong></p>
+<p>The input file will contain multiple test cases. Eachtest case consists of a single line containing up to 100 characters,representing some text written by Gandalf. All characters will be plain ASCII,in the range space (32) to tilde (126), plus a newline terminating each line.The end of the input is denoted by the end-of-file.</p>
+<p><strong>Output</strong></p>
+<p>For each input test case, print its translation intoplaintext. The output should contain exactly the same number of lines andcharacters as the input.</p>
+<p><strong>Sample Input</strong></p>
+<p>Ita dotf ni dycansaw ecc.</p>
+<p><strong>Sample Output</strong></p>
+<p>One ring to rulethem all.</p>
+<p>字符串替换，XJB暴力就行,就是耗神。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;map&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn=1e2+5;</span><br><span class="line"></span><br><span class="line">char s[maxn];</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">//b k x z n h d c w g   //p v j q t s r l m f</span><br><span class="line"></span><br><span class="line">   char c1[]=&#123;&quot;bkxznhdcwg&quot;&#125;;</span><br><span class="line"></span><br><span class="line">   char c2[]=&#123;&quot;pvjqtsrlmf&quot;&#125;;</span><br><span class="line"></span><br><span class="line">   char a[500]=&#123;0&#125;;</span><br><span class="line"></span><br><span class="line">   for(int i=0;i&lt;strlen(c1);i++)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       a[c1[i]]=c2[i];</span><br><span class="line"></span><br><span class="line">       a[c1[i]-(&apos;a&apos;-&apos;A&apos;)]=c2[i]-(&apos;a&apos;-&apos;A&apos;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   for(int i=0;i&lt;strlen(c1);i++)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       a[c2[i]]=c1[i];</span><br><span class="line"></span><br><span class="line">       a[c2[i]-(&apos;a&apos;-&apos;A&apos;)]=c1[i]-(&apos;a&apos;-&apos;A&apos;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   strcpy(c1,&quot;aiy&quot;);</span><br><span class="line"></span><br><span class="line">   strcpy(c2,&quot;eou&quot;);</span><br><span class="line"></span><br><span class="line">   for(int i=0;i&lt;strlen(c1);i++)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       a[c1[i]]=c2[i];</span><br><span class="line"></span><br><span class="line">       a[c1[i]-(&apos;a&apos;-&apos;A&apos;)]=c2[i]-(&apos;a&apos;-&apos;A&apos;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   for(int i=0;i&lt;strlen(c1);i++)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       a[c2[i]]=c1[i];</span><br><span class="line"></span><br><span class="line">       a[c2[i]-(&apos;a&apos;-&apos;A&apos;)]=c1[i]-(&apos;a&apos;-&apos;A&apos;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   while(~scanf(&quot;%c&quot;,&amp;s[0]))</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">       int i=0;</span><br><span class="line"></span><br><span class="line">       while(s[i++]!=&apos;\n&apos;)</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           scanf(&quot;%c&quot;,&amp;s[i]);</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">        i=0;</span><br><span class="line"></span><br><span class="line">       do</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">           if(a[s[i]]==0)</span><br><span class="line"></span><br><span class="line">           &#123;</span><br><span class="line"></span><br><span class="line">                printf(&quot;%c&quot;,s[i]);</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           else printf(&quot;%c&quot;,a[s[i]]);</span><br><span class="line"></span><br><span class="line">       &#125;while(s[i++]!=&apos;\n&apos;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSDN迁移/" rel="tag"># CSDN迁移</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/17/贪心/" rel="next" title="贪心">
+                <i class="fa fa-chevron-left"></i> 贪心
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/16/GIT基本操作，和别人一起做项目/" rel="prev" title="GIT基本操作，和别人一起做项目">
+                GIT基本操作，和别人一起做项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+            
+              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ETBUBBLE" title="GitHub &rarr; https://github.com/ETBUBBLE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40871466" title="https://blog.csdn.net/qq_40871466" rel="noopener" target="_blank">csdn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://your.com/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/model/tia/model.json");
+      </script>
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dust</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">283k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">4:17</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.0</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

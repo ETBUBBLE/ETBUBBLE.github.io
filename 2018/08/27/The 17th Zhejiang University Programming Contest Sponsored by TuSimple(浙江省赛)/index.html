@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="A - Marjar Cola ZOJ - 3948  签到题，x,y,a,b,都很小直接暴力。判断INF，只要判断次数有没有过多就行。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970">
+<meta name="keywords" content="CSDN迁移">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The 17th Zhejiang University Programming Contest Sponsored by TuSimple(浙江省赛)">
+<meta property="og:url" content="https://etbubble.github.io/2018/08/27/The 17th Zhejiang University Programming Contest Sponsored by TuSimple(浙江省赛)/index.html">
+<meta property="og:site_name" content="etbubble 的博客">
+<meta property="og:description" content="A - Marjar Cola ZOJ - 3948  签到题，x,y,a,b,都很小直接暴力。判断INF，只要判断次数有没有过多就行。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-18T08:09:31.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The 17th Zhejiang University Programming Contest Sponsored by TuSimple(浙江省赛)">
+<meta name="twitter:description" content="A - Marjar Cola ZOJ - 3948  签到题，x,y,a,b,都很小直接暴力。判断INF，只要判断次数有没有过多就行。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970">
+
+
+
+
+
+
+  <link rel="canonical" href="https://etbubble.github.io/2018/08/27/The 17th Zhejiang University Programming Contest Sponsored by TuSimple(浙江省赛)/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>The 17th Zhejiang University Programming Contest Sponsored by TuSimple(浙江省赛) | etbubble 的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">etbubble 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">两件事一定不能停 学习和运动</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2018/08/27/The 17th Zhejiang University Programming Contest Sponsored by TuSimple(浙江省赛)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dust">
+      <meta itemprop="description" content="做自己不会做的事被称之为学习">
+      <meta itemprop="image" content="/images/tou.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="etbubble 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">The 17th Zhejiang University Programming Contest Sponsored by TuSimple(浙江省赛)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-27 20:46:15" itemprop="dateCreated datePublished" datetime="2018-08-27T20:46:15+08:00">2018-08-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-18 16:09:31" itemprop="dateModified" datetime="2019-03-18T16:09:31+08:00">2019-03-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">15k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">14 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="A-Marjar-Cola"><a href="#A-Marjar-Cola" class="headerlink" title="A - Marjar Cola"></a><a href="https://vjudge.net/problem/ZOJ-3948" target="_blank" rel="noopener">A - Marjar Cola</a></h2><p> <a href="https://vjudge.net/problem/741684/origin" target="_blank" rel="noopener">ZOJ - 3948</a></p>
+<p> 签到题，x,y,a,b,都很小直接暴力。判断INF，只要判断次数有没有过多就行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=5e5+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int x,y,a,b;</span><br><span class="line">    int t;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--) &#123;</span><br><span class="line">        int ans=0;</span><br><span class="line">        scanf(&quot;%d%d%d%d&quot;,&amp;x,&amp;y,&amp;a,&amp;b);</span><br><span class="line">        if(x==1||y==1)puts(&quot;INF&quot;);</span><br><span class="line">        else &#123;</span><br><span class="line">            while(a&gt;=x||y&lt;=b) &#123;</span><br><span class="line">                if(a&gt;=x) &#123;</span><br><span class="line">                    a-=x;</span><br><span class="line">                    a++;</span><br><span class="line">                    b++;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    b-=y;</span><br><span class="line">                    b++;</span><br><span class="line">                    a++;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">//                debug(a);</span><br><span class="line">//                debug(b);</span><br><span class="line">                if(ans&gt;3e5)&#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(ans&gt;3e5)&#123;</span><br><span class="line">                puts(&quot;INF&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            else printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="C-How-Many-Nines"><a href="#C-How-Many-Nines" class="headerlink" title="C - How Many Nines"></a><a href="https://vjudge.net/problem/ZOJ-3950" target="_blank" rel="noopener">C - How Many Nines</a></h2><p> <a href="https://vjudge.net/problem/741686/origin" target="_blank" rel="noopener">ZOJ - 3950 </a></p>
+<p> 打个表，比较考虑细节，真的难处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=1e4+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line"></span><br><span class="line">int Year[maxn], Mon[35], pre1[maxn], pre2[35];</span><br><span class="line">int hh[13], mon[13];</span><br><span class="line">bool leap(int y)&#123;</span><br><span class="line">    if(y%400==0)return 1;</span><br><span class="line">    if(y%100==0)return 0;</span><br><span class="line">    if(y%4==0)return 1;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">int nine(int y)&#123;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    while(y)&#123;</span><br><span class="line">        if(y%10==9)cnt++;</span><br><span class="line">        y/=10;</span><br><span class="line">    &#125;</span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br><span class="line">void init()&#123;</span><br><span class="line">    Mon[1]=Mon[3]=Mon[5]=Mon[7]=Mon[8]=Mon[10]=Mon[12]=3;///31</span><br><span class="line">    Mon[2]=2;</span><br><span class="line">    Mon[4]=Mon[6]=Mon[9]=Mon[11] = 3;///30</span><br><span class="line">    Mon[9] += 30;</span><br><span class="line">    hh[1]=hh[3]=hh[5]=hh[7]=hh[8]=hh[10]=hh[12]=31;</span><br><span class="line">    hh[2] = 28;</span><br><span class="line">    hh[4]=hh[6]=hh[9]=hh[11]=30;</span><br><span class="line">    mon[0] = 0;</span><br><span class="line">    for(int i = 1; i &lt;= 12; ++i)&#123;</span><br><span class="line">        mon[i] = hh[i]+mon[i-1];</span><br><span class="line">    &#125;</span><br><span class="line">    int sum = 0;pre1[1999]=pre2[0] = 0;</span><br><span class="line">    for(int i = 1; i &lt;= 12; ++i)&#123;</span><br><span class="line">        sum += Mon[i];</span><br><span class="line">        pre2[i] = pre2[i-1]+Mon[i];</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i = 2000; i &lt;= 9999; ++i)&#123;</span><br><span class="line">        int tmp = nine(i);</span><br><span class="line">        if(tmp)&#123;</span><br><span class="line">            Year[i] = sum + tmp*365;</span><br><span class="line">            if(leap(i))Year[i] += tmp + 1;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            Year[i] = sum;</span><br><span class="line">            if(leap(i))++Year[i];</span><br><span class="line">        &#125;</span><br><span class="line">        pre1[i] = pre1[i-1]+Year[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int get(int d)&#123;</span><br><span class="line">    if(d&lt;=9)return 3;</span><br><span class="line">    if(d&lt;=19)return 2;</span><br><span class="line">    if(d&lt;=29)return 1;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">#ifndef ONLINE_JUDGE</span><br><span class="line">    //freopen(&quot;E://ADpan//in.in&quot;, &quot;r&quot;, stdin);</span><br><span class="line">    //freopen(&quot;E://ADpan//out.out&quot;, &quot;w&quot;, stdout);  </span><br><span class="line">#endif</span><br><span class="line">    init();</span><br><span class="line">    int tim;scanf(&quot;%d&quot;,&amp;tim);</span><br><span class="line">    while(tim--)&#123;</span><br><span class="line">        int y1,m1,d1,y2,m2,d2;</span><br><span class="line">        scanf(&quot;%d%d%d%d%d%d&quot;,&amp;y1,&amp;m1,&amp;d1,&amp;y2,&amp;m2,&amp;d2);</span><br><span class="line">        if(y1==y2)&#123;</span><br><span class="line">            if(m1==m2)&#123;</span><br><span class="line">                int ans = get(d1)-get(d2+1);</span><br><span class="line">                if(m1==9)ans += d2-d1+1;</span><br><span class="line">                int tmp = nine(y1);</span><br><span class="line">                ans += tmp*(d2-d1+1);</span><br><span class="line">                printf(&quot;%d\n&quot;, ans);</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            int ans = pre2[m2-1]-pre2[m1];</span><br><span class="line">            if(leap(y1)&amp;&amp;2&gt;m1&amp;&amp;2&lt;m2)ans++;</span><br><span class="line">            ans += get(d1) + 3 - get(d2+1);</span><br><span class="line">            if(m1==2&amp;&amp;leap(y1)==false)ans--;</span><br><span class="line">            if(m1==9)&#123;</span><br><span class="line">                ans+=30-d1+1;</span><br><span class="line">            &#125;</span><br><span class="line">            if(m2==9)&#123;</span><br><span class="line">                ans += d2;</span><br><span class="line">            &#125;</span><br><span class="line">            int tmp = nine(y1);</span><br><span class="line">            if(tmp)&#123;</span><br><span class="line">                int day = mon[m2-1]-mon[m1] + (hh[m1] - d1 + 1) + d2;</span><br><span class="line">                if(leap(y1)&amp;&amp;2&gt;m1&amp;&amp;2&lt;m2)day++;</span><br><span class="line">                if(leap(y1)&amp;&amp;m1==2)day++;</span><br><span class="line">                ans += day*tmp;</span><br><span class="line">            &#125;</span><br><span class="line">            printf(&quot;%d\n&quot;, ans);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            int ans = pre1[y2-1]-pre1[y1];</span><br><span class="line">            int a = 0, b = 0, tmp = nine(y1),day;</span><br><span class="line">            a = pre2[12]-pre2[m1];</span><br><span class="line">            a += get(d1);</span><br><span class="line">            if(leap(y1)==0&amp;&amp;m1==2)a--;</span><br><span class="line">            if(leap(y1)&amp;&amp;m1==1)a++;</span><br><span class="line">            if(m1==9)a += 30-d1+1;</span><br><span class="line">            b = pre2[m2-1];</span><br><span class="line">            b += 3-get(d2+1);</span><br><span class="line">            if(leap(y2)&amp;&amp;m2&gt;2)b++;</span><br><span class="line">            if(m2==9)b+=d2;</span><br><span class="line">            if(tmp)&#123;</span><br><span class="line">                day = mon[12]-mon[m1] + (hh[m1] - d1 + 1);</span><br><span class="line">                if(leap(y1)&amp;&amp;m1&lt;=2)day++;</span><br><span class="line">                a += tmp * day;</span><br><span class="line">            &#125;</span><br><span class="line">            tmp = nine(y2);</span><br><span class="line">            if(tmp)&#123;</span><br><span class="line">                day = mon[m2-1] + d2;</span><br><span class="line">                if(leap(y2)&amp;&amp;m2&gt;2)day++;</span><br><span class="line">                b += tmp * day;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += a+b;</span><br><span class="line">            printf(&quot;%d\n&quot;, ans);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F-Knuth-Morris-Pratt-Algorithm"><a href="#F-Knuth-Morris-Pratt-Algorithm" class="headerlink" title="F - Knuth-Morris-Pratt Algorithm"></a><a href="https://vjudge.net/problem/ZOJ-3957" target="_blank" rel="noopener">F - Knuth-Morris-Pratt Algorithm</a></h2><p> <a href="https://vjudge.net/problem/741693/origin" target="_blank" rel="noopener">ZOJ - 3957 </a></p>
+<p> 签到题，KMP，判断一下次数就行。暴力判断也没事</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=5e5+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line">int n;</span><br><span class="line">char ch1[]=&quot;dog&quot;,ch2[]=&quot;cat&quot;;</span><br><span class="line">int nex[2000];</span><br><span class="line">void get_next(char *t,int lent)&#123;</span><br><span class="line">    nex[0] = -1;</span><br><span class="line">    for(int i = 0,k = -1;i &lt; lent;)&#123;</span><br><span class="line">        if(k==-1||t[i] == t[k])&#123;</span><br><span class="line">            ++k;++i;</span><br><span class="line">            nex[i]=k;</span><br><span class="line">        &#125;else k = nex[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int kmp(char *s,int lens,char *t,int lent)&#123;</span><br><span class="line">    if(lens&lt;lent)return 0;</span><br><span class="line">    get_next(t,lent);</span><br><span class="line">    int i = 0, j = 0;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    while(i &lt; lens&amp;&amp;j&lt;lent) &#123;</span><br><span class="line">        if(j==-1||s[i] == t[j])&#123;</span><br><span class="line">            i++;j++;</span><br><span class="line">            if(j==lent)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                j = nex[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else j=nex[j];</span><br><span class="line">    &#125;</span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int t;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        char s[2000];</span><br><span class="line">        scanf(&quot;%s&quot;,s);</span><br><span class="line">        int l=strlen(s);</span><br><span class="line">        int ans=0;</span><br><span class="line">        ans+=kmp(s,l,ch1,3);</span><br><span class="line">        ans+=kmp(s,l,ch2,3);</span><br><span class="line">        printf(&quot;%d\n&quot;,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="G-Intervals"><a href="#G-Intervals" class="headerlink" title="G - Intervals"></a><a href="https://vjudge.net/problem/ZOJ-3953" target="_blank" rel="noopener">G - Intervals</a></h2><p> <a href="https://vjudge.net/problem/741689/origin" target="_blank" rel="noopener">ZOJ - 3953 </a></p>
+<p> 贪心，真的贪的内心崩溃。贪心策略，按L排序，每次判断3个区间，如果出现3个重合，丢去 R最大的，因为影响最大。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=5e5+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line">struct seg &#123;</span><br><span class="line">    int st,en,id;</span><br><span class="line">    bool operator &lt; (const  seg a )const &#123;</span><br><span class="line">        return en&lt;a.en;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; sg[maxn];</span><br><span class="line">bool cmp(seg a,seg b) &#123;</span><br><span class="line">    if(a.st==b.st) &#123;</span><br><span class="line">        return a.en&lt;b.en;</span><br><span class="line">    &#125;</span><br><span class="line">    return a.st&lt;b.st;</span><br><span class="line">&#125;</span><br><span class="line">int res[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int n,t;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--) &#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">        for(int i=0; i&lt;n; i++) &#123;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;sg[i].st,&amp;sg[i].en);</span><br><span class="line">            sg[i].id=i+1;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(sg,sg+n,cmp);</span><br><span class="line">        priority_queue&lt;seg&gt;q;</span><br><span class="line">        int ans=0;</span><br><span class="line">        for(int i=0; i&lt;n; i++) &#123;</span><br><span class="line">            if(q.size()&lt;2) &#123;</span><br><span class="line">                q.push(sg[i]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                q.push(sg[i]);</span><br><span class="line">                seg s[3];</span><br><span class="line">                for(int i=0; i&lt;3; i++) &#123;</span><br><span class="line">                    s[i]=q.top();</span><br><span class="line">                    q.pop();</span><br><span class="line">                &#125;</span><br><span class="line">                if(s[0].st&lt;=s[2].en&amp;&amp;s[1].st&lt;=s[2].en) &#123;</span><br><span class="line">                    res[ans++]=s[0].id;</span><br><span class="line">                    q.push(s[1]);</span><br><span class="line">                    q.push(s[2]);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    q.push(s[0]);</span><br><span class="line">                    q.push(s[1]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(res,res+ans);</span><br><span class="line">        printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        for(int i=0; i&lt;ans; i++) &#123;</span><br><span class="line">            printf(&quot;%d&quot;,res[i]);</span><br><span class="line">            if(i+1==ans)printf(&quot;\n&quot;);</span><br><span class="line">            else printf(&quot; &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if(ans==0)puts(&quot;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="H-Seven-Segment-Display"><a href="#H-Seven-Segment-Display" class="headerlink" title="H - Seven-Segment Display"></a><a href="https://vjudge.net/problem/ZOJ-3954" target="_blank" rel="noopener">H - Seven-Segment Display</a></h2><p> <a href="https://vjudge.net/problem/741690/origin" target="_blank" rel="noopener">ZOJ - 3954 </a></p>
+<p> 题意 ：1-9九个数，分别可以用后面7个0 1表示，下面给你n个数，每个数后面跟有7个01串，你可以交换n个数任意两列。如果可以通过交换表示出来输出YES 否则NO。</p>
+<p> 例子 :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7 0101011 1 1101011</span><br></pre></td></tr></table></figure>
+<p> 把第2列和第5列交换，变成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 1001111 7 0001111</span><br></pre></td></tr></table></figure>
+<p> 与1 7 的表示匹配，所以输出YES</p>
+<p> 题解：这题只有9个数，暴力啊匹配，n^2都不会超时。。。；我是把每一列的状态用一个10进制数保存，每次能够从原来的数里面找与之匹配的状态，如果找不到，就输出NO；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=5e5+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line">int mp[10];</span><br><span class="line">int n;</span><br><span class="line">int k[10],v[10];</span><br><span class="line">int p[10];</span><br><span class="line">map&lt;int,int&gt; m;</span><br><span class="line">int main() &#123;</span><br><span class="line">    mp[1]=1001111;</span><br><span class="line">    mp[2]=10010;</span><br><span class="line">    mp[3]=110;</span><br><span class="line">    mp[4]=1001100;</span><br><span class="line">    mp[5]=100100;</span><br><span class="line">    mp[6]=100000;</span><br><span class="line">    mp[7]=1111;</span><br><span class="line">    mp[8]=0;</span><br><span class="line">    mp[9]=100;</span><br><span class="line">    int t;</span><br><span class="line">    p[0]=1;</span><br><span class="line">    for(int i=1; i&lt;10; i++) &#123;</span><br><span class="line">        p[i]=p[i-1]*10;</span><br><span class="line">    &#125;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--) &#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">        for(int i=0; i&lt;n; i++) &#123;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;k[i],&amp;v[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        m.clear();</span><br><span class="line">        for(int i=0; i&lt;7; i++) &#123;</span><br><span class="line">            int sum=0;</span><br><span class="line">            for(int j=0; j&lt;n; j++) &#123;</span><br><span class="line">                sum+=mp[k[j]]/p[i]%10*p[j];</span><br><span class="line">            &#125;</span><br><span class="line">            m[sum]++;</span><br><span class="line">        &#125;</span><br><span class="line">        int flag=1;</span><br><span class="line">        for(int i=0; i&lt;7; i++) &#123;</span><br><span class="line">            int sum=0;</span><br><span class="line">            for(int j=0; j&lt;n; j++) &#123;</span><br><span class="line">                sum+=v[j]/p[i]%10*p[j];</span><br><span class="line">            &#125;</span><br><span class="line">            m[sum]--;</span><br><span class="line">            if(m[sum]&lt;0) &#123;</span><br><span class="line">                flag=0;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        puts(flag?&quot;YES&quot;:&quot;NO&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="J-Course-Selection-System"><a href="#J-Course-Selection-System" class="headerlink" title="J - Course Selection System"></a><a href="https://vjudge.net/problem/ZOJ-3956" target="_blank" rel="noopener">J - Course Selection System</a></h2><p> <a href="https://vjudge.net/problem/741692/origin" target="_blank" rel="noopener">ZOJ - 3956 </a></p>
+<p> 傻逼题,一开始还在想怎么推公式，结果发现，CI的和只有5e4，枚举所用能够到的状态H 的和最大不久行了，直接转换成了 0 1 背包。。。。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=5e4+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line">int n;</span><br><span class="line">int a[maxn];</span><br><span class="line">int x[maxn],y[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">    int t;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--) &#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">        for(int i=0; i&lt;n; i++) &#123;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;x[i],&amp;y[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        mem(a,-1);</span><br><span class="line">        a[0]=0;</span><br><span class="line">        for(int i=0; i&lt;n; i++) &#123;</span><br><span class="line">            for(int j=5e4-y[i]; j&gt;=0; j--) &#123;</span><br><span class="line">                if(a[j]!=-1) &#123;</span><br><span class="line">                    a[j+y[i]]=max(a[j+y[i]],a[j]+x[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans=0;</span><br><span class="line">        for(ll i=1;i&lt;=5e4;i++)&#123;</span><br><span class="line">            if(a[i]!=-1)</span><br><span class="line">            ans=max(ans,1LL*a[i]*a[i]-i*a[i]-i*i);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSDN迁移/" rel="tag"># CSDN迁移</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/27/CCPC2018中国大学生程序设计竞赛 - 网络选拔赛/" rel="next" title="CCPC2018中国大学生程序设计竞赛 - 网络选拔赛">
+                <i class="fa fa-chevron-left"></i> CCPC2018中国大学生程序设计竞赛 - 网络选拔赛
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/27/傻瓜级git命令理解/" rel="prev" title="傻瓜级git命令理解">
+                傻瓜级git命令理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+            
+              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ETBUBBLE" title="GitHub &rarr; https://github.com/ETBUBBLE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40871466" title="https://blog.csdn.net/qq_40871466" rel="noopener" target="_blank">csdn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Marjar-Cola"><span class="nav-number">1.</span> <span class="nav-text">A - Marjar Cola</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-How-Many-Nines"><span class="nav-number">2.</span> <span class="nav-text">C - How Many Nines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F-Knuth-Morris-Pratt-Algorithm"><span class="nav-number">3.</span> <span class="nav-text">F - Knuth-Morris-Pratt Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#G-Intervals"><span class="nav-number">4.</span> <span class="nav-text">G - Intervals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#H-Seven-Segment-Display"><span class="nav-number">5.</span> <span class="nav-text">H - Seven-Segment Display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#J-Course-Selection-System"><span class="nav-number">6.</span> <span class="nav-text">J - Course Selection System</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://your.com/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/model/tia/model.json");
+      </script>
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dust</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">283k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">4:17</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.0</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
