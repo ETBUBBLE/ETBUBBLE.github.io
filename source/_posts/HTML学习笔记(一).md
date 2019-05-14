@@ -6,9 +6,8 @@ tags:
     - html
     - 前端
 categories:
-    - note
-    - html
     - 前端
+    - html
 ---
 ## 组成
  ```

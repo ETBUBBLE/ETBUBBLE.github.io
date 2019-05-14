@@ -5,7 +5,6 @@ tags:
     - hexo
     - 配置
 categories:
-    - hexo
     - 配置
 ---
 

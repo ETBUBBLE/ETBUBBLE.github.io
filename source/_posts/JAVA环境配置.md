@@ -6,7 +6,6 @@ tags:
     - 配置
 categories:
     - JAVA
-    - 配置
 ---
 本篇文章用于记录JAVA配置。
 

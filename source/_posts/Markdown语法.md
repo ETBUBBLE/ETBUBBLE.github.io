@@ -5,8 +5,6 @@ tags:
     - 语法
     - Markdown
 categories:
-    - 语法
-    - Markdown
     - notes
 ---
 此片文章主要用于记录一些简单的Markdown语法
