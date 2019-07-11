@@ -15,6 +15,11 @@ categories:
 这个地方可能要更新一下驱动，idea 有自带更新，点一下下面那个 MySQL 就行
 ![](https://i.loli.net/2019/05/24/5ce7d28eb4d3585811.png)
 ![](https://i.loli.net/2019/05/24/5ce7d2b8eafc561716.png)
+添加连接数据库的Java包
+![](https://i.loli.net/2019/06/18/5d08870b8b73460833.png)
+选择找到的包
+![](https://i.loli.net/2019/06/18/5d0887761e75d15200.png)
+添加好后应该会在下面多一个这样的包
 连接数据库就成功了
 测试一下，具体测试根据你自己数据库来，后面我打有注释
 ![](https://i.loli.net/2019/05/24/5ce7d39876cc433865.png)
