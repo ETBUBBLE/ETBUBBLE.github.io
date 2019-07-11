@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[大数素数判断及质因子分解]]></title>
+    <url>%2F2019%2F07%2F11%2F%E5%A4%A7%E6%95%B0%E7%B4%A0%E6%95%B0%E5%88%A4%E6%96%AD%E5%8F%8A%E8%B4%A8%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[判断是否是素数几个常用的sqrt(n)复杂度的就不说了。对于一个 longlong 范围或者更大的数，怎么快速判断一个数是不是素数，就要用到Miller_Rabin算法.立用a^(n-1)=1(mod n) 怎么来的就不解释了，有兴趣的同学可以看看算法导论P566有详细推导。在这个的基础上用 随机数进行测试（直接用的话会有一些伪素数）。里面 a用随机数随机， (n-1) 写成 2^r*s 为啥这么写我也不知道，反正大家都是这么写的 qaq然后就根据上面那个判断就行了这个算法有时候会出错，出错的概率差不多是 2^-循环次数12345678910111213141516171819202122232425262728293031323334353637inline LL ksc(LL x,LL n,LL mod) &#123; LL res=0; while(n&gt;0) &#123; if(n&amp;1)res=(res+x)%mod; x=(x+x)%mod; n&gt;&gt;=1; &#125; return res%mod;&#125;inline LL ksm(LL x,LL n,LL mod) &#123; LL res=1; while(n&gt;0) &#123; if(n&amp;1)res=ksc(res,x,mod); x=ksc(x,x,mod); n&gt;&gt;=1; &#125; return res%mod;&#125;bool check(LL x) &#123; //Miller_Rabin算法，判断n是否为素数 for(int i=0; i&lt;50; i++) &#123; int a=rand()%(x-1)+1,k=0; LL t=x-1; if(ksm(a,x-1,x)!=1)return 0; while(t&amp;1==0) &#123; ++k; t&gt;&gt;=1; &#125; LL u=ksm(a,t,x),l=u; for(int i=1; i&lt;=k; i++) &#123; u=ksc(u,u,x); if(u==1&amp;&amp;l!=1&amp;&amp;l!=x-1)return 0; l=u; &#125; &#125; return 1;&#125; 质因子分解pollard_rho算法,这个算法十分玄学，找到一个数x0 ，然后用一个玄学递推得到 x1=x0*x0 + 一个随机数 然后用两个的差值去和 n做 gcd 然后得出来如果是1就继续找，如果不是1 不就是个因子吗？ （个人理解有点像直接随机一个数和他做GCD有没有公约数。。。。） 补充说明一下 x=(x*x +c)%n 是一个滚循环 像ρ所以称为pollard_rho算法，所以要判断循环结 用 floyd 判断。1234567891011121314151617181920212223242526272829303132333435363738LL pollard_rho(LL n, LL c) &#123; LL i = 1, k = 2; LL x = rand() % (n - 1) + 1; LL y = x; while (1) &#123; i++; x = (ksc(x, x, n) + c) % n; //玄学递推 LL d = __gcd((y - x + n) % n, n); if (1LL &lt; d &amp;&amp; d &lt; n) &#123; //如果有因子就直接返回 return d; &#125; if (y == x) &#123; //如果找到了循环节就跳出 return n; &#125; if (i == k) &#123; //空间 o1 判断循环节用的 ，看不懂你没救了 y = x; k &lt;&lt;= 1; &#125; &#125;&#125;LL fac[100],ct;void find(LL n, int c) &#123; if (n == 1) &#123; return; &#125; if (check(n)) &#123; fac[ct++] = n; //是个质因子 return; &#125; LL p = n; LL k = c; while (p &gt;= n) &#123; p = pollard_rho(p, c--); //如果是合数总会找到一个因子 &#125; find(p, k); //继续找 find(n / p, k);&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>ACM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何将本地项目传入github]]></title>
+    <url>%2F2019%2F06%2F24%2F%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%BC%A0%E5%85%A5github%2F</url>
+    <content type="text"><![CDATA[初始化文件夹在本地执行git init命令1git init 添加需要上传到github的代码到本地仓库git status查看哪些文件是没有加入到本地仓库的，红色的没有，绿色是已经添加了的。 1git add 可以把需要的文件加入本地仓库 将add的文件commit到仓库1git commit -m &quot;第一次提交&quot; 去github上创建自己的Repository这个不用教了吧 将本地的仓库关联到github上1git remote add origin +链接 上传代码到github远程仓库12git push #传上去git pull #拉回来 123git pull --rebase origin mastergit push -u origin master]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>githunb</tag>
+        <tag>项目</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IDEA连接myqsl数据库]]></title>
     <url>%2F2019%2F05%2F24%2FIDEA%E8%BF%9E%E6%8E%A5myqsl%E6%95%B0%E6%8D%AE%E5%BA%93%2F</url>
-    <content type="text"><![CDATA[第一步然后右边就会出现一个database 这个地方可能要更新一下驱动，idea 有自带更新，点一下下面那个 MySQL 就行连接数据库就成功了测试一下，具体测试根据你自己数据库来，后面我打有注释1234567891011121314151617181920212223242526272829303132package longpf;import java.sql.*;public class My &#123; public static void main(String[] args) &#123; Connection conn = null; //建立一个数据库连接 try &#123; Class.forName( "com.mysql.jdbc.Driver"); //加载驱动 System.out.println("数据库驱动加载成功"); long start=System.currentTimeMillis(); //记录开始时间 conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/mygamedb","root","root"); //连接数据库，参数数据库位置，用户名 密码 long end=System.currentTimeMillis(); // 记录结束时间 System.out.println(conn); // 打印连接 System.out.println("建立用时："+(end-start)+"ms"); // 创建Statement对象 Statement stmt = conn.createStatement(); // 执行SQL语句 ResultSet rs = stmt.executeQuery("select * from users"); System.out.println("id\tusername\tpwd\t\tregTime"); while (rs.next()) &#123; System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t\t" + rs.getString(3)); &#125; &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; return; &#125;&#125;]]></content>
+    <content type="text"><![CDATA[第一步然后右边就会出现一个database 这个地方可能要更新一下驱动，idea 有自带更新，点一下下面那个 MySQL 就行添加连接数据库的Java包选择找到的包添加好后应该会在下面多一个这样的包连接数据库就成功了测试一下，具体测试根据你自己数据库来，后面我打有注释1234567891011121314151617181920212223242526272829303132package longpf;import java.sql.*;public class My &#123; public static void main(String[] args) &#123; Connection conn = null; //建立一个数据库连接 try &#123; Class.forName( "com.mysql.jdbc.Driver"); //加载驱动 System.out.println("数据库驱动加载成功"); long start=System.currentTimeMillis(); //记录开始时间 conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/mygamedb","root","root"); //连接数据库，参数数据库位置，用户名 密码 long end=System.currentTimeMillis(); // 记录结束时间 System.out.println(conn); // 打印连接 System.out.println("建立用时："+(end-start)+"ms"); // 创建Statement对象 Statement stmt = conn.createStatement(); // 执行SQL语句 ResultSet rs = stmt.executeQuery("select * from users"); System.out.println("id\tusername\tpwd\t\tregTime"); while (rs.next()) &#123; System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t\t" + rs.getString(3)); &#125; &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; return; &#125;&#125;]]></content>
       <categories>
         <category>JDBC</category>
       </categories>
