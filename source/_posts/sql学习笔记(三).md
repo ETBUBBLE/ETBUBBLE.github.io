@@ -1,11 +1,11 @@
 ---
-title: sql学习笔记(san)
+title: sql学习笔记(三)
 date: 2019-05-19 20:02:05
 tags:
-    - sql
+    - 数据库
     - notes
 categories:
-    - sql
+    - 数据库
 ---
 ## sql的特点
 SQL语言集数据查询（data query）、数据操纵（data manipulation）、数据定义（data definition）和数据控制（data control）功能于一体，充分体现了关系数据语言的特点和优点。其主要特点包括：

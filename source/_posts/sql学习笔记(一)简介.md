@@ -2,10 +2,10 @@
 title: sql学习笔记（一）基本介绍
 date: 2019-05-19 18:58:33
 tags:
-    - sql
+    - 数据库
     - notes
 categories:
-    - sql
+    - 数据库
 ---
 ## 数据库基本概念
 1.数据(Data): 例如 `文本(text)`、`图形(graph)`、`图像(image)`、`音频(audio)`、`视频(video)`等.

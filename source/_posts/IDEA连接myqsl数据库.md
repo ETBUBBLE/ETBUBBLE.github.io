@@ -2,10 +2,9 @@
 title: IDEA连接myqsl数据库
 date: 2019-05-24 19:11:00
 tags:
-    - JDBC
-    - 配置
+    - JAVA
 categories:
-    - JDBC
+    - JAVA
 ---
 第一步
 ![](https://i.loli.net/2019/05/24/5ce7d4f3786a726517.png)

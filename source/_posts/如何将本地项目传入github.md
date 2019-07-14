@@ -2,8 +2,7 @@
 title: 如何将本地项目传入github
 date: 2019-06-24 19:47:30
 tags:
-    - githunb
-    - 项目
+    - github
 categories:
     - github
 ---

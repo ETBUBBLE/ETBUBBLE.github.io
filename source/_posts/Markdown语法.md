@@ -2,7 +2,6 @@
 title: Markdown语法
 date: 2019-02-27 19:52:03
 tags:
-    - 语法
     - Markdown
 categories:
     - notes
