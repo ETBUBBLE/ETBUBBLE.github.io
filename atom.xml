@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>etbubble 的博客</title>
+  
+  <subtitle>两件事一定不能停 学习和运动</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://etbubble.github.io/"/>
+  <updated>2019-07-14T02:31:08.439Z</updated>
+  <id>https://etbubble.github.io/</id>
+  
+  <author>
+    <name>Dust</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Codeforces Round 573 Div 2</title>
+    <link href="https://etbubble.github.io/2019/07/13/Codeforces-Round-573-Div-2/"/>
+    <id>https://etbubble.github.io/2019/07/13/Codeforces-Round-573-Div-2/</id>
+    <published>2019-07-13T02:27:17.000Z</published>
+    <updated>2019-07-14T02:31:08.439Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;A-Tokitsukaze-and-Enhancement&quot;&gt;&lt;a href=&quot;#A-Tokitsukaze-and-Enhancement&quot; class=&quot;headerlink&quot; title=&quot;A - Tokitsukaze and
+        
+      
+    
+    </summary>
+    
+      <category term="codeforces" scheme="https://etbubble.github.io/categories/codeforces/"/>
+    
+      <category term="div2" scheme="https://etbubble.github.io/categories/codeforces/div2/"/>
+    
+    
+      <category term="codeforces" scheme="https://etbubble.github.io/tags/codeforces/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>拉格朗日插值和求多项式系数</title>
+    <link href="https://etbubble.github.io/2019/07/12/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E5%92%8C%E6%B1%82%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%B3%BB%E6%95%B0/"/>
+    <id>https://etbubble.github.io/2019/07/12/拉格朗日插值和求多项式系数/</id>
+    <published>2019-07-12T06:53:29.000Z</published>
+    <updated>2019-07-14T02:35:25.680Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;拉格朗日介绍&quot;&gt;&lt;a href=&quot;#拉格朗日介绍&quot; class=&quot;headerlink&quot; title=&quot;拉格朗日介绍&quot;&gt;&lt;/a&gt;拉格朗日介绍&lt;/h2&gt;&lt;p&gt;先说说拉格朗日是啥吧&lt;br&gt;首先 拉格朗日插值是给你 n+1 个点 (x,y)
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="数论" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E8%AE%BA/"/>
+    
+    
+      <category term="数论" scheme="https://etbubble.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大数素数判断及质因子分解</title>
+    <link href="https://etbubble.github.io/2019/07/11/%E5%A4%A7%E6%95%B0%E7%B4%A0%E6%95%B0%E5%88%A4%E6%96%AD%E5%8F%8A%E8%B4%A8%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/"/>
+    <id>https://etbubble.github.io/2019/07/11/大数素数判断及质因子分解/</id>
+    <published>2019-07-11T13:19:49.000Z</published>
+    <updated>2019-07-11T13:49:39.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;判断是否是素数&quot;&gt;&lt;a href=&quot;#判断是否是素数&quot; class=&quot;headerlink&quot; title=&quot;判断是否是素数&quot;&gt;&lt;/a&gt;判断是否是素数&lt;/h2&gt;&lt;p&gt;几个常用的sqrt(n)复杂度的就不说了。&lt;br&gt;对于一个 longlong
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="数论" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E8%AE%BA/"/>
+    
+    
+      <category term="数论" scheme="https://etbubble.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何将本地项目传入github</title>
+    <link href="https://etbubble.github.io/2019/06/24/%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%BC%A0%E5%85%A5github/"/>
+    <id>https://etbubble.github.io/2019/06/24/如何将本地项目传入github/</id>
+    <published>2019-06-24T11:47:30.000Z</published>
+    <updated>2019-07-14T02:29:40.630Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;初始化文件夹&quot;&gt;&lt;a href=&quot;#初始化文件夹&quot; class=&quot;headerlink&quot; title=&quot;初始化文件夹&quot;&gt;&lt;/a&gt;初始化文件夹&lt;/h2&gt;&lt;p&gt;在本地执行&lt;code&gt;git init&lt;/code&gt;命令&lt;br&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="github" scheme="https://etbubble.github.io/categories/github/"/>
+    
+    
+      <category term="github" scheme="https://etbubble.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IDEA连接myqsl数据库</title>
+    <link href="https://etbubble.github.io/2019/05/24/IDEA%E8%BF%9E%E6%8E%A5myqsl%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>https://etbubble.github.io/2019/05/24/IDEA连接myqsl数据库/</id>
+    <published>2019-05-24T11:11:00.000Z</published>
+    <updated>2019-07-14T02:19:57.906Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;第一步&lt;br&gt;&lt;img src=&quot;https://i.loli.net/2019/05/24/5ce7d4f3786a726517.png&quot; alt&gt;&lt;br&gt;然后右边就会出现一个database&lt;br&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="JAVA" scheme="https://etbubble.github.io/categories/JAVA/"/>
+    
+    
+      <category term="JAVA" scheme="https://etbubble.github.io/tags/JAVA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sql学习笔记(三)</title>
+    <link href="https://etbubble.github.io/2019/05/19/sql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/"/>
+    <id>https://etbubble.github.io/2019/05/19/sql学习笔记(三)/</id>
+    <published>2019-05-19T12:02:05.000Z</published>
+    <updated>2019-07-14T02:34:42.419Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;sql的特点&quot;&gt;&lt;a href=&quot;#sql的特点&quot; class=&quot;headerlink&quot; title=&quot;sql的特点&quot;&gt;&lt;/a&gt;sql的特点&lt;/h2&gt;&lt;p&gt;SQL语言集数据查询（data query）、数据操纵（data
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://etbubble.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="数据库" scheme="https://etbubble.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="notes" scheme="https://etbubble.github.io/tags/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sql学习笔记(二)关系数据库</title>
+    <link href="https://etbubble.github.io/2019/05/19/sql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>https://etbubble.github.io/2019/05/19/sql学习笔记(二)关系数据库/</id>
+    <published>2019-05-19T11:40:53.000Z</published>
+    <updated>2019-07-14T02:34:43.376Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;关系&quot;&gt;&lt;a href=&quot;#关系&quot; class=&quot;headerlink&quot; title=&quot;关系&quot;&gt;&lt;/a&gt;关系&lt;/h2&gt;&lt;p&gt;关系模型的数据结构非常简单，只包含单一的数据结构，关系。在用户看来就是一张表。&lt;/p&gt;
+&lt;h3 id=&quot;1-域&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://etbubble.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="数据库" scheme="https://etbubble.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="notes" scheme="https://etbubble.github.io/tags/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sql学习笔记（一）基本介绍</title>
+    <link href="https://etbubble.github.io/2019/05/19/sql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)%E7%AE%80%E4%BB%8B/"/>
+    <id>https://etbubble.github.io/2019/05/19/sql学习笔记(一)简介/</id>
+    <published>2019-05-19T10:58:33.000Z</published>
+    <updated>2019-07-14T02:34:02.427Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;数据库基本概念&quot;&gt;&lt;a href=&quot;#数据库基本概念&quot; class=&quot;headerlink&quot; title=&quot;数据库基本概念&quot;&gt;&lt;/a&gt;数据库基本概念&lt;/h2&gt;&lt;p&gt;1.数据(Data): 例如
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://etbubble.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="数据库" scheme="https://etbubble.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="notes" scheme="https://etbubble.github.io/tags/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>EC-FINAL I Misunderstood Missing</title>
+    <link href="https://etbubble.github.io/2019/04/25/EC-FINAL/"/>
+    <id>https://etbubble.github.io/2019/04/25/EC-FINAL/</id>
+    <published>2019-04-25T12:40:39.000Z</published>
+    <updated>2019-05-14T11:51:18.458Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;写此篇记录EC-FINAL-铁牌。&quot;&gt;&lt;a href=&quot;#写此篇记录EC-FINAL-铁牌。&quot; class=&quot;headerlink&quot; title=&quot;写此篇记录EC-FINAL 铁牌。&quot;&gt;&lt;/a&gt;写此篇记录EC-FINAL 铁牌。&lt;/h2&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="dp" scheme="https://etbubble.github.io/categories/ACM/dp/"/>
+    
+    
+      <category term="dp" scheme="https://etbubble.github.io/tags/dp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++ sock编程学习笔记</title>
+    <link href="https://etbubble.github.io/2019/04/19/C++-sock%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://etbubble.github.io/2019/04/19/C++-sock编程学习笔记/</id>
+    <published>2019-04-19T09:19:31.000Z</published>
+    <updated>2019-05-14T11:46:46.037Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;主机字节序和网络字节序&quot;&gt;&lt;a href=&quot;#主机字节序和网络字节序&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="https://etbubble.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络" scheme="https://etbubble.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="笔记" scheme="https://etbubble.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="sock 编程" scheme="https://etbubble.github.io/tags/sock-%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>选拔赛Tulip Festival及其进阶</title>
+    <link href="https://etbubble.github.io/2019/04/16/%E9%80%89%E6%8B%94%E8%B5%9B/"/>
+    <id>https://etbubble.github.io/2019/04/16/选拔赛/</id>
+    <published>2019-04-16T13:35:08.000Z</published>
+    <updated>2019-04-17T07:37:30.332Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;线段树动态开点，对于这题顺便挂个自己学校OJ&lt;/p&gt;
+&lt;h2 id=&quot;Tulip-Festival&quot;&gt;&lt;a href=&quot;#Tulip-Festival&quot; class=&quot;headerlink&quot; title=&quot;Tulip Festival&quot;&gt;&lt;/a&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
+    
+      <category term="数据结构" scheme="https://etbubble.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity3D触发器和碰撞器</title>
+    <link href="https://etbubble.github.io/2019/03/26/Unity3D%E8%A7%A6%E7%A2%B0%E5%99%A8%E5%92%8C%E7%A2%B0%E6%92%9E%E5%99%A8/"/>
+    <id>https://etbubble.github.io/2019/03/26/Unity3D触碰器和碰撞器/</id>
+    <published>2019-03-26T06:25:35.000Z</published>
+    <updated>2019-05-14T11:49:20.606Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Unity3d碰撞检测中碰撞器与触发器的区别&quot;&gt;&lt;a href=&quot;#Unity3d碰撞检测中碰撞器与触发器的区别&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="游戏" scheme="https://etbubble.github.io/categories/%E6%B8%B8%E6%88%8F/"/>
+    
+      <category term="U3D" scheme="https://etbubble.github.io/categories/%E6%B8%B8%E6%88%8F/U3D/"/>
+    
+    
+      <category term="unity" scheme="https://etbubble.github.io/tags/unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中南多校第一场</title>
+    <link href="https://etbubble.github.io/2019/03/18/%E4%B8%AD%E5%8D%97%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%B8%80%E5%9C%BA/"/>
+    <id>https://etbubble.github.io/2019/03/18/中南多校第一场/</id>
+    <published>2019-03-18T10:19:38.000Z</published>
+    <updated>2019-07-14T02:38:32.693Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;源题目    &lt;a href=&quot;http://codeforces.com/gym/101933&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;2018-2019 ACM-ICPC Nordic Collegiate Programming
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
+    
+    
+      <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
+    
+      <category term="codeforces" scheme="https://etbubble.github.io/tags/codeforces/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HexoNext一些操作</title>
+    <link href="https://etbubble.github.io/2019/03/16/HexoNext%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C/"/>
+    <id>https://etbubble.github.io/2019/03/16/HexoNext一些操作/</id>
+    <published>2019-03-16T15:28:09.000Z</published>
+    <updated>2019-05-14T11:45:09.674Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;更改头像&quot;&gt;&lt;a href=&quot;#更改头像&quot; class=&quot;headerlink&quot; title=&quot;更改头像&quot;&gt;&lt;/a&gt;更改头像&lt;/h2&gt;&lt;p&gt;1.在主题配置文件中搜索 avatar&lt;br&gt;2.&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="https://etbubble.github.io/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+      <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="hexo" scheme="https://etbubble.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用VScode 调试的时候提示Unable to start debugging</title>
+    <link href="https://etbubble.github.io/2019/03/02/%E4%BD%BF%E7%94%A8VScode%20%E8%B0%83%E8%AF%95%E7%9A%84%E6%97%B6%E5%80%99%E6%8F%90%E7%A4%BAUnable%20to%20start%20debugging/"/>
+    <id>https://etbubble.github.io/2019/03/02/使用VScode 调试的时候提示Unable to start debugging/</id>
+    <published>2019-03-02T10:20:34.000Z</published>
+    <updated>2019-03-18T08:13:12.748Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CSDN迁移" scheme="https://etbubble.github.io/tags/CSDN%E8%BF%81%E7%A7%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Deepin VSCODE安装C++环境</title>
+    <link href="https://etbubble.github.io/2019/03/02/Deepin-VSCODE%E5%AE%89%E8%A3%85C++%E7%8E%AF%E5%A2%83/"/>
+    <id>https://etbubble.github.io/2019/03/02/Deepin-VSCODE安装C++环境/</id>
+    <published>2019-03-02T10:04:42.000Z</published>
+    <updated>2019-03-02T14:21:42.285Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;首先&quot;&gt;&lt;a href=&quot;#首先&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="https://etbubble.github.io/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+      <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="VScode" scheme="https://etbubble.github.io/tags/VScode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sublime快捷键集合</title>
+    <link href="https://etbubble.github.io/2019/03/02/sublime%E5%BF%AB%E6%8D%B7%E9%94%AE%E9%9B%86%E5%90%88/"/>
+    <id>https://etbubble.github.io/2019/03/02/sublime快捷键集合/</id>
+    <published>2019-03-02T02:08:23.000Z</published>
+    <updated>2019-03-18T08:13:13.428Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Sublime-Text-3-快捷键列表：&quot;&gt;&lt;a href=&quot;#Sublime-Text-3-快捷键列表：&quot; class=&quot;headerlink&quot; title=&quot;Sublime Text 3 快捷键列表：&quot;&gt;&lt;/a&gt;&lt;strong&gt;Sublime Text 3
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CSDN迁移" scheme="https://etbubble.github.io/tags/CSDN%E8%BF%81%E7%A7%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown语法</title>
+    <link href="https://etbubble.github.io/2019/02/27/Markdown%E8%AF%AD%E6%B3%95/"/>
+    <id>https://etbubble.github.io/2019/02/27/Markdown语法/</id>
+    <published>2019-02-27T11:52:03.000Z</published>
+    <updated>2019-07-14T02:25:27.815Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;此片文章主要用于记录一些简单的Markdown语法&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h1 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h1&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="notes" scheme="https://etbubble.github.io/categories/notes/"/>
+    
+    
+      <category term="Markdown" scheme="https://etbubble.github.io/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA环境配置</title>
+    <link href="https://etbubble.github.io/2019/02/27/JAVA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <id>https://etbubble.github.io/2019/02/27/JAVA环境配置/</id>
+    <published>2019-02-27T11:50:03.000Z</published>
+    <updated>2019-05-14T11:50:48.556Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本篇文章用于记录JAVA配置。&lt;/p&gt;
+&lt;p&gt;JAVA安装，百度搜索JAVA官网，下载对应系统版本，下载安装好后应该有 &lt;strong&gt;&lt;em&gt;JDK&lt;/em&gt;&lt;/strong&gt; 和&lt;strong&gt;&lt;em&gt;JDR&lt;/em&gt;&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="JAVA" scheme="https://etbubble.github.io/categories/JAVA/"/>
+    
+    
+      <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="JAVA" scheme="https://etbubble.github.io/tags/JAVA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Next 6.0 以上版本背景动画Canvas_nest设置无效</title>
+    <link href="https://etbubble.github.io/2019/02/25/Next%206.0%20%E4%BB%A5%E4%B8%8A%E7%89%88%E6%9C%AC%E8%83%8C%E6%99%AF%E5%8A%A8%E7%94%BBCanvas_nest%E8%AE%BE%E7%BD%AE%E6%97%A0%E6%95%88/"/>
+    <id>https://etbubble.github.io/2019/02/25/Next 6.0 以上版本背景动画Canvas_nest设置无效/</id>
+    <published>2019-02-25T14:26:24.000Z</published>
+    <updated>2019-03-18T08:13:13.988Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;  &lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CSDN迁移" scheme="https://etbubble.github.io/tags/CSDN%E8%BF%81%E7%A7%BB/"/>
+    
+  </entry>
+  
+</feed>
