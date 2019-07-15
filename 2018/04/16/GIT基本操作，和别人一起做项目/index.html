@@ -455,19 +455,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/04/16/GIT基本操作，和别人一起做项目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/16/GIT基本操作，和别人一起做项目/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1108,8 +1095,10 @@
     <!-- LOCAL: You can save these files to your site and update links -->
 
   
-  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+<!--   <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
 
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
 <!-- END LOCAL -->
 
@@ -1122,12 +1111,11 @@
 
 <script>
   function renderGitment() {
-    var gitment = new Gitmint({
-      id: window.location.pathname,
+
+    var gitment = new Gitment({
+      id: '1523856373000',
       owner: 'ETBUBBLE',
       repo: 'ETBUBBLE.github.io',
-      
-        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
       
       oauth: {
       
