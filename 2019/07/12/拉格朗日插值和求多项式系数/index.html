@@ -115,18 +115,18 @@
 <meta property="og:site_name" content="etbubble 的博客">
 <meta property="og:description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 (x,y) 然后根据这n个点可以O(n^2)的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式y=a0+a1*x+a2*x^2然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是代进去是不是这样解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。拉格朗日就比较">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2019/07/12/5d2831d447df780790.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/15/5d2c2f6a87ea389927.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/12/5d28412d7a5c556648.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/12/5d2833f07307656031.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/12/5d2834750e9c572305.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/12/5d2834fc6247382062.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/12/5d28350bac52b59310.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/12/5d283519889e246904.png">
-<meta property="og:updated_time" content="2019-07-14T02:35:25.680Z">
+<meta property="og:updated_time" content="2019-07-15T07:48:12.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日插值和求多项式系数">
 <meta name="twitter:description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 (x,y) 然后根据这n个点可以O(n^2)的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式y=a0+a1*x+a2*x^2然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是代进去是不是这样解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。拉格朗日就比较">
-<meta name="twitter:image" content="https://i.loli.net/2019/07/12/5d2831d447df780790.png">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/15/5d2c2f6a87ea389927.png">
 
 
 
@@ -437,7 +437,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-14 10:35:25" itemprop="dateModified" datetime="2019-07-14T10:35:25+08:00">2019-07-14</time>
+                <time title="修改时间：2019-07-15 15:48:12" itemprop="dateModified" datetime="2019-07-15T15:48:12+08:00">2019-07-15</time>
               
             
           </span>
@@ -532,7 +532,7 @@
 
       
         <h2 id="拉格朗日介绍"><a href="#拉格朗日介绍" class="headerlink" title="拉格朗日介绍"></a>拉格朗日介绍</h2><p>先说说拉格朗日是啥吧<br>首先 拉格朗日插值是给你 n+1 个点 (x,y) 然后根据这n个点可以O(n^2)的求出多项式的系数。也就是解出这个多项式的答案。</p>
-<p>假设给你一个多项式<br>y=a0+a1*x+a2*x^2<br>然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是<br>代进去是不是这样<br><img src="https://i.loli.net/2019/07/12/5d2831d447df780790.png" alt><br>解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。<br>拉格朗日就比较厉害了他能O(n^2)解决<br>首先 假设一个多项式<br>f1(x)=b+b1*x+b2*x^2<br>当然 x1 解是 1 x2 x3 解是 0<br>同理再假设 f2(x) f3(x)<br>然后L(x)=y1*f1(x)+y2*f2(x)+t3*f3(x) 这个就是最开始那个方程，不信?你把x1 x2 x3 带进去绝对是 y1 y2 y3<br>那么问题来了后面f1（x）这个多项式怎么求出来？？？？<br>这就是拉格朗日基本公式<br><img src="https://i.loli.net/2019/07/12/5d28412d7a5c556648.png" alt><br>没错就是他<br>哦！搞错了是下面这个，上面那个是乘上yi的最终表达式<br>再来一遍，这就是拉格朗日基本公式<br><img src="https://i.loli.net/2019/07/12/5d2833f07307656031.png" alt></p>
+<p>假设给你一个多项式<br>y=a0+a1*x+a2*x^2<br>然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是<br>代进去是不是这样<br><img src="https://i.loli.net/2019/07/15/5d2c2f6a87ea389927.png" alt><br>解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。<br>拉格朗日就比较厉害了他能O(n^2)解决<br>首先 假设一个多项式<br>f1(x)=b+b1*x+b2*x^2<br>当然 x1 解是 1 x2 x3 解是 0<br>同理再假设 f2(x) f3(x)<br>然后L(x)=y1*f1(x)+y2*f2(x)+t3*f3(x) 这个就是最开始那个方程，不信?你把x1 x2 x3 带进去绝对是 y1 y2 y3<br>那么问题来了后面f1（x）这个多项式怎么求出来？？？？<br>这就是拉格朗日基本公式<br><img src="https://i.loli.net/2019/07/12/5d28412d7a5c556648.png" alt><br>没错就是他<br>哦！搞错了是下面这个，上面那个是乘上yi的最终表达式<br>再来一遍，这就是拉格朗日基本公式<br><img src="https://i.loli.net/2019/07/12/5d2833f07307656031.png" alt></p>
 <p>把这个多项式展开会发现非常神奇的事，当x=xj的时候刚好等于1 否则等于0<br>就是下面这样了<br><img src="https://i.loli.net/2019/07/12/5d2834750e9c572305.png" alt><br><strong>怕你还是看不懂，举个例子给你看</strong><br><img src="https://i.loli.net/2019/07/12/5d2834fc6247382062.png" alt><br><img src="https://i.loli.net/2019/07/12/5d28350bac52b59310.png" alt><br><img src="https://i.loli.net/2019/07/12/5d283519889e246904.png" alt></p>
 <p>还有一个问题你们肯定很想问。。。知道公式之后怎么解。。。<br>对于这个问题<br>分母 是不是每次算一下就行了，答案是固定的<br>分子是不是一个大的多项式里面少了一个，就预处理出总的多项式然后，模拟除一下（x+c）的多项式</p>
 <p>理论知识全部搞定，下面就给你贴模板了</p>
