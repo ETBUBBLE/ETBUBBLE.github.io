@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-15T07:04:22.280Z</updated>
+  <updated>2019-07-16T15:27:27.232Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018CCPC吉林场重现赛</title>
+    <link href="https://etbubble.github.io/2019/07/16/CCPC/"/>
+    <id>https://etbubble.github.io/2019/07/16/CCPC/</id>
+    <published>2019-07-16T14:14:01.000Z</published>
+    <updated>2019-07-16T15:27:27.232Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;2018ccpc吉林赛区重现赛&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#2018ccpc吉林赛区重现赛&quot;&gt;&lt;/a&gt; &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
+    
+    
+      <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
+    
+      <category term="CCPC" scheme="https://etbubble.github.io/tags/CCPC/"/>
+    
+  </entry>
   
   <entry>
     <title>Codeforces Round 573 Div 2</title>
@@ -543,30 +573,6 @@
       <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
     
       <category term="JAVA" scheme="https://etbubble.github.io/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Next 6.0 以上版本背景动画Canvas_nest设置无效</title>
-    <link href="https://etbubble.github.io/2019/02/25/Next%206.0%20%E4%BB%A5%E4%B8%8A%E7%89%88%E6%9C%AC%E8%83%8C%E6%99%AF%E5%8A%A8%E7%94%BBCanvas_nest%E8%AE%BE%E7%BD%AE%E6%97%A0%E6%95%88/"/>
-    <id>https://etbubble.github.io/2019/02/25/Next 6.0 以上版本背景动画Canvas_nest设置无效/</id>
-    <published>2019-02-25T14:26:24.000Z</published>
-    <updated>2019-03-18T08:13:13.988Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;  &lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="CSDN迁移" scheme="https://etbubble.github.io/tags/CSDN%E8%BF%81%E7%A7%BB/"/>
     
   </entry>
   
