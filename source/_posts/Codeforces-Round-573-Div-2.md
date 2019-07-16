@@ -9,7 +9,7 @@ categories:
 ---
 ## [A - Tokitsukaze and Enhancement](https://codeforces.com/contest/1191/problem/A)
 简单题不与说明
-```
+```c++
 #include<bits/stdc++.h>
  
 using namespace std;
@@ -56,7 +56,7 @@ int main() {
 ```
 
 ## [B - Tokitsukaze and Mahjong](https://codeforces.com/contest/1191/problem/B)
-```
+```c++
 #include<bits/stdc++.h>
  
 using namespace std;
@@ -125,7 +125,7 @@ int main() {
 ```
 ## [C - Tokitsukaze and Discard Items](https://codeforces.com/contest/1191/problem/C)
 
-```
+```c++
 #include<bits/stdc++.h>
  
 using namespace std;
@@ -192,7 +192,7 @@ int main() {
 这种状态肯定是必输，无法动弹。所以最终都会变成这个状态，判断一下到这个状态的奇偶就是答案。
 另外还有一开始就输了的状态，比如  3 4 4 两个一样的，只能选一样的，但是选了有一个和他相同，还有 0 0 一开始就有两个0 还有就是 5 5 5 三个一样的或者两对两个一样的，这四种状态绝对是直接输了。
 
-```
+```c++
 By ET_BUBBLE, contest:
 Codeforces Round #573 (Div. 2), problem: (D) Tokitsukaze, CSL and Stone Game, Accepted, #
 #include<bits/stdc++.h>
@@ -285,7 +285,7 @@ int main() {
 然后又可以发现，如果有第3层 ，前面两层对第3层的影响只与x的出现有关，每次判断一层只需要考虑上面出现的 x
 的影响。
 先离散化一下，然后用树状数组求一下这个点前面有多个点，后面有多少个点，然后乘一下就可以了。
-```
+```c++
 #include<bits/stdc++.h>
 
 using namespace std;

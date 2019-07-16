@@ -21,3 +21,8 @@
 {% block script_extra %}
   {% include '_scripts/pages/post-details.swig' %}
 {% endblock %}
+{% if post.top %}
+    <i class="fa fa-thumb-tack"></i>
+    <font color=7D26CD>置顶</font>
+    <span class="post-meta-divider">|</span>
+{% endif %}

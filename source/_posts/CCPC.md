@@ -1,0 +1,527 @@
+---
+title: 2018CCPC吉林场重现赛
+date: 2019-07-16 22:14:01
+tags:
+    - CCPC
+    - ACM
+categories:
+    - ACM
+    - 比赛
+---
+
+# [2018CCPC吉林赛区（重现赛）](http://acm.hdu.edu.cn/contests/contest_show.php?cid=867)
+## A B
+这两题如果不会写，还是多去刷刷基础题，也没几个人为了这两题来吧。
+## [C Justice](http://acm.hdu.edu.cn/showproblem.php?pid=6557) 
+**题意：** 给你`N`堆石子 ，每堆石子重量是`1/(2^ki)`的重量，
+然后问能不能把石子分成大于等于`1/2`重量的两堆石子。
+**题解：** 从大到小每次合并两堆一样的，如果只剩一个就直接丢掉，因为无论如何这个都没法合并成更大的一层的。一直这样合并下去如果能分成两堆一样的各大于`1/2`，那么最终合并的和一定能合成一个 `0`
+**例子:**
+` 1 3 3 4 4 5 2`
+先按大小排序` 5 4 4 3 3 2 1 `
+`5`没法合并，直接丢掉，合并两个`4`获得一个`3`
+`3 3 3 2 1`
+合并两个`3`或得一个`2` ，多出来的一个`3`没法合成`2`直接丢掉。
+`2 2 1`
+合并两个`2`再合并两个`1`最终获得`0`.能够获得`0`说明能分成两堆一样的1/2
+一开始没看到要记录状态，后来补救了一下，合并的时候加一个并查集就行了，不影响复杂度。
+```c
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long LL;
+typedef unsigned long long uLL;
+typedef pair<int, int> P;
+#define VNAME(value) (#value)
+#define bug printf("*********\n");
+#define debug(x) cout<<"["<<VNAME(x)<<" = "<<x<<"]"<<endl;
+#define mid (l + r) / 2
+#define chl 2 * k + 1
+#define chr 2 * k + 2
+#define lson l, mid, chl
+#define rson mid + 1, r, chr
+#define pb push_back
+#define mem(a, b) memset(a, b, sizeof(a));
+
+
+const long long mod = 1e9 + 7;
+const int maxn = 1e6 + 5;
+const int INF = 0x7fffffff;
+const LL inf = 0x3f3f3f3f;
+const double eps = 1e-8;
+clock_t prostart;
+
+void f() {
+#ifndef ONLINE_JUDGE
+    prostart = clock();
+    freopen("../data.in", "r", stdin);
+#endif
+    return;
+}
+
+vector<P> v;
+int par[maxn];
+
+int find(int x) {
+    return x == par[x] ? x : par[x] = find(par[x]);
+}
+
+
+priority_queue<P, vector<P>, less<P> > q;
+
+int main() {
+
+    f();
+    int T;
+    int cas = 1;
+    scanf("%d", &T);
+    while (T--) {
+        int n;
+        scanf("%d", &n);
+        v.clear();
+        for (int i = 0; i <= n; i++)par[i] = i;
+        for (int i = 0; i < n; i++) {
+            int a;
+            scanf("%d", &a);
+            if (a < n + 1) {
+                v.emplace_back(P(a, i + 1));
+            }
+        }
+        sort(v.begin(), v.end());
+        int flag = 0, ans = -1;
+        for (int i = (int) v.size() - 1; i >= 0; i--) {
+            while (q.size() && v[i].first < q.top().first)q.pop();
+            if (q.empty()) {
+                q.push(P(v[i].first, v[i].second));
+                if (v[i].first == 1)ans = v[i].second;
+            } else {
+                int l = v[i].first, y = v[i].second;
+                while (q.size() && q.top().first == l) {
+                    if (l - 1 >= 1) {
+                        int x = find(q.top().second);
+                        par[x] = y;
+                        if (l - 1 == 1)ans = y;
+                    }
+                    q.pop();
+                    l = l - 1;
+                }
+                if (l <= 0)flag = y;
+                q.push(P(l, y));
+            }
+        }
+        while (q.size()) {
+            int l = q.top().first, y = q.top().second;
+            if (l == 1)ans = y;
+            q.pop();
+            while (q.size() && q.top().first == l) {
+                if (l - 1 >= 1) {
+                    int x = find(q.top().second);
+                    par[x] = y;
+                    if (l - 1 == 1)ans = y;
+                }
+                q.pop();
+                l = l - 1;
+//                if (l == 1)ans = y;
+            }
+            if (l <= 0)flag = 1;
+        }
+        printf("Case %d: %s\n", cas++, flag ? "YES" : "NO");
+        if (flag) {
+//            debug(find(2));
+            for (int i = 1; i <= n; i++) {
+                if (find(i) == ans)printf("1");
+                else printf("0");
+            }
+            puts("");
+        }
+
+    }
+#ifndef ONLINE_JUDGE
+    cout << "运行时间:" << 1.0 * (clock() - prostart) / CLOCKS_PER_SEC << "s\n";
+#endif // ONLIN_JUDGE
+    return 0;
+}
+```
+## [D The Moon](http://acm.hdu.edu.cn/showproblem.php?pid=6558)
+**题意：** `p`的概率赢，初始获得包概率`q`为 `2%` 每次进行一次游戏，如果赢了`q`的概率获得包，如果没获得概率`q`变成`min(100%，p)`,如果输了`q`变成`min(100%，p)`,输入`p`问期望论数是多少.
+**题解:** `p`是一个整数，总共只有100个值，`q`最多只会出现`0.5%`，看到这些我有一个大胆的想法。期望等于 `轮数`\*`概率`所以我暴力枚举`1e6`轮，用dp\[i\]表示`q`=`i/2%`的概率，然后直接把`1e6`轮的值加起来，因为到后面概率绝对越来越小`1e6`轮误差已经很小，然后暴力枚举`p`的`1`-`100`,把答案打印下来。。。。~~***然后你懂的***~~ 
+~~(注释掉的是暴力跑的代码)~~
+```c
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long LL;
+typedef unsigned long long uLL;
+typedef pair<int, int> P;
+#define VNAME(value) (#value)
+#define bug printf("*********\n");
+#define debug(x) cout<<"["<<VNAME(x)<<" = "<<x<<"]"<<endl;
+#define mid (l + r) / 2
+#define chl 2 * k + 1
+#define chr 2 * k + 2
+#define lson l, mid, chl
+#define rson mid + 1, r, chr
+#define pb push_back
+#define mem(a, b) memset(a, b, sizeof(a));
+
+
+const long long mod = 1e9 + 7;
+const int maxn = 1e6 + 5;
+const int INF = 0x7fffffff;
+const LL inf = 0x3f3f3f3f;
+const double eps = 1e-8;
+clock_t prostart;
+
+void f() {
+#ifndef ONLINE_JUDGE
+    prostart = clock();
+    freopen("../data.in", "r", stdin);
+#endif
+    return;
+}
+
+bool cmp(double o1, double o2) {
+    return abs(o1 - o2) < eps;
+}
+
+struct point3 {
+    double x, y, z;
+} s, t;
+
+double dp[maxn];
+double a[1000] = {130.7530454000, 79.2053644503, 61.1640496589, 51.6033688156, 45.5020175987, 41.1756105103,
+                  37.8950632978, 35.2908241865, 33.1540346125, 31.3568193706, 29.8159317728, 28.4744883082,
+                  27.2920701057, 26.2390206161, 25.2929905666, 24.4367537696, 23.6567754479, 22.9422440770,
+                  22.2843986720, 21.6760501176, 21.1112333591, 20.5849499398, 20.0929742362, 19.6317054554,
+                  19.1980530697, 18.7893470611, 18.4032668302, 18.0377843270, 17.6911181415, 17.3616961332,
+                  17.0481247749, 16.7491638265, 16.4637052733, 16.1907557033, 15.9294214771, 15.6788961816,
+                  15.4384499618, 15.2074204071, 14.9852047313, 14.7712530335, 14.5650624685, 14.3661721843,
+                  14.1741589106, 13.9886331012, 13.8092355497, 13.6356344123, 13.4675225797, 13.3046153516,
+                  13.1466483734, 12.9933758002, 12.8445686601, 12.7000133904, 12.5595105271, 12.4228735274,
+                  12.2899277111, 12.1605093052, 12.0344645825, 11.9116490803, 11.7919268935, 11.6751700320,
+                  11.5612578361, 11.4500764445, 11.3415183077, 11.2354817448, 11.1318705365, 11.0305935527,
+                  10.9315644109, 10.8347011617, 10.7399260000, 10.6471649983, 10.5563478614, 10.4674076992,
+                  10.3802808172, 10.2949065219, 10.2112269412, 10.1291868575, 10.0487335524, 9.9698166630, 9.8923880479,
+                  9.8164016621, 9.7418134409, 9.6685811914, 9.5966644912, 9.5260245936, 9.4566243391, 9.3884280725,
+                  9.3214015652, 9.2555119427, 9.1907276158, 9.1270182166, 9.0643545388, 9.0027084802, 8.9420529899,
+                  8.8823620181, 8.8236104686, 8.7657741544, 8.7088297556, 8.6527547795, 8.5975275235, 8.5431270393};
+
+int main() {
+
+//    f();
+    int T;
+    int cas = 1;
+//    T=100;
+    scanf("%d", &T);
+    //        int t=1;
+    while (T--) {
+        int p;
+//        p = t++;
+        scanf("%d", &p);
+        printf("Case %d: %.10f\n", cas++, a[p - 1]);
+//        p = p / 100;
+//        double ans = 0;
+//        memset(dp, 0, sizeof(dp + 300));
+//        dp[4] = 1;
+//        for (int i = 1; i < maxn; i++) {
+//            for (int j = 200; j >= 0; j--) {
+////                debug(dp[j]);
+//                if (dp[j] == 0)continue;
+//                ans += i * dp[j] * j / 200.0 * p;
+//                double t = dp[j];
+//                dp[j] = 0;
+//                dp[min(j + 4, 200)] += p * t * (1 - j / 200.0);
+//                dp[min(200, j + 3)] += (1 - p) * t;
+//            }
+//        }
+//        printf("%.10f\n", ans);
+//        a[t - 1] = ans;
+    }
+//    for (int i = 1; i <= 100; i++)printf("%.10f\n", a[i]);
+#ifndef ONLINE_JUDGE
+    cout << "运行时间:" << 1.0 * (clock() - prostart) / CLOCKS_PER_SEC << "s\n";
+#endif // ONLIN_JUDGE
+    return 0;
+}
+```
+## [ E The Tower](http://acm.hdu.edu.cn/showproblem.php?pid=6559)
+**题意：** 给一个圆锥的`r`,`h` 和一个点`(x,y,z)`，点的移动速度`(vx,vy,vz)`问这个点什么时候撞上去，保证直接从外面撞上去。
+**题解：** 线的方程:
+`x=x0+vx*t`
+`y=y0+vy*t`
+`z=z0+vz*t`
+圆锥方程: `x^2 + y^2 = (h-z)^2 * r^2 / h^2`
+解方程高中知识
+```c
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long LL;
+typedef unsigned long long uLL;
+typedef pair<int, int> P;
+#define VNAME(value) (#value)
+#define bug printf("*********\n");
+#define debug(x) cout<<"["<<VNAME(x)<<" = "<<x<<"]"<<endl;
+#define mid (l + r) / 2
+#define chl 2 * k + 1
+#define chr 2 * k + 2
+#define lson l, mid, chl
+#define rson mid + 1, r, chr
+#define pb push_back
+#define mem(a, b) memset(a, b, sizeof(a));
+
+const long long mod = 1e9 + 7;
+const int maxn = 1e6 + 5;
+const int INF = 0x7fffffff;
+const LL inf = 0x3f3f3f3f;
+const double eps = 1e-8;
+
+void f() {
+#ifndef ONLINE_JUDGE
+    freopen("../data.in", "r", stdin);
+#endif
+    return;
+}
+
+bool cmp(double o1, double o2) {
+    return abs(o1 - o2) < eps;
+}
+
+struct point3 {
+    double x, y, z;
+} s, t;
+
+
+int main() {
+    f();
+    int T;
+    double r, h;
+    int cas = 0;
+    scanf("%d", &T);
+    while (T--) {
+        scanf("%lf%lf%lf%lf%lf%lf%lf%lf", &r, &h, &s.x, &s.y, &s.z, &t.x, &t.y, &t.z);
+        double tx, ty, tz;
+        tx = t.x;
+        ty = t.y;
+        tz = t.z;
+        double a, b, c;
+        a = (tx * tx + ty * ty - tz * tz * r * r / h / h);
+        b = 2 * (tx * s.x + ty * s.y + tz * (h - s.z) * r * r / h / h);
+        c = s.x * s.x + s.y * s.y - (h - s.z) * (h - s.z) * r * r / h / h;
+        double high = max((h - s.z) / tz, -s.z / tz), low = min((h - s.z) / tz, -s.z / tz);
+        double a1 = (-b + sqrt(b * b - 4 * a * c)) / 2 / a, a2 = (-b - sqrt(b * b - 4 * a * c)) / 2 / a, ans;
+        ans = inf;
+        if (a1 >= low && a1 <= high)ans = min(a1, ans);
+        if (a2 >= low && a2 <= high)ans = min(a2, ans);
+        else ans = a2;
+        cout << "Case " << ++cas << ": " << fixed << setprecision(10) << ans << "\n";
+    }
+#ifndef ONLINE_JUDGE
+    cout << 1.0 * clock() / CLOCKS_PER_SEC << "s\n";
+#endif // ONLIN_JUDGE
+    return 0;
+}
+```
+## [F The Hermit](http://acm.hdu.edu.cn/showproblem.php?pid=6560)
+**题意:** 太长了自己读吧.
+**题解:** 读题读懂了可以发现一个有趣的事，每个`i`对应的`k`都是连续的几个。为什么会这样呢？仔细分析每个站点的区域发现，后面的结束一定比前面的晚，前面的开始的一定比后面晚，所以导致了`k`是连续的，枚举`i`用`set`保存覆盖到`i`的`j` 用`set`的`二分`找到一个与`i`有`k`的起始位置，到`set`最后一个`j`的最后一个`k`的位置，这两个位置之间的站点都是`i`的`k`，然后异或就行了。
+```c
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long LL;
+typedef unsigned long long uLL;
+typedef pair<int, int> P;
+#define VNAME(value) (#value)
+#define bug printf("*********\n");
+#define debug(x) cout<<"["<<VNAME(x)<<" = "<<x<<"]"<<endl;
+#define mid (l + r) / 2
+#define chl 2 * k + 1
+#define chr 2 * k + 2
+#define lson l, mid, chl
+#define rson mid + 1, r, chr
+#define pb push_back
+#define mem(a, b) memset(a, b, sizeof(a));
+
+
+const LL mod = (LL) 1e9 + 7;
+const int maxn = (int) 1e6 + 5;
+const int INF = 0x7fffffff;
+const LL inf = 0x3f3f3f3f;
+const double eps = 1e-8;
+#ifndef ONLINE_JUDGE
+clock_t prostart = clock();
+#endif
+
+void f() {
+#ifndef ONLINE_JUDGE
+    freopen("../data.in", "r", stdin);
+#endif
+}
+
+int n;
+
+set<P> s;
+
+int main() {
+    f();
+    int T, cas = 1;
+    scanf("%d", &T);
+    while (T--) {
+        scanf("%d", &n);
+        int ans = 0;
+        for (int i = 1; i <= n; i++) {
+            int a;
+            scanf("%d", &a);
+            int last = a + i - 1;
+            if (s.size()) {
+                set<P>::iterator ite = s.lower_bound(P(i - (a - 1) / 2, 0));
+                if (ite != s.end()) {
+                    int stat = max(i - a + 1, 2 * ite->first - ite->second);
+                    int end = 2 * (--s.end())->first - i;
+                    ans ^= end - stat + 1;
+                }
+            }
+            s.insert(P(i, last));
+            while (s.size() && s.begin()->second <= i) {
+                s.erase(s.begin());
+            }
+        }
+        s.clear();
+        printf("Case %d: %d\n", cas++, ans);
+    }
+#ifndef ONLINE_JUDGE
+    cout << "运行时间:" << 1.0 * (clock() - prostart) / CLOCKS_PER_SEC << "s\n";
+#endif // ONLIN_JUDGE
+    return 0;
+}
+```
+## [I Strength](http://acm.hdu.edu.cn/showproblem.php?pid=6563) 
+**题意:** 游戏王，我有`n`个怪 全都是战斗表示 ,对面有`m`个怪，`0`表示战斗表示，`1`防守表示,问我第一回合能造成多少点伤害。
+**题解:** 一个水题，其实和`A` `B`难度差距不大。枚举两种情况，一种是能把对面怪全部砍了，一种是不能。
+不能全砍死，直接用最大的砍对面攻击表示最小的，砍不过就算了不打了。
+能全砍死，本来这还有两种情况，就算我能全砍死对面的怪，但是我全砍死，和第一种情况一样，直接用最大的砍你最小的，另一种就是全砍死 ***~~(事实上数据就只有这一种情况，可能出题人有特殊癖好，要砍就全砍死)~~*** ，先把防御状态的用尽可能小的代价砍死，然后你想怎么砍就怎么砍，反正最后代价都是你怪攻击力总和减对面战斗力总和。
+```c
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long LL;
+typedef unsigned long long uLL;
+typedef pair<int, int> P;
+#define VNAME(value) (#value)
+#define bug printf("*********\n");
+#define debug(x) cout<<"["<<VNAME(x)<<" = "<<x<<"]"<<endl;
+#define mid (l + r) / 2
+#define chl 2 * k + 1
+#define chr 2 * k + 2
+#define lson l, mid, chl
+#define rson mid + 1, r, chr
+#define pb push_back
+#define mem(a, b) memset(a, b, sizeof(a));
+
+
+const LL mod = (LL) 1e9 + 7;
+const int maxn = (int) 1e6 + 5;
+const int INF = 0x7fffffff;
+const LL inf = 0x3f3f3f3f;
+const double eps = 1e-8;
+#ifndef ONLINE_JUDGE
+clock_t prostart = clock();
+#endif
+
+void f() {
+#ifndef ONLINE_JUDGE
+    freopen("../data.in", "r", stdin);
+#endif
+}
+
+struct node {
+    int x, op;
+
+    bool operator<(const node &o) const {
+        if (op == o.op)return x < o.x;
+        return op < o.op;
+    }
+} k[maxn], d[maxn];
+
+bool cmp(node &o1, node &o2) {
+    return o1.x > o2.x;
+}
+
+int main() {
+    f();
+    int T, cas = 1;
+    scanf("%d", &T);
+    while (T--) {
+        int n, m;
+        multiset<int> s;
+        priority_queue<int> q;
+        scanf("%d%d", &n, &m);
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &k[i].x);
+            s.insert(k[i].x);
+            q.push(k[i].x);
+        }
+        for (int i = 0; i < m; i++) {
+            scanf("%d", &d[i].x);
+        }
+        for (int i = 0; i < m; i++) {
+            scanf("%d", &d[i].op);
+        }
+        sort(k, k + n, cmp);
+        sort(d, d + m, cmp);
+        int flag = 0;
+        if (n < m)flag = 1;
+        else {
+            for (int i = 0; i < m; i++) {
+                if (k[i].x < d[i].x) {
+                    flag = 1;
+                    break;
+                }
+            }
+        }
+        LL ans = 0;
+        if (flag == 1) {
+            sort(d, d + m);
+            for (int i = 0; i < m; i++) {
+                if (d[i].op == 1)break;
+                else {
+                    if (q.top() > d[i].x) {
+                        ans += q.top() - d[i].x;
+                        q.pop();
+                    }
+                }
+            }
+        } else {
+            sort(d, d + m);
+            for (int i = 0; i < m; i++) {
+                if (d[i].op == 1)break;
+                else {
+                    if (k[i].x > d[i].x) {
+                        ans += k[i].x - d[i].x;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            LL res = 0;
+            for (int i = 0; i < m; i++) {
+                if (d[i].op == 1) {
+                    s.erase(s.lower_bound(d[i].x));
+                } else {
+                    res -= d[i].x;
+                }
+            }
+            for (auto au:s) {
+                res += au;
+            }
+            ans = max(res, ans);
+        }
+        printf("Case %d: %lld\n", cas++, ans);
+    }
+#ifndef ONLINE_JUDGE
+    cout << "运行时间:" << 1.0 * (clock() - prostart) / CLOCKS_PER_SEC << "s\n";
+#endif // ONLIN_JUDGE
+    return 0;
+}
+```

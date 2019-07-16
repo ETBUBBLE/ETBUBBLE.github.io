@@ -6,8 +6,8 @@
 title: etbubble 的博客
 subtitle: 两件事一定不能停 学习和运动
 description: 做自己不会做的事被称之为学习
-keywords:
-author: Dust
+keywords: ACM
+author: 尘
 language: zh-CN
 timezone:
 
@@ -97,3 +97,15 @@ backup:
     type: git
     repository:
        github: git@github.com:ETBUBBLE/ETBUBBLE.github.io.git,backup
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+plugins: hexo-generate-feed

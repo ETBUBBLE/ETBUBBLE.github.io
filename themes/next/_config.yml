@@ -55,7 +55,7 @@ favicon:
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link, and install hexo-generator-feed: `npm install hexo-generator-feed --save`.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: /atom.xml
 
 footer:
   # Specify the date when the site was setup.
@@ -443,7 +443,7 @@ font:
 
 # Math Equations Render Support
 math:
-  enable: false
+  enable: true
 
   # Default (true) will load mathjax / katex script on demand.
   # That is it only render those page which has `mathjax: true` in Front Matter.
@@ -555,16 +555,16 @@ valine:
 # Gitment
 # Introduction: https://github.com/imsun/gitment
 gitment:
-  enable: false
-  mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
+  enable: true
+  mint: false # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
   count: true # Show comments count in post meta area
   lazy: false # Comments lazy loading with a button
   cleanly: false # Hide 'Powered by ...' on footer, and more
   language: # Force language, or auto switch by theme
-  github_user: # MUST HAVE, Your Github Username
-  github_repo: # MUST HAVE, The name of the repo you use to store Gitment comments
-  client_id: # MUST HAVE, Github client id for the Gitment
-  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
+  github_user: ETBUBBLE # MUST HAVE, Your Github Username
+  github_repo: ETBUBBLE.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
+  client_id: 008c7d3ffa7d973b8437 # MUST HAVE, Github client id for the Gitment
+  client_secret: 0fd4f83bc7834795c0575404ee5c7a2c82067749 # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
@@ -583,9 +583,9 @@ gitalk:
 # Baidu Share
 # Available values: button | slide
 # Warning: Baidu Share does not support https.
-#baidushare:
+baidushare: true
 ##  type: button
-
+jiathis: true
 # AddThis Share, See: https://www.addthis.com
 # Go to https://www.addthis.com/dashboard to customize your tools.
 #add_this_id:
@@ -600,16 +600,16 @@ gitalk:
 # Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Reddit,Delicious,StumbleUpon,Pinterest,Facebook,GooglePlus,
 # Slashdot,Technorati,Posterous,Tumblr,GoogleBookmarks,Newsvine,Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru
 needmoreshare2:
-  enable: false
+  enable: true
   postbottom:
-    enable: false
+    enable: true
     options:
       iconStyle: box
       boxForm: horizontal
       position: bottomCenter
       networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
   float:
-    enable: false
+    enable: true
     options:
       iconStyle: box
       boxForm: horizontal
@@ -654,6 +654,8 @@ facebook_sdk:
   fb_admin:     #<user_id>
   like_button:  #true
   webmaster:    #true
+
+
 
 # Facebook comments plugin
 # This plugin depends on Facebook SDK.
@@ -850,12 +852,12 @@ lazyload: false
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
-pace: false
+pace: true
 # Themes list:
 # pace-theme-big-counter | pace-theme-bounce | pace-theme-barber-shop | pace-theme-center-atom
 # pace-theme-center-circle | pace-theme-center-radar | pace-theme-center-simple | pace-theme-corner-indicator
 # pace-theme-fill-left | pace-theme-flash | pace-theme-loading-bar | pace-theme-mac-osx | pace-theme-minimal
-pace_theme: pace-theme-minimal
+pace_theme: pace-theme-center-circle
 
 # Canvas-nest    动态背景
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest
@@ -870,7 +872,7 @@ canvas_nest:
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
 # three_waves
-three_waves: true
+three_waves: false
 # canvas_lines
 canvas_lines: false
 # canvas_sphere
@@ -1066,3 +1068,6 @@ vendors:
 css: css
 js: js
 images: images
+
+
+
