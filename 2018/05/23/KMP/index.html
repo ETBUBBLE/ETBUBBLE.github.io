@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。  其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。  我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。  k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。 1234">
+  <meta name="description" content="KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。 其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。 我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。 k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。 123456789">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KMP">
 <meta property="og:url" content="https://etbubble.github.io/2018/05/23/KMP/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。  其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。  我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。  k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。 1234">
+<meta property="og:description" content="KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。 其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。 我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。 k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。 123456789">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:04:09.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KMP">
-<meta name="twitter:description" content="KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。  其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。  我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。  k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。 1234">
+<meta name="twitter:description" content="KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。 其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。 我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。 k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。 123456789">
 
 
 
@@ -372,7 +372,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2018/05/23/KMP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -498,10 +498,10 @@
       
 
       
-        <p>  KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。</p>
-<p> 其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。</p>
-<p> 我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。</p>
-<p> k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。</p>
+        <p>KMP算法，刚接触到这个算法本来一看是看一眼就会了，但是过了一段时间反而不会了，搞得我又重新回来学了一次。</p>
+<p>其实KMP算法挺简单的，这个算法的核心我感觉就是在处理next 数组上。</p>
+<p>我先讲一下一种处理方式吧， next [0]=-1,这个不用多说，第一个肯定是没有匹配好的。</p>
+<p>k=-1; ,i=0两个初始化 ，k,表示的是匹配到的位置 ，i，表示的是你正在为那个位置标记next。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"> </span><br><span class="line">void getnext(const char * str,int * next) &#123;</span><br><span class="line">    next[0]=-1;</span><br><span class="line">    int i=0,k=-1;</span><br><span class="line">    while(str[i]!=&apos;\0&apos;) &#123;</span><br><span class="line">        while(k!=-1&amp;&amp;str[i]!=str[k])k=next[k];//  在你匹配这个 i 之前首先寻找到前面一个最大匹配位置，</span><br><span class="line">        //如果 不匹配就一直往前面回溯，直到能够匹配。</span><br><span class="line">        i++;</span><br><span class="line">        k++;</span><br><span class="line">        if(str[i]==str[k])next[i]=next[k];  //当前位置是相等的 这个不匹配 同样 K的位置也没法匹配，所以 next [i]可以直接等于next[k].</span><br><span class="line">        else next[i]=k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int kmp(const char *s,const char * c)</span><br><span class="line">&#123;</span><br><span class="line">    int lc=strlen(c),ls=strlen(s);</span><br><span class="line">    int *next=new int[lc+1];</span><br><span class="line">    getnext(c,next);</span><br><span class="line">    int j=0,i=0;</span><br><span class="line">    while(i&lt;ls)</span><br><span class="line">    &#123;</span><br><span class="line">       while(j!=-1&amp;&amp;s[i]!=c[j])j=next[j];</span><br><span class="line">        i++,j++;</span><br><span class="line">        if(j==lc)return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">int main() &#123;</span><br><span class="line">    int next[1000];</span><br><span class="line">    char ch[]=&quot;abaabc&quot;,s[]=&quot;ababaababcb&quot;;</span><br><span class="line">    cout&lt;&lt;kmp(s,ch)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -628,9 +628,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -830,7 +830,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -838,7 +838,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1381,6 +1381,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

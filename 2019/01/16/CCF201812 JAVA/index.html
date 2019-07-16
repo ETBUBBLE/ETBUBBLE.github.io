@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="发现JAVA比C++慢了不止一星半点  C++能直接过，这个JAVA卡极限过了  第一二题，随便写一下没啥难度，直接写第4题的代码 CCF201812-4123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 import java.util.*;public c">
+  <meta name="description" content="发现JAVA比C++慢了不止一星半点 C++能直接过，这个JAVA卡极限过了 第一二题，随便写一下没啥难度，直接写第4题的代码  CCF201812-4 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 import java.util.*;public cla">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCF201812 JAVA">
 <meta property="og:url" content="https://etbubble.github.io/2019/01/16/CCF201812 JAVA/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="发现JAVA比C++慢了不止一星半点  C++能直接过，这个JAVA卡极限过了  第一二题，随便写一下没啥难度，直接写第4题的代码 CCF201812-4123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 import java.util.*;public c">
+<meta property="og:description" content="发现JAVA比C++慢了不止一星半点 C++能直接过，这个JAVA卡极限过了 第一二题，随便写一下没啥难度，直接写第4题的代码  CCF201812-4 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 import java.util.*;public cla">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:13:32.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCF201812 JAVA">
-<meta name="twitter:description" content="发现JAVA比C++慢了不止一星半点  C++能直接过，这个JAVA卡极限过了  第一二题，随便写一下没啥难度，直接写第4题的代码 CCF201812-4123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 import java.util.*;public c">
+<meta name="twitter:description" content="发现JAVA比C++慢了不止一星半点 C++能直接过，这个JAVA卡极限过了 第一二题，随便写一下没啥难度，直接写第4题的代码  CCF201812-4 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 import java.util.*;public cla">
 
 
 
@@ -372,7 +372,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/01/16/CCF201812 JAVA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -498,10 +498,11 @@
       
 
       
-        <p>  发现JAVA比C++慢了不止一星半点</p>
-<p> C++能直接过，这个JAVA卡极限过了</p>
-<p> 第一二题，随便写一下没啥难度，直接写第4题的代码</p>
-<h1 id="CCF201812-4"><a href="#CCF201812-4" class="headerlink" title="CCF201812-4"></a>CCF201812-4</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner input=new Scanner(System.in);</span><br><span class="line">        int n,m,r;</span><br><span class="line">        n=input.nextInt();</span><br><span class="line">        m=input.nextInt();</span><br><span class="line">        r=input.nextInt();</span><br><span class="line">        Point arr[]=new Point[m];</span><br><span class="line">        for(int i=0;i&lt;m;i++)</span><br><span class="line">            arr[i]=new Point();</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            arr[i].x=input.nextInt();</span><br><span class="line">            arr[i].y=input.nextInt();</span><br><span class="line">            arr[i].c=input.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(arr, new MyComprator());</span><br><span class="line">        int ans=0;</span><br><span class="line">        int k=0;</span><br><span class="line">        int []par=new  int[m+1];</span><br><span class="line">        for(int i=1;i&lt;=m;i++)par[i]=i;</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            int x=find(arr[i].x,par),y=find(arr[i].y,par);</span><br><span class="line">            if(x!=y) &#123;</span><br><span class="line">                par[x] = y;</span><br><span class="line">                ans = arr[i].c;</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(k==n-1)break;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(ans);</span><br><span class="line">    &#125;</span><br><span class="line">    static int find(int x,int[] par)&#123;</span><br><span class="line">        return x==par[x] ? x : (par[x]=find(par[x],par));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Point&#123;</span><br><span class="line">    int x,y,c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyComprator implements Comparator &#123;</span><br><span class="line">    public int compare(Object  arg0, Object  arg1) &#123;</span><br><span class="line">        Point t1=(Point)arg0;</span><br><span class="line">        Point t2=(Point)arg1;</span><br><span class="line">        return t1.c&gt;t2.c? 1:-1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>发现JAVA比C++慢了不止一星半点</p>
+<p>C++能直接过，这个JAVA卡极限过了</p>
+<p>第一二题，随便写一下没啥难度，直接写第4题的代码</p>
+<h1 id="ccf201812-4"><a class="markdownIt-Anchor" href="#ccf201812-4"></a> CCF201812-4</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner input=new Scanner(System.in);</span><br><span class="line">        int n,m,r;</span><br><span class="line">        n=input.nextInt();</span><br><span class="line">        m=input.nextInt();</span><br><span class="line">        r=input.nextInt();</span><br><span class="line">        Point arr[]=new Point[m];</span><br><span class="line">        for(int i=0;i&lt;m;i++)</span><br><span class="line">            arr[i]=new Point();</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            arr[i].x=input.nextInt();</span><br><span class="line">            arr[i].y=input.nextInt();</span><br><span class="line">            arr[i].c=input.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(arr, new MyComprator());</span><br><span class="line">        int ans=0;</span><br><span class="line">        int k=0;</span><br><span class="line">        int []par=new  int[m+1];</span><br><span class="line">        for(int i=1;i&lt;=m;i++)par[i]=i;</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            int x=find(arr[i].x,par),y=find(arr[i].y,par);</span><br><span class="line">            if(x!=y) &#123;</span><br><span class="line">                par[x] = y;</span><br><span class="line">                ans = arr[i].c;</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(k==n-1)break;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(ans);</span><br><span class="line">    &#125;</span><br><span class="line">    static int find(int x,int[] par)&#123;</span><br><span class="line">        return x==par[x] ? x : (par[x]=find(par[x],par));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Point&#123;</span><br><span class="line">    int x,y,c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyComprator implements Comparator &#123;</span><br><span class="line">    public int compare(Object  arg0, Object  arg1) &#123;</span><br><span class="line">        Point t1=(Point)arg0;</span><br><span class="line">        Point t2=(Point)arg1;</span><br><span class="line">        return t1.c&gt;t2.c? 1:-1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -636,9 +637,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -814,7 +815,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CCF201812-4"><span class="nav-number">1.</span> <span class="nav-text">CCF201812-4</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ccf201812-4"><span class="nav-number">1.</span> <span class="nav-text"> CCF201812-4</span></a></li></ol></div>
             
 
           </div>
@@ -855,7 +856,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -863,7 +864,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1406,6 +1407,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

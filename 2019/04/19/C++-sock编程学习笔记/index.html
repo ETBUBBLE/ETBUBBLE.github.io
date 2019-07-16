@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="主机字节序和网络字节序CPU累加器一次能装载至少4个字节，即一个整数。字节序分为大端字节序和小端字节序。大端字节序高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。小端字节序恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。JAVA虚拟机使用的是大端字节序4个函数函数用来完成字节序转换。123456// #include&amp;lt;ne">
+  <meta name="description" content="主机字节序和网络字节序 CPU累加器一次能装载至少4个字节，即一个整数。 字节序分为大端字节序和小端字节序。大端字节序高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。小端字节序恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。JAVA虚拟机使用的是大端字节序 4个函数函数用来完成字节序转换。 123456// #include&amp;">
 <meta name="keywords" content="计算机网络,笔记,sock 编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ sock编程学习笔记">
 <meta property="og:url" content="https://etbubble.github.io/2019/04/19/C++-sock编程学习笔记/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="主机字节序和网络字节序CPU累加器一次能装载至少4个字节，即一个整数。字节序分为大端字节序和小端字节序。大端字节序高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。小端字节序恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。JAVA虚拟机使用的是大端字节序4个函数函数用来完成字节序转换。123456// #include&amp;lt;ne">
+<meta property="og:description" content="主机字节序和网络字节序 CPU累加器一次能装载至少4个字节，即一个整数。 字节序分为大端字节序和小端字节序。大端字节序高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。小端字节序恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。JAVA虚拟机使用的是大端字节序 4个函数函数用来完成字节序转换。 123456// #include&amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-05-14T11:46:46.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ sock编程学习笔记">
-<meta name="twitter:description" content="主机字节序和网络字节序CPU累加器一次能装载至少4个字节，即一个整数。字节序分为大端字节序和小端字节序。大端字节序高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。小端字节序恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。JAVA虚拟机使用的是大端字节序4个函数函数用来完成字节序转换。123456// #include&amp;lt;ne">
+<meta name="twitter:description" content="主机字节序和网络字节序 CPU累加器一次能装载至少4个字节，即一个整数。 字节序分为大端字节序和小端字节序。大端字节序高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。小端字节序恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。JAVA虚拟机使用的是大端字节序 4个函数函数用来完成字节序转换。 123456// #include&amp;">
 
 
 
@@ -372,7 +372,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/04/19/C++-sock编程学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -482,7 +482,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">502</span>
+                <span title="本文字数">506</span>
               
 
               
@@ -516,8 +516,11 @@
       
 
       
-        <h2 id="主机字节序和网络字节序"><a href="#主机字节序和网络字节序" class="headerlink" title="主机字节序和网络字节序"></a>主机字节序和网络字节序</h2><p>CPU累加器一次能装载至少4个字节，即一个整数。<br>字节序分为大端字节序和小端字节序。<strong>大端字节序</strong>高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。<strong>小端字节序</strong>恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。<strong><em>JAVA虚拟机使用的是大端字节序</em></strong><br>4个函数函数用来完成字节序转换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// #include&lt;netinet/in.h&gt; //linux 下头文件</span><br><span class="line">#include&lt;winsock2.h&gt;   //window 下头文件</span><br><span class="line">unsigned long htonl(unsigned long);     //host to net 转换IP</span><br><span class="line">unsigned long ntohl(unsigned long);     //net to host 转换IP</span><br><span class="line">unsigned short htons(unsigned short);   //host to net 转换端口</span><br><span class="line">unsigned short ntohs(unsigned short);   //net to host 转换端口</span><br></pre></td></tr></table></figure></p>
-
+        <h2 id="主机字节序和网络字节序"><a class="markdownIt-Anchor" href="#主机字节序和网络字节序"></a> 主机字节序和网络字节序</h2>
+<p>CPU累加器一次能装载至少4个字节，即一个整数。<br>
+字节序分为大端字节序和小端字节序。<strong>大端字节序</strong>高位字节（23-31bit）储存在内存的低处，低位字节储存在高地址初。<strong>小端字节序</strong>恰恰相反。大部分PC电脑电脑使用小端字节序，所以又被称为主机字节序。大端字节序被称为网络字节序。<em><strong>JAVA虚拟机使用的是大端字节序</strong></em><br>
+4个函数函数用来完成字节序转换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// #include&lt;netinet/in.h&gt; //linux 下头文件</span><br><span class="line">#include&lt;winsock2.h&gt;   //window 下头文件</span><br><span class="line">unsigned long htonl(unsigned long);     //host to net 转换IP</span><br><span class="line">unsigned long ntohl(unsigned long);     //net to host 转换IP</span><br><span class="line">unsigned short htons(unsigned short);   //host to net 转换端口</span><br><span class="line">unsigned short ntohs(unsigned short);   //net to host 转换端口</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -655,9 +658,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -833,7 +836,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主机字节序和网络字节序"><span class="nav-number">1.</span> <span class="nav-text">主机字节序和网络字节序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主机字节序和网络字节序"><span class="nav-number">1.</span> <span class="nav-text"> 主机字节序和网络字节序</span></a></li></ol></div>
             
 
           </div>
@@ -874,7 +877,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -882,7 +885,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1425,6 +1428,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

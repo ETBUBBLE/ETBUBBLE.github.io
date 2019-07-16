@@ -107,13 +107,13 @@
 
 
 
-  <meta name="description" content="题目：Problem 2280 Magic  Problem Description Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that">
+  <meta name="description" content="题目：Problem 2280 Magic   Problem Description Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第八届福建省大学生程序设计竞赛-FZU 2280 HASH处理+暴力搜索">
 <meta property="og:url" content="https://etbubble.github.io/2018/08/21/第八届福建省大学生程序设计竞赛-FZU 2280 HASH处理+暴力搜索/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="题目：Problem 2280 Magic  Problem Description Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that">
+<meta property="og:description" content="题目：Problem 2280 Magic   Problem Description Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://acm.fzu.edu.cn/image/prodesc.gif">
 <meta property="og:image" content="http://acm.fzu.edu.cn/image/prodesc.gif">
@@ -124,7 +124,7 @@
 <meta property="og:updated_time" content="2019-03-18T08:05:34.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第八届福建省大学生程序设计竞赛-FZU 2280 HASH处理+暴力搜索">
-<meta name="twitter:description" content="题目：Problem 2280 Magic  Problem Description Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that">
+<meta name="twitter:description" content="题目：Problem 2280 Magic   Problem Description Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that">
 <meta name="twitter:image" content="http://acm.fzu.edu.cn/image/prodesc.gif">
 
 
@@ -379,7 +379,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2018/08/21/第八届福建省大学生程序设计竞赛-FZU 2280 HASH处理+暴力搜索/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -505,33 +505,41 @@
       
 
       
-        <p>  <strong>题目：<a href="http://acm.fzu.edu.cn/problem.php?pid=2280" target="_blank" rel="noopener">Problem 2280 Magic</a></strong></p>
-<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title=" Problem Description"></a><img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Problem Description</h2><p> Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that Wi may change over time.</p>
-<p> Kim obey the following rules to use magic:</p>
-<p> Each turn, he picks out one magic, suppose that is magic Sk, then Kim will use all the magic i satisfying the following condition:</p>
+        <p><strong>题目：<a href="http://acm.fzu.edu.cn/problem.php?pid=2280" target="_blank" rel="noopener">Problem 2280 Magic</a></strong></p>
+<h2 id="problem-description"><a class="markdownIt-Anchor" href="#problem-description"></a> <img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Problem Description</h2>
+<p>Kim is a magician, he can use n kinds of magic, number from 1 to n. We use string Si to describe magic i. Magic Si will make Wi points of damage. Note that Wi may change over time.</p>
+<p>Kim obey the following rules to use magic:</p>
+<p>Each turn, he picks out one magic, suppose that is magic Sk, then Kim will use all the magic i satisfying the following condition:</p>
 <ol>
-<li><p>Wi&lt;=Wk</p>
+<li>
+<p>Wi&lt;=Wk</p>
 </li>
-<li><p>Sk is a suffix of Si.</p>
-<p>Now Kim wondering how many magic will he use each turn.</p>
+<li>
+<p>Sk is a suffix of Si.</p>
 </li>
 </ol>
-<p> Note that all the strings are considered as a suffix of itself.</p>
-<h2 id="Input"><a href="#Input" class="headerlink" title=" Input"></a><img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Input</h2><p> First line the number of test case T. (T&lt;=6)</p>
-<p> For each case, first line an integer n (1&lt;=n&lt;=1000) stand for the number of magic.</p>
-<p> Next n lines, each line a string Si (Length of Si&lt;=1000) and an integer Wi (1&lt;=Wi&lt;=1000), stand for magic i and it’s damage Wi.</p>
-<p> Next line an integer Q (1&lt;=Q&lt;=80000), stand for there are Q operations. There are two kinds of operation.</p>
-<p> “1 x y” means Wx is changed to y.</p>
-<p> “2 x” means Kim has picked out magic x, and you should tell him how many magic he will use in this turn.</p>
-<p> Note that different Si can be the same.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title=" Output"></a><img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Output</h2><p> For each query, output the answer.</p>
-<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title=" Sample Input"></a><img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Sample Input</h2><p> 1 5 abracadabra 2 adbra 1 bra 3 abr 3 br 2 5 2 3 2 5 1 2 5 2 3 2 2</p>
-<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title=" Sample Output"></a><img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Sample Output</h2><p> 3 1 2 1</p>
-<h2 id="Source"><a href="#Source" class="headerlink" title=" Source"></a><img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Source</h2><p> 第八届福建省大学生程序设计竞赛-重现赛（感谢承办方厦门理工学院）</p>
-<p> 题目：给你n个字符串以及权值，两种操作 一种 更新字符串对应的权值 ，查询 输出所有以当前字符串为后缀且对应权值小于当前字符串权值的个数。</p>
-<p> 题解：首先hash 预处理所有能供以当前字符串为后缀的字符串，直接n^2暴力就行。。。</p>
-<p> 然后查询直接暴力搜索小于当前字符串权值的。</p>
-<p> 数据只有1000 的范围随便暴力啊。。。。</p>
+<p>Now Kim wondering how many magic will he use each turn.</p>
+<p>Note that all the strings are considered as a suffix of itself.</p>
+<h2 id="input"><a class="markdownIt-Anchor" href="#input"></a> <img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Input</h2>
+<p>First line the number of test case T. (T&lt;=6)</p>
+<p>For each case, first line an integer n (1&lt;=n&lt;=1000) stand for the number of magic.</p>
+<p>Next n lines, each line a string Si (Length of Si&lt;=1000) and an integer Wi (1&lt;=Wi&lt;=1000), stand for magic i and it’s damage Wi.</p>
+<p>Next line an integer Q (1&lt;=Q&lt;=80000), stand for there are Q operations. There are two kinds of operation.</p>
+<p>“1 x y” means Wx is changed to y.</p>
+<p>“2 x” means Kim has picked out magic x, and you should tell him how many magic he will use in this turn.</p>
+<p>Note that different Si can be the same.</p>
+<h2 id="output"><a class="markdownIt-Anchor" href="#output"></a> <img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Output</h2>
+<p>For each query, output the answer.</p>
+<h2 id="sample-input"><a class="markdownIt-Anchor" href="#sample-input"></a> <img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Sample Input</h2>
+<p>1 5 abracadabra 2 adbra 1 bra 3 abr 3 br 2 5 2 3 2 5 1 2 5 2 3 2 2</p>
+<h2 id="sample-output"><a class="markdownIt-Anchor" href="#sample-output"></a> <img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Sample Output</h2>
+<p>3 1 2 1</p>
+<h2 id="source"><a class="markdownIt-Anchor" href="#source"></a> <img src="http://acm.fzu.edu.cn/image/prodesc.gif" alt> Source</h2>
+<p>第八届福建省大学生程序设计竞赛-重现赛（感谢承办方厦门理工学院）</p>
+<p>题目：给你n个字符串以及权值，两种操作 一种 更新字符串对应的权值 ，查询 输出所有以当前字符串为后缀且对应权值小于当前字符串权值的个数。</p>
+<p>题解：首先hash 预处理所有能供以当前字符串为后缀的字符串，直接n^2暴力就行。。。</p>
+<p>然后查询直接暴力搜索小于当前字符串权值的。</p>
+<p>数据只有1000 的范围随便暴力啊。。。。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=1e3+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line">const int seed=131;</span><br><span class="line">ull Hash[maxn][maxn];</span><br><span class="line">ull po[maxn];</span><br><span class="line">char ch[maxn][maxn];</span><br><span class="line">int t,n;</span><br><span class="line">int len[maxn];</span><br><span class="line">bool mp[maxn][maxn];</span><br><span class="line">int val[maxn];</span><br><span class="line">void init() &#123;</span><br><span class="line">    mem(mp,0);</span><br><span class="line">    po[0]=1;</span><br><span class="line">    for(int i=1; i&lt;1002; i++) &#123;</span><br><span class="line">        po[i]=po[i-1]*seed;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=1; i&lt;=n; i++) &#123;</span><br><span class="line">        for(int j=1; j&lt;=len[i]; j++) &#123;</span><br><span class="line">            Hash[i][j]=Hash[i][j-1]*seed+ch[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=1; i&lt;=n; i++) &#123;</span><br><span class="line">        for(int j=1; j&lt;=n; j++) &#123;</span><br><span class="line">            if(len[j]&lt;len[i])continue;</span><br><span class="line">            else &#123;</span><br><span class="line">                int l=len[j]-len[i];</span><br><span class="line">                if(Hash[j][len[j]]-Hash[j][l]*po[len[i]]==Hash[i][len[i]]) &#123;</span><br><span class="line">                    mp[i][j]=1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void read(int &amp;sum) &#123;</span><br><span class="line">    sum=0;</span><br><span class="line">    int flag=0;</span><br><span class="line">    char ch=getchar();</span><br><span class="line">    while(!(ch&gt;=&apos;0&apos;&amp;&amp;ch&lt;=&apos;9&apos;)) &#123;</span><br><span class="line">        if (ch == &apos;-&apos;) &#123;</span><br><span class="line">            flag = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        ch=getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    while(ch&gt;=&apos;0&apos;&amp;&amp;ch&lt;=&apos;9&apos;)sum=sum*10+ch-48,ch=getchar();</span><br><span class="line">    if(flag)sum*=-1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    read(t);</span><br><span class="line">    while(t--) &#123;</span><br><span class="line">        read(n);</span><br><span class="line">        for(int i=1; i&lt;=n; i++) &#123;</span><br><span class="line">            scanf(&quot;%s%d&quot;,ch[i]+1,&amp;val[i]);</span><br><span class="line">            len[i]=strlen(ch[i]+1);</span><br><span class="line">        &#125;</span><br><span class="line">        init();</span><br><span class="line">        int q;</span><br><span class="line">        read(q);</span><br><span class="line">        while(q--) &#123;</span><br><span class="line">            int op;</span><br><span class="line">            read(op);</span><br><span class="line">            int x,y;</span><br><span class="line">            if(op==1) &#123;</span><br><span class="line">                read(x);</span><br><span class="line">                read(y);</span><br><span class="line">                val[x]=y;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                read(x);</span><br><span class="line">                int ans=0;</span><br><span class="line">                for(int i=1;i&lt;=n;i++)if(mp[x][i]&amp;&amp;val[x]&gt;=val[i])ans++;</span><br><span class="line">                printf(&quot;%d\n&quot;,ans);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -667,9 +675,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -845,7 +853,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text"> Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text"> Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text"> Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text"> Sample Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text"> Sample Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source"><span class="nav-number">6.</span> <span class="nav-text"> Source</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-description"><span class="nav-number">1.</span> <span class="nav-text">  Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input"><span class="nav-number">2.</span> <span class="nav-text">  Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#output"><span class="nav-number">3.</span> <span class="nav-text">  Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sample-input"><span class="nav-number">4.</span> <span class="nav-text">  Sample Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sample-output"><span class="nav-number">5.</span> <span class="nav-text">  Sample Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source"><span class="nav-number">6.</span> <span class="nav-text">  Source</span></a></li></ol></div>
             
 
           </div>
@@ -886,7 +894,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -894,7 +902,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1437,6 +1445,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

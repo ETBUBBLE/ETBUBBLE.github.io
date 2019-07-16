@@ -107,13 +107,13 @@
 
 
 
-  <meta name="description" content="POJ 1258 Agri-Net http://poj.org/problem?id=1258； 两种算法 Prim Kruskal. 先说Prim 初始化 权值，随便一个顶点做起点，为0 其它的为最大值。  找到权值最小的顶点，且没有加入集合。  把顶点权值加到结果，把定点加入集合。  暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。  重复前3步，直到所有点全部加入集合。">
+  <meta name="description" content="POJ 1258 Agri-Net http://poj.org/problem?id=1258； 两种算法 Prim Kruskal. 先说Prim 初始化 权值，随便一个顶点做起点，为0 其它的为最大值。   找到权值最小的顶点，且没有加入集合。   把顶点权值加到结果，把定点加入集合。   暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。   重复前3步，直到所有点全部加入集合。">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最小生成树Prim&amp;&amp;Kruskal 算法 详细笔记">
 <meta property="og:url" content="https://etbubble.github.io/2018/06/06/最小生成树Prim&&Kruskal 算法 详细笔记/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="POJ 1258 Agri-Net http://poj.org/problem?id=1258； 两种算法 Prim Kruskal. 先说Prim 初始化 权值，随便一个顶点做起点，为0 其它的为最大值。  找到权值最小的顶点，且没有加入集合。  把顶点权值加到结果，把定点加入集合。  暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。  重复前3步，直到所有点全部加入集合。">
+<meta property="og:description" content="POJ 1258 Agri-Net http://poj.org/problem?id=1258； 两种算法 Prim Kruskal. 先说Prim 初始化 权值，随便一个顶点做起点，为0 其它的为最大值。   找到权值最小的顶点，且没有加入集合。   把顶点权值加到结果，把定点加入集合。   暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。   重复前3步，直到所有点全部加入集合。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdn.net/2018060617045235?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180606170506139?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
@@ -121,7 +121,7 @@
 <meta property="og:updated_time" content="2019-03-18T08:06:11.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最小生成树Prim&amp;&amp;Kruskal 算法 详细笔记">
-<meta name="twitter:description" content="POJ 1258 Agri-Net http://poj.org/problem?id=1258； 两种算法 Prim Kruskal. 先说Prim 初始化 权值，随便一个顶点做起点，为0 其它的为最大值。  找到权值最小的顶点，且没有加入集合。  把顶点权值加到结果，把定点加入集合。  暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。  重复前3步，直到所有点全部加入集合。">
+<meta name="twitter:description" content="POJ 1258 Agri-Net http://poj.org/problem?id=1258； 两种算法 Prim Kruskal. 先说Prim 初始化 权值，随便一个顶点做起点，为0 其它的为最大值。   找到权值最小的顶点，且没有加入集合。   把顶点权值加到结果，把定点加入集合。   暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。   重复前3步，直到所有点全部加入集合。">
 <meta name="twitter:image" content="https://img-blog.csdn.net/2018060617045235?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
@@ -376,7 +376,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2018/06/06/最小生成树Prim&&Kruskal 算法 详细笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -502,20 +502,24 @@
       
 
       
-        <p>  POJ 1258</p>
+        <p>POJ 1258</p>
 <p><strong>Agri-Net</strong></p>
 <p><a href="http://poj.org/problem?id=1258" target="_blank" rel="noopener">http://poj.org/problem?id=1258</a>；</p>
 <p>两种算法 Prim Kruskal.</p>
 <p>先说Prim</p>
 <p>初始化 权值，随便一个顶点做起点，为0 其它的为最大值。</p>
 <ol>
-<li><p>找到权值最小的顶点，且没有加入集合。</p>
+<li>
+<p>找到权值最小的顶点，且没有加入集合。</p>
 </li>
-<li><p>把顶点权值加到结果，把定点加入集合。</p>
+<li>
+<p>把顶点权值加到结果，把定点加入集合。</p>
 </li>
-<li><p>暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。</p>
+<li>
+<p>暴力枚举 顶点连接的所有的边，更新所有能够连接上顶点的权值。</p>
 </li>
-<li><p>重复前3步，直到所有点全部加入集合。</p>
+<li>
+<p>重复前3步，直到所有点全部加入集合。</p>
 </li>
 </ol>
 <p><img src="https://img-blog.csdn.net/2018060617045235?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
@@ -528,14 +532,17 @@
 <p>接下来是Kruskal 代码</p>
 <p>这个算法其实和Prim 算法差距不大，这个是直接把边排序</p>
 <ol>
-<li><p>找到最小的边</p>
+<li>
+<p>找到最小的边</p>
 </li>
-<li><p>判断边的两个节点是不是连接到同一颗树上，是跳过，不是连接两个顶点的根节点，结果加上边。</p>
+<li>
+<p>判断边的两个节点是不是连接到同一颗树上，是跳过，不是连接两个顶点的根节点，结果加上边。</p>
 </li>
-<li><p>重复上面两步，直到连接N-1条边，因为N个顶点要N-1条边就能连接起来。</p>
+<li>
+<p>重复上面两步，直到连接N-1条边，因为N个顶点要N-1条边就能连接起来。</p>
 </li>
 </ol>
-<p><img src="https://img-blog.csdn.net/2018060617045235?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt>  </p>
+<p><img src="https://img-blog.csdn.net/2018060617045235?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
 <p>对于这个图，首先就找到（2，3 ）这条边连起来，然后就是（4 5），然后（0 2），这时候有2棵树</p>
 <p>（0 2 3 ）和（4 5）然后接着连 （2 5）（5 6 ）（1 4）就全部连接上了</p>
 <p>代码</p>
@@ -665,9 +672,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -867,7 +874,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -875,7 +882,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1418,6 +1425,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

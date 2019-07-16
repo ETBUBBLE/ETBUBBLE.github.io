@@ -107,20 +107,20 @@
 
 
 
-  <meta name="description" content="给一个初始值全为0的数列a1,a2,…,an. 给定 i，求a1+a2+..+ai. 给定i,x 执行ai+x;  图不好看见谅： 如图所示，1节点维护的是a1本身的和 2节点维护的是 a1到a2 的和 3节点维护的是a3的和 4节点维护的是a1到a4 的和 为啥会有些节点维护的值的个数不同呢？ 很简单 ，就是看最后一个1的位置，2：二进制0010 最后一个1是第2个位置所以维护2的2-1次方">
+  <meta name="description" content="给一个初始值全为0的数列a1,a2,…,an. 给定 i，求a1+a2+…+ai. 给定i,x 执行ai+x;  图不好看见谅： 如图所示，1节点维护的是a1本身的和 2节点维护的是 a1到a2 的和 3节点维护的是a3的和 4节点维护的是a1到a4 的和 为啥会有些节点维护的值的个数不同呢？ 很简单 ，就是看最后一个1的位置，2：二进制0010 最后一个1是第2个位置所以维护2的2-1次方个值。">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bit 位，树状数组学习笔记。">
 <meta property="og:url" content="https://etbubble.github.io/2018/04/25/bit 位，树状数组学习笔记。/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="给一个初始值全为0的数列a1,a2,…,an. 给定 i，求a1+a2+..+ai. 给定i,x 执行ai+x;  图不好看见谅： 如图所示，1节点维护的是a1本身的和 2节点维护的是 a1到a2 的和 3节点维护的是a3的和 4节点维护的是a1到a4 的和 为啥会有些节点维护的值的个数不同呢？ 很简单 ，就是看最后一个1的位置，2：二进制0010 最后一个1是第2个位置所以维护2的2-1次方">
+<meta property="og:description" content="给一个初始值全为0的数列a1,a2,…,an. 给定 i，求a1+a2+…+ai. 给定i,x 执行ai+x;  图不好看见谅： 如图所示，1节点维护的是a1本身的和 2节点维护的是 a1到a2 的和 3节点维护的是a3的和 4节点维护的是a1到a4 的和 为啥会有些节点维护的值的个数不同呢？ 很简单 ，就是看最后一个1的位置，2：二进制0010 最后一个1是第2个位置所以维护2的2-1次方个值。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdn.net/20180425153924955?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180425154248626?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:updated_time" content="2019-03-18T08:04:10.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bit 位，树状数组学习笔记。">
-<meta name="twitter:description" content="给一个初始值全为0的数列a1,a2,…,an. 给定 i，求a1+a2+..+ai. 给定i,x 执行ai+x;  图不好看见谅： 如图所示，1节点维护的是a1本身的和 2节点维护的是 a1到a2 的和 3节点维护的是a3的和 4节点维护的是a1到a4 的和 为啥会有些节点维护的值的个数不同呢？ 很简单 ，就是看最后一个1的位置，2：二进制0010 最后一个1是第2个位置所以维护2的2-1次方">
+<meta name="twitter:description" content="给一个初始值全为0的数列a1,a2,…,an. 给定 i，求a1+a2+…+ai. 给定i,x 执行ai+x;  图不好看见谅： 如图所示，1节点维护的是a1本身的和 2节点维护的是 a1到a2 的和 3节点维护的是a3的和 4节点维护的是a1到a4 的和 为啥会有些节点维护的值的个数不同呢？ 很简单 ，就是看最后一个1的位置，2：二进制0010 最后一个1是第2个位置所以维护2的2-1次方个值。">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20180425153924955?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
@@ -375,7 +375,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2018/04/25/bit 位，树状数组学习笔记。/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -467,7 +467,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">988</span>
+                <span title="本文字数">992</span>
               
 
               
@@ -501,8 +501,8 @@
       
 
       
-        <p>  给一个初始值全为0的数列a1,a2,…,an.</p>
-<p>给定 i，求a1+a2+..+ai.</p>
+        <p>给一个初始值全为0的数列a1,a2,…,an.</p>
+<p>给定 i，求a1+a2+…+ai.</p>
 <p>给定i,x 执行ai+x;</p>
 <p><img src="https://img-blog.csdn.net/20180425153924955?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
 <p>图不好看见谅：</p>
@@ -531,7 +531,28 @@
 <p>按位运算就是 i-=i&amp;-i.</p>
 <p>代码非常简单。</p>
 <p>复杂度 O（log N）;</p>
-<p>#include&lt;bits/stdc++.h&gt;<br>using namespace std;<br>const int maxn=1&lt;&lt;15;<br>int bit[maxn+1],n;<br>int sum(int i)<br>{<br> int s=0;<br> while(i&gt;0)<br> {<br> s +=bit[i];<br> i-=i&amp;-i;<br> }<br> return s;<br>}<br>void add(int i,int x)<br>{<br> while(i&lt;=n)<br> {<br> bit[i]+=x;<br> i+=i&amp;-i;<br> }<br>}  </p>
+<p>#include&lt;bits/stdc++.h&gt;<br>
+using namespace std;<br>
+const int maxn=1&lt;&lt;15;<br>
+int bit[maxn+1],n;<br>
+int sum(int i)<br>
+{<br>
+int s=0;<br>
+while(i&gt;0)<br>
+{<br>
+s +=bit[i];<br>
+i-=i&amp;-i;<br>
+}<br>
+return s;<br>
+}<br>
+void add(int i,int x)<br>
+{<br>
+while(i&lt;=n)<br>
+{<br>
+bit[i]+=x;<br>
+i+=i&amp;-i;<br>
+}<br>
+}</p>
 
       
     </div>
@@ -657,9 +678,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -859,7 +880,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -867,7 +888,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1410,6 +1431,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

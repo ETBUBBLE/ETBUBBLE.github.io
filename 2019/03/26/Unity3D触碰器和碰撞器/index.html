@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="Unity3d碰撞检测中碰撞器与触发器的区别要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。 物体发生碰撞的必要条件 两个物体都必须带有碰撞器(Collider)，其中">
+  <meta name="description" content="Unity3d碰撞检测中碰撞器与触发器的区别 要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。 物体发生碰撞的必要条件 两个物体都必须带有碰撞器(Collider)，">
 <meta name="keywords" content="unity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity3D触发器和碰撞器">
 <meta property="og:url" content="https://etbubble.github.io/2019/03/26/Unity3D触碰器和碰撞器/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="Unity3d碰撞检测中碰撞器与触发器的区别要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。 物体发生碰撞的必要条件 两个物体都必须带有碰撞器(Collider)，其中">
+<meta property="og:description" content="Unity3d碰撞检测中碰撞器与触发器的区别 要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。 物体发生碰撞的必要条件 两个物体都必须带有碰撞器(Collider)，">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-05-14T11:49:20.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity3D触发器和碰撞器">
-<meta name="twitter:description" content="Unity3d碰撞检测中碰撞器与触发器的区别要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。 物体发生碰撞的必要条件 两个物体都必须带有碰撞器(Collider)，其中">
+<meta name="twitter:description" content="Unity3d碰撞检测中碰撞器与触发器的区别 要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。 物体发生碰撞的必要条件 两个物体都必须带有碰撞器(Collider)，">
 
 
 
@@ -372,7 +372,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/03/26/Unity3D触碰器和碰撞器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">935</span>
+                <span title="本文字数">942</span>
               
 
               
@@ -523,19 +523,21 @@
       
 
       
-        <h2 id="Unity3d碰撞检测中碰撞器与触发器的区别"><a href="#Unity3d碰撞检测中碰撞器与触发器的区别" class="headerlink" title="Unity3d碰撞检测中碰撞器与触发器的区别"></a>Unity3d碰撞检测中碰撞器与触发器的区别</h2><p>要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。</p>
+        <h2 id="unity3d碰撞检测中碰撞器与触发器的区别"><a class="markdownIt-Anchor" href="#unity3d碰撞检测中碰撞器与触发器的区别"></a> Unity3d碰撞检测中碰撞器与触发器的区别</h2>
+<p>要产生碰撞必须为游戏对象添加刚体（Rigidbody）和碰撞器，刚体可以让物体在物理影响下运动。碰撞体是物理组件的一类，它要与刚体一起添加到游戏对象上才能触发碰撞。如果两个刚体相互撞在一起，除非两个对象有碰撞体时物理引擎才会计算碰撞，在物理模拟中，没有碰撞体的刚体会彼此相互穿过。</p>
 <p>物体发生碰撞的必要条件</p>
 <p>两个物体都必须带有碰撞器(Collider)，其中一个物体还必须带有Rigidbody刚体。</p>
 <p>在unity3d中，能检测碰撞发生的方式有两种，一种是利用碰撞器，另一种则是利用触发器。</p>
-<p><strong>碰撞器：</strong>一群组件，它包含了很多种类，比如：Box Collider（盒碰撞体），Mesh Collider（网格碰撞体）等，这些碰撞器应用的场合不同，但都必须加到GameObjecet身上。</p>
-<p><strong>触发器</strong>，只需要在检视面板中的碰撞器组件中勾选IsTrigger属性选择框。勾选Is Trigger 后不会有碰撞物理现象<br>触发信息检测：</p>
+<p>**碰撞器：**一群组件，它包含了很多种类，比如：Box Collider（盒碰撞体），Mesh Collider（网格碰撞体）等，这些碰撞器应用的场合不同，但都必须加到GameObjecet身上。</p>
+<p><strong>触发器</strong>，只需要在检视面板中的碰撞器组件中勾选IsTrigger属性选择框。勾选Is Trigger 后不会有碰撞物理现象<br>
+触发信息检测：</p>
 <p>1.MonoBehaviour.OnTriggerEnter(Collider collider)当进入触发器</p>
-<p>2.MonoBehaviour.OnTriggerExit(Collider collider)当退出触发器</p>
-<p>3.MonoBehaviour.OnTriggerStay(Collider collider)当逗留触发器</p>
+<p>2.MonoBehaviour.OnTriggerExit(Collider collider)当退出触发器</p>
+<p>3.MonoBehaviour.OnTriggerStay(Collider collider)当逗留触发器</p>
 <p>碰撞信息检测：</p>
 <p>1.MonoBehaviour.OnCollisionEnter(Collision collision) 当进入碰撞器</p>
 <p>2.MonoBehaviour.OnCollisionExit(Collision collision) 当退出碰撞器</p>
-<p>3.MonoBehaviour.OnCollisionStay(Collision collision)  当逗留碰撞器</p>
+<p>3.MonoBehaviour.OnCollisionStay(Collision collision)  当逗留碰撞器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void OnTriggerEnter(Collider collider)</span><br><span class="line">&#123;</span><br><span class="line">     //进入触发器执行的代码</span><br><span class="line">&#125;</span><br><span class="line">void OnCollisionEnter(Collision collision) </span><br><span class="line">&#123;</span><br><span class="line">     //进入碰撞器执行的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -671,9 +673,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -849,7 +851,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unity3d碰撞检测中碰撞器与触发器的区别"><span class="nav-number">1.</span> <span class="nav-text">Unity3d碰撞检测中碰撞器与触发器的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#unity3d碰撞检测中碰撞器与触发器的区别"><span class="nav-number">1.</span> <span class="nav-text"> Unity3d碰撞检测中碰撞器与触发器的区别</span></a></li></ol></div>
             
 
           </div>
@@ -890,7 +892,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -898,7 +900,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1441,6 +1443,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="很久没写代码了。随便刷了一下CF C. The Fair Nut and String 先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1;  然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。  差不多就是这么算的:sum[i]=sum[i-1]*a">
+  <meta name="description" content="很久没写代码了。随便刷了一下CF  C. The Fair Nut and String 先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1; 然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。 差不多就是这么算的:sum[i]=sum[i-1]*a[i]">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 526 (Div. 2)">
 <meta property="og:url" content="https://etbubble.github.io/2018/12/13/Codeforces Round 526 (Div. 2)/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="很久没写代码了。随便刷了一下CF C. The Fair Nut and String 先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1;  然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。  差不多就是这么算的:sum[i]=sum[i-1]*a">
+<meta property="og:description" content="很久没写代码了。随便刷了一下CF  C. The Fair Nut and String 先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1; 然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。 差不多就是这么算的:sum[i]=sum[i-1]*a[i]">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T09:39:04.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 526 (Div. 2)">
-<meta name="twitter:description" content="很久没写代码了。随便刷了一下CF C. The Fair Nut and String 先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1;  然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。  差不多就是这么算的:sum[i]=sum[i-1]*a">
+<meta name="twitter:description" content="很久没写代码了。随便刷了一下CF  C. The Fair Nut and String 先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1; 然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。 差不多就是这么算的:sum[i]=sum[i-1]*a[i]">
 
 
 
@@ -372,7 +372,7 @@
     <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2018/12/13/Codeforces Round 526 (Div. 2)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dust">
+      <meta itemprop="name" content="尘">
       <meta itemprop="description" content="做自己不会做的事被称之为学习">
       <meta itemprop="image" content="/images/tou.jpeg">
     </span>
@@ -498,13 +498,15 @@
       
 
       
-        <p>  很久没写代码了。随便刷了一下CF</p>
-<h2 id="C-The-Fair-Nut-and-String"><a href="#C-The-Fair-Nut-and-String" class="headerlink" title="C. The Fair Nut and String"></a><a href="http://codeforces.com/contest/1084/problem/C" target="_blank" rel="noopener">C. The Fair Nut and String</a></h2><p> 先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1;</p>
-<p> 然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。</p>
-<p> 差不多就是这么算的:sum[i]=sum[i-1]*a[i]+a[i];</p>
+        <p>很久没写代码了。随便刷了一下CF</p>
+<h2 id="c-the-fair-nut-and-string"><a class="markdownIt-Anchor" href="#c-the-fair-nut-and-string"></a> <a href="http://codeforces.com/contest/1084/problem/C" target="_blank" rel="noopener">C. The Fair Nut and String</a></h2>
+<p>先统计一下被’b’分隔的‘a’有多少个，放到一个数组里面，比如说，ababaaba a[0]=1,a[1]=1,a[2]=2,a[3]=1;</p>
+<p>然后算一下总方案数，这个有点难解释，就是取这个之前所有的方案数*这个里面的个数，再加上只取这个里面的个数。</p>
+<p>差不多就是这么算的:sum[i]=sum[i-1]*a[i]+a[i];</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line">#include&lt;bitset&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long LL;</span><br><span class="line">typedef unsigned long long uLL;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=1e6+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line"></span><br><span class="line">char s[maxn];</span><br><span class="line">LL ans[maxn];</span><br><span class="line">long long n,k,num,sum,ct;</span><br><span class="line">int main() &#123;</span><br><span class="line">    scanf(&quot;%s&quot;,s);</span><br><span class="line">    int l = strlen(s);</span><br><span class="line">    k=0;</span><br><span class="line">    ct=1;</span><br><span class="line">    for(int i = 0 ; i &lt; l ; i ++) &#123;</span><br><span class="line">        if(s[i]==&apos;a&apos;)&#123;</span><br><span class="line">            n++;</span><br><span class="line">            ct=0;</span><br><span class="line">        &#125;</span><br><span class="line">        if(s[i]==&apos;b&apos;)&#123;</span><br><span class="line">            if(ct==0)ans[k++]=n;</span><br><span class="line">            ct=1;</span><br><span class="line">            n=0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(!ct)ans[k++]=n;</span><br><span class="line">    </span><br><span class="line">    for(int i = 0 ; i &lt; k ; i++)&#123;</span><br><span class="line">        sum+=sum*ans[i];</span><br><span class="line">        sum%=mod;</span><br><span class="line">        sum+=ans[i];</span><br><span class="line">        sum%=mod;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="D-The-Fair-Nut-and-the-Best-Path"><a href="#D-The-Fair-Nut-and-the-Best-Path" class="headerlink" title="D. The Fair Nut and the Best Path"></a><a href="http://codeforces.com/contest/1084/problem/D" target="_blank" rel="noopener">D. The Fair Nut and the Best Path</a></h1><p> 这题是个树形DP，每次选最边上的节点，如果一个节点周围的节点只有一个没走过了就把这个节点加到队列里面取判断。</p>
-<p> 如果你选的节点是最大的油量中的一个，那么，一定等于周围两个最大且大于零的节点想加，且加上自己的油量。具体看代码吧，然后dp每次保存到这个节点最大油量。</p>
+<h1 id="d-the-fair-nut-and-the-best-path"><a class="markdownIt-Anchor" href="#d-the-fair-nut-and-the-best-path"></a> <a href="http://codeforces.com/contest/1084/problem/D" target="_blank" rel="noopener">D. The Fair Nut and the Best Path</a></h1>
+<p>这题是个树形DP，每次选最边上的节点，如果一个节点周围的节点只有一个没走过了就把这个节点加到队列里面取判断。</p>
+<p>如果你选的节点是最大的油量中的一个，那么，一定等于周围两个最大且大于零的节点想加，且加上自己的油量。具体看代码吧，然后dp每次保存到这个节点最大油量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line">#include&lt;bitset&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long LL;</span><br><span class="line">typedef unsigned long long uLL;</span><br><span class="line">typedef pair&lt;int,int&gt; P;</span><br><span class="line"></span><br><span class="line">#define bug printf(&quot;*********\n&quot;);</span><br><span class="line">#define debug(x) cout&lt;&lt;&quot;[&quot;&lt;&lt;x&lt;&lt;&quot;]&quot; &lt;&lt;endl;</span><br><span class="line">#define mid (l+r)/2</span><br><span class="line">#define chl 2*k+1</span><br><span class="line">#define chr 2*k+2</span><br><span class="line">#define lson l,mid,chl</span><br><span class="line">#define rson mid,r,chr</span><br><span class="line">#define pb push_back</span><br><span class="line">#define mem(a,b) memset(a,b,sizeof(a));</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=1e6+5;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line">int n,in[maxn];</span><br><span class="line">LL w[maxn],ans,dp[maxn];</span><br><span class="line">int used[maxn];</span><br><span class="line">struct two &#123;</span><br><span class="line">    LL to,c;</span><br><span class="line">&#125;;</span><br><span class="line">int k;</span><br><span class="line">vector&lt;two&gt; G[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    for(int i = 1 ; i &lt;= n ; i ++) &#123;</span><br><span class="line">        scanf(&quot;%lld&quot;,&amp;w[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    two t;</span><br><span class="line">    for(int i = 0 ; i &lt; n-1; i++) &#123;</span><br><span class="line">        int u,v,c;</span><br><span class="line">        scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;c);</span><br><span class="line">        t.c=c;</span><br><span class="line">        t.to=v;</span><br><span class="line">        G[u].push_back(t);</span><br><span class="line">        t.to=u;</span><br><span class="line">        G[v].push_back(t);</span><br><span class="line">        in[u]++;</span><br><span class="line">        in[v]++;</span><br><span class="line">    &#125;</span><br><span class="line">    queue&lt;int&gt;q;</span><br><span class="line">    for(int i = 1 ; i &lt;= n ; i++) &#123;</span><br><span class="line">        if(in[i]&lt;=1) &#123;</span><br><span class="line">            q.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    LL max1=0,max2=0;</span><br><span class="line">    LL ans=0;</span><br><span class="line">    while(q.size()) &#123;</span><br><span class="line">        int node=q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        max1=max2=0;</span><br><span class="line">        for(auto i:G[node]) &#123;</span><br><span class="line">            if(used[i.to]==1) &#123;</span><br><span class="line">                LL temp=dp[i.to]-i.c;</span><br><span class="line">                if(temp&gt;max1) &#123;</span><br><span class="line">                    swap(max1,temp);</span><br><span class="line">                &#125;</span><br><span class="line">                if(temp&gt;max2) &#123;</span><br><span class="line">                    swap(max2,temp);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                in[i.to]--;</span><br><span class="line">                if(in[i.to]&lt;=1)&#123;</span><br><span class="line">                    q.push(i.to);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        used[node]=1;</span><br><span class="line">        LL temp=max1+max2+w[node];</span><br><span class="line">        ans=max(ans,temp);</span><br><span class="line">        dp[node]=temp-max2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -640,9 +642,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="Dust">
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
             
-              <p class="site-author-name" itemprop="name">Dust</p>
+              <p class="site-author-name" itemprop="name">尘</p>
               <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
           </div>
 
@@ -818,7 +820,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-The-Fair-Nut-and-String"><span class="nav-number">1.</span> <span class="nav-text">C. The Fair Nut and String</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#D-The-Fair-Nut-and-the-Best-Path"><span class="nav-number"></span> <span class="nav-text">D. The Fair Nut and the Best Path</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-the-fair-nut-and-string"><span class="nav-number">1.</span> <span class="nav-text"> C. The Fair Nut and String</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#d-the-fair-nut-and-the-best-path"><span class="nav-number"></span> <span class="nav-text"> D. The Fair Nut and the Best Path</span></a></li></div>
             
 
           </div>
@@ -859,7 +861,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Dust</span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -867,7 +869,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">335k</span>
   
 
   
@@ -1410,6 +1412,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 
