@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="__builtin_popcount() 求二进制 1的个数。 double add(double a,double b) { if(abs(a+b)&amp;lt;eps *(abs(a)+abs(b))) return 0; return a+b; } 一个 向量操作结构体。 const double eps =1e-8; struct P { double x,y; P() {} P(double">
+  <meta name="description" content="__builtin_popcount() 求二进制 1的个数。  double add(double a,double b) { if(abs(a+b)&amp;lt;eps *(abs(a)+abs(b))) return 0; return a+b; }  一个 向量操作结构体。 const double eps =1e-8;  struct P { double x,y; P() {} P(do">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些函数要记的函数笔记">
 <meta property="og:url" content="https://etbubble.github.io/2018/07/25/一些函数要记的函数笔记/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="__builtin_popcount() 求二进制 1的个数。 double add(double a,double b) { if(abs(a+b)&amp;lt;eps *(abs(a)+abs(b))) return 0; return a+b; } 一个 向量操作结构体。 const double eps =1e-8; struct P { double x,y; P() {} P(double">
+<meta property="og:description" content="__builtin_popcount() 求二进制 1的个数。  double add(double a,double b) { if(abs(a+b)&amp;lt;eps *(abs(a)+abs(b))) return 0; return a+b; }  一个 向量操作结构体。 const double eps =1e-8;  struct P { double x,y; P() {} P(do">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:13:12.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些函数要记的函数笔记">
-<meta name="twitter:description" content="__builtin_popcount() 求二进制 1的个数。 double add(double a,double b) { if(abs(a+b)&amp;lt;eps *(abs(a)+abs(b))) return 0; return a+b; } 一个 向量操作结构体。 const double eps =1e-8; struct P { double x,y; P() {} P(double">
+<meta name="twitter:description" content="__builtin_popcount() 求二进制 1的个数。  double add(double a,double b) { if(abs(a+b)&amp;lt;eps *(abs(a)+abs(b))) return 0; return a+b; }  一个 向量操作结构体。 const double eps =1e-8;  struct P { double x,y; P() {} P(do">
 
 
 
@@ -464,7 +464,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.3k</span>
+                <span title="本文字数">1.2k</span>
               
 
               
@@ -498,76 +498,15 @@
       
 
       
-        <p>__builtin_popcount() 求二进制 1的个数。</p>
-<p>double add(double a,double b) {<br>
-if(abs(a+b)&lt;eps *(abs(a)+abs(b))) return 0;<br>
-return a+b;<br>
-}</p>
-<p>一个 向量操作结构体。<br>
-const double eps =1e-8;</p>
-<p>struct P {<br>
-double x,y;<br>
-P() {}<br>
-P(double x,double y):x(x),y(y) {}<br>
-P operator + (P p) {<br>
-return P(add(x,p.x),add(y,p.y));<br>
-}<br>
-P operator - (P p) {<br>
-return P(add(x,-p.x),add(y,-p.y));<br>
-}<br>
-P operator * (double d) {<br>
-return P(x<em>d,y</em>d);<br>
-}<br>
-double dot (P p) { //向量积<br>
-return add(x<em>p.x,y</em>p.y);<br>
-}<br>
-double det(P p) { //数量积<br>
-return add(x<em>p.y,-y</em>p.x);<br>
-}<br>
-};</p>
-<p>double Distance(P a,P b)<br>
-{<br>
-return sqrt((a.x-b.x)<em>(a.x-b.x)+(a.y-b.y)</em>(a.y-b.y));<br>
-}<br>
-double InterArea(P a,double R,P b,double r)<br>
-{<br>
-if(R&lt;r){<br>
-double temp=R;<br>
-R=r;<br>
-r=temp;<br>
-}<br>
-double dis=Distance(a,b);<br>
-if(dis&gt;=R+r) //两圆相离，相交面积为0<br>
-return 0;<br>
-if(dis&lt;=R-r) //两圆内含，相交面积为小圆的面积<br>
-return PI<em>r</em>r;<br>
-//两圆相交时<br>
-double angle1=acos((R<em>R+dis</em>dis-r<em>r)/(2.0</em>R<em>dis)); //大圆的那个角<br>
-double angle2=acos((r</em>r+dis<em>dis-R</em>R)/(2.0<em>r</em>dis)); //小圆的那个角<br>
-double s=R<em>angle1</em>R+r<em>angle2</em>r;<br>
-s-=R<em>dis</em>sin(angle1);<br>
-return s;<br>
-}</p>
+        <p>  __builtin_popcount() 求二进制 1的个数。</p>
+<p> double add(double a,double b) {<br> if(abs(a+b)&lt;eps *(abs(a)+abs(b))) return 0;<br> return a+b;<br> }</p>
+<p> 一个 向量操作结构体。<br> const double eps =1e-8;</p>
+<p> struct P {<br> double x,y;<br> P() {}<br> P(double x,double y):x(x),y(y) {}<br> P operator + (P p) {<br> return P(add(x,p.x),add(y,p.y));<br> }<br> P operator - (P p) {<br> return P(add(x,-p.x),add(y,-p.y));<br> }<br> P operator <em> (double d) {<br> return P(x</em>d,y<em>d);<br> }<br> double dot (P p) { //向量积<br> return add(x</em>p.x,y<em>p.y);<br> }<br> double det(P p) { //数量积<br> return add(x</em>p.y,-y*p.x);<br> }<br> };</p>
+<p> double Distance(P a,P b)<br> {<br> return sqrt((a.x-b.x)<em>(a.x-b.x)+(a.y-b.y)</em>(a.y-b.y));<br> }<br> double InterArea(P a,double R,P b,double r)<br> {<br> if(R<r){ double temp="R;" r="r;" } dis="Distance(a,b);" if(dis>=R+r) //两圆相离，相交面积为0<br> return 0;<br> if(dis&lt;=R-r) //两圆内含，相交面积为小圆的面积<br> return PI<em>r</em>r;<br> //两圆相交时<br> double angle1=acos((R<em>R+dis</em>dis-r<em>r)/(2.0</em>R<em>dis)); //大圆的那个角<br> double angle2=acos((r</em>r+dis<em>dis-R</em>R)/(2.0<em>r</em>dis)); //小圆的那个角<br> double s=R<em>angle1</em>R+r<em>angle2</em>r;<br> s-=R<em>dis</em>sin(angle1);<br> return s;<br> }</r){></p>
 <ul>
-<li>全排列 一定要排序 #include&lt;bits/stdc++.h&gt;<br>
-using namespace std;<br>
-typedef long long ll;<br>
-const int maxn=4e5+5;<br>
-int n[maxn];<br>
-int dp[maxn][9];<br>
-int main() {<br>
-int ans[9]= {0,1,2,3,4,5,6,7,8};<br>
-int k=0;<br>
-do {<br>
-for(int i=0; i&lt;9; i++) {<br>
-dp[k][i]=ans[i];<br>
-}<br>
-k++;<br>
-} while(next_permutation(ans,ans+9));<br>
-return 0;<br>
-}</li>
+<li>全排列 一定要排序 #include<bits stdc++.h><br>using namespace std;<br>typedef long long ll;<br>const int maxn=4e5+5;<br>int n[maxn];<br>int dp[maxn][9];<br>int main() {<br>int ans[9]= {0,1,2,3,4,5,6,7,8};<br>int k=0;<br>do {<br>for(int i=0; i&lt;9; i++) {<br>dp[k][i]=ans[i];<br>}<br>k++;<br>} while(next_permutation(ans,ans+9));<br>return 0;<br>}  </bits></li>
 </ul>
-<p>hypot() 求三角斜边</p>
+<p> hypot() 求三角斜边</p>
 
       
     </div>
@@ -903,7 +842,7 @@ return 0;<br>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">335k</span>
+    <span title="站点总字数">336k</span>
   
 
   

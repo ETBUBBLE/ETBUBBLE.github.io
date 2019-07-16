@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="Problem B: 洗衣 Time Limit: 2 Sec Memory Limit: 128 MB Submit: 148 Solved: 26 [Submit][Status][Web Board]  Description durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？  I">
+  <meta name="description" content="Problem B: 洗衣 Time Limit: 2 Sec Memory Limit: 128 MBSubmit: 148 Solved: 26 [Submit][Status][Web Board] Description durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？ Input">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贪心">
 <meta property="og:url" content="https://etbubble.github.io/2018/03/17/贪心/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="Problem B: 洗衣 Time Limit: 2 Sec Memory Limit: 128 MB Submit: 148 Solved: 26 [Submit][Status][Web Board]  Description durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？  I">
+<meta property="og:description" content="Problem B: 洗衣 Time Limit: 2 Sec Memory Limit: 128 MBSubmit: 148 Solved: 26 [Submit][Status][Web Board] Description durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？ Input">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:04:12.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贪心">
-<meta name="twitter:description" content="Problem B: 洗衣 Time Limit: 2 Sec Memory Limit: 128 MB Submit: 148 Solved: 26 [Submit][Status][Web Board]  Description durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？  I">
+<meta name="twitter:description" content="Problem B: 洗衣 Time Limit: 2 Sec Memory Limit: 128 MBSubmit: 148 Solved: 26 [Submit][Status][Web Board] Description durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？ Input">
 
 
 
@@ -464,7 +464,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.1k</span>
+                <span title="本文字数">1.2k</span>
               
 
               
@@ -498,56 +498,46 @@
       
 
       
-        <h2 id="problem-b-洗衣"><a class="markdownIt-Anchor" href="#problem-b-洗衣"></a> Problem B: 洗衣</h2>
-<p>Time Limit: 2 Sec Memory Limit: 128 MB<br>
-Submit: 148 Solved: 26<br>
-[<a href="http://10.64.70.148/JudgeOnline/submitpage.php?cid=1015&amp;pid=1&amp;langmask=262140" target="_blank" rel="noopener">Submit</a>][<a href="http://10.64.70.148/JudgeOnline/problemstatus.php?id=1125" target="_blank" rel="noopener">Status</a>][<a href="http://10.64.70.148/JudgeOnline/bbs.php?pid=1125&amp;cid=1015" target="_blank" rel="noopener">Web Board</a>]</p>
-<h2 id="description"><a class="markdownIt-Anchor" href="#description"></a> Description</h2>
-<p>durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？</p>
-<h2 id="input"><a class="markdownIt-Anchor" href="#input"></a> Input</h2>
-<p>多组输入<br>
-第一行一个整数n（n &lt;= 100000）, 代表衣服的个数<br>
-接下来n行, 每行两个整数st, en（1 &lt;= st &lt; en &lt;= 1000000000），代表第i件衣服在st开始洗，en洗完</p>
-<h2 id="output"><a class="markdownIt-Anchor" href="#output"></a> Output</h2>
-<p>输出一个整数和换行符，代表至少需要的洗衣机个数</p>
-<h2 id="sample-input"><a class="markdownIt-Anchor" href="#sample-input"></a> Sample Input</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 3</span><br><span class="line">1 2</span><br><span class="line">3 4</span><br><span class="line">2 8</span><br></pre></td></tr></table></figure>
-<h2 id="sample-output"><a class="markdownIt-Anchor" href="#sample-output"></a> Sample Output</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
-<p>贪心，先排序，然后到一个时间点能加就加，如果过了一个减去一个就行了，每次跳跃一件衣服的时间长度就行了，复杂度只有排序的复杂度NlogN</p>
-<p><code>#include&lt;stdio.h&gt;</code></p>
-<p><code>#include&lt;string.h&gt;</code></p>
-<p><code>#include&lt;algorithm&gt;</code></p>
-<p><code>#include&lt;iostream&gt;</code></p>
-<p><code>#include&lt;queue&gt;</code></p>
-<p><code>using</code>   <code>namespace</code>   <code>std;</code></p>
-<p><code>const</code>   <code>int</code>   <code>maxn=1e5+10;</code></p>
-<p><code>int</code>   <code>n;</code></p>
-<p><code>int</code>   <code>main()</code></p>
-<p><code>{</code></p>
-<p><code></code>  <code>int</code>   <code>st[maxn],en[maxn],sz,ez,ans,cou;</code></p>
-<p><code></code>  <code>while</code>  <code>(</code>  <code>scanf</code>  <code>(</code>  <code>&quot;%d&quot;</code>  <code>,&amp;n)!=EOF)</code></p>
-<p><code></code>  <code>{</code></p>
-<p><code></code>  <code>for</code>  <code>(</code>  <code>int</code>   <code>i=0;i&lt;n;i++){</code></p>
-<p><code></code>  <code>scanf</code>  <code>(</code>  <code>&quot;%d%d&quot;</code>  <code>,&amp;st[i],&amp;en[i]);</code></p>
-<p><code></code>  <code>}</code></p>
-<p><code></code>  <code>sort(st,st+n);</code></p>
-<p><code></code>  <code>sort(en,en+n);</code></p>
-<p><code></code>  <code>ans=cou=ez=0;</code></p>
-<p><code></code>  <code>for</code>  <code>(</code>  <code>int</code>   <code>i=0;i&lt;n;i++)</code></p>
-<p><code></code>  <code>{</code></p>
-<p><code></code>  <code>cou++;</code></p>
-<p><code></code>  <code>while</code>  <code>(en[ez]&lt;=st[i])</code></p>
-<p><code></code>  <code>{</code></p>
-<p><code></code>  <code>ez++;</code></p>
-<p><code></code>  <code>cou--;</code></p>
-<p><code></code>  <code>}</code></p>
-<p><code></code>  <code>if</code>  <code>(cou&gt;ans)ans=cou;</code></p>
-<p><code></code>  <code>}</code></p>
-<p><code></code>  <code>printf</code>  <code>(</code>  <code>&quot;%d\n&quot;</code>  <code>,ans);</code></p>
-<p><code></code>  <code>}</code></p>
-<p><code></code>  <code>return</code>   <code>0;</code></p>
-<p><code>}</code></p>
+        <h2 id="Problem-B-洗衣"><a href="#Problem-B-洗衣" class="headerlink" title="Problem B: 洗衣"></a>Problem B: 洗衣</h2><p> Time Limit: 2 Sec Memory Limit: 128 MB<br>Submit: 148 Solved: 26<br> [<a href="http://10.64.70.148/JudgeOnline/submitpage.php?cid=1015&amp;pid=1&amp;langmask=262140" target="_blank" rel="noopener">Submit</a>][<a href="http://10.64.70.148/JudgeOnline/problemstatus.php?id=1125" target="_blank" rel="noopener">Status</a>][<a href="http://10.64.70.148/JudgeOnline/bbs.php?pid=1125&amp;cid=1015" target="_blank" rel="noopener">Web Board</a>]</p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p> durong有N件衣服要洗， 但是他的第i件衣服必须在[st, en) 时间洗， 同一洗衣机不能同时洗多件衣服，他想，要洗完N件衣服，至少需要多少个洗衣机呢？</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p> 多组输入<br> 第一行一个整数n（n &lt;= 100000）, 代表衣服的个数<br> 接下来n行, 每行两个整数st, en（1 &lt;= st &lt; en &lt;= 1000000000），代表第i件衣服在st开始洗，en洗完</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p> 输出一个整数和换行符，代表至少需要的洗衣机个数</p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 3</span><br><span class="line">1 2</span><br><span class="line">3 4</span><br><span class="line">2 8</span><br></pre></td></tr></table></figure>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<p> 贪心，先排序，然后到一个时间点能加就加，如果过了一个减去一个就行了，每次跳跃一件衣服的时间长度就行了，复杂度只有排序的复杂度NlogN</p>
+<p> <code>#include&lt;stdio.h&gt;</code> </p>
+<p> <code>#include&lt;string.h&gt;</code> </p>
+<p> <code>#include&lt;algorithm&gt;</code> </p>
+<p> <code>#include&lt;iostream&gt;</code> </p>
+<p> <code>#include&lt;queue&gt;</code> </p>
+<p> <code>using</code>   <code>namespace</code>   <code>std;</code> </p>
+<p> <code>const</code>   <code>int</code>   <code>maxn=1e5+10;</code> </p>
+<p> <code>int</code>   <code>n;</code> </p>
+<p> <code>int</code>   <code>main()</code> </p>
+<p> <code>{</code> </p>
+<p> <code>` </code>int<code>`st[maxn],en[maxn],sz,ez,ans,cou;</code> </p>
+<p> <code>` </code>while<code>`(</code>  <code>scanf</code>  <code>(</code>  <code>&quot;%d&quot;</code>  <code>,&amp;n)!=EOF)</code> </p>
+<p> <code>` </code>{` </p>
+<p> <code>` </code>for<code>`(</code>  <code>int</code>   <code>i=0;i&lt;n;i++){</code> </p>
+<p> <code>` </code>scanf<code>`(</code>  <code>&quot;%d%d&quot;</code>  <code>,&amp;st[i],&amp;en[i]);</code> </p>
+<p> <code>` </code>}` </p>
+<p> <code>` </code>sort(st,st+n);` </p>
+<p> <code>` </code>sort(en,en+n);` </p>
+<p> <code>` </code>ans=cou=ez=0;` </p>
+<p> <code>` </code>for<code>`(</code>  <code>int</code>   <code>i=0;i&lt;n;i++)</code> </p>
+<p> <code>` </code>{` </p>
+<p> <code>` </code>cou++;` </p>
+<p> <code>` </code>while<code>`(en[ez]&lt;=st[i])</code> </p>
+<p> <code>` </code>{` </p>
+<p> <code>` </code>ez++;` </p>
+<p> <code>` </code>cou—;` </p>
+<p> <code>` </code>}` </p>
+<p> <code>` </code>if<code>`(cou&gt;ans)ans=cou;</code> </p>
+<p> <code>` </code>}` </p>
+<p> <code>` </code>printf<code>`(</code>  <code>&quot;%d\n&quot;</code>  <code>,ans);</code> </p>
+<p> <code>` </code>}` </p>
+<p> <code>` </code>return<code>`0;</code> </p>
+<p> <code>}</code> </p>
 
       
     </div>
@@ -860,7 +850,7 @@ Submit: 148 Solved: 26<br>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-b-洗衣"><span class="nav-number">1.</span> <span class="nav-text"> Problem B: 洗衣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#description"><span class="nav-number">2.</span> <span class="nav-text"> Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input"><span class="nav-number">3.</span> <span class="nav-text"> Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#output"><span class="nav-number">4.</span> <span class="nav-text"> Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sample-input"><span class="nav-number">5.</span> <span class="nav-text"> Sample Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sample-output"><span class="nav-number">6.</span> <span class="nav-text"> Sample Output</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-B-洗衣"><span class="nav-number">1.</span> <span class="nav-text">Problem B: 洗衣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">2.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">3.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-number">4.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Input"><span class="nav-number">5.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Output"><span class="nav-number">6.</span> <span class="nav-text">Sample Output</span></a></li></ol></div>
             
 
           </div>
@@ -909,7 +899,7 @@ Submit: 148 Solved: 26<br>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">335k</span>
+    <span title="站点总字数">336k</span>
   
 
   

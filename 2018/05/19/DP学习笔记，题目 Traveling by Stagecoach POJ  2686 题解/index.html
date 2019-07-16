@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="**Traveling by Stagecoach **POJ 2686，题解。 作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。 首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。 状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无 比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。 题目 **Traveling">
+  <meta name="description" content="Traveling by Stagecoach POJ 2686，题解。  作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。  首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。  状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无  比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。  题目 Travelin">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DP学习笔记，题目 Traveling by Stagecoach POJ  2686 题解">
 <meta property="og:url" content="https://etbubble.github.io/2018/05/19/DP学习笔记，题目 Traveling by Stagecoach POJ  2686 题解/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="**Traveling by Stagecoach **POJ 2686，题解。 作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。 首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。 状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无 比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。 题目 **Traveling">
+<meta property="og:description" content="Traveling by Stagecoach POJ 2686，题解。  作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。  首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。  状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无  比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。  题目 Travelin">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:04:10.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DP学习笔记，题目 Traveling by Stagecoach POJ  2686 题解">
-<meta name="twitter:description" content="**Traveling by Stagecoach **POJ 2686，题解。 作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。 首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。 状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无 比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。 题目 **Traveling">
+<meta name="twitter:description" content="Traveling by Stagecoach POJ 2686，题解。  作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。  首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。  状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无  比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。  题目 Travelin">
 
 
 
@@ -498,32 +498,27 @@
       
 
       
-        <p>**Traveling by Stagecoach **POJ 2686，题解。</p>
-<p>作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。</p>
-<p>首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。</p>
-<p>状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无</p>
-<p>比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。</p>
-<p>题目 **Traveling by Stagecoach **POJ 2686</p>
-<p>开一个DP【S】[M]. S 是票的使用状况 ， M，是在哪一个城市。值就是最小花费。</p>
+        <p>  <strong>Traveling by Stagecoach </strong>POJ 2686，题解。</p>
+<p> 作为一名菜鸟，说状压DP，还是有点勉强，顶多做个学习笔记。</p>
+<p> 首先，什么是DP，状态转移，其实就是从已经确定的状态，到一个状态。</p>
+<p> 状压DP，我理解的就是 用 一个数的二进制表达状态。 1，表示 有 ，0 表示无</p>
+<p> 比如 4而进制表示 100 ， 说明 3号 位置表示 有 ，其它的都表示没有。</p>
+<p> 题目 <strong>Traveling by Stagecoach </strong>POJ 2686</p>
+<p> 开一个DP【S】[M]. S 是票的使用状况 ， M，是在哪一个城市。值就是最小花费。</p>
 <ol>
-<li>
-<p>把一个票都没有用的，起点 标记为0,也就是 DP[1&lt;&lt;n-1][a]==0.</p>
+<li><p>把一个票都没有用的，起点 标记为0,也就是 DP[1&lt;&lt;n-1][a]==0.</p>
 </li>
-<li>
-<p>暴力枚举 所有 可以用的票 ，(S&gt;&gt;i)&amp;1 表示第 I 张票可不可以用。</p>
+<li><p>暴力枚举 所有 可以用的票 ，(S&gt;&gt;i)&amp;1 表示第 I 张票可不可以用。</p>
 </li>
-<li>
-<p>再暴力枚举 当前这个S下所有的 可以到的城市，dp[S][v]!=INF，当前S下v这个城市可不可以到达。</p>
+<li><p>再暴力枚举 当前这个S下所有的 可以到的城市，dp[S][v]!=INF，当前S下v这个城市可不可以到达。</p>
 </li>
-<li>
-<p>然后再暴力所有 v， 这个城市所有的路，然后使用第 i张票。d[v][u]&gt;=0。V 和u中间的路。</p>
+<li><p>然后再暴力所有 v， 这个城市所有的路，然后使用第 i张票。d[v][u]&gt;=0。V 和u中间的路。</p>
 </li>
-<li>
-<p>然如果用这张票，走这条路 到目的地的值小就覆盖前面的值S&amp;~(1&lt;&lt;i)使用第i张票后的状态，d[v][u],从 v城市到u城市的路。</p>
+<li><p>然如果用这张票，走这条路 到目的地的值小就覆盖前面的值S&amp;~(1&lt;&lt;i)使用第i张票后的状态，d[v][u],从 v城市到u城市的路。</p>
+<p>dp[S&amp;~(1&lt;&lt;i)][u]=min(dp[S&amp;~(1&lt;&lt;i)][u],dp[S][v]+(double)d[v][u]*1.0/t[i])。</p>
 </li>
 </ol>
-<p>dp[S&amp;<sub>(1&lt;&lt;i)][u]=min(dp[S&amp;</sub>(1&lt;&lt;i)][u],dp[S][v]+(double)d[v][u]*1.0/t[i])。</p>
-<p>AC代码：</p>
+<p> AC代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line"></span><br><span class="line">const long long mod=1e9+7;</span><br><span class="line">const int maxn=9;</span><br><span class="line">const int maxm=31;</span><br><span class="line">const int INF=0x7fffffff;</span><br><span class="line">const int inf=0x3f3f3f3f;</span><br><span class="line">const double eps=1e-8;</span><br><span class="line"></span><br><span class="line">int n,m,a,b,p,u,v,c;</span><br><span class="line"></span><br><span class="line">int t[maxn];</span><br><span class="line">int d[maxm][maxm];</span><br><span class="line"></span><br><span class="line">double dp[1&lt;&lt;maxn][maxm];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    ios_base::sync_with_stdio(false);</span><br><span class="line">    cin.tie(0);</span><br><span class="line">//    freopen(&quot;123.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    while(cin&gt;&gt;n&gt;&gt;m&gt;&gt;p&gt;&gt;a&gt;&gt;b) &#123;</span><br><span class="line">        int k=(1&lt;&lt;n)-1;</span><br><span class="line">        if(n==0&amp;&amp;m==0&amp;&amp;p==0&amp;&amp;a==0&amp;&amp;b==0)return 0;</span><br><span class="line">        for(int i=0; i&lt;n; i++)cin&gt;&gt;t[i];</span><br><span class="line">        memset(d,-1,sizeof(d));</span><br><span class="line">        while(p--) &#123;</span><br><span class="line">            cin&gt;&gt;u&gt;&gt;v&gt;&gt;c;</span><br><span class="line">            d[u][v]=c;</span><br><span class="line">            d[v][u]=c;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0; i&lt;=k; i++)fill(dp[i],dp[i]+m+1,INF);</span><br><span class="line">        dp[k][a]=0;</span><br><span class="line">        double res=INF;</span><br><span class="line">        for(int S=k; S&gt;=0; S--) &#123;</span><br><span class="line">            res=min(res,dp[S][b]);</span><br><span class="line">            for(int i=0; i&lt;n; i++) &#123;</span><br><span class="line">                if((S&gt;&gt;i)&amp;1) &#123;</span><br><span class="line">                    for(v =1; v&lt;=m; v++) &#123;</span><br><span class="line">                        if(dp[S][v]!=INF) &#123;</span><br><span class="line">                            for(u=1; u&lt;=m; u++) &#123;</span><br><span class="line">                                if(d[v][u]&gt;=0) &#123;</span><br><span class="line">                                    dp[S&amp;~(1&lt;&lt;i)][u]=min(dp[S&amp;~(1&lt;&lt;i)][u],dp[S][v]+(double)d[v][u]*1.0/t[i]);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(res==INF) &#123;</span><br><span class="line">            printf(&quot;Impossible\n&quot;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            printf(&quot;%.3f\n&quot;,res);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -860,7 +855,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">335k</span>
+    <span title="站点总字数">336k</span>
   
 
   

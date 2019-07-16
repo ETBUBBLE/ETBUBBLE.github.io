@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。 12345678910111213141516 data segment  num1 db 3  num2 db 5  num3 db ?data endscode segmentassume cs:code,ds:data start:mov ax,data    mov ds,ax    m">
+  <meta name="description" content="汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。 12345678910111213141516 data segment  num1 db 3  num2 db 5  num3 db ?data endscode segmentassume cs:code,ds:data start:mov ax,data    mov ds,ax">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编实现一个简单加法程序。">
 <meta property="og:url" content="https://etbubble.github.io/2018/12/02/汇编实现一个简单加法程序。/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。 12345678910111213141516 data segment  num1 db 3  num2 db 5  num3 db ?data endscode segmentassume cs:code,ds:data start:mov ax,data    mov ds,ax    m">
+<meta property="og:description" content="汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。 12345678910111213141516 data segment  num1 db 3  num2 db 5  num3 db ?data endscode segmentassume cs:code,ds:data start:mov ax,data    mov ds,ax">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:08:57.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编实现一个简单加法程序。">
-<meta name="twitter:description" content="汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。 12345678910111213141516 data segment  num1 db 3  num2 db 5  num3 db ?data endscode segmentassume cs:code,ds:data start:mov ax,data    mov ds,ax    m">
+<meta name="twitter:description" content="汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。 12345678910111213141516 data segment  num1 db 3  num2 db 5  num3 db ?data endscode segmentassume cs:code,ds:data start:mov ax,data    mov ds,ax">
 
 
 
@@ -464,7 +464,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">286</span>
+                <span title="本文字数">288</span>
               
 
               
@@ -498,7 +498,7 @@
       
 
       
-        <p>汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。</p>
+        <p>  汇编语言，写一个简单加法程序“3+5=8”，加数和结果分别存在内存单元NUM1、NUM2、NUM3中。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> data segment</span><br><span class="line">  num1 db 3</span><br><span class="line">  num2 db 5</span><br><span class="line">  num3 db ?</span><br><span class="line">data ends</span><br><span class="line">code segment</span><br><span class="line">assume cs:code,ds:data</span><br><span class="line"> start:mov ax,data</span><br><span class="line">    mov ds,ax</span><br><span class="line">    mov al,num1</span><br><span class="line">    add al,num2</span><br><span class="line">    mov num3,al</span><br><span class="line">    mov ax,4c00h</span><br><span class="line">    int 21h</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
 
       
@@ -835,7 +835,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">335k</span>
+    <span title="站点总字数">336k</span>
   
 
   

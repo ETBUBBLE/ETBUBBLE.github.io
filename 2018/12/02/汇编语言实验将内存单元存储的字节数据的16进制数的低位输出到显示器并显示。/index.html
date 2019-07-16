@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="打表法： 1234567891011121314151617181920 DATA SEGMENTASCII DB 30H,31H,32H,33H,34H,35H,36H,37H,38H,39H      DB 41H,42H,43H,44H,45H,46HHEX DB 0BHDATA ENDSCODE SEGMENT   ASSUME CS:CODE,DS:DATASTART: MOV AX,D">
+  <meta name="description" content="打表法： 1234567891011121314151617181920 DATA SEGMENTASCII DB 30H,31H,32H,33H,34H,35H,36H,37H,38H,39H      DB 41H,42H,43H,44H,45H,46HHEX DB 0BHDATA ENDSCODE SEGMENT   ASSUME CS:CODE,DS:DATASTART: MOV AX">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编语言实验将内存单元存储的字节数据的16进制数的低位输出到显示器并显示。">
 <meta property="og:url" content="https://etbubble.github.io/2018/12/02/汇编语言实验将内存单元存储的字节数据的16进制数的低位输出到显示器并显示。/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="打表法： 1234567891011121314151617181920 DATA SEGMENTASCII DB 30H,31H,32H,33H,34H,35H,36H,37H,38H,39H      DB 41H,42H,43H,44H,45H,46HHEX DB 0BHDATA ENDSCODE SEGMENT   ASSUME CS:CODE,DS:DATASTART: MOV AX,D">
+<meta property="og:description" content="打表法： 1234567891011121314151617181920 DATA SEGMENTASCII DB 30H,31H,32H,33H,34H,35H,36H,37H,38H,39H      DB 41H,42H,43H,44H,45H,46HHEX DB 0BHDATA ENDSCODE SEGMENT   ASSUME CS:CODE,DS:DATASTART: MOV AX">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:08:55.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编语言实验将内存单元存储的字节数据的16进制数的低位输出到显示器并显示。">
-<meta name="twitter:description" content="打表法： 1234567891011121314151617181920 DATA SEGMENTASCII DB 30H,31H,32H,33H,34H,35H,36H,37H,38H,39H      DB 41H,42H,43H,44H,45H,46HHEX DB 0BHDATA ENDSCODE SEGMENT   ASSUME CS:CODE,DS:DATASTART: MOV AX,D">
+<meta name="twitter:description" content="打表法： 1234567891011121314151617181920 DATA SEGMENTASCII DB 30H,31H,32H,33H,34H,35H,36H,37H,38H,39H      DB 41H,42H,43H,44H,45H,46HHEX DB 0BHDATA ENDSCODE SEGMENT   ASSUME CS:CODE,DS:DATASTART: MOV AX">
 
 
 
@@ -464,7 +464,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">712</span>
+                <span title="本文字数">715</span>
               
 
               
@@ -498,9 +498,9 @@
       
 
       
-        <p>打表法：</p>
+        <p>  打表法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> DATA SEGMENT</span><br><span class="line">ASCII DB 30H,31H,32H,33H,34H,35H,36H,37H,38H,39H</span><br><span class="line">      DB 41H,42H,43H,44H,45H,46H</span><br><span class="line">HEX DB 0BH</span><br><span class="line">DATA ENDS</span><br><span class="line">CODE SEGMENT</span><br><span class="line">   ASSUME CS:CODE,DS:DATA</span><br><span class="line">START: MOV AX,DATA</span><br><span class="line">       MOV DS,AX</span><br><span class="line">       MOV BX,OFFSET ASCII</span><br><span class="line">       MOV AL,HEX</span><br><span class="line">       AND AL,0FH</span><br><span class="line">       XLAT</span><br><span class="line">       MOV DL,AL</span><br><span class="line">       MOV AH,2</span><br><span class="line">       INT 21H</span><br><span class="line">       MOV AX,4C00H</span><br><span class="line">       INT 21H</span><br><span class="line">CODE ENDS</span><br><span class="line">     END START</span><br></pre></td></tr></table></figure>
-<p>直接转换：</p>
+<p> 直接转换：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> DATA SEGMENT</span><br><span class="line">HEX DB 0BH</span><br><span class="line">DATA ENDS</span><br><span class="line">CODE SEGMENT</span><br><span class="line">   ASSUME CS:CODE,DS:DATA</span><br><span class="line">START: MOV AX,DATA</span><br><span class="line">       MOV DS,AX</span><br><span class="line">       MOV DL,HEX</span><br><span class="line">       AND DL,0FH</span><br><span class="line">       OR DL,30H</span><br><span class="line">       CMP DL,39H</span><br><span class="line">       JBE AD1</span><br><span class="line">       ADD DL,7</span><br><span class="line">AD1:   MOV AH,2</span><br><span class="line">       INT 21H</span><br><span class="line">       MOV AX,4C00H</span><br><span class="line">       INT 21H</span><br><span class="line">CODE ENDS</span><br><span class="line">     END START</span><br></pre></td></tr></table></figure>
 
       
@@ -837,7 +837,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">335k</span>
+    <span title="站点总字数">336k</span>
   
 
   

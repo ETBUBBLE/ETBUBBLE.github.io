@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;a-tokitsukaze-and-enhancement&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#a-tokitsukaze-and-enhancement&quot;&gt;&lt;/a&gt; &lt;a
+          &lt;h2 id=&quot;A-Tokitsukaze-and-Enhancement&quot;&gt;&lt;a href=&quot;#A-Tokitsukaze-and-Enhancement&quot; class=&quot;headerlink&quot; title=&quot;A - Tokitsukaze and
         
       
     
@@ -57,9 +57,7 @@
       
         
         
-          &lt;h2 id=&quot;拉格朗日介绍&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#拉格朗日介绍&quot;&gt;&lt;/a&gt; 拉格朗日介绍&lt;/h2&gt;
-&lt;p&gt;先说说拉格朗日是啥吧&lt;br&gt;
-首先 拉格朗日插值是给你 n+1 个点 (x,y)
+          &lt;h2 id=&quot;拉格朗日介绍&quot;&gt;&lt;a href=&quot;#拉格朗日介绍&quot; class=&quot;headerlink&quot; title=&quot;拉格朗日介绍&quot;&gt;&lt;/a&gt;拉格朗日介绍&lt;/h2&gt;&lt;p&gt;先说说拉格朗日是啥吧&lt;br&gt;首先 拉格朗日插值是给你 n+1 个点 (x,y)
         
       
     
@@ -87,9 +85,7 @@
       
         
         
-          &lt;h2 id=&quot;判断是否是素数&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#判断是否是素数&quot;&gt;&lt;/a&gt; 判断是否是素数&lt;/h2&gt;
-&lt;p&gt;几个常用的sqrt(n)复杂度的就不说了。&lt;br&gt;
-对于一个 longlong
+          &lt;h2 id=&quot;判断是否是素数&quot;&gt;&lt;a href=&quot;#判断是否是素数&quot; class=&quot;headerlink&quot; title=&quot;判断是否是素数&quot;&gt;&lt;/a&gt;判断是否是素数&lt;/h2&gt;&lt;p&gt;几个常用的sqrt(n)复杂度的就不说了。&lt;br&gt;对于一个 longlong
         
       
     
@@ -119,9 +115,7 @@
       
         
         
-          &lt;h2 id=&quot;初始化文件夹&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#初始化文件夹&quot;&gt;&lt;/a&gt; 初始化文件夹&lt;/h2&gt;
-&lt;p&gt;在本地执行&lt;code&gt;git init&lt;/code&gt;命令&lt;/p&gt;
-&lt;figure class=&quot;highlight
+          &lt;h2 id=&quot;初始化文件夹&quot;&gt;&lt;a href=&quot;#初始化文件夹&quot; class=&quot;headerlink&quot; title=&quot;初始化文件夹&quot;&gt;&lt;/a&gt;初始化文件夹&lt;/h2&gt;&lt;p&gt;在本地执行&lt;code&gt;git init&lt;/code&gt;命令&lt;br&gt;&lt;figure
         
       
     
@@ -147,10 +141,7 @@
       
         
         
-          &lt;p&gt;第一步&lt;br&gt;
-&lt;img src=&quot;https://i.loli.net/2019/05/24/5ce7d4f3786a726517.png&quot; alt&gt;&lt;br&gt;
-然后右边就会出现一个database&lt;br&gt;
-&lt;img
+          &lt;p&gt;第一步&lt;br&gt;&lt;img src=&quot;https://i.loli.net/2019/05/24/5ce7d4f3786a726517.png&quot; alt&gt;&lt;br&gt;然后右边就会出现一个database&lt;br&gt;&lt;img
         
       
     
@@ -176,8 +167,7 @@
       
         
         
-          &lt;h2 id=&quot;sql的特点&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#sql的特点&quot;&gt;&lt;/a&gt; sql的特点&lt;/h2&gt;
-&lt;p&gt;SQL语言集数据查询（data query）、数据操纵（data manipulation）、数据定义（data
+          &lt;h2 id=&quot;sql的特点&quot;&gt;&lt;a href=&quot;#sql的特点&quot; class=&quot;headerlink&quot; title=&quot;sql的特点&quot;&gt;&lt;/a&gt;sql的特点&lt;/h2&gt;&lt;p&gt;SQL语言集数据查询（data query）、数据操纵（data
         
       
     
@@ -205,9 +195,8 @@
       
         
         
-          &lt;h2 id=&quot;关系&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#关系&quot;&gt;&lt;/a&gt; 关系&lt;/h2&gt;
-&lt;p&gt;关系模型的数据结构非常简单，只包含单一的数据结构，关系。在用户看来就是一张表。&lt;/p&gt;
-&lt;h3 id=&quot;1域&quot;&gt;&lt;a
+          &lt;h2 id=&quot;关系&quot;&gt;&lt;a href=&quot;#关系&quot; class=&quot;headerlink&quot; title=&quot;关系&quot;&gt;&lt;/a&gt;关系&lt;/h2&gt;&lt;p&gt;关系模型的数据结构非常简单，只包含单一的数据结构，关系。在用户看来就是一张表。&lt;/p&gt;
+&lt;h3 id=&quot;1-域&quot;&gt;&lt;a
         
       
     
@@ -235,8 +224,7 @@
       
         
         
-          &lt;h2 id=&quot;数据库基本概念&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据库基本概念&quot;&gt;&lt;/a&gt; 数据库基本概念&lt;/h2&gt;
-&lt;p&gt;1.数据(Data): 例如
+          &lt;h2 id=&quot;数据库基本概念&quot;&gt;&lt;a href=&quot;#数据库基本概念&quot; class=&quot;headerlink&quot; title=&quot;数据库基本概念&quot;&gt;&lt;/a&gt;数据库基本概念&lt;/h2&gt;&lt;p&gt;1.数据(Data): 例如
         
       
     
@@ -264,8 +252,7 @@
       
         
         
-          &lt;h2 id=&quot;写此篇记录ec-final-铁牌&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#写此篇记录ec-final-铁牌&quot;&gt;&lt;/a&gt; 写此篇记录EC-FINAL 铁牌。&lt;/h2&gt;
-&lt;h3
+          &lt;h2 id=&quot;写此篇记录EC-FINAL-铁牌。&quot;&gt;&lt;a href=&quot;#写此篇记录EC-FINAL-铁牌。&quot; class=&quot;headerlink&quot; title=&quot;写此篇记录EC-FINAL 铁牌。&quot;&gt;&lt;/a&gt;写此篇记录EC-FINAL 铁牌。&lt;/h2&gt;&lt;h3
         
       
     
@@ -293,7 +280,7 @@
       
         
         
-          &lt;h2 id=&quot;主机字节序和网络字节序&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#主机字节序和网络字节序&quot;&gt;&lt;/a&gt;
+          &lt;h2 id=&quot;主机字节序和网络字节序&quot;&gt;&lt;a href=&quot;#主机字节序和网络字节序&quot; class=&quot;headerlink&quot;
         
       
     
@@ -324,7 +311,7 @@
         
         
           &lt;p&gt;线段树动态开点，对于这题顺便挂个自己学校OJ&lt;/p&gt;
-&lt;h2 id=&quot;tulip-festival&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#tulip-festival&quot;&gt;&lt;/a&gt; &lt;a
+&lt;h2 id=&quot;Tulip-Festival&quot;&gt;&lt;a href=&quot;#Tulip-Festival&quot; class=&quot;headerlink&quot; title=&quot;Tulip Festival&quot;&gt;&lt;/a&gt;&lt;a
         
       
     
@@ -354,7 +341,7 @@
       
         
         
-          &lt;h2 id=&quot;unity3d碰撞检测中碰撞器与触发器的区别&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#unity3d碰撞检测中碰撞器与触发器的区别&quot;&gt;&lt;/a&gt;
+          &lt;h2 id=&quot;Unity3d碰撞检测中碰撞器与触发器的区别&quot;&gt;&lt;a href=&quot;#Unity3d碰撞检测中碰撞器与触发器的区别&quot; class=&quot;headerlink&quot;
         
       
     
@@ -412,9 +399,7 @@
       
         
         
-          &lt;h2 id=&quot;更改头像&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#更改头像&quot;&gt;&lt;/a&gt; 更改头像&lt;/h2&gt;
-&lt;p&gt;1.在主题配置文件中搜索 avatar&lt;br&gt;
-2.&lt;img
+          &lt;h2 id=&quot;更改头像&quot;&gt;&lt;a href=&quot;#更改头像&quot; class=&quot;headerlink&quot; title=&quot;更改头像&quot;&gt;&lt;/a&gt;更改头像&lt;/h2&gt;&lt;p&gt;1.在主题配置文件中搜索 avatar&lt;br&gt;2.&lt;img
         
       
     
@@ -466,7 +451,7 @@
       
         
         
-          &lt;h2 id=&quot;首先&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#首先&quot;&gt;&lt;/a&gt;
+          &lt;h2 id=&quot;首先&quot;&gt;&lt;a href=&quot;#首先&quot; class=&quot;headerlink&quot;
         
       
     
@@ -494,7 +479,7 @@
       
         
         
-          &lt;h2 id=&quot;sublime-text-3-快捷键列表&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#sublime-text-3-快捷键列表&quot;&gt;&lt;/a&gt; &lt;strong&gt;Sublime Text 3
+          &lt;h2 id=&quot;Sublime-Text-3-快捷键列表：&quot;&gt;&lt;a href=&quot;#Sublime-Text-3-快捷键列表：&quot; class=&quot;headerlink&quot; title=&quot;Sublime Text 3 快捷键列表：&quot;&gt;&lt;/a&gt;&lt;strong&gt;Sublime Text 3
         
       
     
@@ -518,12 +503,8 @@
       
         
         
-          &lt;p&gt;此片文章主要用于记录一些简单的Markdown语法&lt;br&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;br&gt;&lt;/p&gt;
-&lt;h1 id=&quot;标题&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#标题&quot;&gt;&lt;/a&gt; 标题&lt;/h1&gt;
-&lt;figure
+          &lt;p&gt;此片文章主要用于记录一些简单的Markdown语法&lt;br&gt;&amp;lt;/br&amp;gt;&lt;br&gt;&amp;lt;/br&amp;gt;&lt;br&gt;&amp;lt;/br&amp;gt;&lt;/p&gt;
+&lt;h1 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot;
         
       
     
@@ -550,7 +531,7 @@
         
         
           &lt;p&gt;本篇文章用于记录JAVA配置。&lt;/p&gt;
-&lt;p&gt;JAVA安装，百度搜索JAVA官网，下载对应系统版本，下载安装好后应该有 &lt;em&gt;&lt;strong&gt;JDK&lt;/strong&gt;&lt;/em&gt; 和***JDR***
+&lt;p&gt;JAVA安装，百度搜索JAVA官网，下载对应系统版本，下载安装好后应该有 &lt;strong&gt;&lt;em&gt;JDK&lt;/em&gt;&lt;/strong&gt; 和&lt;strong&gt;&lt;em&gt;JDR&lt;/em&gt;&lt;/strong&gt;
         
       
     
@@ -578,7 +559,7 @@
       
         
         
-          &lt;p&gt;&lt;img
+          &lt;p&gt;  &lt;img
         
       
     

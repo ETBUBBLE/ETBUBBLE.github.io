@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="计数排序应用:  J - Jeronimo’s List Gym - 101466J  http://codeforces.com/gym/101466/problem/J 线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。 比如 2,3,0,3,6,2,3,5，首先记录出现次数 0 1 2 3 4 5 6 1 0 2 3 0 1 1 然">
+  <meta name="description" content="计数排序应用: J - Jeronimo’s List Gym - 101466J   http://codeforces.com/gym/101466/problem/J  线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。  比如 2,3,0,3,6,2,3,5，首先记录出现次数   0 1 2 3 4 5 6   1 0 2 3">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性排序算法 --- 计数排序，基数排序，桶排序">
 <meta property="og:url" content="https://etbubble.github.io/2018/08/21/线性排序算法 --- 计数排序，基数排序，桶排序/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="计数排序应用:  J - Jeronimo’s List Gym - 101466J  http://codeforces.com/gym/101466/problem/J 线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。 比如 2,3,0,3,6,2,3,5，首先记录出现次数 0 1 2 3 4 5 6 1 0 2 3 0 1 1 然">
+<meta property="og:description" content="计数排序应用: J - Jeronimo’s List Gym - 101466J   http://codeforces.com/gym/101466/problem/J  线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。  比如 2,3,0,3,6,2,3,5，首先记录出现次数   0 1 2 3 4 5 6   1 0 2 3">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:05:34.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性排序算法 --- 计数排序，基数排序，桶排序">
-<meta name="twitter:description" content="计数排序应用:  J - Jeronimo’s List Gym - 101466J  http://codeforces.com/gym/101466/problem/J 线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。 比如 2,3,0,3,6,2,3,5，首先记录出现次数 0 1 2 3 4 5 6 1 0 2 3 0 1 1 然">
+<meta name="twitter:description" content="计数排序应用: J - Jeronimo’s List Gym - 101466J   http://codeforces.com/gym/101466/problem/J  线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。  比如 2,3,0,3,6,2,3,5，首先记录出现次数   0 1 2 3 4 5 6   1 0 2 3">
 
 
 
@@ -498,37 +498,35 @@
       
 
       
-        <p>计数排序应用:</p>
-<h2 id="j-jeronimos-list"><a class="markdownIt-Anchor" href="#j-jeronimos-list"></a> <a href="https://vjudge.net/problem/Gym-101466J" target="_blank" rel="noopener">J - Jeronimo’s List</a></h2>
-<p><a href="https://vjudge.net/problem/973364/origin" target="_blank" rel="noopener">Gym - 101466J </a></p>
-<p><a href="http://codeforces.com/gym/101466/problem/J" target="_blank" rel="noopener">http://codeforces.com/gym/101466/problem/J</a></p>
-<p>线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。</p>
-<p>比如 2,3,0,3,6,2,3,5，首先记录出现次数</p>
-<p>0 1 2 3 4 5 6</p>
-<p>1 0 2 3 0 1 1</p>
-<p>然后对这个数组做一个前缀</p>
-<p>c[0] c[1] c[2] c[3] c[4] c[5] c[6]<br>
-1 1 3 6 6 7 8</p>
-<p>就是这样 ，然后排序的时候就 输出数字对应的地方</p>
-<p>如 a[i]= 5 那么 b[c[a[i]]]=a[i]; 把b 数组里面 7的位置赋值为5.然后小于等于5的数量-1；</p>
+        <p>  计数排序应用:</p>
+<h2 id="J-Jeronimo’s-List"><a href="#J-Jeronimo’s-List" class="headerlink" title="J - Jeronimo’s List"></a><a href="https://vjudge.net/problem/Gym-101466J" target="_blank" rel="noopener">J - Jeronimo’s List</a></h2><p> <a href="https://vjudge.net/problem/973364/origin" target="_blank" rel="noopener">Gym - 101466J </a></p>
+<p> <a href="http://codeforces.com/gym/101466/problem/J" target="_blank" rel="noopener">http://codeforces.com/gym/101466/problem/J</a></p>
+<p> 线性排序算法计数排序应该挺好理解的，每次把数字出现的次数记录下来，然后做成前缀，前缀就是小于等于当前数的个数。</p>
+<p> 比如 2,3,0,3,6,2,3,5，首先记录出现次数 </p>
+<p> 0 1 2 3 4 5 6 </p>
+<p> 1 0 2 3 0 1 1</p>
+<p> 然后对这个数组做一个前缀</p>
+<p> c[0] c[1] c[2] c[3] c[4] c[5] c[6]<br> 1 1 3 6 6 7 8 </p>
+<p> 就是这样 ，然后排序的时候就 输出数字对应的地方</p>
+<p> 如 a[i]= 5 那么 b[c[a[i]]]=a[i]; 把b 数组里面 7的位置赋值为5.然后小于等于5的数量-1；</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int a[8]= &#123;2,3,0,3,6,2,3,5&#125;;</span><br><span class="line">int b[8];</span><br><span class="line">int c[7];</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    for(int i=0; i&lt;8; i++) &#123;</span><br><span class="line">        c[a[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=1; i&lt;7; i++) &#123;   //把这个for倒过来就是从大到小</span><br><span class="line">        c[i]=c[i-1]+c[i];</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;C数组:\n&quot;);</span><br><span class="line">    for(int i=0; i&lt;7; i++) &#123;</span><br><span class="line">        printf(&quot;c[%d]\t&quot;,i);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">    for(int i=0; i&lt;7; i++) &#123;</span><br><span class="line">        printf(&quot; %d\t&quot;,c[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">    printf(&quot;排序过程\n&quot;);</span><br><span class="line">    for(int i=7; i&gt;=0; i--) &#123;</span><br><span class="line">        b[--c[a[i]]]=a[i];</span><br><span class="line">        for(int i=0; i&lt;7; i++) &#123;</span><br><span class="line">            printf(&quot;%d &quot;,b[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>基数排序：</p>
-<p>实际上和计数排序没啥太大的区别 ，计数排序如果数太大，你 C数组的就要浪费非常大的内存，或者根本开不了这么大的内存。</p>
-<p>基数排序，就是把每个 位拆分出来，实际上和计数排序差距不大。</p>
-<p>12,13,120,33,46,52,3,25</p>
-<p>120 12 52 13 33 3 25 46</p>
-<p>以最后一位递增</p>
-<p>3 12 13 120 25 33 46 52</p>
-<p>在最后一位为递增基础上倒数第2位递增</p>
-<p>3 12 13 25 33 46 52 120</p>
-<p>最后以 第一位 递增，就是排序好的</p>
+<p> 基数排序：</p>
+<p> 实际上和计数排序没啥太大的区别 ，计数排序如果数太大，你 C数组的就要浪费非常大的内存，或者根本开不了这么大的内存。</p>
+<p> 基数排序，就是把每个 位拆分出来，实际上和计数排序差距不大。</p>
+<p> 12,13,120,33,46,52,3,25</p>
+<p> 120 12 52 13 33 3 25 46</p>
+<p> 以最后一位递增</p>
+<p> 3 12 13 120 25 33 46 52</p>
+<p> 在最后一位为递增基础上倒数第2位递增</p>
+<p> 3 12 13 25 33 46 52 120</p>
+<p> 最后以 第一位 递增，就是排序好的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int a[8]= &#123;12,13,120,33,46,52,3,25&#125;;</span><br><span class="line">int b[8];</span><br><span class="line">int c[10];</span><br><span class="line">int main() &#123;</span><br><span class="line">    int mx=0,pos=0,cot=1;</span><br><span class="line">    for(int i=0; i&lt;8; i++) &#123;</span><br><span class="line">        mx=max(mx,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    while(mx/cot&gt;0) &#123;</span><br><span class="line">        memset(c,0,sizeof(c));</span><br><span class="line">        for(int i=0; i&lt;8; i++) &#123;</span><br><span class="line">            c[a[i]/cot%10]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=1; i&lt;10; i++) &#123;   //把这个for倒过来就是从大到小</span><br><span class="line">            c[i]=c[i-1]+c[i];</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;计数数组:\n&quot;);</span><br><span class="line">        for(int i=0; i&lt;10; i++) &#123;</span><br><span class="line">            printf(&quot;c[%d]\t&quot;,i);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">        for(int i=0; i&lt;10; i++) &#123;</span><br><span class="line">            printf(&quot; %d\t&quot;,c[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">        printf(&quot;排序第%d位结果:\n&quot;,pos);</span><br><span class="line">        for(int i=7; i&gt;=0; i--) &#123;</span><br><span class="line">            b[--c[a[i]/cot%10]]=a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0; i&lt;8; i++) &#123;</span><br><span class="line">            a[i]=b[i];</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;8;i++)&#123;</span><br><span class="line">            printf(&quot;%d &quot;,a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        puts(&quot;&quot;);</span><br><span class="line">        cot*=10;</span><br><span class="line">        pos++;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>桶排序，实际上和计数排序也差不多，但是到目前位置我还没用过。</p>
-<p>计数排序就相当于 桶的大小为 1 的排序 。（基数排序实际上有点类似于以10 的桶里面套着一个10 的桶）个人理解</p>
-<p>开一个桶的大小 b 然后把他一个数x丢到 x/b 那个桶里面去，然后把每个桶里面排序。把桶分成1不就是计数排序。。个人理解</p>
-<p>理论上来说：在分布桶均匀的情况下，是O(n+n*(2-1/n));</p>
-<p>有些情况下可能退化成 普通排序一样的复杂度。</p>
-<p>代码就不敲了，还没用过。。。。</p>
+<p> 桶排序，实际上和计数排序也差不多，但是到目前位置我还没用过。</p>
+<p> 计数排序就相当于 桶的大小为 1 的排序 。（基数排序实际上有点类似于以10 的桶里面套着一个10 的桶）个人理解</p>
+<p> 开一个桶的大小 b 然后把他一个数x丢到 x/b 那个桶里面去，然后把每个桶里面排序。把桶分成1不就是计数排序。。个人理解</p>
+<p> 理论上来说：在分布桶均匀的情况下，是O(n+n*(2-1/n));</p>
+<p> 有些情况下可能退化成 普通排序一样的复杂度。</p>
+<p> 代码就不敲了，还没用过。。。。</p>
 
       
     </div>
@@ -841,7 +839,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#j-jeronimos-list"><span class="nav-number">1.</span> <span class="nav-text"> J - Jeronimo’s List</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#J-Jeronimo’s-List"><span class="nav-number">1.</span> <span class="nav-text">J - Jeronimo’s List</span></a></li></ol></div>
             
 
           </div>
@@ -890,7 +888,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">335k</span>
+    <span title="站点总字数">336k</span>
   
 
   

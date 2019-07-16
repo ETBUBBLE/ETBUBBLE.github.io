@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="题目链接 ：HDU - 4389  X mod f(x) Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Total Submission(s): 3619 Accepted Submission(s): 1409 Problem Description Here is a funct">
+  <meta name="description" content="题目链接 ：HDU - 4389   X mod f(x)  Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Total Submission(s): 3619 Accepted Submission(s): 1409    Problem Description  Here is">
 <meta name="keywords" content="CSDN迁移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HDU-4389 X mod f(x)  数位DP">
 <meta property="og:url" content="https://etbubble.github.io/2018/07/29/HDU-4389 X mod f(x)  数位DP/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="题目链接 ：HDU - 4389  X mod f(x) Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Total Submission(s): 3619 Accepted Submission(s): 1409 Problem Description Here is a funct">
+<meta property="og:description" content="题目链接 ：HDU - 4389   X mod f(x)  Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Total Submission(s): 3619 Accepted Submission(s): 1409    Problem Description  Here is">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-18T08:06:08.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HDU-4389 X mod f(x)  数位DP">
-<meta name="twitter:description" content="题目链接 ：HDU - 4389  X mod f(x) Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Total Submission(s): 3619 Accepted Submission(s): 1409 Problem Description Here is a funct">
+<meta name="twitter:description" content="题目链接 ：HDU - 4389   X mod f(x)  Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Total Submission(s): 3619 Accepted Submission(s): 1409    Problem Description  Here is">
 
 
 
@@ -498,40 +498,33 @@
       
 
       
-        <p>题目链接 ：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=4389" target="_blank" rel="noopener">HDU - 4389 </a></p>
-<p><strong>X mod f(x)</strong></p>
-<p><strong>Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others)<br>
-Total Submission(s): 3619 Accepted Submission(s): 1409</strong></p>
-<p><strong>Problem Description</strong></p>
-<p>Here is a function f(x):<br>
-int f ( int x ) {<br>
-if ( x == 0 ) return 0;<br>
-return f ( x / 10 ) + x % 10;<br>
-}</p>
-<p>Now, you want to know, in a given interval [A, B] (1 &lt;= A &lt;= B &lt;= 109), how many integer x that mod f(x) equal to 0.</p>
-<p><strong>Input</strong></p>
-<p>The first line has an integer T (1 &lt;= T &lt;= 50), indicate the number of test cases.<br>
-Each test case has two integers A, B.</p>
-<p><strong>Output</strong></p>
-<p>For each test case, output only one line containing the case number and an integer indicated the number of x.</p>
-<p><strong>Sample Input</strong></p>
-<p>2</p>
-<p>1 10</p>
-<p>11 20</p>
-<p><strong>Sample Output</strong></p>
-<p>Case 1: 10</p>
-<p>Case 2: 3</p>
-<p><strong>Author</strong></p>
-<p>WHU</p>
-<p><strong>Source</strong></p>
-<p><a href="http://acm.hdu.edu.cn/search.php?field=problem&amp;key=2012+Multi-University+Training+Contest+9&amp;source=1&amp;searchmode=source" target="_blank" rel="noopener">2012 Multi-University Training Contest 9</a></p>
-<p><strong>Recommend</strong></p>
-<p>zhuyuanchen520</p>
-<p>数位DP</p>
-<p>所有数的和最大不超过82</p>
-<p>dp[pos][sum][mod][res] ，pos 第几位，sum 到第几位每个位数加起来的和，mod， 取模多少 。余数是res ,状态下有多少个数。<br>
-然后直接用for暴力取模的数的所有情况。</p>
-<p>套个数位DP的板子就行</p>
+        <p>  题目链接 ：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=4389" target="_blank" rel="noopener">HDU - 4389 </a></p>
+<p> <strong>X mod f(x)</strong></p>
+<p> <strong>Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others)<br> Total Submission(s): 3619 Accepted Submission(s): 1409</strong>  </p>
+<p> <strong>Problem Description</strong></p>
+<p> Here is a function f(x):<br> int f ( int x ) {<br> if ( x == 0 ) return 0;<br> return f ( x / 10 ) + x % 10;<br> }</p>
+<p> Now, you want to know, in a given interval [A, B] (1 &lt;= A &lt;= B &lt;= 109), how many integer x that mod f(x) equal to 0.</p>
+<p> <strong>Input</strong></p>
+<p> The first line has an integer T (1 &lt;= T &lt;= 50), indicate the number of test cases.<br> Each test case has two integers A, B.</p>
+<p> <strong>Output</strong></p>
+<p> For each test case, output only one line containing the case number and an integer indicated the number of x.</p>
+<p> <strong>Sample Input</strong></p>
+<p> 2</p>
+<p> 1 10</p>
+<p> 11 20</p>
+<p> <strong>Sample Output</strong></p>
+<p> Case 1: 10</p>
+<p> Case 2: 3</p>
+<p> <strong>Author</strong></p>
+<p> WHU</p>
+<p> <strong>Source</strong></p>
+<p> <a href="http://acm.hdu.edu.cn/search.php?field=problem&amp;key=2012+Multi-University+Training+Contest+9&amp;source=1&amp;searchmode=source" target="_blank" rel="noopener">2012 Multi-University Training Contest 9</a></p>
+<p> <strong>Recommend</strong></p>
+<p> zhuyuanchen520</p>
+<p> 数位DP</p>
+<p> 所有数的和最大不超过82</p>
+<p> dp[pos][sum][mod][res] ，pos 第几位，sum 到第几位每个位数加起来的和，mod， 取模多少 。余数是res ,状态下有多少个数。<br> 然后直接用for暴力取模的数的所有情况。</p>
+<p> 套个数位DP的板子就行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"> #include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef int ll;</span><br><span class="line">int dp[10][82][82][82];</span><br><span class="line">// 所有数的和最大不超过82 dp[pos][sum][mod][res] ，pos 第几位，sum 到第几位每个位数加起来的和，mod， 取模多少 。余数是res ,状态下有多少个数。</span><br><span class="line">int a[25];</span><br><span class="line">ll dfs(int pos,ll sum,ll mod,ll res,bool limit) &#123;   //状态 pos sum,mod,res, 上线情况limit</span><br><span class="line">    if(sum&gt;mod)return 0;                </span><br><span class="line">    if(pos==-1) &#123;                                   //当枚举完最后一位返回</span><br><span class="line">        if(sum==mod&amp;&amp;res==0)return 1;               //满足条件返回1</span><br><span class="line">        else return 0;                              //不满足返回0</span><br><span class="line">    &#125;</span><br><span class="line">    if(limit==0&amp;&amp;dp[pos][sum][mod][res]!=-1)return dp[pos][sum][mod][res];//如果当前状态是已经有过记录且当前没有限制就直接返回已经记录的值</span><br><span class="line">    ll up=limit?a[pos]:9,cnt=0;//最大可以枚举到up,如果当前没有上限就可以 0-9,否则只能到当前位的最大值，cnt 记录总共多少</span><br><span class="line">    for(int i=0; i&lt;=up; i++) &#123;</span><br><span class="line">        //跳转状态，前一位，总和加上值，取模数不变，更新余数，如果当前有上限，切加入的值已经到达当前上限 下一种情况才有上线  </span><br><span class="line">        cnt+=dfs(pos-1,sum+i,mod,(res*10+i)%mod,limit&amp;&amp;i==a[pos]);</span><br><span class="line">    &#125;</span><br><span class="line">    if(limit==0)dp[pos][sum][mod][res]=cnt; //当前状态是没有上限的情况下求的和，就可以记录当前状态</span><br><span class="line">    return cnt;     </span><br><span class="line">&#125;</span><br><span class="line">ll n,m;</span><br><span class="line">ll solve(ll x) &#123;</span><br><span class="line">    int pos=0;</span><br><span class="line">    while(x&gt;0) &#123;</span><br><span class="line">        a[pos++]=x%10;</span><br><span class="line">        x/=10;</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans=0;</span><br><span class="line">    for(int i=1; i&lt;82; i++) &#123;</span><br><span class="line">        ans+=dfs(pos-1,0,i,0,true);             //直接用for暴力取模的数的所有情况。</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios_base::sync_with_stdio(0);</span><br><span class="line">    int t;</span><br><span class="line">    memset(dp,-1,sizeof(dp));</span><br><span class="line">    cin&gt;&gt;t;</span><br><span class="line">    int l=0;</span><br><span class="line">    while(t--) &#123;</span><br><span class="line">        l++;</span><br><span class="line">        cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">        cout&lt;&lt;&quot;Case &quot;&lt;&lt;l&lt;&lt;&quot;: &quot;;</span><br><span class="line">        cout&lt;&lt;solve(m)-solve(n-1)&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -868,7 +861,7 @@ Each test case has two integers A, B.</p>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">335k</span>
+    <span title="站点总字数">336k</span>
   
 
   
