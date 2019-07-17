@@ -107,26 +107,18 @@
 
 
 
-  <meta name="description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 (x,y) 然后根据这n个点可以O(n^2)的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式y=a0+a1*x+a2*x^2然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是代进去是不是这样解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。拉格朗日就比较">
+  <meta name="description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 $(x,y)$ 然后根据这n个点可以$O(n^2)$的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式$y=a_0+a_1x+a_2x^2$然后给你3个解$(x1,y1)(x2,y2)(x3,y3)$你第一个想法是怎么解？解方程啊是不是代进去是不是这样 \begin{cases} y_1=a_0+a_1x_1">
 <meta name="keywords" content="数论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉格朗日插值和求多项式系数">
 <meta property="og:url" content="https://etbubble.github.io/2019/07/12/拉格朗日插值和求多项式系数/index.html">
 <meta property="og:site_name" content="etbubble 的博客">
-<meta property="og:description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 (x,y) 然后根据这n个点可以O(n^2)的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式y=a0+a1*x+a2*x^2然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是代进去是不是这样解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。拉格朗日就比较">
+<meta property="og:description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 $(x,y)$ 然后根据这n个点可以$O(n^2)$的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式$y=a_0+a_1x+a_2x^2$然后给你3个解$(x1,y1)(x2,y2)(x3,y3)$你第一个想法是怎么解？解方程啊是不是代进去是不是这样 \begin{cases} y_1=a_0+a_1x_1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2019/07/15/5d2c2f6a87ea389927.png">
-<meta property="og:image" content="https://i.loli.net/2019/07/12/5d28412d7a5c556648.png">
-<meta property="og:image" content="https://i.loli.net/2019/07/12/5d2833f07307656031.png">
-<meta property="og:image" content="https://i.loli.net/2019/07/12/5d2834750e9c572305.png">
-<meta property="og:image" content="https://i.loli.net/2019/07/12/5d2834fc6247382062.png">
-<meta property="og:image" content="https://i.loli.net/2019/07/12/5d28350bac52b59310.png">
-<meta property="og:image" content="https://i.loli.net/2019/07/12/5d283519889e246904.png">
-<meta property="og:updated_time" content="2019-07-16T01:08:34.747Z">
+<meta property="og:updated_time" content="2019-07-17T10:57:56.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日插值和求多项式系数">
-<meta name="twitter:description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 (x,y) 然后根据这n个点可以O(n^2)的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式y=a0+a1*x+a2*x^2然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是代进去是不是这样解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。拉格朗日就比较">
-<meta name="twitter:image" content="https://i.loli.net/2019/07/15/5d2c2f6a87ea389927.png">
+<meta name="twitter:description" content="拉格朗日介绍先说说拉格朗日是啥吧首先 拉格朗日插值是给你 n+1 个点 $(x,y)$ 然后根据这n个点可以$O(n^2)$的求出多项式的系数。也就是解出这个多项式的答案。 假设给你一个多项式$y=a_0+a_1x+a_2x^2$然后给你3个解$(x1,y1)(x2,y2)(x3,y3)$你第一个想法是怎么解？解方程啊是不是代进去是不是这样 \begin{cases} y_1=a_0+a_1x_1">
 
 
 
@@ -437,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-16 09:08:34" itemprop="dateModified" datetime="2019-07-16T09:08:34+08:00">2019-07-16</time>
+                <time title="修改时间：2019-07-17 18:57:56" itemprop="dateModified" datetime="2019-07-17T18:57:56+08:00">2019-07-17</time>
               
             
           </span>
@@ -497,7 +489,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">4.8k</span>
+                <span title="本文字数">5.7k</span>
               
 
               
@@ -511,7 +503,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">4 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -531,10 +523,25 @@
       
 
       
-        <h2 id="拉格朗日介绍"><a href="#拉格朗日介绍" class="headerlink" title="拉格朗日介绍"></a>拉格朗日介绍</h2><p>先说说拉格朗日是啥吧<br>首先 拉格朗日插值是给你 n+1 个点 (x,y) 然后根据这n个点可以O(n^2)的求出多项式的系数。也就是解出这个多项式的答案。</p>
-<p>假设给你一个多项式<br>y=a0+a1*x+a2*x^2<br>然后给你3个解 (x1,y1)(x2,y2)(x3,y3)你第一个想法是怎么解？解方程啊是不是<br>代进去是不是这样<br><img src="https://i.loli.net/2019/07/15/5d2c2f6a87ea389927.png" alt><br>解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。<br>拉格朗日就比较厉害了他能O(n^2)解决<br>首先 假设一个多项式<br>f1(x)=b+b1*x+b2*x^2<br>当然 x1 解是 1 x2 x3 解是 0<br>同理再假设 f2(x) f3(x)<br>然后L(x)=y1*f1(x)+y2*f2(x)+t3*f3(x) 这个就是最开始那个方程，不信?你把x1 x2 x3 带进去绝对是 y1 y2 y3<br>那么问题来了后面f1（x）这个多项式怎么求出来？？？？<br>这就是拉格朗日基本公式<br><img src="https://i.loli.net/2019/07/12/5d28412d7a5c556648.png" alt><br>没错就是他<br>哦！搞错了是下面这个，上面那个是乘上yi的最终表达式<br>再来一遍，这就是拉格朗日基本公式<br><img src="https://i.loli.net/2019/07/12/5d2833f07307656031.png" alt></p>
-<p>把这个多项式展开会发现非常神奇的事，当x=xj的时候刚好等于1 否则等于0<br>就是下面这样了<br><img src="https://i.loli.net/2019/07/12/5d2834750e9c572305.png" alt><br><strong>怕你还是看不懂，举个例子给你看</strong><br><img src="https://i.loli.net/2019/07/12/5d2834fc6247382062.png" alt><br><img src="https://i.loli.net/2019/07/12/5d28350bac52b59310.png" alt><br><img src="https://i.loli.net/2019/07/12/5d283519889e246904.png" alt></p>
-<p>还有一个问题你们肯定很想问。。。知道公式之后怎么解。。。<br>对于这个问题<br>分母 是不是每次算一下就行了，答案是固定的<br>分子是不是一个大的多项式里面少了一个，就预处理出总的多项式然后，模拟除一下（x+c）的多项式</p>
+        <h2 id="拉格朗日介绍"><a href="#拉格朗日介绍" class="headerlink" title="拉格朗日介绍"></a>拉格朗日介绍</h2><p>先说说拉格朗日是啥吧<br>首先 拉格朗日插值是给你 <code>n+1</code> 个点 $(x,y)$ 然后根据这<code>n</code>个点可以$O(n^2)$的求出多项式的系数。也就是解出这个多项式的答案。</p>
+<p>假设给你一个多项式<br>$y=a_0+a_1x+a_2x^2$<br>然后给你<code>3</code>个解$(x1,y1)(x2,y2)(x3,y3)$你第一个想法是怎么解？解方程啊是不是<br>代进去是不是这样</p>
+<script type="math/tex; mode=display">\begin{cases}
+y_1=a_0+a_1x_1+a_2x_1^2\\
+y_2=a_0+a_1x_2+a_2x_2^2\\
+y_3=a_0+a_1x_3+a_2x_3^2
+\end{cases}</script><p>然年后解这个方程？<br>解这个方程复杂度多少,高斯消元O(n^3)很显然复杂度高了。<br>拉格朗日就比较厉害了他能O(n^2)解决<br>首先 假设一个多项式$f_1(x)= b_0 + b_1x+b_2x^2$<br>当他$x=x_1$解是<code>1</code>,$x_2$ $x_3$ 解是 <code>0</code><br>同理再假设 $f_2(x)$ $f_3(x)$<br>然后$L(x)=y_1f_1(x)+y_2f_2(x)+y_3f_3(x)$,这个就是最开始那个方程，不信?你把$x_1 x_2 x_3$ 带进去解绝对是 $y_1 y_2 y_3$。<br>那么问题来了后面$f_1(x)$这个多项式怎么求出来？？？？<br>这就是拉格朗日基本公式</p>
+<script type="math/tex; mode=display">f(x)=\sum_{i=0}^{n-1}y_i\prod_{j=0,j\neq i}^{n-1}\frac{x-x_i}{x_j-x_i}</script><p>没错就是他<br>哦！搞错了是下面这个，上面那个是乘上$y_i$的最终表达式<br>再来一遍，这就是拉格朗日基本公式</p>
+<script type="math/tex; mode=display">l_j(x)=\prod_{j=0,j\neq i}^{n-1}\frac{x-x_i}{x_j-x_i}</script><p>把这个多项式展开会发现非常神奇的事，当$x=x_j$的时候刚好等于<code>1</code>否则等于<code>0</code>,刚好满足了原来所需要的方程式。就是下面这样：</p>
+<script type="math/tex; mode=display">l_j(x)=\prod_{j=0,j\neq i}^{k}\frac{x-x_i}{x_i-x_j}=\frac{x-x_0}{x_0-x_j}\cdots\frac{x-x_0}{x_j-x_{j-1}}\frac{x-x_{j+1}}{x_j-x_{j+1}}\cdots\frac{x-x_k}{x_j-x_k}</script><p><strong>怕你还是看不懂，举个例子给你看</strong></p>
+<blockquote>
+<p>$f(4)=10\ f(5)=5.25\ f(6)=1$ 求 $f(18)$</p>
+</blockquote>
+<p>首先写出拉格朗日基本多项式</p>
+<script type="math/tex; mode=display">l_0=\frac{(x-5)(x-6)}{(4-5)(5-6)}</script><script type="math/tex; mode=display">l_1=\frac{(x-4)(x-6)}{(5-4)(5-6)}</script><script type="math/tex; mode=display">l_2=\frac{(x-4)(x-5)}{(6-4)(6-5)}</script><script type="math/tex; mode=display">\begin{cases}
+p(x)&=f(4)l_0(x)+f(5)l_1(x)+f(6)l_2(x)\\
+&=10\frac{(x-5)(x-6)}{(4-5)(5-6)}+5.25\frac{(x-4)(x-6)}{(5-4)(5-6)}+1*\frac{(x-4)(x-5)}{(6-4)(6-5)}\\
+&=\frac{1}{4}(x^2-28x+136)
+\end{cases}</script><p>此时代入<code>18</code>:$f(18)=p(18)=-11$<br>还有一个问题你们肯定很想问。。。知道公式之后怎么解。。。<br>对于这个问题<br>分母 是不是每次算一下就行了，答案是固定的<br>分子是不是一个大的多项式里面少了一个，就预处理出总的多项式然后，模拟除一下$(x+c)$的多项式</p>
 <p>理论知识全部搞定，下面就给你贴模板了</p>
 <h2 id="板子"><a href="#板子" class="headerlink" title="板子"></a>板子</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个是杜教的板子 我打了点注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 注意mod，使用前须调用一次 polysum::init(int M);</span></span><br><span class="line"><span class="comment">/// 注意mod，使用前须调用一次 polysum::init(int M);</span></span><br><span class="line"><span class="keyword">namespace</span> polysum &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,n) for (int i=a;i&lt;n;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,a,n) for (int i=n-1;i&gt;=a;i--)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>; <span class="comment">/// 取模值</span></span><br><span class="line"><span class="function">ll <span class="title">powmod</span><span class="params">(ll a, ll b)</span> </span>&#123;</span><br><span class="line">    ll res = <span class="number">1</span>;</span><br><span class="line">    a %= mod;</span><br><span class="line">    assert(b &gt;= <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (; b; b &gt;&gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>)res = res*a%mod;</span><br><span class="line">        a = a*a%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> D = <span class="number">1010000</span>; <span class="comment">/// 最高次限制</span></span><br><span class="line">ll a[D], f[D], g[D], p[D], p1[D], p2[D], b[D], h[D][<span class="number">2</span>], C[D];</span><br><span class="line"><span class="function">ll <span class="title">calcn</span><span class="params">(<span class="keyword">int</span> d, ll *a, ll n)</span> </span>&#123;          <span class="comment">//根据前 d 项 求 第n项</span></span><br><span class="line">    <span class="keyword">if</span> (n &lt;= d) <span class="keyword">return</span> a[n];</span><br><span class="line">    p1[<span class="number">0</span>] = p2[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    rep(i, <span class="number">0</span>, d + <span class="number">1</span>) &#123;</span><br><span class="line">        ll t = (n - i + mod) % mod;</span><br><span class="line">        p1[i + <span class="number">1</span>] = p1[i] * t%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    rep(i, <span class="number">0</span>, d + <span class="number">1</span>) &#123;</span><br><span class="line">        ll t = (n - d + i + mod) % mod;</span><br><span class="line">        p2[i + <span class="number">1</span>] = p2[i] * t%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    rep(i, <span class="number">0</span>, d + <span class="number">1</span>) &#123;</span><br><span class="line">        ll t = g[i] * g[d - i] % mod*p1[i] % mod*p2[d - i] % mod*a[i] % mod;</span><br><span class="line">        <span class="keyword">if</span> ((d - i) &amp; <span class="number">1</span>) ans = (ans - t + mod) % mod;</span><br><span class="line">        <span class="keyword">else</span> ans = (ans + t) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> M)</span> </span>&#123; <span class="comment">/// M：最高次</span></span><br><span class="line">    f[<span class="number">0</span>] = f[<span class="number">1</span>] = g[<span class="number">0</span>] = g[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    rep(i, <span class="number">2</span>, M + <span class="number">5</span>) f[i] = f[i - <span class="number">1</span>] * i%mod;</span><br><span class="line">    g[M + <span class="number">4</span>] = powmod(f[M + <span class="number">4</span>], mod - <span class="number">2</span>);</span><br><span class="line">    per(i, <span class="number">1</span>, M + <span class="number">4</span>) g[i] = g[i + <span class="number">1</span>] * (i + <span class="number">1</span>) % mod;   <span class="comment">//逆元</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">polysum</span><span class="params">(ll n, ll *arr, ll m)</span> </span>&#123; <span class="comment">/// a[0].. a[m] \sum_&#123;i=0&#125;^&#123;n-1&#125; a[i]</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++)</span><br><span class="line">        a[i] = arr[i];</span><br><span class="line">    a[m + <span class="number">1</span>] = calcn(m, a, m + <span class="number">1</span>);</span><br><span class="line">    rep(i, <span class="number">1</span>, m + <span class="number">2</span>) a[i] = (a[i - <span class="number">1</span>] + a[i]) % mod;</span><br><span class="line">    <span class="keyword">return</span> calcn(m + <span class="number">1</span>, a, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">qpolysum</span><span class="params">(ll R, ll n, ll *a, ll m)</span> </span>&#123; <span class="comment">/// a[0].. a[m] \sum_&#123;i=0&#125;^&#123;n-1&#125; a[i]*R^i</span></span><br><span class="line">    <span class="keyword">if</span> (R == <span class="number">1</span>) <span class="keyword">return</span> polysum(n, a, m);</span><br><span class="line">    a[m + <span class="number">1</span>] = calcn(m, a, m + <span class="number">1</span>);</span><br><span class="line">    ll r = powmod(R, mod - <span class="number">2</span>), p3 = <span class="number">0</span>, p4 = <span class="number">0</span>, c, ans;</span><br><span class="line">    h[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    h[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    rep(i, <span class="number">1</span>, m + <span class="number">2</span>) &#123;</span><br><span class="line">        h[i][<span class="number">0</span>] = (h[i - <span class="number">1</span>][<span class="number">0</span>] + a[i - <span class="number">1</span>])*r%mod;</span><br><span class="line">        h[i][<span class="number">1</span>] = h[i - <span class="number">1</span>][<span class="number">1</span>] * r%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    rep(i, <span class="number">0</span>, m + <span class="number">2</span>) &#123;</span><br><span class="line">        ll t = g[i] * g[m + <span class="number">1</span> - i] % mod;</span><br><span class="line">        <span class="keyword">if</span> (i &amp; <span class="number">1</span>) p3 = ((p3 - h[i][<span class="number">0</span>] * t) % mod + mod) % mod, p4 = ((p4 - h[i][<span class="number">1</span>] * t) % mod + mod) % mod;</span><br><span class="line">        <span class="keyword">else</span> p3 = (p3 + h[i][<span class="number">0</span>] * t) % mod, p4 = (p4 + h[i][<span class="number">1</span>] * t) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    c = powmod(p4, mod - <span class="number">2</span>)*(mod - p3) % mod;</span><br><span class="line">    rep(i, <span class="number">0</span>, m + <span class="number">2</span>) h[i][<span class="number">0</span>] = (h[i][<span class="number">0</span>] + h[i][<span class="number">1</span>] * c) % mod;</span><br><span class="line">    rep(i, <span class="number">0</span>, m + <span class="number">2</span>) C[i] = h[i][<span class="number">0</span>];</span><br><span class="line">    ans = (calcn(m, C, n)*powmod(R, n) - c) % mod;</span><br><span class="line">    <span class="keyword">if</span> (ans&lt;<span class="number">0</span>) ans += mod;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后下面这个是求多项式的<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">LL temp[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mul</span><span class="params">(LL *f, <span class="keyword">int</span> len, LL t)</span> </span>&#123; <span class="comment">//len为多项式的次数+1，函数让多项式f变成f*(x+t)</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i = len; i &gt; <span class="number">0</span>; --i) &#123;</span><br><span class="line"></span><br><span class="line"> temp[i] = f[i];</span><br><span class="line"></span><br><span class="line"> f[i] = f[i<span class="number">-1</span>];</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> temp[<span class="number">0</span>] = f[<span class="number">0</span>], f[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len; ++i) &#123;</span><br><span class="line"></span><br><span class="line"> f[i] = (f[i] + t*temp[i])%mod;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dev</span><span class="params">(LL *f, LL *r, LL t,<span class="keyword">int</span> len)</span> </span>&#123; <span class="comment">//f是被除多项式的系数，r保存f除以x+t的结果 len是最高次项</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len; ++i) &#123;</span><br><span class="line"></span><br><span class="line"> temp[i] = f[i];</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i = len; i &gt; <span class="number">0</span>; --i) &#123;</span><br><span class="line"></span><br><span class="line"> r[i<span class="number">-1</span>] = temp[i];</span><br><span class="line"></span><br><span class="line"> temp[i<span class="number">-1</span>] = (temp[i<span class="number">-1</span>] - t*temp[i])%mod;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LL a[maxn], b[maxn], c[maxn];</span><br><span class="line">LL x[maxn], y[maxn]; <span class="comment">//x,y输入从 1开始到n</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lglr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span> a);</span><br><span class="line">    b[<span class="number">1</span>] = <span class="number">1</span>, b[<span class="number">0</span>] = -x[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        mul(b, i, -x[i]);</span><br><span class="line">    &#125;<span class="comment">//预处理(x-x1)*(x-x2)...*(x-xn)</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        LL fz = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j == i) <span class="keyword">continue</span>;</span><br><span class="line">            fz = fz*(x[i] - x[j])%mod;</span><br><span class="line">        &#125;</span><br><span class="line">        fz = qm(fz, mod<span class="number">-2</span>);</span><br><span class="line">        fz = fz*y[i]%mod;<span class="comment">//得到多项式系数</span></span><br><span class="line">        dev(b, c, -x[i],n);<span class="comment">//得到多项式，保存在b数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) a[j] = (a[j] + fz*c[j])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">cal</span><span class="params">(LL k)</span> </span>&#123;  <span class="comment">//计算第x=k值</span></span><br><span class="line">    LL ans = <span class="number">0</span>;</span><br><span class="line">    LL res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        ans = (ans + res*a[i])%mod;</span><br><span class="line">        res = res*k%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    ans = (ans + mod)%mod;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -901,7 +908,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">353k</span>
+    <span title="站点总字数">358k</span>
   
 
   
@@ -910,7 +917,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">5:21</span>
+    <span title="站点阅读时长">5:26</span>
   
 </div>
 
@@ -1446,6 +1453,53 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
   
 
 
