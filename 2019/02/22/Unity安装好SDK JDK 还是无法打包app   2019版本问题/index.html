@@ -443,6 +443,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/02/22/Unity安装好SDK JDK 还是无法打包app   2019版本问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/02/22/Unity安装好SDK JDK 还是无法打包app   2019版本问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1015,13 +1028,9 @@
     <!-- LOCAL: You can save these files to your site and update links -->
 
   
-  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script> -->
-<script src="https://billts.site/js/gitment.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"> -->
-
 <!-- <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css"> -->
 
 <!-- END LOCAL -->
@@ -1036,10 +1045,12 @@
 <script>
   function renderGitment() {
 
-    var gitment = new Gitment({
+    var gitment = new Gitmint({
       id: '1550844497000',
       owner: 'ETBUBBLE',
       repo: 'ETBUBBLE.github.io',
+      
+        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
       
       oauth: {
       

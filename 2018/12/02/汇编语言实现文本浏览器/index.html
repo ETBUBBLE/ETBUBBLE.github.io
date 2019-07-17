@@ -439,6 +439,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2018/12/02/汇编语言实现文本浏览器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/02/汇编语言实现文本浏览器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1009,13 +1022,9 @@
     <!-- LOCAL: You can save these files to your site and update links -->
 
   
-  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script> -->
-<script src="https://billts.site/js/gitment.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"> -->
-
 <!-- <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css"> -->
 
 <!-- END LOCAL -->
@@ -1030,10 +1039,12 @@
 <script>
   function renderGitment() {
 
-    var gitment = new Gitment({
+    var gitment = new Gitmint({
       id: '1543741651000',
       owner: 'ETBUBBLE',
       repo: 'ETBUBBLE.github.io',
+      
+        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
       
       oauth: {
       
