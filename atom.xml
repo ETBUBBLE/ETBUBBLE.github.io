@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-16T15:27:27.232Z</updated>
+  <updated>2019-07-17T01:53:46.169Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>2018CCPC吉林场重现赛</title>
-    <link href="https://etbubble.github.io/2019/07/16/CCPC/"/>
-    <id>https://etbubble.github.io/2019/07/16/CCPC/</id>
-    <published>2019-07-16T14:14:01.000Z</published>
-    <updated>2019-07-16T15:27:27.232Z</updated>
+    <title>hexoNext主题插入数学公式</title>
+    <link href="https://etbubble.github.io/2019/07/17/hexoNext%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
+    <id>https://etbubble.github.io/2019/07/17/hexoNext主题插入数学公式/</id>
+    <published>2019-07-17T01:34:26.000Z</published>
+    <updated>2019-07-17T01:53:46.169Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,85 @@
       
         
         
-          &lt;h1 id=&quot;2018ccpc吉林赛区重现赛&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#2018ccpc吉林赛区重现赛&quot;&gt;&lt;/a&gt; &lt;a
+          &lt;h2 id=&quot;开启mathjax&quot;&gt;&lt;a href=&quot;#开启mathjax&quot; class=&quot;headerlink&quot; title=&quot;开启mathjax&quot;&gt;&lt;/a&gt;开启mathjax&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="https://etbubble.github.io/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+      <category term="hexo" scheme="https://etbubble.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HexoNext添加网易云音乐</title>
+    <link href="https://etbubble.github.io/2019/07/17/HexoNext%E6%B7%BB%E5%8A%A0%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90/"/>
+    <id>https://etbubble.github.io/2019/07/17/HexoNext添加网易云音乐/</id>
+    <published>2019-07-17T01:18:10.000Z</published>
+    <updated>2019-07-17T01:19:08.568Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;添加网易云音乐&quot;&gt;&lt;a href=&quot;#添加网易云音乐&quot; class=&quot;headerlink&quot; title=&quot;添加网易云音乐&quot;&gt;&lt;/a&gt;添加网易云音乐&lt;/h2&gt;&lt;h3 id=&quot;生成外链&quot;&gt;&lt;a href=&quot;#生成外链&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="https://etbubble.github.io/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+      <category term="hexo" scheme="https://etbubble.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HexoNext添加gitment评论</title>
+    <link href="https://etbubble.github.io/2019/07/17/HexoNext%E6%B7%BB%E5%8A%A0gitment%E8%AF%84%E8%AE%BA/"/>
+    <id>https://etbubble.github.io/2019/07/17/HexoNext添加gitment评论/</id>
+    <published>2019-07-17T01:11:16.000Z</published>
+    <updated>2019-07-17T01:59:07.701Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;添加gitment评论区&quot;&gt;&lt;a href=&quot;#添加gitment评论区&quot; class=&quot;headerlink&quot; title=&quot;添加gitment评论区&quot;&gt;&lt;/a&gt;添加gitment评论区&lt;/h2&gt;&lt;h3 id=&quot;安装gitment&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="https://etbubble.github.io/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+      <category term="hexo" scheme="https://etbubble.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2018CCPC吉林场重现赛</title>
+    <link href="https://etbubble.github.io/2019/07/16/2018CCPC%E5%90%89%E6%9E%97%E5%9C%BA%E9%87%8D%E7%8E%B0%E8%B5%9B/"/>
+    <id>https://etbubble.github.io/2019/07/16/2018CCPC吉林场重现赛/</id>
+    <published>2019-07-16T14:14:01.000Z</published>
+    <updated>2019-07-16T15:33:04.689Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;2018CCPC吉林赛区（重现赛）&quot;&gt;&lt;a href=&quot;#2018CCPC吉林赛区（重现赛）&quot; class=&quot;headerlink&quot; title=&quot;2018CCPC吉林赛区（重现赛）&quot;&gt;&lt;/a&gt;&lt;a
         
       
     
@@ -421,7 +499,7 @@
     <link href="https://etbubble.github.io/2019/03/16/HexoNext%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C/"/>
     <id>https://etbubble.github.io/2019/03/16/HexoNext一些操作/</id>
     <published>2019-03-16T15:28:09.000Z</published>
-    <updated>2019-07-15T07:41:30.689Z</updated>
+    <updated>2019-07-17T01:19:53.335Z</updated>
     
     <summary type="html">
     
@@ -493,86 +571,6 @@
       <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
     
       <category term="VScode" scheme="https://etbubble.github.io/tags/VScode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sublime快捷键集合</title>
-    <link href="https://etbubble.github.io/2019/03/02/sublime%E5%BF%AB%E6%8D%B7%E9%94%AE%E9%9B%86%E5%90%88/"/>
-    <id>https://etbubble.github.io/2019/03/02/sublime快捷键集合/</id>
-    <published>2019-03-02T02:08:23.000Z</published>
-    <updated>2019-03-18T08:13:13.428Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Sublime-Text-3-快捷键列表：&quot;&gt;&lt;a href=&quot;#Sublime-Text-3-快捷键列表：&quot; class=&quot;headerlink&quot; title=&quot;Sublime Text 3 快捷键列表：&quot;&gt;&lt;/a&gt;&lt;strong&gt;Sublime Text 3
-        
-      
-    
-    </summary>
-    
-    
-      <category term="CSDN迁移" scheme="https://etbubble.github.io/tags/CSDN%E8%BF%81%E7%A7%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown语法</title>
-    <link href="https://etbubble.github.io/2019/02/27/Markdown%E8%AF%AD%E6%B3%95/"/>
-    <id>https://etbubble.github.io/2019/02/27/Markdown语法/</id>
-    <published>2019-02-27T11:52:03.000Z</published>
-    <updated>2019-07-14T02:25:27.815Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;此片文章主要用于记录一些简单的Markdown语法&lt;br&gt;&amp;lt;/br&amp;gt;&lt;br&gt;&amp;lt;/br&amp;gt;&lt;br&gt;&amp;lt;/br&amp;gt;&lt;/p&gt;
-&lt;h1 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="notes" scheme="https://etbubble.github.io/categories/notes/"/>
-    
-    
-      <category term="Markdown" scheme="https://etbubble.github.io/tags/Markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JAVA环境配置</title>
-    <link href="https://etbubble.github.io/2019/02/27/JAVA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    <id>https://etbubble.github.io/2019/02/27/JAVA环境配置/</id>
-    <published>2019-02-27T11:50:03.000Z</published>
-    <updated>2019-05-14T11:50:48.556Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;本篇文章用于记录JAVA配置。&lt;/p&gt;
-&lt;p&gt;JAVA安装，百度搜索JAVA官网，下载对应系统版本，下载安装好后应该有 &lt;strong&gt;&lt;em&gt;JDK&lt;/em&gt;&lt;/strong&gt; 和&lt;strong&gt;&lt;em&gt;JDR&lt;/em&gt;&lt;/strong&gt;
-        
-      
-    
-    </summary>
-    
-      <category term="JAVA" scheme="https://etbubble.github.io/categories/JAVA/"/>
-    
-    
-      <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="JAVA" scheme="https://etbubble.github.io/tags/JAVA/"/>
     
   </entry>
   
