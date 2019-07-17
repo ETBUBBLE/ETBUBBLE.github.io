@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/07/17/5d2e76ba6056846846.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/17/5d2e76df0333f93602.png">
-<meta property="og:updated_time" content="2019-07-17T01:59:07.701Z">
+<meta property="og:updated_time" content="2019-07-17T02:11:21.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HexoNext添加gitment评论">
 <meta name="twitter:description" content="添加gitment评论区安装gitment1npm install gitment --save  #安装gitment 创建应用再创建一个 OAuth application1234Application name:随便写Homepage URL:这个也可以随意写,就写你的博客地址就行Application description:描述,也可以随意写Authorization callback">
@@ -415,7 +415,7 @@
                 
               
 
-              <time title="创建时间：2019-07-17 09:11:16 / 修改时间：09:59:07" itemprop="dateCreated datePublished" datetime="2019-07-17T09:11:16+08:00">2019-07-17</time>
+              <time title="创建时间：2019-07-17 09:11:16 / 修改时间：10:11:21" itemprop="dateCreated datePublished" datetime="2019-07-17T09:11:16+08:00">2019-07-17</time>
             
 
             
@@ -447,19 +447,6 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/17/HexoNext添加gitment评论/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/07/17/HexoNext添加gitment评论/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -524,9 +511,12 @@
 <h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><p>再创建一个 <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">OAuth application</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Application name:随便写</span><br><span class="line">Homepage URL:这个也可以随意写,就写你的博客地址就行</span><br><span class="line">Application description:描述,也可以随意写</span><br><span class="line">Authorization callback URL:这个必须写你的博客地址</span><br></pre></td></tr></table></figure></p>
 <p>申请好之后点注册,然后就可以看到两个东西<code>ClientID</code>和<code>Client Secret</code>,后面会用到.</p>
 <p>(<a href="https://i.loli.net/2019/07/15/5d2c277d2346d92308.png" target="_blank" rel="noopener">https://i.loli.net/2019/07/15/5d2c277d2346d92308.png</a>)<br>创建完后这个等会要用上</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Gitment</span><br><span class="line"># Introduction: https://imsun.net/posts/gitment-introduction/</span><br><span class="line">gitment:</span><br><span class="line"> enable: true</span><br><span class="line"> mint: true # 如果要修改gitment.swig地址就改成false    RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway</span><br><span class="line"> count: true # Show comments count in post meta area</span><br><span class="line"> lazy: false # Comments lazy loading with a button</span><br><span class="line"> cleanly: false # Hide &apos;Powered by ...&apos; on footer, and more</span><br><span class="line"> language: # Force language, or auto switch by theme</span><br><span class="line"> github_user: &#123;you github user id&#125;</span><br><span class="line"> github_repo: 随便写一个你的公开的git仓库就行,到时候评论会作为那个项目的issue</span><br><span class="line"> client_id: &#123;刚才申请的ClientID&#125;</span><br><span class="line"> client_secret: &#123;刚才申请的Client Secret&#125;</span><br><span class="line"> proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect</span><br><span class="line"> redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2019/07/17/5d2e76ba6056846846.png" alt><br>然后在 主题配置文件next config.yml中开启gitment<br><img src="https://i.loli.net/2019/07/17/5d2e76df0333f93602.png" alt></p>
-<p>本来到这就可以了，把配置文件里面的mint改成true。但是因为某个服务器挂了，所以要改点东西，mint要为false才会执行你所修改的。<br>找到<code>themes/next/layout/_third-party/comments/gitment.swig</code>文件<br>修改其中的css 和js ,注释掉的是一开始默认的，现在改成下方没有注释的, <del><strong>(从某种程度上来讲，好像就算没有改好像也是对的，只不过后面这个是汉化的)</strong></del><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- LOCAL: You can save these files to your site and update links --&gt;</span></span><br><span class="line">&#123;% if theme.gitment.mint %&#125;</span><br><span class="line">  &#123;% set CommentsClass = 'Gitmint' %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">  &#123;% set CommentsClass = 'Gitment' %&#125;</span><br><span class="line"><span class="comment">&lt;!-- &lt;script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://billts.site/js/gitment.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"><span class="comment">&lt;!-- &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://billts.site/extra_css/gitment.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- END LOCAL --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Gitment</span><br><span class="line"># Introduction: https://imsun.net/posts/gitment-introduction/</span><br><span class="line">gitment:</span><br><span class="line"> enable: true</span><br><span class="line"> mint: false # 如果要修改gitment.swig地址就改成false    RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway</span><br><span class="line"> count: true # Show comments count in post meta area</span><br><span class="line"> lazy: false # Comments lazy loading with a button</span><br><span class="line"> cleanly: false # Hide &apos;Powered by ...&apos; on footer, and more</span><br><span class="line"> language: # Force language, or auto switch by theme</span><br><span class="line"> github_user: &#123;you github user id&#125;</span><br><span class="line"> github_repo: 随便写一个你的公开的git仓库就行,到时候评论会作为那个项目的issue</span><br><span class="line"> client_id: &#123;刚才申请的ClientID&#125;</span><br><span class="line"> client_secret: &#123;刚才申请的Client Secret&#125;</span><br><span class="line"> proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect</span><br><span class="line"> redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/07/17/5d2e76ba6056846846.png" alt><br>然后在 主题配置文件next config.yml中开启gitment<br><img src="https://i.loli.net/2019/07/17/5d2e76df0333f93602.png" alt><br>因为某个服务器挂了，所以mint要为false才会执行你所修改的。</p>
+<blockquote>
+<p><strong>错误：</strong> <strong><em>object ProgressEventc</em></strong> 错误就是上面这个原因，把mint改成法false即可。</p>
+</blockquote>
+<p>找到<code>themes/next/layout/_third-party/comments/gitment.swig</code>文件<br>修改其中的css 和js ,注释掉的是一开始默认的，现在改成下方没有注释的。 <del><strong>(后面这个是汉化的)</strong></del><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- LOCAL: You can save these files to your site and update links --&gt;</span></span><br><span class="line">&#123;% if theme.gitment.mint %&#125;</span><br><span class="line">  &#123;% set CommentsClass = 'Gitmint' %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">  &#123;% set CommentsClass = 'Gitment' %&#125;</span><br><span class="line"><span class="comment">&lt;!-- &lt;script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://billts.site/js/gitment.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"><span class="comment">&lt;!-- &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://billts.site/extra_css/gitment.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- END LOCAL --&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>需要注意的是确保<code>themes/next/_config.yml</code>中<code>theme.gitment.mint</code>设置为false,才会走到我们改动的分支.</p>
 <p>还有修改一下渲染，只需要修改id<br>还是在上面那个软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var gitment = new &#123;&#123;CommentsClass&#125;&#125;(&#123;</span><br><span class="line"> id: &apos;&#123;&#123; page.date &#125;&#125;&apos;,</span><br><span class="line"> owner: &apos;&#123;&#123; theme.gitment.github_user &#125;&#125;&apos;,</span><br><span class="line"> repo: &apos;&#123;&#123; theme.gitment.github_repo &#125;&#125;&apos;,</span><br></pre></td></tr></table></figure></p>
 
@@ -1060,7 +1050,8 @@
     <!-- LOCAL: You can save these files to your site and update links -->
 
   
-  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
+<!-- <script src="https://billts.site/js/gitment.js"></script> -->
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
 <!-- <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css"> -->
@@ -1077,12 +1068,10 @@
 <script>
   function renderGitment() {
 
-    var gitment = new Gitmint({
+    var gitment = new Gitment({
       id: '1563325876000',
       owner: 'ETBUBBLE',
       repo: 'ETBUBBLE.github.io',
-      
-        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
       
       oauth: {
       

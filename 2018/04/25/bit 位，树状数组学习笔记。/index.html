@@ -442,19 +442,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/04/25/bit 位，树状数组学习笔记。/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/25/bit 位，树状数组学习笔记。/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1076,7 +1063,8 @@
     <!-- LOCAL: You can save these files to your site and update links -->
 
   
-  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
+<!-- <script src="https://billts.site/js/gitment.js"></script> -->
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
 <!-- <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css"> -->
@@ -1093,12 +1081,10 @@
 <script>
   function renderGitment() {
 
-    var gitment = new Gitmint({
+    var gitment = new Gitment({
       id: '1524643179000',
       owner: 'ETBUBBLE',
       repo: 'ETBUBBLE.github.io',
-      
-        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
       
       oauth: {
       
