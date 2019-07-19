@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-19T08:05:23.471Z</updated>
+  <updated>2019-07-19T08:14:48.886Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://etbubble.github.io/2019/07/19/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%80%E5%9C%BA%EF%BC%89C/"/>
     <id>https://etbubble.github.io/2019/07/19/2019牛客暑期多校训练营（第一场）C/</id>
     <published>2019-07-19T07:05:50.000Z</published>
-    <updated>2019-07-19T08:05:23.471Z</updated>
+    <updated>2019-07-19T08:14:48.886Z</updated>
     
     <summary type="html">
     
@@ -50,20 +50,6 @@
     <id>https://etbubble.github.io/2019/07/18/牛客多校/</id>
     <published>2019-07-18T11:54:32.000Z</published>
     <updated>2019-07-18T11:54:32.962Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>20190718195345</title>
-    <link href="https://etbubble.github.io/2019/07/18/20190718195345/"/>
-    <id>https://etbubble.github.io/2019/07/18/20190718195345/</id>
-    <published>2019-07-18T11:53:45.000Z</published>
-    <updated>2019-07-18T11:53:45.589Z</updated>
     
     <summary type="html">
     
@@ -548,6 +534,34 @@
       <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
     
       <category term="codeforces" scheme="https://etbubble.github.io/tags/codeforces/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HexoNext一些操作</title>
+    <link href="https://etbubble.github.io/2019/03/16/HexoNext%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C/"/>
+    <id>https://etbubble.github.io/2019/03/16/HexoNext一些操作/</id>
+    <published>2019-03-16T15:28:09.000Z</published>
+    <updated>2019-07-17T01:19:53.335Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;更改头像&quot;&gt;&lt;a href=&quot;#更改头像&quot; class=&quot;headerlink&quot; title=&quot;更改头像&quot;&gt;&lt;/a&gt;更改头像&lt;/h2&gt;&lt;p&gt;1.在主题配置文件中搜索 avatar&lt;br&gt;2.&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="https://etbubble.github.io/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+      <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="hexo" scheme="https://etbubble.github.io/tags/hexo/"/>
     
   </entry>
   

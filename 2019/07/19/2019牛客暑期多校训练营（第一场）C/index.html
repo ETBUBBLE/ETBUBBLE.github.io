@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190719154603600.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_1,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190719155514431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_1,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-07-19T08:05:23.471Z">
+<meta property="og:updated_time" content="2019-07-19T08:14:48.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019牛客暑期多校训练营（第一场）C">
 <meta name="twitter:description" content="2019牛客暑期多校训练营（第一场）C题解: 拉格朗日乘子法，首先引入拉格朗日乘子得出公式  f(x)=\sum_{i=1}^{n}(p_i-a_i)^2+2*\lambda(\sum_{i=0}^{n}p_i-1)这个应该看的懂，然后引入对偶变成成\max_\lambda f(\lambda)其中  f(\lambda)=\min_{p_i\geq0}\sum_{i=1}^{n}(p_i-a_i">
@@ -415,7 +415,7 @@
                 
               
 
-              <time title="创建时间：2019-07-19 15:05:50 / 修改时间：16:05:23" itemprop="dateCreated datePublished" datetime="2019-07-19T15:05:50+08:00">2019-07-19</time>
+              <time title="创建时间：2019-07-19 15:05:50 / 修改时间：16:14:48" itemprop="dateCreated datePublished" datetime="2019-07-19T15:05:50+08:00">2019-07-19</time>
             
 
             
@@ -521,7 +521,8 @@ f(x)=\sum_{i=1}^{n}(p_i-a_i)^2+2*\lambda(\sum_{i=0}^{n}p_i-1)</script><p>这个�
 f(\lambda)=\min_{p_i\geq0}\sum_{i=1}^{n}(p_i-a_i)^2+2*\lambda(\sum_{i=0}^{n}p_i-1)</script><p>然后化成叉姐给的题解里面的公式就行了</p>
 <script type="math/tex; mode=display">
 f(\lambda)=\min_{p_i\geq0}\sum_{i=1}^{n}(p_i-(a_i-\lambda))^2+\lambda(\sum_{i=0}^{n}(a_i^2-(a_i-\lambda)^2)-2\lambda</script><p>再然后，我就不会了qaq<br>后来看了一下别的大佬的博客，突然感觉可以直接理解一下，<br>假设所有的$p_i=0$,$f(x)$就等于$a_i^2$的和</p>
-<p><img src="https://img-blog.csdnimg.cn/20190719154603600.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_1,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>题目要求的是 在$q<em>i\geq0,\sum</em>{i=0}^{n}q<em>i=1$条件下求$f(x)=\sum</em>{i=1}^{n}(p_i-a_i)^2$。不就相当于分配$p_i$的值，去让$(p_i-a_i)^2$变小。<br>根据二次函数的性质，自变量$x$越大因变量$y$化越快。所以先分配给最大肯定更优啊，直接贪心下去啊。最后肯定是变成<br><img src="https://img-blog.csdnimg.cn/20190719155514431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_1,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190719154603600.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_1,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>题目要求的是 在</p>
+<script type="math/tex; mode=display">q_i\geq0,\quad \sum_{i=0}^{n}q_i=1</script><p>条件下求 $f(x)=\sum_{i=1}^{n}(p_i-a_i)^2$ 。相当于分配$p_i$ 的值，去让 $(p_i-a_i)^2$ 变小。<br>根据二次函数的性质，自变量 $x$ 越大因变量 $y$ 化越快。所以先分配给最大肯定更优啊，直接贪心下去啊。最后肯定是变成<br><img src="https://img-blog.csdnimg.cn/20190719155514431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_1,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> uLL;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> VNAME(value) (#value)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> bug printf(<span class="meta-string">"*********\n"</span>);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(x) cout&lt;&lt;<span class="meta-string">"["</span>&lt;&lt;VNAME(x)&lt;&lt;<span class="meta-string">" = "</span>&lt;&lt;x&lt;&lt;<span class="meta-string">"]"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mid (l+r)/2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chl 2*k+1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chr 2*k+2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lson l,mid,chl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rson mid+1,r,chr</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,b) memset(a,b,sizeof(a));</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e6</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">const</span> LL inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-8</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    freopen(<span class="string">"dat.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLIN_JUDGE</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LL a[maxn];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">LL m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d%lld"</span>,&amp;n,&amp;m)) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(a+<span class="number">1</span>,a+n+<span class="number">1</span>,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">        LL r=m;   <span class="comment">//p[i]的总分配价值是 1  也就是 m/m</span></span><br><span class="line">        LL pos=<span class="number">1</span>; <span class="comment">// pos 标记能够分配p[i] 到第 pos 个</span></span><br><span class="line">        <span class="keyword">while</span>(pos&lt;n) &#123;</span><br><span class="line">            <span class="keyword">if</span>(r&lt;(a[pos]-a[pos+<span class="number">1</span>])*pos)<span class="keyword">break</span>;</span><br><span class="line">            r-=(a[pos]-a[pos+<span class="number">1</span>])*pos;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最终前pos个的值  都会是a[pos]-r/pos,将他扩大pos 倍, 然后再乘以 pos 个</span></span><br><span class="line">        LL ans=(a[pos]*pos-r)*(a[pos]*pos-r)*pos;       <span class="comment">//因为最后的值可能是 1/pos,所以把分子分母同时乘以pos个</span></span><br><span class="line">        LL b=m*m*pos*pos;       <span class="comment">// 因为求的是距离的平方 分母 就是 m*m*pos*pos</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=pos+<span class="number">1</span>; i&lt;=n; i++) &#123; <span class="comment">//分配不到的 a[i]，直接加上</span></span><br><span class="line">            ans+=a[i]*a[i]*pos*pos;</span><br><span class="line">        &#125;</span><br><span class="line">        LL g=__gcd(ans,b);</span><br><span class="line">        <span class="keyword">if</span>(ans%b==<span class="number">0</span>)<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans/b);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%lld/%lld\n"</span>,ans/g,b/g);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -665,7 +666,7 @@ f(\lambda)=\min_{p_i\geq0}\sum_{i=1}^{n}(p_i-(a_i-\lambda))^2+\lambda(\sum_{i=0}
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1426,6 +1427,53 @@ f(\lambda)=\min_{p_i\geq0}\sum_{i=1}^{n}(p_i-(a_i-\lambda))^2+\lambda(\sum_{i=0}
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
   
 
 
