@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2019牛客暑期多校训练营（第一场）C]]></title>
+    <url>%2F2019%2F07%2F19%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%80%E5%9C%BA%EF%BC%89C%2F</url>
+    <content type="text"><![CDATA[2019牛客暑期多校训练营（第一场）C题解: 拉格朗日乘子法，首先引入拉格朗日乘子得出公式 f(x)=\sum_{i=1}^{n}(p_i-a_i)^2+2*\lambda(\sum_{i=0}^{n}p_i-1)这个应该看的懂，然后引入对偶变成成\max_\lambda f(\lambda)其中 f(\lambda)=\min_{p_i\geq0}\sum_{i=1}^{n}(p_i-a_i)^2+2*\lambda(\sum_{i=0}^{n}p_i-1)然后化成叉姐给的题解里面的公式就行了 f(\lambda)=\min_{p_i\geq0}\sum_{i=1}^{n}(p_i-(a_i-\lambda))^2+\lambda(\sum_{i=0}^{n}(a_i^2-(a_i-\lambda)^2)-2\lambda再然后，我就不会了qaq后来看了一下别的大佬的博客，突然感觉可以直接理解一下，假设所有的$p_i=0$,$f(x)$就等于$a_i^2$的和 题目要求的是 在$qi\geq0,\sum{i=0}^{n}qi=1$条件下求$f(x)=\sum{i=1}^{n}(p_i-a_i)^2$。不就相当于分配$p_i$的值，去让$(p_i-a_i)^2$变小。根据二次函数的性质，自变量$x$越大因变量$y$化越快。所以先分配给最大肯定更优啊，直接贪心下去啊。最后肯定是变成 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include&lt;iostream&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;string&gt;#include&lt;vector&gt;#include&lt;cstdio&gt;#include&lt;cstdlib&gt;#include&lt;cmath&gt;#include&lt;queue&gt;#include&lt;map&gt;#include&lt;set&gt;#include&lt;stack&gt;#include&lt;bitset&gt;using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int,int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid (l+r)/2#define chl 2*k+1#define chr 2*k+2#define lson l,mid,chl#define rson mid+1,r,chr#define pb push_back#define mem(a,b) memset(a,b,sizeof(a));const long long mod=1e9+7;const int maxn=1e6+5;const int INF=0x7fffffff;const LL inf=0x3f3f3f3f;const double eps=1e-8;void f() &#123;#ifndef ONLINE_JUDGE freopen("dat.in", "r", stdin);#endif // ONLIN_JUDGE&#125;LL a[maxn];int n;LL m;int main() &#123; while(~scanf("%d%lld",&amp;n,&amp;m)) &#123; for(int i=1; i&lt;=n; i++) &#123; scanf("%lld",&amp;a[i]); &#125; sort(a+1,a+n+1,greater&lt;int&gt;()); LL r=m; //p[i]的总分配价值是 1 也就是 m/m LL pos=1; // pos 标记能够分配p[i] 到第 pos 个 while(pos&lt;n) &#123; if(r&lt;(a[pos]-a[pos+1])*pos)break; r-=(a[pos]-a[pos+1])*pos; pos++; &#125; // 最终前pos个的值 都会是a[pos]-r/pos,将他扩大pos 倍, 然后再乘以 pos 个 LL ans=(a[pos]*pos-r)*(a[pos]*pos-r)*pos; //因为最后的值可能是 1/pos,所以把分子分母同时乘以pos个 LL b=m*m*pos*pos; // 因为求的是距离的平方 分母 就是 m*m*pos*pos for(int i=pos+1; i&lt;=n; i++) &#123; //分配不到的 a[i]，直接加上 ans+=a[i]*a[i]*pos*pos; &#125; LL g=__gcd(ans,b); if(ans%b==0)printf("%lld\n",ans/b); else printf("%lld/%lld\n",ans/g,b/g); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>比赛</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[20190718195432]]></title>
+    <url>%2F2019%2F07%2F18%2F%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[20190718195345]]></title>
+    <url>%2F2019%2F07%2F18%2F20190718195345%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[hexoNext主题插入数学公式]]></title>
     <url>%2F2019%2F07%2F17%2FhexoNext%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[开启mathjax先把这个打开，然后看到mathjax上面这一行了没有，要用hexo-rendering-pandoc 或者hexo-renderer-kramed这个渲染，第一个我试的时候发现和hexo-renderer-marked这个语法有点出入 (hexo默认使用 hexo-renderer-marked 渲染) ，如果换了前面写所有md文件的全都要改语法，所以我就用了第二个,先把hexo-renderer-marked的卸了，再装hexo-renderer-kramed。12npm uninstall hexo-renderer-marked --savenpm install hexo-renderer-kramed --save 用数学公式的时候记得打开 测试代码如下12345678$$P = \frac&#123;\sum_&#123;i=1&#125;^n (x_i- x)(y_i- y)&#125;&#123;\displaystyle \left[\sum_&#123;i=1&#125;^n (x_i-x)^2\sum_&#123;i=1&#125;^n (y_i-y)^2\right]^&#123;1/2&#125; &#125;$$ 效果如下: P = \frac {\sum_{i=1}^n (x_i- x)(y_i- y)} {\displaystyle \left[ \sum_{i=1}^n (x_i-x)^2 \sum_{i=1}^n (y_i-y)^2 \right]^{1/2} } HexoEditor 展示数学公式如果你用这个编辑器，想实时展示这个效果就打开TeX数学表达式。效果如下：]]></content>
