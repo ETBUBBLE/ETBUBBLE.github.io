@@ -13,11 +13,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[20190718195432]]></title>
-    <url>%2F2019%2F07%2F18%2F%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[hexoNext主题插入数学公式]]></title>
     <url>%2F2019%2F07%2F17%2FhexoNext%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[开启mathjax先把这个打开，然后看到mathjax上面这一行了没有，要用hexo-rendering-pandoc 或者hexo-renderer-kramed这个渲染，第一个我试的时候发现和hexo-renderer-marked这个语法有点出入 (hexo默认使用 hexo-renderer-marked 渲染) ，如果换了前面写所有md文件的全都要改语法，所以我就用了第二个,先把hexo-renderer-marked的卸了，再装hexo-renderer-kramed。12npm uninstall hexo-renderer-marked --savenpm install hexo-renderer-kramed --save 用数学公式的时候记得打开 测试代码如下12345678$$P = \frac&#123;\sum_&#123;i=1&#125;^n (x_i- x)(y_i- y)&#125;&#123;\displaystyle \left[\sum_&#123;i=1&#125;^n (x_i-x)^2\sum_&#123;i=1&#125;^n (y_i-y)^2\right]^&#123;1/2&#125; &#125;$$ 效果如下: P = \frac {\sum_{i=1}^n (x_i- x)(y_i- y)} {\displaystyle \left[ \sum_{i=1}^n (x_i-x)^2 \sum_{i=1}^n (y_i-y)^2 \right]^{1/2} } HexoEditor 展示数学公式如果你用这个编辑器，想实时展示这个效果就打开TeX数学表达式。效果如下：]]></content>
