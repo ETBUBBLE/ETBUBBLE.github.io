@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-19T08:26:33.432Z</updated>
+  <updated>2019-07-20T11:37:14.176Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019牛客暑期多校训练营（第二场）F</title>
+    <link href="https://etbubble.github.io/2019/07/20/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%9C%BA%EF%BC%89F/"/>
+    <id>https://etbubble.github.io/2019/07/20/2019牛客暑期多校训练营（第二场）F/</id>
+    <published>2019-07-20T11:31:46.000Z</published>
+    <updated>2019-07-20T11:37:14.176Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;2019牛客暑期多校训练营（第二场）F&quot;&gt;&lt;a href=&quot;#2019牛客暑期多校训练营（第二场）F&quot; class=&quot;headerlink&quot; title=&quot;2019牛客暑期多校训练营（第二场）F&quot;&gt;&lt;/a&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
+    
+    
+      <category term="暴力" scheme="https://etbubble.github.io/tags/%E6%9A%B4%E5%8A%9B/"/>
+    
+  </entry>
   
   <entry>
     <title>2019牛客暑期多校训练营（第一场）C</title>
@@ -548,30 +576,6 @@
       <category term="配置" scheme="https://etbubble.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
     
       <category term="hexo" scheme="https://etbubble.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用VScode 调试的时候提示Unable to start debugging</title>
-    <link href="https://etbubble.github.io/2019/03/02/%E4%BD%BF%E7%94%A8VScode%20%E8%B0%83%E8%AF%95%E7%9A%84%E6%97%B6%E5%80%99%E6%8F%90%E7%A4%BAUnable%20to%20start%20debugging/"/>
-    <id>https://etbubble.github.io/2019/03/02/使用VScode 调试的时候提示Unable to start debugging/</id>
-    <published>2019-03-02T10:20:34.000Z</published>
-    <updated>2019-03-18T08:13:12.748Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="CSDN迁移" scheme="https://etbubble.github.io/tags/CSDN%E8%BF%81%E7%A7%BB/"/>
     
   </entry>
   
