@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[20190722202327]]></title>
-    <url>%2F2019%2F07%2F22%2F20190722202327%2F</url>
-    <content type="text"><![CDATA[\begin{aligned} Count(x)&=\sum_{i=1}^{n}\prod_{j=1}^{m}{[a_{i,j}\&x]}\\ &= \end{aligned}]]></content>
+    <title><![CDATA[牛客多校--待补]]></title>
+    <url>%2F2019%2F07%2F22%2F%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1--%E5%BE%85%E8%A1%A5%2F</url>
+    <content type="text"><![CDATA[第一场 D Parity of Tuples \begin{aligned} Count(x)&=\sum_{i=1}^{n}\prod_{j=1}^{m}{[a_{i,j}\&x]}\\ &= \end{aligned}第一场 G Substrings 2第二场 ALL]]></content>
   </entry>
   <entry>
     <title><![CDATA[NTT快速数论变换]]></title>
