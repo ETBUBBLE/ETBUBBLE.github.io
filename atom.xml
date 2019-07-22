@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>etbubble 的博客</title>
+  <title>ET_BUBBLE 的博客</title>
   
   <subtitle>两件事一定不能停 学习和运动</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-21T04:10:38.416Z</updated>
+  <updated>2019-07-22T12:35:50.659Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -17,11 +17,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>20190722202327</title>
+    <link href="https://etbubble.github.io/2019/07/22/20190722202327/"/>
+    <id>https://etbubble.github.io/2019/07/22/20190722202327/</id>
+    <published>2019-07-22T12:23:27.000Z</published>
+    <updated>2019-07-22T12:35:50.659Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script type=&quot;math/tex;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>NTT快速数论变换</title>
+    <link href="https://etbubble.github.io/2019/07/22/NTT%E5%BF%AB%E9%80%9F%E6%95%B0%E8%AE%BA%E5%8F%98%E6%8D%A2/"/>
+    <id>https://etbubble.github.io/2019/07/22/NTT快速数论变换/</id>
+    <published>2019-07-22T01:28:45.000Z</published>
+    <updated>2019-07-22T01:53:52.765Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;NTT&quot;&gt;&lt;a href=&quot;#NTT&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="数论" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E8%AE%BA/"/>
+    
+    
+      <category term="数论" scheme="https://etbubble.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>FFT快速傅里叶变换简解</title>
     <link href="https://etbubble.github.io/2019/07/20/FFT%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%AE%80%E8%A7%A3/"/>
     <id>https://etbubble.github.io/2019/07/20/FFT快速傅里叶变换简解/</id>
     <published>2019-07-20T13:23:15.000Z</published>
-    <updated>2019-07-21T04:10:38.416Z</updated>
+    <updated>2019-07-22T12:38:38.988Z</updated>
     
     <summary type="html">
     
@@ -519,64 +569,6 @@
       <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
     
       <category term="数据结构" scheme="https://etbubble.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity3D触发器和碰撞器</title>
-    <link href="https://etbubble.github.io/2019/03/26/Unity3D%E8%A7%A6%E7%A2%B0%E5%99%A8%E5%92%8C%E7%A2%B0%E6%92%9E%E5%99%A8/"/>
-    <id>https://etbubble.github.io/2019/03/26/Unity3D触碰器和碰撞器/</id>
-    <published>2019-03-26T06:25:35.000Z</published>
-    <updated>2019-05-14T11:49:20.606Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Unity3d碰撞检测中碰撞器与触发器的区别&quot;&gt;&lt;a href=&quot;#Unity3d碰撞检测中碰撞器与触发器的区别&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="游戏" scheme="https://etbubble.github.io/categories/%E6%B8%B8%E6%88%8F/"/>
-    
-      <category term="U3D" scheme="https://etbubble.github.io/categories/%E6%B8%B8%E6%88%8F/U3D/"/>
-    
-    
-      <category term="unity" scheme="https://etbubble.github.io/tags/unity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>中南多校第一场</title>
-    <link href="https://etbubble.github.io/2019/03/18/%E4%B8%AD%E5%8D%97%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%B8%80%E5%9C%BA/"/>
-    <id>https://etbubble.github.io/2019/03/18/中南多校第一场/</id>
-    <published>2019-03-18T10:19:38.000Z</published>
-    <updated>2019-07-14T02:38:32.693Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;源题目    &lt;a href=&quot;http://codeforces.com/gym/101933&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;2018-2019 ACM-ICPC Nordic Collegiate Programming
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
-    
-    
-      <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
-    
-      <category term="codeforces" scheme="https://etbubble.github.io/tags/codeforces/"/>
     
   </entry>
   

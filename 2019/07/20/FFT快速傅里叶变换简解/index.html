@@ -112,13 +112,13 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="FFT快速傅里叶变换简解">
 <meta property="og:url" content="https://etbubble.github.io/2019/07/20/FFT快速傅里叶变换简解/index.html">
-<meta property="og:site_name" content="etbubble 的博客">
+<meta property="og:site_name" content="ET_BUBBLE 的博客">
 <meta property="og:description" content="概述FTT： 快速傅里叶变换。看起来挺难的，实际上确实挺难的。 用途A=a_0+a_1x+a_2x\cdots +a_nx^nB=b_0+b_1x+b_2x\cdots +b_nx^n求 C_k=\sum_{i+j=k}A_i * B_j也就是上面两个多项式相乘等于下面这个 C=c_0+c_1x+c_2x\cdots +c_{2n}x^{2n}朴素算法一个个乘 $O(n^2)$ 复杂度，FFT能在">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/07/21/5d33d923a9af793616.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/21/5d33d948b4e3470520.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/21/5d33d9bf1942758725.png">
-<meta property="og:updated_time" content="2019-07-21T04:10:38.416Z">
+<meta property="og:updated_time" content="2019-07-22T12:38:38.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFT快速傅里叶变换简解">
 <meta name="twitter:description" content="概述FTT： 快速傅里叶变换。看起来挺难的，实际上确实挺难的。 用途A=a_0+a_1x+a_2x\cdots +a_nx^nB=b_0+b_1x+b_2x\cdots +b_nx^n求 C_k=\sum_{i+j=k}A_i * B_j也就是上面两个多项式相乘等于下面这个 C=c_0+c_1x+c_2x\cdots +c_{2n}x^{2n}朴素算法一个个乘 $O(n^2)$ 复杂度，FFT能在">
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="etbubble 的博客" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="ET_BUBBLE 的博客" type="application/atom+xml">
 
 
 
@@ -141,7 +141,7 @@
   };
 </script>
 
-  <title>FFT快速傅里叶变换简解 | etbubble 的博客</title>
+  <title>FFT快速傅里叶变换简解 | ET_BUBBLE 的博客</title>
   
 
 
@@ -200,7 +200,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">etbubble 的博客</span>
+        <span class="site-title">ET_BUBBLE 的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -382,7 +382,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="etbubble 的博客">
+      <meta itemprop="name" content="ET_BUBBLE 的博客">
     </span>
 
     
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-21 12:10:38" itemprop="dateModified" datetime="2019-07-21T12:10:38+08:00">2019-07-21</time>
+                <time title="修改时间：2019-07-22 20:38:38" itemprop="dateModified" datetime="2019-07-22T20:38:38+08:00">2019-07-22</time>
               
             
           </span>
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">7.2k</span>
+                <span title="本文字数">9.8k</span>
               
 
               
@@ -507,7 +507,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">7 分钟</span>
+                <span title="阅读时长">9 分钟</span>
               
             </div>
           
@@ -536,7 +536,7 @@
 <script type="math/tex; mode=display">\{ (x_0,y_0) , (x_1,y_1) , \cdots (x_n,y_n) \}</script><p>不难看出能用下面这个<code>n+1</code>个不同的点值推出 <strong>系数表达式</strong></p>
 <h2 id="FFT步骤"><a href="#FFT步骤" class="headerlink" title="FFT步骤"></a>FFT步骤</h2><ol>
 <li><strong>加倍次数界求值</strong> 将转<code>A B</code>系数表达式，找出 <code>2n+1</code> 个点值,(只需要<code>n+1</code>个点值就能推出一个最高次项为<code>n</code>的表达式，但是，<code>A B</code>相乘后有<code>2n</code>，所以要找出<code>2n+1</code>个值)</li>
-<li><strong>逐点相乘</strong> 将两个点值相乘获得<code>C</code> 的点值<script type="math/tex; mode=display">C=\{(ax_0 * bx_0,ay_0 * by_0),\cdots,(ax_{2n} * bx_{2n},ay_{2n} * by_{2n})\}</script></li>
+<li><strong>逐点相乘</strong> 将两个点值相乘获得<code>C</code> 的点值<script type="math/tex; mode=display">C=\{(x_0 ,A(x_0) * B(x_0)),\cdots,(x_{2n},A(x_{2n}) * B(x_{2n})\}</script></li>
 <li><strong>插值</strong> 再用逆变换将<code>C</code>的点值转换成 <strong>系数表达式</strong> </li>
 </ol>
 <blockquote>
@@ -593,42 +593,7 @@ A(w_4^3)&=A0(w_2^3)+w_4^3A1(w_2^3)=A0(w_2^1)+w_4^3A1(w_2^1)
 <p>你以为大结局了吗?没有</p>
 <h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>除了前面那个直接再表达式上的优化,，下面还有代码上的优化。<br>递归太慢了，可以换成迭代。另外，这空间变成了nlog(n) ，那个辅助数组优化掉也可以不好.<br>已经理解核心了，后面这个就不用我说了吧。。。。。。<del>是我懒得写了，我18岁我好累</del></p>
 <p>直接贴一个大哥的板子把，找的太多了都不知道是谁的了</p>
-<p>```c<br>//fft</p>
-<h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <iostream></iostream></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <cstdio></cstdio></h1><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <cstring></cstring></h1><h1 id="include-3"><a href="#include-3" class="headerlink" title="include "></a>include <algorithm></algorithm></h1><h1 id="include-4"><a href="#include-4" class="headerlink" title="include "></a>include <cmath></cmath></h1><p>using namespace std;<br>typedef long long ll;<br>const int N=(1&lt;<18)+5, inf="1e9;" const double pi="acos(-1);" inline int read(){ char c="getchar();int" x="0,f=1;" while(c<'0'||c>‘9’){if(c==’-‘)f=-1;c=getchar();}<br>    while(c&gt;=’0’&amp;&amp;c&lt;=’9’){x=x<em>10+c-‘0’;c=getchar();}<br>    return x</em>f;<br>}</18)+5,></p>
-<p>struct meow{<br>    double x, y;<br>    meow(double a=0, double b=0):x(a), y(b){}<br>};<br>meow operator +(meow a, meow b) {return meow(a.x+b.x, a.y+b.y);}<br>meow operator -(meow a, meow b) {return meow(a.x-b.x, a.y-b.y);}<br>meow operator <em>(meow a, meow b) {return meow(a.x</em>b.x-a.y<em>b.y, a.x</em>b.y+a.y*b.x);}<br>meow conj(meow a) {return meow(a.x, -a.y);}<br>typedef meow cd;</p>
-<p>struct FastFourierTransform {<br>    int n, rev[N];<br>    cd omega[N], omegaInv[N];<br>    void ini(int lim) {<br>        n=1; int k=0;<br>        while(n<lim) n<<="1," k++; for(int i="0;" i<n; i++) rev[i]="(rev[i">&gt;1]&gt;&gt;1) | ((i&amp;1)&lt;&lt;(k-1));</lim)></p>
-<pre><code>    for(int k=0; k&lt;n; k++) {
-        omega[k] = cd(cos(2*PI/n*k), sin(2*PI/n*k));
-        omegaInv[k] = conj(omega[k]);
-    }
-}
-void fft(cd *a, cd *w) {
-    for(int i=0; i&lt;n; i++) if(i&lt;rev[i]) swap(a[i], a[rev[i]]);
-    for(int l=2; l&lt;=n; l&lt;&lt;=1) {
-        int m=l&gt;&gt;1;
-        for(cd *p=a; p!=a+n; p+=l) 
-            for(int k=0; k&lt;m; k++) {
-                cd t = w[n/l*k] * p[k+m];
-                p[k+m]=p[k]-t;
-                p[k]=p[k]+t;
-            }
-    }
-}
-void dft(cd *a, int flag) {
-    if(flag==1) fft(a, omega);
-    else {
-        fft(a, omegaInv);
-        for(int i=0; i&lt;n; i++) a[i].x/=n;
-    }
-}
-void mul(cd *a, cd *b, int m) {
-    ini(m);
-    dft(a, 1); dft(b, 1);
-    for(int i=0; i&lt;n; i++) a[i]=a[i]*b[i];
-    dft(a, -1);
-}
-</code></pre><p>}f;</p>
-<p>int n1, n2, m, c[N];<br>cd a[N], b[N];<br>char s1[N], s2[N];<br>int main() {<br>    //freopen(“in”,”r”,stdin);<br>    scanf(“%s%s”,s1,s2);<br>    n1=strlen(s1); n2=strlen(s2);<br>    for(int i=0; i<n1; i++) a[i].x="s1[n1-i-1]-'0';" for(int i="0;" i<n2; b[i].x="s2[n2-i-1]-'0';" m="n1+n2-1;" f.mul(a, b, m); i<m; c[i]="floor(a[i].x+0.5);" c[i+1]+="c[i]/10," c[i]%="10;" if(c[m]) m++;>=0; i—) printf(“%d”,c[i]);<br>}</n1;></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//fft</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=(<span class="number">1</span>&lt;&lt;<span class="number">18</span>)+<span class="number">5</span>, INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI=<span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> c=getchar();<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)&#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>)f=<span class="number">-1</span>;c=getchar();&#125;</span><br><span class="line">    <span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)&#123;x=x*<span class="number">10</span>+c-<span class="string">'0'</span>;c=getchar();&#125;</span><br><span class="line">    <span class="keyword">return</span> x*f;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">meow</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x, y;</span><br><span class="line">    meow(<span class="keyword">double</span> a=<span class="number">0</span>, <span class="keyword">double</span> b=<span class="number">0</span>):x(a), y(b)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">meow <span class="keyword">operator</span> +(meow a, meow b) &#123;<span class="keyword">return</span> meow(a.x+b.x, a.y+b.y);&#125;</span><br><span class="line">meow <span class="keyword">operator</span> -(meow a, meow b) &#123;<span class="keyword">return</span> meow(a.x-b.x, a.y-b.y);&#125;</span><br><span class="line">meow <span class="keyword">operator</span> *(meow a, meow b) &#123;<span class="keyword">return</span> meow(a.x*b.x-a.y*b.y, a.x*b.y+a.y*b.x);&#125;</span><br><span class="line"><span class="function">meow <span class="title">conj</span><span class="params">(meow a)</span> </span>&#123;<span class="keyword">return</span> meow(a.x, -a.y);&#125;</span><br><span class="line"><span class="keyword">typedef</span> meow cd;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FastFourierTransform</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n, rev[N];</span><br><span class="line">    cd omega[N], omegaInv[N];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ini</span><span class="params">(<span class="keyword">int</span> lim)</span> </span>&#123;</span><br><span class="line">        n=<span class="number">1</span>; <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n&lt;lim) n&lt;&lt;=<span class="number">1</span>, k++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) rev[i] = (rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>) | ((i&amp;<span class="number">1</span>)&lt;&lt;(k<span class="number">-1</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;n; k++) &#123;</span><br><span class="line">            omega[k] = cd(<span class="built_in">cos</span>(<span class="number">2</span>*PI/n*k), <span class="built_in">sin</span>(<span class="number">2</span>*PI/n*k));</span><br><span class="line">            omegaInv[k] = conj(omega[k]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fft</span><span class="params">(cd *a, cd *w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="keyword">if</span>(i&lt;rev[i]) swap(a[i], a[rev[i]]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">2</span>; l&lt;=n; l&lt;&lt;=<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> m=l&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(cd *p=a; p!=a+n; p+=l) </span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;m; k++) &#123;</span><br><span class="line">                    cd t = w[n/l*k] * p[k+m];</span><br><span class="line">                    p[k+m]=p[k]-t;</span><br><span class="line">                    p[k]=p[k]+t;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dft</span><span class="params">(cd *a, <span class="keyword">int</span> flag)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag==<span class="number">1</span>) fft(a, omega);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            fft(a, omegaInv);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) a[i].x/=n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mul</span><span class="params">(cd *a, cd *b, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        ini(m);</span><br><span class="line">        dft(a, <span class="number">1</span>); dft(b, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) a[i]=a[i]*b[i];</span><br><span class="line">        dft(a, <span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;f;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> n1, n2, m, c[N];</span><br><span class="line">cd a[N], b[N];</span><br><span class="line"><span class="keyword">char</span> s1[N], s2[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//freopen("in","r",stdin);</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,s1,s2);</span><br><span class="line">    n1=<span class="built_in">strlen</span>(s1); n2=<span class="built_in">strlen</span>(s2);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n1; i++) a[i].x = s1[n1-i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n2; i++) b[i].x = s2[n2-i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">    m=n1+n2<span class="number">-1</span>;</span><br><span class="line">    f.mul(a, b, m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++) c[i]=<span class="built_in">floor</span>(a[i].x+<span class="number">0.5</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++) c[i+<span class="number">1</span>]+=c[i]/<span class="number">10</span>, c[i]%=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">if</span>(c[m]) m++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=m<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) <span class="built_in">printf</span>(<span class="string">"%d"</span>,c[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p><strong>如有错误，望指出。</strong></p>
 
@@ -696,6 +661,10 @@ void mul(cd *a, cd *b, int m) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/22/NTT快速数论变换/" rel="prev" title="NTT快速数论变换">
+                NTT快速数论变换 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -774,7 +743,7 @@ void mul(cd *a, cd *b, int m) {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -947,7 +916,7 @@ void mul(cd *a, cd *b, int m) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点值"><span class="nav-number">3.</span> <span class="nav-text">点值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFT步骤"><span class="nav-number">4.</span> <span class="nav-text">FFT步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正式讲解"><span class="nav-number">5.</span> <span class="nav-text">正式讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单位复根"><span class="nav-number">5.1.</span> <span class="nav-text">单位复根</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">6.</span> <span class="nav-text">优化</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number"></span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-1"><span class="nav-number"></span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-2"><span class="nav-number"></span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-3"><span class="nav-number"></span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-4"><span class="nav-number"></span> <span class="nav-text">include </span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点值"><span class="nav-number">3.</span> <span class="nav-text">点值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFT步骤"><span class="nav-number">4.</span> <span class="nav-text">FFT步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正式讲解"><span class="nav-number">5.</span> <span class="nav-text">正式讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单位复根"><span class="nav-number">5.1.</span> <span class="nav-text">单位复根</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">6.</span> <span class="nav-text">优化</span></a></li></ol></div>
             
 
           </div>
@@ -996,7 +965,7 @@ void mul(cd *a, cd *b, int m) {
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">370k</span>
+    <span title="站点总字数">375k</span>
   
 
   
@@ -1005,7 +974,7 @@ void mul(cd *a, cd *b, int m) {
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">5:36</span>
+    <span title="站点阅读时长">5:41</span>
   
 </div>
 
