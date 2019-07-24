@@ -111,7 +111,7 @@
 <meta name="keywords" content="ACM">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ET_BUBBLE 的博客">
-<meta property="og:url" content="https://etbubble.github.io/categories/acm/数论/index.html">
+<meta property="og:url" content="https://etbubble.github.io/categories/ACM/数论/index.html">
 <meta property="og:site_name" content="ET_BUBBLE 的博客">
 <meta property="og:description" content="做自己不会做的事被称之为学习">
 <meta property="og:locale" content="zh-CN">
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="https://etbubble.github.io/categories/acm/数论/">
+  <link rel="canonical" href="https://etbubble.github.io/categories/ACM/数论/">
 
 
 
@@ -390,6 +390,32 @@
 
       <h2 class="post-title">
         
+          <a class="post-title-link" href="/2019/07/22/NTT快速数论变换/" itemprop="url">
+            
+              <span itemprop="name">NTT快速数论变换</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-07-22T09:28:45+08:00" content="2019-07-22">
+          07-22
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
           <a class="post-title-link" href="/2019/07/20/FFT快速傅里叶变换简解/" itemprop="url">
             
               <span itemprop="name">FFT快速傅里叶变换简解</span>
@@ -401,6 +427,58 @@
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2019-07-20T21:23:15+08:00" content="2019-07-20">
           07-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/07/12/拉格朗日插值和求多项式系数/" itemprop="url">
+            
+              <span itemprop="name">拉格朗日插值和求多项式系数</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-07-12T14:53:29+08:00" content="2019-07-12">
+          07-12
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/07/11/大数素数判断及质因子分解/" itemprop="url">
+            
+              <span itemprop="name">大数素数判断及质因子分解</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-07-11T21:19:49+08:00" content="2019-07-11">
+          07-11
         </time>
       </div>
 
@@ -507,7 +585,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -562,7 +640,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">21</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1131,96 +1215,6 @@
       e.stopPropagation();
       if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-  <script>
-    
-      pbOptions = {};
-      
-        pbOptions.iconStyle = "box";
-      
-        pbOptions.boxForm = "horizontal";
-      
-        pbOptions.position = "bottomCenter";
-      
-        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-      flOptions = {};
-      
-        flOptions.iconStyle = "box";
-      
-        flOptions.boxForm = "horizontal";
-      
-        flOptions.position = "middleRight";
-      
-        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-, 'local-search-result');
       } else {
         proceedsearch();
       };
