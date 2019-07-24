@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-22T13:57:53.921Z</updated>
+  <updated>2019-07-24T01:42:36.669Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019牛客暑期多校训练营（第二场）J</title>
+    <link href="https://etbubble.github.io/2019/07/23/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%9C%BA%EF%BC%89/"/>
+    <id>https://etbubble.github.io/2019/07/23/2019牛客暑期多校训练营（第二场）/</id>
+    <published>2019-07-23T15:03:10.000Z</published>
+    <updated>2019-07-24T01:42:36.669Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;2019牛客暑期多校训练营（第二场）J-Subarray&quot;&gt;&lt;a href=&quot;#2019牛客暑期多校训练营（第二场）J-Subarray&quot; class=&quot;headerlink&quot; title=&quot;2019牛客暑期多校训练营（第二场）J
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
+    
+    
+      <category term="巧解" scheme="https://etbubble.github.io/tags/%E5%B7%A7%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>牛客多校--待补</title>
@@ -538,37 +566,6 @@
       <category term="笔记" scheme="https://etbubble.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
       <category term="sock 编程" scheme="https://etbubble.github.io/tags/sock-%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>选拔赛Tulip Festival及其进阶</title>
-    <link href="https://etbubble.github.io/2019/04/16/%E9%80%89%E6%8B%94%E8%B5%9B/"/>
-    <id>https://etbubble.github.io/2019/04/16/选拔赛/</id>
-    <published>2019-04-16T13:35:08.000Z</published>
-    <updated>2019-04-17T07:37:30.332Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;线段树动态开点，对于这题顺便挂个自己学校OJ&lt;/p&gt;
-&lt;h2 id=&quot;Tulip-Festival&quot;&gt;&lt;a href=&quot;#Tulip-Festival&quot; class=&quot;headerlink&quot; title=&quot;Tulip Festival&quot;&gt;&lt;/a&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    
-      <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
-    
-      <category term="数据结构" scheme="https://etbubble.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
