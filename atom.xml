@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-24T01:42:36.669Z</updated>
+  <updated>2019-07-24T15:45:55.379Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019 Multi-University Training Contest 1 1012</title>
+    <link href="https://etbubble.github.io/2019/07/24/2019-Multi-University-Training-Contest-1-1012/"/>
+    <id>https://etbubble.github.io/2019/07/24/2019-Multi-University-Training-Contest-1-1012/</id>
+    <published>2019-07-24T15:14:14.000Z</published>
+    <updated>2019-07-24T15:45:55.379Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Longest-Subarray-HDU-6602&quot;&gt;&lt;a href=&quot;#Longest-Subarray-HDU-6602&quot; class=&quot;headerlink&quot; title=&quot;Longest Subarray HDU 6602&quot;&gt;&lt;/a&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="线段树" scheme="https://etbubble.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>2019牛客暑期多校训练营（第二场）J</title>
@@ -540,36 +570,6 @@
     
     
       <category term="dp" scheme="https://etbubble.github.io/tags/dp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C++ sock编程学习笔记</title>
-    <link href="https://etbubble.github.io/2019/04/19/C++-sock%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://etbubble.github.io/2019/04/19/C++-sock编程学习笔记/</id>
-    <published>2019-04-19T09:19:31.000Z</published>
-    <updated>2019-05-14T11:46:46.037Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;主机字节序和网络字节序&quot;&gt;&lt;a href=&quot;#主机字节序和网络字节序&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="https://etbubble.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络" scheme="https://etbubble.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="笔记" scheme="https://etbubble.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="sock 编程" scheme="https://etbubble.github.io/tags/sock-%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
