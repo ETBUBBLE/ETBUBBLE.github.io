@@ -7,7 +7,7 @@
   </entry>
   <entry>
     <title><![CDATA[2019牛客暑期多校训练营（第三场）F Planting Trees]]></title>
-    <url>%2F2019%2F07%2F26%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%9C%BA%EF%BC%891%2F</url>
+    <url>%2F2019%2F07%2F26%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%89%E5%9C%BA%EF%BC%89F%2F</url>
     <content type="text"><![CDATA[2019牛客暑期多校训练营（第三场）F Planting题意: 一个$N N$ 的矩阵，问最大值和最小值大小差距不超过$M$的最大子矩阵多大。*题解: 题目明示你要使用$O(N^3)$的杂度,暴力枚举子矩阵高度$x$，做一个预处理，把$a[i][j]$到$a[i+x][j]$的最大最小值处理出来，压缩成一行，然后做一次求区间最大值和最小值差值不超过$M$的区间最大长度。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124#include "stdio.h"#include "ctype.h" #define max(a, b) a&gt;b?a:b#define min(a, b) a&lt;b?a:bconst int maxn = 5e2 + 5; struct deq &#123; static const int start = maxn * 2; int dat[start * 2]; int l = start; int r = start; void push_front(int x) &#123; dat[l--] = x; &#125; void pop_front() &#123; l++; &#125; int front() &#123; return dat[l + 1]; &#125; void push_back(int x) &#123; dat[++r] = x; &#125; void pop_back() &#123; r--; &#125; int back() &#123; return dat[r]; &#125; int size() &#123; return r - l; &#125; void clear() &#123; r = l = start; &#125; bool empty() &#123; return r == l; &#125;&#125;; deq dqmx, dqmi; template&lt;typename T&gt;void read(T &amp;w) &#123; //读入 char c; while (!isdigit(c = getchar())); w = c &amp; 15; while (isdigit(c = getchar()))w = w * 10 + (c &amp; 15);&#125; int n, k;int a[maxn][maxn];int ans = 0;int mi[maxn][maxn];int mx[maxn][maxn]; int main() &#123; int T; read(T); while (T--) &#123; read(n); read(k); for (int i = 1; i &lt;= n; i++) &#123; for (int j = 1; j &lt;= n; j++) &#123; read(a[i][j]); &#125; &#125; ans = 0; for (int x = 1; x &lt;= n; x++) &#123; for (int i = n; i &gt;= x; i--) &#123; int pos = 0; dqmx.clear(); dqmi.clear(); for (int j = 1; j &lt;= n; j++) &#123; if (x == 1) &#123; mx[i][j] = a[i][j]; mi[i][j] = a[i][j]; &#125; else &#123; mx[i][j] = max(mx[i - 1][j], a[i][j]); mi[i][j] = min(mi[i - 1][j], a[i][j]); &#125; int tmi = mi[i][j], tmx = mx[i][j]; if (tmx - tmi &gt; k) &#123; dqmi.clear(); dqmx.clear(); pos = j; &#125; else &#123; while (dqmi.size() &amp;&amp; mi[i][dqmi.back()] &gt; tmi) &#123; dqmi.pop_back(); &#125; dqmi.push_back(j); while (dqmx.size() &amp;&amp; mx[i][dqmx.back()] &lt; tmx) &#123; dqmx.pop_back(); &#125; dqmx.push_back(j); while (mx[i][dqmx.front()] - mi[i][dqmi.front()] &gt; k) &#123; if (dqmx.front() &lt; dqmi.front()) &#123; pos = dqmx.front(); dqmx.pop_front(); &#125; else &#123; pos = dqmi.front(); dqmi.pop_front(); &#125; &#125; ans = max(ans, x * (j - pos)); &#125; &#125; &#125; &#125; printf("%d\n", ans); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
@@ -16,11 +16,6 @@
       <tags>
         <tag>单调队列</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2019牛客暑期多校训练营（第三场）F Planting Trees]]></title>
-    <url>%2F2019%2F07%2F26%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%89%E5%9C%BA%EF%BC%89F%2F</url>
-    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[2019 Multi-University Training Contest 1 1012 Sequence]]></title>
