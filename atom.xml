@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-26T12:19:12.242Z</updated>
+  <updated>2019-07-27T12:21:35.975Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019 Multi-University Training Contest 1 1001 Blank</title>
+    <link href="https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/"/>
+    <id>https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/</id>
+    <published>2019-07-27T12:04:06.000Z</published>
+    <updated>2019-07-27T12:21:35.975Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;题意：&lt;/strong&gt; 给定&lt;code&gt;1,N&lt;/code&gt; 的位置，每个位置可以填&lt;code&gt;1,2,3,4&lt;/code&gt;其中一个，给&lt;code&gt;m&lt;/code&gt;个区间&lt;code&gt;[l,r] x&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="dp" scheme="https://etbubble.github.io/categories/ACM/dp/"/>
+    
+    
+      <category term="dp" scheme="https://etbubble.github.io/tags/dp/"/>
+    
+  </entry>
   
   <entry>
     <title>单调栈和单调队列</title>
@@ -548,34 +576,6 @@
     
     
       <category term="JAVA" scheme="https://etbubble.github.io/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sql学习笔记(三)</title>
-    <link href="https://etbubble.github.io/2019/05/19/sql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/"/>
-    <id>https://etbubble.github.io/2019/05/19/sql学习笔记(三)/</id>
-    <published>2019-05-19T12:02:05.000Z</published>
-    <updated>2019-07-14T02:34:42.419Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;sql的特点&quot;&gt;&lt;a href=&quot;#sql的特点&quot; class=&quot;headerlink&quot; title=&quot;sql的特点&quot;&gt;&lt;/a&gt;sql的特点&lt;/h2&gt;&lt;p&gt;SQL语言集数据查询（data query）、数据操纵（data
-        
-      
-    
-    </summary>
-    
-      <category term="数据库" scheme="https://etbubble.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="数据库" scheme="https://etbubble.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="notes" scheme="https://etbubble.github.io/tags/notes/"/>
     
   </entry>
   
