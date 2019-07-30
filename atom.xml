@@ -40,9 +40,9 @@
       <category term="动态规划" scheme="https://etbubble.github.io/categories/ACM/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     
-      <category term="树形DP" scheme="https://etbubble.github.io/tags/%E6%A0%91%E5%BD%A2DP/"/>
-    
       <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
+    
+      <category term="树形DP" scheme="https://etbubble.github.io/tags/%E6%A0%91%E5%BD%A2DP/"/>
     
   </entry>
   
@@ -70,9 +70,9 @@
       <category term="动态规划" scheme="https://etbubble.github.io/categories/ACM/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     
-      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
-    
       <category term="DP" scheme="https://etbubble.github.io/tags/DP/"/>
+    
+      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
     
   </entry>
   
@@ -163,9 +163,9 @@
       <category term="数论" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E8%AE%BA/"/>
     
     
-      <category term="FTT/NTT/FWT" scheme="https://etbubble.github.io/tags/FTT-NTT-FWT/"/>
-    
       <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
+    
+      <category term="FTT/NTT/FWT" scheme="https://etbubble.github.io/tags/FTT-NTT-FWT/"/>
     
   </entry>
   
@@ -193,9 +193,9 @@
       <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-      <category term="线段树" scheme="https://etbubble.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
-    
       <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
+    
+      <category term="线段树" scheme="https://etbubble.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
   </entry>
   
@@ -330,9 +330,9 @@
       <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
     
     
-      <category term="暴力" scheme="https://etbubble.github.io/tags/%E6%9A%B4%E5%8A%9B/"/>
-    
       <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+    
+      <category term="暴力" scheme="https://etbubble.github.io/tags/%E6%9A%B4%E5%8A%9B/"/>
     
   </entry>
   
@@ -360,9 +360,9 @@
       <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
     
     
-      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
-    
       <category term="拉格朗日" scheme="https://etbubble.github.io/tags/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5/"/>
+    
+      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
     
   </entry>
   
