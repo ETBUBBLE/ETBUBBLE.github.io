@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-27T12:21:35.975Z</updated>
+  <updated>2019-07-30T02:39:05.185Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>2019 Multi-University Training Contest 1 1001 Blank</title>
-    <link href="https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/"/>
-    <id>https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/</id>
-    <published>2019-07-27T12:04:06.000Z</published>
-    <updated>2019-07-27T12:21:35.975Z</updated>
+    <title>2019 Multi-University Training Contest 3 1011 Squrirrel</title>
+    <link href="https://etbubble.github.io/2019/07/30/2019-Multi-University-Training-Contest-3-1011/"/>
+    <id>https://etbubble.github.io/2019/07/30/2019-Multi-University-Training-Contest-3-1011/</id>
+    <published>2019-07-30T02:20:55.000Z</published>
+    <updated>2019-07-30T02:39:05.185Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;p&gt;&lt;strong&gt;题意：&lt;/strong&gt; 给定&lt;code&gt;1,N&lt;/code&gt; 的位置，每个位置可以填&lt;code&gt;1,2,3,4&lt;/code&gt;其中一个，给&lt;code&gt;m&lt;/code&gt;个区间&lt;code&gt;[l,r] x&lt;/code&gt;
+          &lt;p&gt;&lt;a href=&quot;http://acm.hdu.edu.cn/showproblem.php?pid=6613&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;HDU 6613 Squrirrel&lt;/a&gt;&lt;br&gt;&lt;strong&gt;题意：&lt;/strong&gt;
         
       
     
@@ -37,10 +37,42 @@
     
       <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
     
-      <category term="dp" scheme="https://etbubble.github.io/categories/ACM/dp/"/>
+      <category term="动态规划" scheme="https://etbubble.github.io/categories/ACM/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     
-      <category term="dp" scheme="https://etbubble.github.io/tags/dp/"/>
+      <category term="树形DP" scheme="https://etbubble.github.io/tags/%E6%A0%91%E5%BD%A2DP/"/>
+    
+      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2019 Multi-University Training Contest 1 1001 Blank</title>
+    <link href="https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/"/>
+    <id>https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/</id>
+    <published>2019-07-27T12:04:06.000Z</published>
+    <updated>2019-07-30T02:39:46.790Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;http://acm.hdu.edu.cn/showproblem.php?pid=6578&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;HDU 6578 Blank&lt;/a&gt;&lt;br&gt;&lt;strong&gt;题意：&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="动态规划" scheme="https://etbubble.github.io/categories/ACM/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    
+      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
+    
+      <category term="DP" scheme="https://etbubble.github.io/tags/DP/"/>
     
   </entry>
   
@@ -69,11 +101,11 @@
       <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
+      <category term="单调队列" scheme="https://etbubble.github.io/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
+    
       <category term="巧解" scheme="https://etbubble.github.io/tags/%E5%B7%A7%E8%A7%A3/"/>
     
       <category term="笔记" scheme="https://etbubble.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="单调队列" scheme="https://etbubble.github.io/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
     
       <category term="单调栈" scheme="https://etbubble.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
     
@@ -112,7 +144,7 @@
     <link href="https://etbubble.github.io/2019/07/25/2019-Multi-University-Training-Contest-1-1012/"/>
     <id>https://etbubble.github.io/2019/07/25/2019-Multi-University-Training-Contest-1-1012/</id>
     <published>2019-07-25T14:14:37.000Z</published>
-    <updated>2019-07-26T08:35:13.582Z</updated>
+    <updated>2019-07-30T02:39:58.590Z</updated>
     
     <summary type="html">
     
@@ -132,6 +164,8 @@
     
     
       <category term="FTT/NTT/FWT" scheme="https://etbubble.github.io/tags/FTT-NTT-FWT/"/>
+    
+      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
     
   </entry>
   
@@ -296,9 +330,9 @@
       <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
     
     
-      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
-    
       <category term="暴力" scheme="https://etbubble.github.io/tags/%E6%9A%B4%E5%8A%9B/"/>
+    
+      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
     
   </entry>
   
@@ -326,9 +360,9 @@
       <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
     
     
-      <category term="拉格朗日" scheme="https://etbubble.github.io/tags/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5/"/>
-    
       <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+    
+      <category term="拉格朗日" scheme="https://etbubble.github.io/tags/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5/"/>
     
   </entry>
   
@@ -550,32 +584,6 @@
     
     
       <category term="github" scheme="https://etbubble.github.io/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IDEA连接myqsl数据库</title>
-    <link href="https://etbubble.github.io/2019/05/24/IDEA%E8%BF%9E%E6%8E%A5myqsl%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    <id>https://etbubble.github.io/2019/05/24/IDEA连接myqsl数据库/</id>
-    <published>2019-05-24T11:11:00.000Z</published>
-    <updated>2019-07-14T02:19:57.906Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;第一步&lt;br&gt;&lt;img src=&quot;https://i.loli.net/2019/05/24/5ce7d4f3786a726517.png&quot; alt&gt;&lt;br&gt;然后右边就会出现一个database&lt;br&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-      <category term="JAVA" scheme="https://etbubble.github.io/categories/JAVA/"/>
-    
-    
-      <category term="JAVA" scheme="https://etbubble.github.io/tags/JAVA/"/>
     
   </entry>
   

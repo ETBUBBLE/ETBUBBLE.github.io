@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[2019 Multi-University Training Contest 1 1001 Blank]]></title>
-    <url>%2F2019%2F07%2F27%2F2019-Multi-University-Training-Contest-1-1001%2F</url>
-    <content type="text"><![CDATA[题意： 给定1,N 的位置，每个位置可以填1,2,3,4其中一个，给m个区间[l,r] x ，限制[l,r]区间内只有x种不同的数。题解： n非常小，只有100，可以直接用数组枚举上一个数出现的位置，每个位置暴力填就行了。直接$O(n^4)$会T，。，必须要削常数。可以发现出现是什么数本身不重要，只和位置有关。然后最大的那个位置，一定是你要填的这个pos-1,所以dp空间可以优化一维，dp[i][j][k],代表排序后位置分别是i&lt;j&lt;k&lt;pos-1，然后枚举的状态也是i&lt;j&lt;k&lt;pos-1 ，对于限制条件，判断一下状态合不合法就行了。对于某个pos到了[l,r] x,r的位置,判断一下就行了，这个不影响复杂度。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153#include&lt;iostream&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;string&gt;#include&lt;vector&gt;#include&lt;cstdio&gt;#include&lt;cstdlib&gt;#include&lt;cmath&gt;#include&lt;queue&gt;#include&lt;map&gt;#include&lt;set&gt;#include&lt;stack&gt;#include&lt;bitset&gt;#include&lt;unordered_map&gt;#include&lt;unordered_set&gt;using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;(x)&lt;&lt;"]"&lt;&lt;endl;#define mid (l+r)/2#define chl 2*k+1#define chr 2*k+2#define lson l,mid,chl#define rson mid+1,r,chr#define pb push_back#define mem(a, b) memset(a,b,sizeof(a));const long long mod = 998244353;const int maxn = 1e6 + 5;const int INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;void f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif // ONLIN_JUDGE&#125;LL dp[105][105][105][2];struct node &#123; int l, r, x; bool operator&lt;(node &amp;t) const &#123; if (r == t.r)return l &lt; t.l; return r &lt; t.r; &#125;&#125; dat[maxn];int n, m;void check(LL &amp;x) &#123; x %= mod;&#125;int main() &#123; f(); int T; scanf("%d", &amp;T); while (T--) &#123; scanf("%d%d", &amp;n, &amp;m); for (int i = 1; i &lt;= m; i++) &#123; scanf("%d%d%d", &amp;dat[i].l, &amp;dat[i].r, &amp;dat[i].x); dat[i].l += 3; dat[i].r += 3; &#125; dp[0][1][2][1] = 1; sort(dat + 1, dat + m + 1); int l = 1, p = 0; for (int pos = 4; pos &lt;= n + 3; pos++, p = !p) &#123; for (int i = 0; i &lt;= pos - 4; i++) &#123; for (int j = i + 1; j &lt;= pos - 3; j++) &#123; for (int k = j + 1; k &lt;= pos - 2; ++k) &#123; int flag = 0, temp = l; while (temp &lt;= m &amp;&amp; pos - 1 == dat[temp].r) &#123; if (dat[temp].x == 1 &amp;&amp; dat[temp].l &lt;= k) &#123; flag = 1; &#125; if (dat[temp].x == 2 &amp;&amp; (dat[temp].l &lt;= j || dat[temp].l &gt; k)) &#123; flag = 1; &#125; if (dat[temp].x == 3 &amp;&amp; (dat[temp].l &lt;= i || dat[temp].l &gt; j))flag = 1; if (dat[temp].x == 4 &amp;&amp; dat[temp].l &gt; i)flag = 1; temp++; &#125; if (flag) &#123; dp[i][j][k][!p] = 0; continue; &#125; dp[j][k][pos - 1][p] += dp[i][j][k][!p]; check(dp[j][k][pos - 1][p]); dp[i][k][pos - 1][p] += dp[i][j][k][!p]; check(dp[i][j][pos - 1][p]); dp[i][j][pos - 1][p] += dp[i][j][k][!p]; check(dp[i][j][pos - 1][p]); dp[i][j][k][p] += dp[i][j][k][!p]; check(dp[i][j][k][p]); dp[i][j][k][!p] = 0; &#125; &#125; &#125; while (l &lt;= m &amp;&amp; dat[l].r == pos - 1)l++; &#125; LL ans = 0; for (int i = 0; i &lt;= n + 3; i++) &#123; for (int j = i + 1; j &lt;= n + 3; j++) &#123; for (int k = j + 1; k &lt;= n + 3; ++k) &#123; int flag = 0, temp = l; while (temp &lt;= m) &#123; if (dat[temp].x == 1 &amp;&amp; dat[temp].l &lt;= k) &#123; flag = 1; &#125; if (dat[temp].x == 2 &amp;&amp; (dat[temp].l &lt;= j || dat[temp].l &gt; k)) &#123; flag = 1; &#125; if (dat[temp].x == 3 &amp;&amp; (dat[temp].l &lt;= i || dat[temp].l &gt; j))flag = 1; if (dat[temp].x == 4 &amp;&amp; dat[temp].l &gt; i)flag = 1; temp++; &#125; if (flag) &#123; dp[i][j][k][!p] = 0; continue; &#125; ans = (ans + dp[i][j][k][!p] % mod) % mod; dp[i][j][k][!p] = 0; &#125; &#125; &#125; printf("%lld\n", ans); &#125; return 0;&#125;/*61 0410 0104857611 0419430420 044459512330 068215596540 0382013690 */]]></content>
+    <title><![CDATA[2019 Multi-University Training Contest 3 1011 Squrirrel]]></title>
+    <url>%2F2019%2F07%2F30%2F2019-Multi-University-Training-Contest-3-1011%2F</url>
+    <content type="text"><![CDATA[HDU 6613 Squrirrel题意： 可以合并树上两个点，合并两个点让某一个点到离他最远的距离最小，如果有多个答案输出字典序最小的。题解： 首先从叶子节点往根节点跑，保存每个到这个点的最大距离，和儿子节点删掉一条边之后最大距离的最小值。（肯定是从最大路径上删一条边）我为了保险全判断了 。然后再从根节点往儿子节点跑，每次保存一个，最大，次大，第三大，具体为什么看代码注释。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182#include "bits/stdc++.h"using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid (l + r) / 2#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define pb push_back#define mem(a, b) memset(a, b, sizeof(a));const LL mod = (LL) 1e9 + 7;const int maxn = (int) 2e5 + 5;const int INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;#ifndef ONLINE_JUDGEclock_t prostart = clock();#endifvoid f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125;int ans1;vector&lt;int&gt; G[maxn];vector&lt;int&gt; cost[maxn];int dp[maxn];int mi[maxn];int in[maxn];int used[maxn];int ans2 = inf;void dfs(int r, int p, int mx, int cmi, int c) &#123; cmi = min(cmi + c, mx); mx = mx + c; int temp = min(max(mx, mi[r]), max(cmi, dp[r])); if (ans2 &gt; temp) &#123; ans2 = temp; ans1 = r; &#125; if (ans2 == temp) &#123; ans2 = temp; ans1 = min(ans1, r); &#125;// cout &lt;&lt; "r=" &lt;&lt; r &lt;&lt; "mx=" &lt;&lt; mx &lt;&lt; "mi=" &lt;&lt; cmi &lt;&lt; endl;// int temp = min(max(dp[r], cmi), max(mi[r], mx));// if (ans2 &gt; temp) &#123;// ans2 = min(max(dp[r], cmi), max(mi[r], mx));// ans1 = r;// &#125; else if (ans2 == temp)ans1 = min(r, ans1); int mx1 = mx, mx2 = 0, mx3 = 0, mi2 = -1, mi1 = p, mi3 = -1, vmi1 = cmi, vmi2 = 0, vmi3 = 0; //记录最大，次大，第三大 for (int i = 0; i &lt; G[r].size(); i++) &#123; int au = G[r][i]; int c = dp[au] + cost[r][i]; if (au == p) continue; temp = min(dp[au], mi[au] + cost[r][i]); if (mx1 &lt;= c) &#123; swap(mx1, c); swap(mi1, au); swap(vmi1, temp); &#125; if (mx2 &lt;= c) &#123; swap(mx2, c); swap(mi2, au); swap(vmi2, temp); &#125; if (mx3 &lt;= c) &#123; swap(mx3, c); swap(mi3, au); swap(vmi3, temp); &#125; &#125; for (int i = 0; i &lt; G[r].size(); i++) &#123; int au = G[r][i]; int c = cost[r][i]; if (au == p)continue; if (au == mi1) &#123; if (mi3 == -1)dfs(au, r, mx2, vmi2, c); else dfs(au, r, mx2, max(vmi2, mx3), c); //如果是往最大的路径走，就是在次大的路上删一条边再和第三大比较 &#125; else if (au == mi2) &#123; if (mi3 == -1)dfs(au, r, mx1, vmi1, c); else dfs(au, r, mx1, max(vmi1, mx3), c); //如果是往第二大的，就是在最大路上删一条边再和第三大比较 &#125; else dfs(au, r, mx1, max(vmi1, mx2), c); // 其他的肯定都是删最大的路径一条边 再和第二大比较 &#125;&#125;int main() &#123; f(); int n; int t; scanf("%d", &amp;t); while (t--) &#123; scanf("%d", &amp;n); for (int i = 1; i &lt; n; i++) &#123; int u, v, c; scanf("%d%d%d", &amp;u, &amp;v, &amp;c); G[u].emplace_back(v); cost[u].emplace_back(c); G[v].emplace_back(u); cost[v].emplace_back(c); in[u]++; in[v]++; &#125; queue&lt;int&gt; q; for (int i = 1; i &lt;= n; i++) &#123; dp[i] = 0; if (in[i] == 1) &#123; q.push(i); mi[i] = 0; &#125; else mi[i] = inf; &#125; int r = -1; ans1 = 0; ans2 = inf; while (q.size()) &#123; int v = q.front(); q.pop(); r = v; if (used[v] == 0)used[v] = 1; else continue; int mx1 = 0, mx2 = 0; for (int i = 0; i &lt; G[r].size(); i++) &#123; int au = G[r][i]; int c = dp[au] + cost[r][i]; if (!used[au])continue; if (mx1 &lt; c)swap(mx1, c); if (mx2 &lt; c)swap(mx2, c); &#125; for (int i = 0; i &lt; G[r].size(); i++) &#123; int au = G[r][i]; int c = cost[r][i]; if (!used[au])continue; if (dp[au] + c == mx1) &#123; mi[r] = min(mi[r], max(min(dp[au], mi[au] + c), mx2)); //这个肯定就是最小的 &#125; else mi[r] = min(mi[r], max(min(dp[au], mi[au] + c), mx1)); //这个可以不要 &#125; for (int i = 0; i &lt; G[v].size(); i++) &#123; int &amp;au = G[v][i], &amp;c = cost[v][i]; in[au]--; if (used[au] == 0) &#123; dp[au] = max(dp[r] + c, dp[au]); if (in[au] == 1)q.push(au); &#125; &#125; &#125;// for (int i = 1; i &lt;= n; i++) &#123;// printf("[%d]= %d %d\n", i, dp[i], mi[i]);// &#125; if (n == 1 || n == 2)printf("%d %d\n", 1, 0); else &#123; dfs(r, -1, 0, 0, 0); printf("%d %d\n", ans1, ans2); for (int i = 1; i &lt;= n; i++) &#123; used[i] = 0; in[i] = 0; G[i].clear(); cost[i].clear(); &#125; &#125; &#125;#ifndef ONLINE_JUDGE cout &lt;&lt; "运行时间:" &lt;&lt; 1.0 * (clock() - prostart) / CLOCKS_PER_SEC &lt;&lt; "s\n";#endif // ONLIN_JUDGE return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
-        <category>dp</category>
+        <category>动态规划</category>
       </categories>
       <tags>
-        <tag>dp</tag>
+        <tag>树形DP</tag>
+        <tag>杭电多校</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019 Multi-University Training Contest 1 1001 Blank]]></title>
+    <url>%2F2019%2F07%2F27%2F2019-Multi-University-Training-Contest-1-1001%2F</url>
+    <content type="text"><![CDATA[HDU 6578 Blank题意： 给定1,N 的位置，每个位置可以填1,2,3,4其中一个，给m个区间[l,r] x ，限制[l,r]区间内只有x种不同的数。题解： n非常小，只有100，可以直接用数组枚举上一个数出现的位置，每个位置暴力填就行了。直接$O(n^4)$会T，。，必须要削常数。可以发现出现是什么数本身不重要，只和位置有关。然后最大的那个位置，一定是你要填的这个pos-1,所以dp空间可以优化一维，dp[i][j][k],代表排序后位置分别是i&lt;j&lt;k&lt;pos-1，然后枚举的状态也是i&lt;j&lt;k&lt;pos-1 ，对于限制条件，判断一下状态合不合法就行了。对于某个pos到了[l,r] x,r的位置,判断一下就行了，这个不影响复杂度。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153#include&lt;iostream&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;string&gt;#include&lt;vector&gt;#include&lt;cstdio&gt;#include&lt;cstdlib&gt;#include&lt;cmath&gt;#include&lt;queue&gt;#include&lt;map&gt;#include&lt;set&gt;#include&lt;stack&gt;#include&lt;bitset&gt;#include&lt;unordered_map&gt;#include&lt;unordered_set&gt;using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;(x)&lt;&lt;"]"&lt;&lt;endl;#define mid (l+r)/2#define chl 2*k+1#define chr 2*k+2#define lson l,mid,chl#define rson mid+1,r,chr#define pb push_back#define mem(a, b) memset(a,b,sizeof(a));const long long mod = 998244353;const int maxn = 1e6 + 5;const int INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;void f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif // ONLIN_JUDGE&#125;LL dp[105][105][105][2];struct node &#123; int l, r, x; bool operator&lt;(node &amp;t) const &#123; if (r == t.r)return l &lt; t.l; return r &lt; t.r; &#125;&#125; dat[maxn];int n, m;void check(LL &amp;x) &#123; x %= mod;&#125;int main() &#123; f(); int T; scanf("%d", &amp;T); while (T--) &#123; scanf("%d%d", &amp;n, &amp;m); for (int i = 1; i &lt;= m; i++) &#123; scanf("%d%d%d", &amp;dat[i].l, &amp;dat[i].r, &amp;dat[i].x); dat[i].l += 3; dat[i].r += 3; &#125; dp[0][1][2][1] = 1; sort(dat + 1, dat + m + 1); int l = 1, p = 0; for (int pos = 4; pos &lt;= n + 3; pos++, p = !p) &#123; for (int i = 0; i &lt;= pos - 4; i++) &#123; for (int j = i + 1; j &lt;= pos - 3; j++) &#123; for (int k = j + 1; k &lt;= pos - 2; ++k) &#123; int flag = 0, temp = l; while (temp &lt;= m &amp;&amp; pos - 1 == dat[temp].r) &#123; if (dat[temp].x == 1 &amp;&amp; dat[temp].l &lt;= k) &#123; flag = 1; &#125; if (dat[temp].x == 2 &amp;&amp; (dat[temp].l &lt;= j || dat[temp].l &gt; k)) &#123; flag = 1; &#125; if (dat[temp].x == 3 &amp;&amp; (dat[temp].l &lt;= i || dat[temp].l &gt; j))flag = 1; if (dat[temp].x == 4 &amp;&amp; dat[temp].l &gt; i)flag = 1; temp++; &#125; if (flag) &#123; dp[i][j][k][!p] = 0; continue; &#125; dp[j][k][pos - 1][p] += dp[i][j][k][!p]; check(dp[j][k][pos - 1][p]); dp[i][k][pos - 1][p] += dp[i][j][k][!p]; check(dp[i][j][pos - 1][p]); dp[i][j][pos - 1][p] += dp[i][j][k][!p]; check(dp[i][j][pos - 1][p]); dp[i][j][k][p] += dp[i][j][k][!p]; check(dp[i][j][k][p]); dp[i][j][k][!p] = 0; &#125; &#125; &#125; while (l &lt;= m &amp;&amp; dat[l].r == pos - 1)l++; &#125; LL ans = 0; for (int i = 0; i &lt;= n + 3; i++) &#123; for (int j = i + 1; j &lt;= n + 3; j++) &#123; for (int k = j + 1; k &lt;= n + 3; ++k) &#123; int flag = 0, temp = l; while (temp &lt;= m) &#123; if (dat[temp].x == 1 &amp;&amp; dat[temp].l &lt;= k) &#123; flag = 1; &#125; if (dat[temp].x == 2 &amp;&amp; (dat[temp].l &lt;= j || dat[temp].l &gt; k)) &#123; flag = 1; &#125; if (dat[temp].x == 3 &amp;&amp; (dat[temp].l &lt;= i || dat[temp].l &gt; j))flag = 1; if (dat[temp].x == 4 &amp;&amp; dat[temp].l &gt; i)flag = 1; temp++; &#125; if (flag) &#123; dp[i][j][k][!p] = 0; continue; &#125; ans = (ans + dp[i][j][k][!p] % mod) % mod; dp[i][j][k][!p] = 0; &#125; &#125; &#125; printf("%lld\n", ans); &#125; return 0;&#125;/*61 0410 0104857611 0419430420 044459512330 068215596540 0382013690 */]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>动态规划</category>
+      </categories>
+      <tags>
+        <tag>杭电多校</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -21,9 +35,9 @@
         <category>数据结构</category>
       </categories>
       <tags>
+        <tag>单调队列</tag>
         <tag>巧解</tag>
         <tag>笔记</tag>
-        <tag>单调队列</tag>
         <tag>单调栈</tag>
       </tags>
   </entry>
@@ -49,6 +63,7 @@
       </categories>
       <tags>
         <tag>FTT/NTT/FWT</tag>
+        <tag>杭电多校</tag>
       </tags>
   </entry>
   <entry>
@@ -114,8 +129,8 @@
         <category>比赛</category>
       </categories>
       <tags>
-        <tag>牛客暑期多校训练营</tag>
         <tag>暴力</tag>
+        <tag>牛客暑期多校训练营</tag>
       </tags>
   </entry>
   <entry>
@@ -127,8 +142,8 @@
         <category>比赛</category>
       </categories>
       <tags>
-        <tag>拉格朗日</tag>
         <tag>牛客暑期多校训练营</tag>
+        <tag>拉格朗日</tag>
       </tags>
   </entry>
   <entry>
@@ -274,14 +289,14 @@
   </entry>
   <entry>
     <title><![CDATA[EC-FINAL I Misunderstood Missing]]></title>
-    <url>%2F2019%2F04%2F25%2FEC-FINAL%2F</url>
+    <url>%2F2019%2F04%2F25%2FEC-FINAL-I%2F</url>
     <content type="text"><![CDATA[写此篇记录EC-FINAL 铁牌。I Misunderstood … Missing此题，是EC打铁的主要原因。在牛客的那个网站上此题出的比F题还要多，然而我在比赛中却没有写出来，如果这题写出来了，可能还有救。对于这题DP没写出来，感觉是真的傻逼。以后打比赛切记不可以慌张，慌张并不能解决问题，这题如果静下心来思考应该不难想出来。题意：t 组数据 n 个回合初始战力 A 为 0 后面有n 个回合，每个回合可以进行一个操作1可以造成A+a点伤害2每个回合战力加b3直接提升 c 点战斗力问最多能造成多少点伤害题解：DP求解 dp[i][j]为j 个回合进行了第一种操作，操作的下标和为j。如果把1 2 3 三种操作的伤害区分开来，1 操作就是直接造成 a 点伤害。 2 操作会对后面的A造成影响，仔细思考一下加入 2 操作是 第 i 个 后面进行了 j 次攻击 ,能够发现 2 操作 最终造成的伤害和是 （下标和 - i * j ） b 点伤害。举个例子：如果 你在 2 3 进行了攻击,你在第1个回合进行了2操作 那么贡献就 是 (2+3 - 1 * 2)*b。理解了这个 3 操作就更简单了，直接就是j*c的伤害。看到这里也差不多明白，这个DP是从后往前DP的。后面的状态永远都不会影响到前面。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263#include &quot;bits/stdc++.h&quot;using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define bug printf(&quot;*********\n&quot;);#define debug(x) cout &lt;&lt; &quot;[&quot; &lt;&lt; x &lt;&lt; &quot;]&quot; &lt;&lt; endl;#define mid (l + r) / 2#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define pb push_back#define mem(a, b) memset(a, b, sizeof(a));const long long mod = 1e9 + 7;const int maxn = 6e3 + 5;const int INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;void f() &#123;#ifndef ONLINE_JUDGE freopen(&quot;../data.in&quot;, &quot;r&quot;, stdin);#endif return;&#125;LL dp[maxn][105];LL a[105], b[105], c[105];int main() &#123; f(); int t, n; scanf(&quot;%d&quot;, &amp;t); while (t--) &#123; scanf(&quot;%d&quot;, &amp;n); for (int i = 1; i &lt;= n; i++) &#123; scanf(&quot;%lld%lld%lld&quot;, &amp;a[i], &amp;b[i], &amp;c[i]); &#125; memset(dp, -1, sizeof(dp)); dp[n][1]=a[n]; for (int i = n - 1; i &gt;= 1; i--) &#123; for (int j = maxn-1; j&gt;=0; j--) &#123; for (int l = 0; l &lt;= n; l++) &#123; if(dp[j][l]==-1)continue; if(j+i&lt;maxn)dp[j+i][l+1]=max(dp[j+i][l+1],dp[j][l]+a[i]); dp[j][l]=max(dp[j][l]+c[i]*l,max(dp[j][l],dp[j][l]+b[i]*(j-l*i))); &#125; &#125; &#125; LL ans=0; for(int i=0; i&lt;=n; i++) &#123; for(int j=0; j&lt;maxn; j++) &#123; ans=max(dp[j][i],ans); &#125; &#125; printf(&quot;%lld\n&quot;,ans); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
-        <category>dp</category>
+        <category>动态规划</category>
       </categories>
       <tags>
-        <tag>dp</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
