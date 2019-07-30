@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-07-30T02:39:05.185Z</updated>
+  <updated>2019-07-30T14:19:06.075Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>后缀数组和高度数组(LCP)学习笔记(有坑)</title>
+    <link href="https://etbubble.github.io/2019/07/30/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%92%8C%E9%AB%98%E5%BA%A6%E6%95%B0%E7%BB%84(LCP)%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://etbubble.github.io/2019/07/30/后缀数组和高度数组(LCP)学习笔记/</id>
+    <published>2019-07-30T13:22:27.000Z</published>
+    <updated>2019-07-30T14:19:06.075Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;后缀数组&quot;&gt;&lt;a href=&quot;#后缀数组&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="字符串" scheme="https://etbubble.github.io/categories/ACM/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    
+      <category term="笔记" scheme="https://etbubble.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="后缀数组" scheme="https://etbubble.github.io/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
   
   <entry>
     <title>2019 Multi-University Training Contest 3 1011 Squrirrel</title>
@@ -558,32 +588,6 @@
       <category term="数论" scheme="https://etbubble.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
     
       <category term="ACM" scheme="https://etbubble.github.io/tags/ACM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何将本地项目传入github</title>
-    <link href="https://etbubble.github.io/2019/06/24/%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%BC%A0%E5%85%A5github/"/>
-    <id>https://etbubble.github.io/2019/06/24/如何将本地项目传入github/</id>
-    <published>2019-06-24T11:47:30.000Z</published>
-    <updated>2019-07-14T02:29:40.630Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;初始化文件夹&quot;&gt;&lt;a href=&quot;#初始化文件夹&quot; class=&quot;headerlink&quot; title=&quot;初始化文件夹&quot;&gt;&lt;/a&gt;初始化文件夹&lt;/h2&gt;&lt;p&gt;在本地执行&lt;code&gt;git init&lt;/code&gt;命令&lt;br&gt;&lt;figure
-        
-      
-    
-    </summary>
-    
-      <category term="github" scheme="https://etbubble.github.io/categories/github/"/>
-    
-    
-      <category term="github" scheme="https://etbubble.github.io/tags/github/"/>
     
   </entry>
   
