@@ -48,8 +48,8 @@
         <category>动态规划</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>杭电多校</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -61,9 +61,9 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>单调队列</tag>
         <tag>巧解</tag>
         <tag>笔记</tag>
+        <tag>单调队列</tag>
         <tag>单调栈</tag>
       </tags>
   </entry>
@@ -88,8 +88,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>杭电多校</tag>
         <tag>FTT/NTT/FWT</tag>
+        <tag>杭电多校</tag>
       </tags>
   </entry>
   <entry>
@@ -384,8 +384,8 @@
         <category>配置</category>
       </categories>
       <tags>
-        <tag>配置</tag>
         <tag>hexo</tag>
+        <tag>配置</tag>
       </tags>
   </entry>
   <entry>
