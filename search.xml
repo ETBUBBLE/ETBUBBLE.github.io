@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2019牛客暑期多校训练营(第八场)Flower Dance(有坑)]]></title>
+    <url>%2F2019%2F08%2F13%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E5%85%AB%E5%9C%BA)Flower%20Dance%2F</url>
+    <content type="text"><![CDATA[2019牛客暑期多校训练营(第八场)Flower Dance 题意: 给$n$个点 $m$条边，每条边有一个权值区间，表示能通过这个区间的 值的范围，问从$1$到$n$可以通过的权值有多少个。 题解: 1.DFS线段树+离散化+并查集这个线段树，其实也不能算是个正常的线段树，他build 的之后就没啥用了，没有更新和查询.。。直接在线段树上dfs,首先把权值离散化，然后存入线段树中，线段树每个节点表示，区间[l,r]，中有哪些边，这样每次深搜下去，经过的边用并查集维护起来，表示哪些点是联通的，然后如果，1和n联通的话就更新权值。这题有回溯，就有拆边，所以并查集要保存路径，而且要加按秩合并的优化,不然会超时。 写离散化线段树尽量保存 (l,r] 左开右闭的区间值，保存[l,r] 的区间会出问题 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151#include "bits/stdc++.h"using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid ((l + r) &gt;&gt; 1)#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid, r, chr#define eb(x) emplace_back(x)#define pb(x) emplace_back(x)#define mem(a, b) memset(a, b, sizeof(a));const LL mod = (LL) 1e9 + 7;const int maxn = (int) 1e6 + 5;const LL INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;#ifndef ONLINE_JUDGEclock_t prostart = clock();#endifvoid f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125;//typedef __int128 LLL;template&lt;typename T&gt;void read(T &amp;w) &#123;//读入 char c; while (!isdigit(c = getchar())); w = c &amp; 15; while (isdigit(c = getchar())) w = w * 10 + (c &amp; 15);&#125;template&lt;typename T&gt;void output(T x) &#123; if (x &lt; 0) putchar('-'), x = -x; int ss[55], sp = 0; do ss[++sp] = x % 10; while (x /= 10); while (sp) putchar(48 + ss[sp--]);&#125;struct edge &#123; int u, v, l, r;&#125; eg[maxn];vector&lt;int&gt; v;int get(int x) &#123; return lower_bound(v.begin(), v.end(), x) - v.begin() + 1;&#125;int n, m;vector&lt;int&gt; dat[maxn];void build(int l, int r, int k, int a, int b, int x) &#123; if (l == a &amp;&amp; b == r) &#123; dat[k].emplace_back(x); return; &#125; if (b &lt;= mid) &#123; build(lson, a, b, x); &#125; else if (a &gt;= mid) &#123; build(rson, a, b, x); &#125; else &#123; build(lson, a, mid, x); build(rson, mid, b, x); &#125;&#125;vector&lt;int&gt; d[maxn];int ans = 0;int par[maxn];int find(int x) &#123; return (par[x] == x) ? x : find(par[x]);&#125;int rk[maxn];void unit(int x, int y, int dep) &#123; x = find(x); y = find(y); if (x != y) &#123; if (rk[x] &lt; rk[y])swap(x, y); par[y] = x; d[dep].emplace_back(y); if (rk[x] == rk[y])rk[x]++; &#125;&#125;void dfs(int l, int r, int k, int dep) &#123; d[dep].clear(); for (auto au:dat[k]) &#123; unit(eg[au].u, eg[au].v, dep); &#125; if (find(1) == find(n)) &#123; ans += v[r - 1] - v[l - 1]; &#125; else if (r != l + 1) &#123; dfs(lson, dep + 1); dfs(rson, dep + 1); &#125; for (auto au:d[dep]) &#123; par[au] = au; &#125;&#125;int main() &#123; f(); read(n); read(m); for (int i = 0; i &lt;= n; i++)par[i] = i; for (int i = 0; i &lt; m; i++) &#123; read(eg[i].u); read(eg[i].v); read(eg[i].l); read(eg[i].r); v.emplace_back(eg[i].l); v.emplace_back(eg[i].r + 1); &#125; sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end()); int mx = v.size(); for (int i = 0; i &lt; m; i++) &#123; build(1, mx, 1, get(eg[i].l), get(eg[i].r + 1), i); &#125; dfs(1, mx, 1, 0); output(ans); puts("");#ifndef ONLINE_JUDGE cout &lt;&lt; "运行时间:" &lt;&lt; 1.0 * (clock() - prostart) / CLOCKS_PER_SEC &lt;&lt; endl;#endif return 0;&#125; LCT+最小生成树 挖个坑，懒得学splay]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+        <tag>离散化</tag>
+        <tag>并查集</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019牛客暑期多校训练营(第八场) Distance]]></title>
+    <url>%2F2019%2F08%2F13%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E5%85%AB%E5%9C%BA)Distance%2F</url>
+    <content type="text"><![CDATA[2019牛客暑期多校训练营(第八场) Distance题意: 给你一个 $n m h$ 的空间，每次插入一个点，或者询问空间中点到这一点的最小曼哈顿距离。题解: 1.HASH+三维BIT三维BIT，对于这种写法，太巨了，$n m h &lt; 1e5$ 特么直接用三维BIT 存一下就可以了，枚举八个方向，把绝对值去掉，然后最牛的还是hash处理，把三维压缩成一维，削常数，我特么卡常卡成这样也是少见。这种hash将维度，枚举八个方向去绝对值，数组数组模拟空间，还是挺6的123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142#include "bits/stdc++.h"using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid ((l + r) &gt;&gt; 1)#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define eb(x) emplace_back(x)#define pb(x) emplace_back(x)#define mem(a, b) memset(a, b, sizeof(a));const LL mod = (LL) 1e9 + 7;const int maxn = (int) 1e6 + 5;const LL INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;#ifndef ONLINE_JUDGEclock_t prostart = clock();#endifvoid f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125;//typedef __int128 LLL;template&lt;typename T&gt;void read(T &amp;w) &#123;//读入 char c; while (!isdigit(c = getchar())); w = c &amp; 15; while (isdigit(c = getchar())) w = w * 10 + (c &amp; 15);&#125;template&lt;typename T&gt;void output(T x) &#123; if (x &lt; 0) putchar('-'), x = -x; int ss[55], sp = 0; do ss[++sp] = x % 10; while (x /= 10); while (sp) putchar(48 + ss[sp--]);&#125;typedef vector&lt;int&gt; VI;typedef vector&lt;VI&gt; VVI;typedef vector&lt;VVI&gt; VVVI;struct BIT &#123; int n, m, h; int a[maxn]; void init(int n, int m, int h) &#123; this-&gt;n = n; this-&gt;m = m; this-&gt;h = h; mem(a, -inf); &#125; int get(int x, int y, int z) &#123; return x * h * m + y * h + z; &#125; int lowbit(int &amp;x) &#123; return x &amp; (-x); &#125; void add(int x, int y, int z, int t) &#123; for (int i = x; i &lt;= n; i += lowbit(i)) for (int j = y; j &lt;= m; j += lowbit(j)) for (int k = z; k &lt;= h; k += lowbit(k)) a[get(i, j, k)] = max(a[get(i, j, k)], t); &#125; int sum(int x, int y, int z) &#123; int res = -inf; for (int i = x; i; i -= lowbit(i)) for (int j = y; j; j -= lowbit(j)) for (int k = z; k; k -= lowbit(k)) res = max(a[get(i, j, k)], res); return res; &#125;&#125; b[8];int get_pos(int x, int pos) &#123; return (x &gt;&gt; pos) &amp; 1;&#125;int main() &#123; f(); int n, m, h, q; int op; read(n); read(m); read(h); read(q); for (int i = 0; i &lt; 8; i++) &#123; b[i].init(n, m, h); &#125; int d[] = &#123;n + 1, m + 1, h + 1&#125;; int a[3], c[3]; while (q--) &#123; read(op); read(a[0]); read(a[1]); read(a[2]); if (op == 1) &#123; for (int i = 0; i &lt; 8; i++) &#123; c[0] = get_pos(i, 0) ? d[0] - a[0] : a[0]; c[1] = get_pos(i, 1) ? d[1] - a[1] : a[1]; c[2] = get_pos(i, 2) ? d[2] - a[2] : a[2]; b[i].add(c[0], c[1], c[2], c[1] + c[2] + c[0]); &#125; &#125; else &#123; int ans = inf; for (int i = 0; i &lt; 8; i++) &#123; c[0] = get_pos(i, 0) ? d[0] - a[0] : a[0]; c[1] = get_pos(i, 1) ? d[1] - a[1] : a[1]; c[2] = get_pos(i, 2) ? d[2] - a[2] : a[2]; ans = min(ans, c[0] + c[1] + c[2] - b[i].sum(c[0], c[1], c[2])); &#125; output(ans); puts(""); &#125; &#125;#ifndef ONLINE_JUDGE cout &lt;&lt; "运行时间:" &lt;&lt; 1.0 * (clock() - prostart) / CLOCKS_PER_SEC &lt;&lt; " s" &lt;&lt; endl;#endif return 0;&#125; 2.分块+bfs第二种写法就更骚了Orz,对于 $1e5$ 组查询，分成$\sqrt{(1e5)}$ 块，每次插入一个点，先判断有没有$\sqrt{(1e5)}$个，少于这个数量，直接暴力找，假设就算每次都是满的都是 $\sqrt{(1e5)} 1e5$ 的复杂度，然后如果满了，直接空间中bfs,比如说你插入了两个点,0,0,1 0,0,2,直接暴力bfs,枚举6个方向,找离这个点最近的距离是多少。暴力枚举空间复杂度是$O(n m h)$.总复杂度就是 $q\sqrt{q}+\sqrt{n m h} q$.* 这种分块更新的操作，学不来，学不来，根本学不来。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148#include "bits/stdc++.h" using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid ((l + r) &gt;&gt; 1)#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define eb(x) emplace_back(x)#define pb(x) emplace_back(x)#define mem(a, b) memset(a, b, sizeof(a)); const LL mod = (LL) 1e9 + 7;const int maxn = (int) 1e6 + 5;const LL INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8; #ifndef ONLINE_JUDGEclock_t prostart = clock();#endif void f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125; //typedef __int128 LLL; template&lt;typename T&gt;void read(T &amp;w) &#123;//读入 char c; while (!isdigit(c = getchar())); w = c &amp; 15; while (isdigit(c = getchar())) w = w * 10 + (c &amp; 15);&#125; template&lt;typename T&gt;void output(T x) &#123; if (x &lt; 0) putchar('-'), x = -x; int ss[55], sp = 0; do ss[++sp] = x % 10; while (x /= 10); while (sp) putchar(48 + ss[sp--]);&#125; int a[maxn]; int dir[6][3] = &#123;&#123;1, 0, 0&#125;, &#123;-1, 0, 0&#125;, &#123;0, 1, 0&#125;, &#123;0, -1, 0&#125;, &#123;0, 0, 1&#125;, &#123;0, 0, -1&#125;&#125;;int X[maxn], Y[maxn], Z[maxn];int lx, ly, lz;int n, m, h, q; int get(int x, int y, int z) &#123; return x * h * m + y * h + z;&#125; struct node &#123; int k, x, y, z; node(int x, int y, int z) &#123; this-&gt;x = x; this-&gt;y = y; this-&gt;z = z; this-&gt;k = get(x, y, z); &#125;&#125;; void rebuild() &#123; queue&lt;node&gt; que; for (int i = 0; i &lt; lx; i++) &#123; que.push(node(X[i], Y[i], Z[i])); a[get(X[i], Y[i], Z[i])] = 0; &#125; while (que.size()) &#123; node t = que.front(); que.pop(); for (int i = 0; i &lt; 6; i++) &#123; int tox = t.x + dir[i][0], toy = t.y + dir[i][1], toz = t.z + dir[i][2]; if (tox &lt; 0 || tox &gt;= n || toy &lt; 0 || toy &gt;= m || toz &lt; 0 || toz &gt;= h) continue; int k = get(tox, toy, toz); if (a[k] &gt; a[t.k] + 1) &#123; a[k] = a[t.k] + 1; que.push(node(tox, toy, toz)); &#125; &#125; &#125; lx = 0; ly = 0; lz = 0;&#125; int op, x, y, z; int main() &#123; f(); mem(a, inf); read(n); read(m); read(h); read(q); while (q--) &#123; read(op); read(x); read(y); read(z); --x, --y, --z; if (op == 1) &#123; X[lx++] = x; Y[ly++] = y; Z[lz++] = z; &#125; else &#123; int k = get(x, y, z); int ans = a[k]; for (int i = 0; i &lt; lx; i++) &#123; ans = min(ans, abs(x - X[i]) + abs(z - Z[i]) + abs(y - Y[i])); &#125; output(ans); puts(""); &#125; if (lx == 300) &#123; rebuild(); &#125; &#125;#ifndef ONLINE_JUDGE cout &lt;&lt; "运行时间:" &lt;&lt; 1.0 * (clock() - prostart) / CLOCKS_PER_SEC &lt;&lt; " s" &lt;&lt; endl;#endif return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>树状数组</tag>
+        <tag>分块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[20190810222138]]></title>
+    <url>%2F2019%2F08%2F10%2F20190810222138%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[2019牛客暑期多校训练营(第七场) E Find the median]]></title>
+    <url>%2F2019%2F08%2F09%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%B8%83%E5%9C%BA)-E-Find-the-median%2F</url>
+    <content type="text"><![CDATA[2019牛客暑期多校训练营(第七场)Find the median 题意: 先把输入处理一下，没啥问题吧。处理完后应该相当于每次在一个集合里面加入l,r之间所有的数，问中位数是多少。题解： 这题很有意思，离散化+线段树 就能做，就相当于在线段树上求第sum/2个数在哪。比较朴素的就是先把所有的l,r保存下来，然后把他离散化，然后对离散化后的值做插入删除操作，我根据线段树动态开点的操作，写了个在线段树上直接离散化的操作，有点像把动态开点和离散化结合起来的感觉。总体来说：就是需要哪个区间我就把线段树的下一个节点开什么样的l,r，不一定是刚好分一半。这样写很容易被卡掉，因为可能退化到$n^2$的复杂度。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135#include "bits/stdc++.h"using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;const LL mod = (LL) 1e9 + 7;const int maxn = (int) 4e7 + 5;const int MX = 4e5 + 10;const int INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;#ifndef ONLINE_JUDGEclock_t prostart = clock();#endifvoid f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125;LL n;LL x1, x2, a1, b1, c1, m1, Y1, y2, a2, b2, c2, m2;LL ls[MX], rs[MX], xs[MX], ys[MX];struct node &#123; int l; int r; int num; LL sum; int ls, rs;&#125; dat[maxn];int cnt;int init(int l, int r, int k) &#123; dat[k].l = l; dat[k].r = r; dat[k].sum = 0; dat[k].num = 0; dat[k].ls = -1; dat[k].rs = -1; return k;&#125;void build(int l, int r, int k) &#123; cnt = 0; init(l, r, cnt++);&#125;void add(int k, int num) &#123; dat[k].num += num; dat[k].sum += 1LL * (dat[k].r - dat[k].l + 1) * num;&#125;void pushdown(int k) &#123; add(dat[k].ls, dat[k].num); add(dat[k].rs, dat[k].num); dat[k].num = 0; dat[k].sum = dat[dat[k].ls].sum + dat[dat[k].rs].sum;&#125;void update(int a, int b, int k) &#123; if (b &lt; dat[k].l || a &gt; dat[k].r)return; if (a &lt;= dat[k].l &amp;&amp; dat[k].r &lt;= b) &#123; dat[k].num++; dat[k].sum += dat[k].r - dat[k].l + 1; &#125; else &#123; if (dat[k].ls == -1) &#123; int mid; if (b &lt;= dat[k].r) &#123; mid = b; &#125; else mid = a; if (mid == dat[k].l) &#123; //需要什么点，开什么点 dat[k].ls = init(dat[k].l, mid, cnt++); dat[k].rs = init(mid + 1, dat[k].r, cnt++); &#125; else &#123; dat[k].ls = init(dat[k].l, mid - 1, cnt++); dat[k].rs = init(mid, dat[k].r, cnt++); &#125; &#125; pushdown(k); update(a, b, dat[k].ls); update(a, b, dat[k].rs); dat[k].sum = dat[dat[k].ls].sum + dat[dat[k].rs].sum; &#125;&#125;int querry(int k, LL x) &#123; if (dat[k].ls == -1) &#123; return dat[k].l + (x + dat[k].num - 1) / dat[k].num - 1; &#125; else &#123; pushdown(k); if (dat[dat[k].ls].sum &gt;= x) &#123; return querry(dat[k].ls, x); &#125; else return querry(dat[k].rs, x - dat[dat[k].ls].sum); &#125;&#125;int main() &#123; f(); scanf("%lld", &amp;n); scanf("%lld%lld%lld%lld%lld%lld", &amp;x1, &amp;x2, &amp;a1, &amp;b1, &amp;c1, &amp;m1); scanf("%lld%lld%lld%lld%lld%lld", &amp;Y1, &amp;y2, &amp;a2, &amp;b2, &amp;c2, &amp;m2); ls[1] = min(x1, Y1) + 1, rs[1] = max(x1, Y1) + 1; ls[2] = min(x2, y2) + 1, rs[2] = max(x2, y2) + 1; xs[1] = x1, ys[1] = Y1; xs[2] = x2, ys[2] = y2; for (int i = 3; i &lt;= n; ++i) &#123; xs[i] = (1LL * a1 * xs[i - 1] + 1LL * b1 * xs[i - 2] + c1) % m1; ys[i] = (1LL * a2 * ys[i - 1] + 1LL * b2 * ys[i - 2] + c2) % m2; ls[i] = min(xs[i], ys[i]) + 1; rs[i] = max(xs[i], ys[i]) + 1; &#125; LL mi = 1e9 + 1, mx = -1; for (int i = 1; i &lt;= n; ++i) &#123; mx = max(mx, rs[i]); mi = min(mi, ls[i]); &#125; LL S = 0; build(mi, mx, 0); for (LL i = 1; i &lt;= n; i++) &#123; S += rs[i] - ls[i] + 1; update(ls[i], rs[i], 0); printf("%d\n", querry(0, (S+1) / 2)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+        <tag>离散化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019 Multi-University Training Contest 5 1002 three arrays]]></title>
+    <url>%2F2019%2F08%2F09%2F2019-Multi-University-Training-Contest-5-1002-three-arrays%2F</url>
+    <content type="text"><![CDATA[HDU 6625 three arrays题意： 给两个数组，求两个数组两两异或后最小字典序。题解： 求字典序最小，也就是求值最小，如果是求一个数和另一个数组里面的一个值异或最小，很显然就是字典树，就是在字典树上优先取同位相同，没有再取同位相反。求两个数组异或之后字典序最小，其实也可以按照同样的方法求解。对两个数组分别做成一颗字典树，求两颗线段树异或之后字典序最小，就是两颗树异或值尽可能小。一开始我想到这个写法的时候，队友说如果0 0，和1 1 异或都等于0 先选哪一个，仔细思考一下，其实没有什么影响，统计一下两颗树当前节点下方，0 1 的个数，优先把 0 0 1 1 匹配掉，然后再把0 1 1 0两种匹配掉。有点像在字典树上贪心.复杂度两颗树最多有n*31个节点，最差就是每个树都跑一次，所以复杂度是$O(nlog(n))$123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141#include "bits/stdc++.h"using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid (l + r) / 2#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define pb push_back#define mem(a, b) memset(a, b, sizeof(a));const LL mod = (LL) 1e9 + 7;const int maxn = (int) 1e6 + 5;const int INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;#ifndef ONLINE_JUDGEclock_t prostart = clock();#endifvoid f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125;int n;inline int getpos(int x, int pos) &#123; return ((x &gt;&gt; pos) &amp; 1);&#125;struct tree &#123; int a[maxn * 10][3]; int num[maxn * 10][3]; int root = 0; int cnt = 1; void init() &#123; cnt = 1; &#125; void insert(int x) &#123; int p = root, dep = 30; while (dep &gt;= 0) &#123; int nx = getpos(x, dep); if (num[p][nx] == 0) &#123; a[p][nx] = cnt++; num[p][nx] = 1; &#125; else &#123; num[p][nx]++; &#125; p = a[p][nx]; dep--; &#125; &#125;&#125; t1, t2;vector&lt;int&gt; v;template&lt;class T&gt;inline T min(T t1, T t2, T t3) &#123; return min(t1, min(t2, t3));&#125;void dfs(int now1, int now2, int num, int val, int dep) &#123; if (dep == -1) &#123; for (int i = 0; i &lt; num; i++) v.emplace_back(val); return; &#125; if (t1.num[now1][0] &gt; 0 &amp;&amp; t2.num[now2][0] &gt; 0 &amp;&amp; num &gt; 0) &#123; int ct = min(t2.num[now2][0], t1.num[now1][0], num); dfs(t1.a[now1][0], t2.a[now2][0], ct, val, dep - 1); t1.num[now1][0] -= ct; t2.num[now2][0] -= ct; num -= ct; &#125; if (t1.num[now1][1] &gt; 0 &amp;&amp; t2.num[now2][1] &gt; 0 &amp;&amp; num &gt; 0) &#123; int ct = min(t1.num[now1][1], t2.num[now2][1], num); dfs(t1.a[now1][1], t2.a[now2][1], ct, val, dep - 1); t1.num[now1][1] -= ct; t2.num[now2][1] -= ct; num -= ct; &#125; if (t1.num[now1][0] &gt; 0 &amp;&amp; t2.num[now2][1] &gt; 0 &amp;&amp; num &gt; 0) &#123; int ct = min(t2.num[now2][1], t1.num[now1][0], num); dfs(t1.a[now1][0], t2.a[now2][1], ct, val | (1 &lt;&lt; dep), dep - 1); t1.num[now1][0] -= ct; t2.num[now2][1] -= ct; num -= ct; &#125; if (t1.num[now1][1] &gt; 0 &amp;&amp; t2.num[now2][0] &gt; 0 &amp;&amp; num &gt; 0) &#123; int ct = min(t1.num[now1][1], t2.num[now2][0], num); dfs(t1.a[now1][1], t2.a[now2][0], ct, val | (1 &lt;&lt; dep), dep - 1); t1.num[now1][1] -= ct; t2.num[now2][0] -= ct; num -= ct; &#125;&#125;int main() &#123; f(); int T; scanf("%d", &amp;T); while (T--) &#123; scanf("%d", &amp;n); t1.init(); t2.init(); for (int i = 0; i &lt; n; i++) &#123; int a; scanf("%d", &amp;a); t1.insert(a); &#125; for (int j = 0; j &lt; n; j++) &#123; int a; scanf("%d", &amp;a); t2.insert(a); &#125; v.clear();// debug(t2.num[29][1]); dfs(0, 0, n, 0, 30); sort(v.begin(), v.end()); for (int i = 0; i &lt; n; i++) &#123; printf("%d%c", v[i], i == n - 1 ? '\n' : ' '); &#125; &#125;#ifndef ONLINE_JUDGE cout &lt;&lt; "运行时间:" &lt;&lt; 1.0 * (clock() - prostart) / CLOCKS_PER_SEC &lt;&lt; endl;#endif return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>字典树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[回文树]]></title>
+    <url>%2F2019%2F08%2F07%2F%E5%9B%9E%E6%96%87%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[这个东西学会了AC自动机 理解这个应该不难，AC自动fail指针保存了一个最长匹配后缀，这个也差不多。这个保存了最长匹配后缀回文串。举个例子老子找了半天没找到原本看过的博客，只找到了这张图片。随便写几句混一混就过去了。回文树里面的next 和字典树差不多的意义，只不过字典树里面的一个节点是表示在一个节点后面加上一个字符，但next是前后各加一个字符,就是t变成tc 和t变成ctc的区别，前后各加一个字符肯定是回文串。那么问题来了奇数的回文串怎么办，所以出现啊了两个根节点，一个0,一个-1，连在-1的表示是个奇数个数的回文串，看代码里面的x-len[p]+1刚好也是自己，所以自己和自己一定是回文串没啥毛病。再给个图fail差不多就是上图的意思.解释下例子怎么构造的开始的时候建立两个根节点,两个根节点一个长度为0,一个-1，将fail[0]=1,0表示长度为0,1号节点长度为-1,一开始加入a肯定是没有任何后缀，直接连上-1根节点，fail肯定是连上0，此时当前节点的回文后缀有a，空串和-1，然后添加b,a节点前面很显然没有b，所以无法匹配，然后匹配空串，空串前面是a所以还是没法匹配，又匹配-1，很显然这个一定是可以的，因为和自己肯定是相同的.也就是构建了这一部分。然后下一个字符串还是b,此时后缀有b,空串和-1，匹配后缀b前一个是a很显然不匹配，匹配空串,前一个刚好是b所以此时，将bb连到0节点下面，fail指向父亲节点失陪的第一个能够匹配b的位置，这个有点难理解。在代码中是这一行。下一个字符是a，此时字符串最长回文后缀有bb,b,空串和-1,显然bb就直接匹配了，然后再更新fail,差不多就是这么个过程。多余的不解释看别人博客去吧。想深入了解，去看看 国家集训队2017年的论文 吧12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061namespace Palindromic_Tree &#123;const int MAXN = 1000010;const int N = 26;int next[MAXN][N];//next指针，next指针和字典树类似，指向的串为当前串两端加上同一个字符构成int fail[MAXN];//fail指针，失配后跳转到fail指针指向的节点int cnt[MAXN];int num[MAXN];int len[MAXN];//len[i]表示节点i表示的回文串的长度int S[MAXN];//存放添加的字符int last;//指向上一个字符所在的节点，方便下一次addint n;//字符数组指针int p;//节点指针int newnode(int l) &#123;//新建节点 for (int i = 0; i &lt; N; ++i) next[p][i] = 0; cnt[p] = 0; num[p] = 0; len[p] = l; return p++;&#125;void init() &#123;//初始化 p = 0; newnode(0); newnode(-1); last = 0; n = 0; S[n] = -1;//开头放一个字符集中没有的字符，减少特判 fail[0] = 1;&#125;int get_fail(int x) &#123;//和KMP一样，失配后找一个尽量最长的 while (S[n - len[x] - 1] != S[n]) x = fail[x]; return x;&#125;int add(int c) &#123; c -= 'a'; S[++n] = c; int ct = 0; int cur = get_fail(last);//通过上一个回文串找这个回文串的匹配位置 if (!next[cur][c]) &#123;//如果这个回文串没有出现过，说明出现了一个新的本质不同的回文串 int now = newnode(len[cur] + 2);//新建节点 fail[now] = next[get_fail(fail[cur])][c];//和AC自动机一样建立fail指针，以便失配后跳转 next[cur][c] = now; num[now] = num[fail[now]] + 1; ct = num[now]; &#125; last = next[cur][c]; cnt[last]++; return num[last];&#125;void count() &#123; for (int i = p - 1; i &gt;= 0; --i) cnt[fail[i]] += cnt[i]; //父亲累加儿子的cnt，因为如果fail[v]=u，则u一定是v的子回文串！&#125;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+        <tag>回文树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[AC自动机]]></title>
+    <url>%2F2019%2F08%2F07%2FAC%E8%87%AA%E5%8A%A8%E6%9C%BA%2F</url>
+    <content type="text"><![CDATA[AC自动机用途给多个字符串t，再询问一个字符串s，问有多少个字符串t出现在询问的字符串s中。 前置技能学AC自动机之前，先学会什么是字典树，什么是kmp。kmp我写过一篇博客，就不讲了，就是next 数组保存一个最长匹配前缀。字典树就更简单了，每个节点从根节点开始，出现一个字符就在父亲节点上连上下一个节点，也不多说。有需要再写一篇博客。 AC自动机对于这个玩意，都说是字典树上跑KMP,到也没错。朴素KMP是在一个串上面跑next,而AC自动机只是变成了在字典树节点上跑fail指针，每个fail指针保存是最长匹配后缀。推荐一名大佬博客，讲的挺不错的。朴素的写法，每一个字符串t对s做一次kmp算法或者 对所有的t字符串建一颗字典树，然后每个位置匹配一下，很显然$O(n^2)$的复杂度，绝对超时。仔细思考一下，字典树里面，每次匹配都要从下一个位置开始跑一次匹配，类比一下没有kmp的朴素字符串匹配。是不是有点相似。普通单个字符串匹配，是不是枚举每一个位置，然后做一次暴力匹配？然后kmp 做了什么，通过next找到最大匹配前缀。那么我们是否可以在字典树用fail保存最大匹配后缀呢？显然是可以的，不然AC自动机干啥.举个栗子： 假设有三个t asa aaa aas, 匹配aasab字典树建成这个样子，丑了点，别在意，重在思想。然后一开始吧aas匹配掉了没啥意见吧，然后继续匹配aasa，很显然这个时候没有这个字符串，那么肯定就要转移，转移到哪去呢？最长匹配后缀啊。如图是不是这样。然后匹配asa,再继续匹配b,很显然失配了啊，然后找最长匹配后缀，只有根节点了，然后根节点背后又没有b。所以啥都没了，匹配最长后缀为空串。好了，现在差不多理解这个算法的思想，接下来就是一些细节，不知道我还有没有没有考虑到的，如果有请在评论区提问。1.上诉所讲的例子很明显，aas向as跳转，如果后继没有a这个节点怎么办?asa 改成asb,asa要匹配谁呢？这个在kmp算法里面也有这个问题，很显然，继续找下去就能解决问题，假设 再加一个tsb，aasb适配，aas调转到as没有后继b,再跳转到匹配后缀s，有后继b就匹配sb，类推，如果还没有找到就继续想上找。ps: 这个地方可以优化，fail指针找到了最长匹配后缀，然后字典树的下一个节点可以直接跳到对应位置如例子 aas后继a可以直接跳到为asa这个节点，不过不优化也没啥影响，因为字符串长度是固定的，最多不会跳超过n次，不优化只是多了个常数2.多个匹配怎么办？没到一个节点把他的fail找下去记录个数，如图字典树匹配sa,的时候会找他的fail,找到a然后把a这个节点记录，同理找sab,不仅仅把自己匹配了，还要把b匹配掉3.怎么记录个数，如果一个字符串多次出现怎么办，看代码，记录一下就行了。 这个AC自动机的思想还是要学好，后面回文自动机要用到这个玩意的思想。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263namespace Aho_Corasick_Automaton &#123;int trie[maxn][27]; //字典树int cntword[maxn]; //记录单词出现次数，可以开一个vector记录是第几个单词int fail[maxn]; // 失败回溯int cnt=0; // 树的节点个数void init(int x) &#123; for(int i=0; i&lt;26; i++) &#123; trie[x][i]=0; &#125;&#125;void insertWords(char *s) &#123; int ls=strlen(s); int root=0; for(int i=0; i&lt;ls; i++) &#123; int next=s[i]-'a'; if(!trie[root][next]) &#123; init(++cnt); trie[root][next]=cnt; &#125; root=trie[root][next]; &#125; cntword[root]++;&#125;void getFial() &#123; queue&lt;int&gt; q; for(int i=0; i&lt;26; i++) &#123; if(trie[0][i]) &#123; fail[trie[0][i]]=0; q.push(trie[0][i]); &#125; &#125; while(q.size()) &#123; int now=q.front(); q.pop(); for(int i=0; i&lt;26; i++) &#123; if(trie[now][i]) &#123; fail[trie[now][i]]=trie[fail[now]][i]; q.push(trie[now][i]); &#125; else trie[now][i]=trie[fail[now]][i]; &#125; &#125;&#125;int query(char *s) &#123; int ls=strlen(s); int now =0,ans=0; for(int i=0; i&lt;ls; i++) &#123; now=trie[now][s[i]-'a']; for(int j=now; j&amp;&amp;cntword[j]!=-1; j=fail[j]) &#123; // 如果这种状态已经计算过了就不用继续找下去了 ans+=cntword[j];//统计个数，可以在这进行各种操作 cntword[j]=-1; &#125; &#125; return ans;&#125;&#125; 再贴一个大哥板子123456789101112131415161718192021222324252627282930313233343536373839queue&lt;int&gt;q;struct Aho_Corasick_Automaton &#123; int c[N][26],val[N],fail[N],cnt; void ins(char *s) &#123; int len=strlen(s); int now=0; for(int i=0; i&lt;len; i++) &#123; int v=s[i]-'a'; if(!c[now][v]) c[now][v]=++cnt; now=c[now][v]; &#125; val[now]++; &#125; void build() &#123; for(int i=0; i&lt;26; i++) if(c[0][i]) fail[c[0][i]]=0,q.push(c[0][i]); while(!q.empty()) &#123; int u=q.front(); q.pop(); for(int i=0; i&lt;26; i++) if(c[u][i]) fail[c[u][i]]=c[fail[u]][i],q.push(c[u][i]); else c[u][i]=c[fail[u]][i]; &#125; &#125; int query(char *s) &#123; int len=strlen(s); int now=0,ans=0; for(int i=0; i&lt;len; i++) &#123; now=c[now][s[i]-'a']; for(int t=now; t&amp;&amp;~val[t]; t=fail[t]) ans+=val[t],val[t]=-1; &#125; return ans; &#125;&#125; AC;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>AC自动机</tag>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2019 Multi-University Training Contest 4-1003 Divide the Stones]]></title>
     <url>%2F2019%2F07%2F31%2F2019-Multi-University-Training-Contest-4-1003%2F</url>
     <content type="text"><![CDATA[HDU 6616 Divide the Stones题意： 给一个n和一个k，将重量为[1,n]的石子分成k堆，每堆重量一样。题解： 先将石子分成n/k份，比如15 3，分成1 2 34 5 67 8 910 11 1213 14 15不难看出如果刚好偶数分，每两份组成一个，分配一定是刚好分配合理的，比如上述例子没有13 14 15,肯定是前两组分成 1 6,2 5 3 4 后两组7 12 8 11 9 10,这样一定是平分的。如果是奇数，&gt;3的份数，依旧一样的处理，1 2 3前三份再分成3等份。这个分法有很多，我找了一个比较辣鸡的。 画个图给你看下图给你了，看不看得懂就是你的悟性了，告辞.123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113#include "bits/stdc++.h"using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid (l + r) / 2#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define pb push_back#define mem(a, b) memset(a, b, sizeof(a));const LL mod = (LL) 1e9 + 7;const int maxn = (int) 1e6 + 5;const int INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;#ifndef ONLINE_JUDGEclock_t prostart = clock();#endifvoid f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125;LL n, k;vector&lt;int&gt; v[maxn];vector&lt;LL&gt; ans[maxn];int main() &#123; int T; f(); scanf("%d", &amp;T); while (T--) &#123; scanf("%lld%lld", &amp;n, &amp;k); LL sum = n * (n + 1) / 2 / k; if (n == 1 &amp;&amp; k == 1) &#123; puts("yes\n1"); continue; &#125; if (n == k || n * (n + 1) / 2 % k != 0) &#123; puts("no"); &#125; else if (k == 1) &#123; puts("yes"); for (int i = 1; i &lt;= n; i++) &#123; printf("%d%c", i, i == n ? '\n' : ' '); &#125; &#125; else &#123; n /= k; int pos = 1; for (int i = 1; i &lt;= n; i++) &#123; for (int j = 0; j &lt; k; j++) &#123; v[i].push_back(pos++); &#125; &#125; puts("yes"); if (n &amp; 1) &#123; for (int j = 4; j &lt;= n; j += 2) &#123; for (int i = 0; i &lt; k; i++) &#123; ans[i].push_back(v[j][i]); ans[i].push_back(v[j + 1][k - i - 1]); &#125; &#125; int j = k / 2 - 1; for (int i = 0; i &lt; k; i++) &#123; ans[i].push_back(v[3][i]); ans[i].push_back(v[2][(++j) % k]); &#125; for (int i = 0; i &lt; k; i++) &#123; LL temp = 0; for (int j = 0; j &lt; n; j++) &#123; if (j + 1 != n)temp += ans[i][j]; else ans[i].push_back(sum - temp); printf("%lld", ans[i][j]); if (j + 1 == n)printf("\n"); else printf(" "); &#125; ans[i].clear(); &#125; &#125; else &#123; for (int j = 1; j &lt;= n; j += 2) &#123; for (int i = 0; i &lt; k; i++) &#123; ans[i].push_back(v[j][i]); ans[i].push_back(v[j + 1][k - i - 1]); &#125; &#125; for (int i = 0; i &lt; k; i++) &#123; for (int j = 0; j &lt; n; j++) &#123; printf("%lld", ans[i][j]); if (j + 1 == n)printf("\n"); else printf(" "); &#125; ans[i].clear(); &#125; &#125; &#125; for (int i = 0; i &lt;= n; i++) &#123; v[i].clear(); &#125; &#125; return 0;&#125;]]></content>
@@ -48,8 +131,8 @@
         <category>动态规划</category>
       </categories>
       <tags>
-        <tag>杭电多校</tag>
         <tag>DP</tag>
+        <tag>杭电多校</tag>
       </tags>
   </entry>
   <entry>
@@ -61,9 +144,9 @@
         <category>数据结构</category>
       </categories>
       <tags>
+        <tag>单调队列</tag>
         <tag>巧解</tag>
         <tag>笔记</tag>
-        <tag>单调队列</tag>
         <tag>单调栈</tag>
       </tags>
   </entry>
@@ -88,8 +171,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>FTT/NTT/FWT</tag>
         <tag>杭电多校</tag>
+        <tag>FFT/NTT/FWT</tag>
       </tags>
   </entry>
   <entry>
@@ -285,8 +368,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>notes</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -297,8 +380,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>notes</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -309,8 +392,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>notes</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -384,8 +467,8 @@
         <category>配置</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>配置</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
