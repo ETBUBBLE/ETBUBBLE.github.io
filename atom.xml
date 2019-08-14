@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-08-13T14:02:02.586Z</updated>
+  <updated>2019-08-14T14:03:27.581Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019牛客暑期多校训练营(第八场)Just Jump</title>
+    <link href="https://etbubble.github.io/2019/08/14/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E5%85%AB%E5%9C%BA)J.Just-Jump/"/>
+    <id>https://etbubble.github.io/2019/08/14/2019牛客暑期多校训练营(第八场)J.Just-Jump/</id>
+    <published>2019-08-14T13:39:13.000Z</published>
+    <updated>2019-08-14T14:03:27.581Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt; &lt;strong&gt;题意：&lt;/strong&gt; 终点位置为$L$，中间点是$1,2,\cdots,L-1$ ，开始位置在$0$，每次必须走至少$d$步,在第$t&lt;em&gt;i$步不能出现在$p_i$这个位置，问从$0$到$L$，有多少种走法。&lt;br&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="数论" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E8%AE%BA/"/>
+    
+    
+      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+    
+      <category term="容斥" scheme="https://etbubble.github.io/tags/%E5%AE%B9%E6%96%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>2019牛客暑期多校训练营(第八场)Flower Dance(有坑)</title>
@@ -83,23 +113,9 @@
   </entry>
   
   <entry>
-    <title>20190810222138</title>
-    <link href="https://etbubble.github.io/2019/08/10/20190810222138/"/>
-    <id>https://etbubble.github.io/2019/08/10/20190810222138/</id>
-    <published>2019-08-10T14:21:38.000Z</published>
-    <updated>2019-08-10T14:21:38.356Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>2019牛客暑期多校训练营(第七场) E Find the median</title>
-    <link href="https://etbubble.github.io/2019/08/09/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%B8%83%E5%9C%BA)-E-Find-the-median/"/>
-    <id>https://etbubble.github.io/2019/08/09/2019牛客暑期多校训练营(第七场)-E-Find-the-median/</id>
+    <link href="https://etbubble.github.io/2019/08/09/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%B8%83%E5%9C%BA)E.Find-the-median/"/>
+    <id>https://etbubble.github.io/2019/08/09/2019牛客暑期多校训练营(第七场)E.Find-the-median/</id>
     <published>2019-08-09T14:34:53.000Z</published>
     <updated>2019-08-13T14:04:12.051Z</updated>
     
@@ -373,8 +389,8 @@
   
   <entry>
     <title>2019牛客暑期多校训练营（第三场）F Planting Trees</title>
-    <link href="https://etbubble.github.io/2019/07/26/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%B8%89%E5%9C%BA%EF%BC%89F/"/>
-    <id>https://etbubble.github.io/2019/07/26/2019牛客暑期多校训练营（第三场）F/</id>
+    <link href="https://etbubble.github.io/2019/07/26/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%B8%89%E5%9C%BA)F/"/>
+    <id>https://etbubble.github.io/2019/07/26/2019牛客暑期多校训练营(第三场)F/</id>
     <published>2019-07-26T08:22:35.000Z</published>
     <updated>2019-08-13T14:03:02.105Z</updated>
     
@@ -463,8 +479,8 @@
   
   <entry>
     <title>2019牛客暑期多校训练营（第二场）J Subarray</title>
-    <link href="https://etbubble.github.io/2019/07/23/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%9C%BA%EF%BC%89J/"/>
-    <id>https://etbubble.github.io/2019/07/23/2019牛客暑期多校训练营（第二场）J/</id>
+    <link href="https://etbubble.github.io/2019/07/23/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%BA%8C%E5%9C%BA)J/"/>
+    <id>https://etbubble.github.io/2019/07/23/2019牛客暑期多校训练营(第二场)J/</id>
     <published>2019-07-23T15:03:10.000Z</published>
     <updated>2019-08-13T14:03:25.283Z</updated>
     
@@ -572,10 +588,10 @@
   
   <entry>
     <title>2019牛客暑期多校训练营（第二场）F MAZE</title>
-    <link href="https://etbubble.github.io/2019/07/20/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%9C%BA%EF%BC%89F/"/>
-    <id>https://etbubble.github.io/2019/07/20/2019牛客暑期多校训练营（第二场）F/</id>
+    <link href="https://etbubble.github.io/2019/07/20/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%BA%8C%E5%9C%BA)F/"/>
+    <id>https://etbubble.github.io/2019/07/20/2019牛客暑期多校训练营(第二场)F/</id>
     <published>2019-07-20T11:31:46.000Z</published>
-    <updated>2019-07-26T08:29:40.651Z</updated>
+    <updated>2019-08-13T14:03:23.075Z</updated>
     
     <summary type="html">
     

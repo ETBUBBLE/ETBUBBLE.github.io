@@ -107,18 +107,22 @@
 
 
 
-  <meta name="description" content="2019牛客暑期多校训练营（第二场）F MAZE世界上有种算法不叫做算法，那就是暴力。。。。  C_{2n}^n 是$4e7$，总状态是$4e7$种，然后转移,$O(n)$直接向相邻的状态转移。总复杂度$O(C_{2n}^{n} * n)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344">
-<meta name="keywords" content="牛客暑期多校训练营,暴力">
+  <meta name="description" content="题意： 终点位置为$L$，中间点是$1,2,\cdots,L-1$ ，开始位置在$0$，每次必须走至少$d$步,在第$ti$步不能出现在$p_i$这个位置，问从$0$到$L$，有多少种走法。 题解：解法挺简单的，先算出没有$m$个约束的情况下，求一个值，这个$f[i] =\sum{j=0}^{i-d}f[i]$。然后容斥搞一下，$m$个限制，那么问题来了，怎么求刚好走$t_i$步到$p_i$。">
+<meta name="keywords" content="牛客暑期多校训练营,容斥">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019牛客暑期多校训练营（第二场）F MAZE">
-<meta property="og:url" content="https://etbubble.github.io/2019/07/20/2019牛客暑期多校训练营（第二场）F/index.html">
+<meta property="og:title" content="2019牛客暑期多校训练营(第八场)Just Jump">
+<meta property="og:url" content="https://etbubble.github.io/2019/08/14/2019牛客暑期多校训练营(第八场)J.Just-Jump/index.html">
 <meta property="og:site_name" content="ET_BUBBLE 的博客">
-<meta property="og:description" content="2019牛客暑期多校训练营（第二场）F MAZE世界上有种算法不叫做算法，那就是暴力。。。。  C_{2n}^n 是$4e7$，总状态是$4e7$种，然后转移,$O(n)$直接向相邻的状态转移。总复杂度$O(C_{2n}^{n} * n)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344">
+<meta property="og:description" content="题意： 终点位置为$L$，中间点是$1,2,\cdots,L-1$ ，开始位置在$0$，每次必须走至少$d$步,在第$ti$步不能出现在$p_i$这个位置，问从$0$到$L$，有多少种走法。 题解：解法挺简单的，先算出没有$m$个约束的情况下，求一个值，这个$f[i] =\sum{j=0}^{i-d}f[i]$。然后容斥搞一下，$m$个限制，那么问题来了，怎么求刚好走$t_i$步到$p_i$。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T08:29:40.651Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/14/DtjSp1lCaJ8TQA5.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/14/XiTSU3sntbgzl24.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/14/k3xg5qriQwnW8DU.png">
+<meta property="og:updated_time" content="2019-08-14T14:03:27.581Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2019牛客暑期多校训练营（第二场）F MAZE">
-<meta name="twitter:description" content="2019牛客暑期多校训练营（第二场）F MAZE世界上有种算法不叫做算法，那就是暴力。。。。  C_{2n}^n 是$4e7$，总状态是$4e7$种，然后转移,$O(n)$直接向相邻的状态转移。总复杂度$O(C_{2n}^{n} * n)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344">
+<meta name="twitter:title" content="2019牛客暑期多校训练营(第八场)Just Jump">
+<meta name="twitter:description" content="题意： 终点位置为$L$，中间点是$1,2,\cdots,L-1$ ，开始位置在$0$，每次必须走至少$d$步,在第$ti$步不能出现在$p_i$这个位置，问从$0$到$L$，有多少种走法。 题解：解法挺简单的，先算出没有$m$个约束的情况下，求一个值，这个$f[i] =\sum{j=0}^{i-d}f[i]$。然后容斥搞一下，$m$个限制，那么问题来了，怎么求刚好走$t_i$步到$p_i$。">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/14/DtjSp1lCaJ8TQA5.png">
 
 
 
@@ -127,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="https://etbubble.github.io/2019/07/20/2019牛客暑期多校训练营（第二场）F/">
+  <link rel="canonical" href="https://etbubble.github.io/2019/08/14/2019牛客暑期多校训练营(第八场)J.Just-Jump/">
 
 
 
@@ -137,7 +141,7 @@
   };
 </script>
 
-  <title>2019牛客暑期多校训练营（第二场）F MAZE | ET_BUBBLE 的博客</title>
+  <title>2019牛客暑期多校训练营(第八场)Just Jump | ET_BUBBLE 的博客</title>
   
 
 
@@ -369,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/07/20/2019牛客暑期多校训练营（第二场）F/">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/08/14/2019牛客暑期多校训练营(第八场)J.Just-Jump/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="尘">
@@ -386,7 +390,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2019牛客暑期多校训练营（第二场）F MAZE
+          <h1 class="post-title" itemprop="name headline">2019牛客暑期多校训练营(第八场)Just Jump
 
               
             
@@ -412,24 +416,12 @@
                 
               
 
-              <time title="创建时间：2019-07-20 19:31:46" itemprop="dateCreated datePublished" datetime="2019-07-20T19:31:46+08:00">2019-07-20</time>
+              <time title="创建时间：2019-08-14 21:39:13 / 修改时间：22:03:27" itemprop="dateCreated datePublished" datetime="2019-08-14T21:39:13+08:00">2019-08-14</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-26 16:29:40" itemprop="dateModified" datetime="2019-07-26T16:29:40+08:00">2019-07-26</time>
               
             
           </span>
@@ -453,7 +445,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ACM/比赛/" itemprop="url" rel="index"><span itemprop="name">比赛</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ACM/数论/" itemprop="url" rel="index"><span itemprop="name">数论</span></a></span>
 
                 
                 
@@ -489,7 +481,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.2k</span>
+                <span title="本文字数">3.9k</span>
               
 
               
@@ -503,7 +495,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -523,8 +515,8 @@
       
 
       
-        <h2 id="2019牛客暑期多校训练营（第二场）F-MAZE"><a href="#2019牛客暑期多校训练营（第二场）F-MAZE" class="headerlink" title="2019牛客暑期多校训练营（第二场）F MAZE"></a><a href="https://ac.nowcoder.com/acm/contest/882/F" target="_blank" rel="noopener">2019牛客暑期多校训练营（第二场）F MAZE</a></h2><p>世界上有种算法不叫做算法，那就是暴力。。。。</p>
-<p> <script type="math/tex">C_{2n}^n</script> 是$4e7$，总状态是$4e7$种，然后转移,$O(n)$直接向相邻的状态转移。总复杂度$O(C_{2n}^{n} * n)$。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> uLL;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> VNAME(value) (#value)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> bug printf(<span class="meta-string">"*********\n"</span>);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(x) cout&lt;&lt;<span class="meta-string">"["</span>&lt;&lt;VNAME(x)&lt;&lt;<span class="meta-string">" = "</span>&lt;&lt;(x)&lt;&lt;<span class="meta-string">"]"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mid (l+r)/2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chl 2*k+1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chr 2*k+2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lson l,mid,chl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rson mid+1,r,chr</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,b) memset(a,b,sizeof(a));</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1e6</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">const</span> LL inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-8</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    freopen(<span class="string">"dat.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line"><span class="keyword">clock_t</span> start=clock();</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> mp[<span class="number">30</span>][<span class="number">30</span>];</span><br><span class="line">LL sum,ans;</span><br><span class="line"><span class="keyword">int</span> ar[<span class="number">15</span>],br[<span class="number">15</span>]; <span class="comment">//a b 个表示一个集合</span></span><br><span class="line"><span class="keyword">int</span> la,lb;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;   <span class="comment">//选n位</span></span><br><span class="line">    <span class="keyword">if</span>(la&gt;n||lb&gt;n)<span class="keyword">return</span> ;  </span><br><span class="line">    <span class="keyword">if</span>(la==n&amp;&amp;lb==n) &#123;  <span class="comment">//如果各选了 n 位就更新答案</span></span><br><span class="line">        ans=max(sum,ans);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(la&lt;n) &#123; </span><br><span class="line">            LL tmp=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;lb; i++) &#123;   <span class="comment">//选到 a 集合</span></span><br><span class="line">                tmp+=mp[num][br[i]];</span><br><span class="line">            &#125;</span><br><span class="line">            sum+=tmp;</span><br><span class="line">            ar[la++]=num;</span><br><span class="line">            dfs(num+<span class="number">1</span>);</span><br><span class="line">            ar[--la];</span><br><span class="line">            sum-=tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(lb&lt;n) &#123;</span><br><span class="line">            LL tmp=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;la; i++) &#123;       <span class="comment">//选到 b 集合</span></span><br><span class="line">                tmp+=mp[num][ar[i]];</span><br><span class="line">            &#125;</span><br><span class="line">            sum+=tmp;</span><br><span class="line">            br[lb++]=num;</span><br><span class="line">            dfs(num+<span class="number">1</span>);</span><br><span class="line">            br[lb--];</span><br><span class="line">            sum-=tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    f();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    m = <span class="number">2</span> * n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;mp[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    debug((<span class="number">1.0</span>*(clock()-start)/<span class="number">1000</span>));</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p> <strong>题意：</strong> 终点位置为$L$，中间点是$1,2,\cdots,L-1$ ，开始位置在$0$，每次必须走至少$d$步,在第$t<em>i$步不能出现在$p_i$这个位置，问从$0$到$L$，有多少种走法。<br> <strong>题解：</strong>解法挺简单的，先算出没有$m$个约束的情况下，求一个值，这个$f[i] =\sum</em>{j=0}^{i-d}f[i]$。然后容斥搞一下，$m$个限制，那么问题来了，怎么求刚好走$t_i$步到$p_i$。<br> 这篇博客的意义就在这了,先推荐个<a href="https://blog.csdn.net/qwb492859377/article/details/50654627" target="_blank" rel="noopener">基神博客</a>。<br> 这个求一个最后应该就等于$C(p_i-d <em> t_i+t_i-1,t_i-1)$。<br> 我们现在应该是对应这种情况<img src="https://i.loli.net/2019/08/14/DtjSp1lCaJ8TQA5.png" alt><br> 用插板法，就是从$n+m$个空隙里面，选出$m-1$个位置出来，现在这就是多了个要求，相邻两个间隙不能小于$d$<br> …,抽象理解下<br> <img src="https://i.loli.net/2019/08/14/XiTSU3sntbgzl24.png" alt><br> 你把这$m$个$d$全部推前面去，不久相当于直接在后面$n-m</em> d-(m-1)$选$m-1$个<br> <img src="https://i.loli.net/2019/08/14/k3xg5qriQwnW8DU.png" alt><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"bits/stdc++.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> uLL;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; P;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> VNAME(value) (#value)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> bug printf(<span class="meta-string">"*********\n"</span>);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(x) cout&lt;&lt;<span class="meta-string">"["</span>&lt;&lt;VNAME(x)&lt;&lt;<span class="meta-string">" = "</span>&lt;&lt;x&lt;&lt;<span class="meta-string">"]"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mid ((l + r) &gt;&gt; 1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chl 2 * k + 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chr 2 * k + 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lson l, mid, chl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rson mid + 1, r, chr</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> eb(x) emplace_back(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb(x) emplace_back(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a, b) memset(a, b, sizeof(a));</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> LL mod = (LL) <span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = (<span class="keyword">int</span>) <span class="number">1e7</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> LL INF = <span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">const</span> LL inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line"><span class="keyword">clock_t</span> prostart = clock();</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    freopen(<span class="string">"../data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//typedef __int128 LLL;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;w)</span> </span>&#123;<span class="comment">//读入</span></span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(c = getchar()));</span><br><span class="line">    w = c &amp; <span class="number">15</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(c = getchar()))</span><br><span class="line">        w = w * <span class="number">10</span> + (c &amp; <span class="number">15</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">output</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>), x = -x;</span><br><span class="line">    <span class="keyword">int</span> ss[<span class="number">55</span>], sp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        ss[++sp] = x % <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">while</span> (x /= <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">while</span> (sp)</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="number">48</span> + ss[sp--]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LL L, d, m;</span><br><span class="line">P p[<span class="number">3005</span>];</span><br><span class="line"></span><br><span class="line">LL qz[maxn], l[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Comb_Maxn = <span class="number">1e7</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">LL Fac_inv[Comb_Maxn];</span><br><span class="line">LL Fac[Comb_Maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Comb_init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Fac_inv[<span class="number">0</span>] = Fac[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    Fac_inv[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; Comb_Maxn; i++)</span><br><span class="line">        Fac[i] = Fac[i - <span class="number">1</span>] * (LL) i % mod;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; Comb_Maxn; i++)</span><br><span class="line">        Fac_inv[i] = (LL) (mod - mod / i) * Fac_inv[mod % i] % mod;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; Comb_Maxn; i++)</span><br><span class="line">        Fac_inv[i] = (LL) Fac_inv[i - <span class="number">1</span>] * Fac_inv[i] % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">Comb</span><span class="params">(LL n, LL m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span> || m &lt; <span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (n &lt; m)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    assert(n &lt; Comb_Maxn &amp;&amp; n &gt;= m);</span><br><span class="line">    assert(m &lt; Comb_Maxn);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Fac[n] * Fac_inv[m] % mod * Fac_inv[n - m] % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LL dp[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    f();</span><br><span class="line">    read(L);</span><br><span class="line">    read(d);</span><br><span class="line">    read(m);</span><br><span class="line">    Comb_init();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        read(p[i].first);</span><br><span class="line">        read(p[i].second);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(p, p + m);</span><br><span class="line">    l[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    qz[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= L; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= d) &#123;</span><br><span class="line">            l[i] = qz[i - d];</span><br><span class="line">        &#125;</span><br><span class="line">        qz[i] = (qz[i - <span class="number">1</span>] + l[i]) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        dp[i] = Comb(p[i].second - d * p[i].first + p[i].first - <span class="number">1</span>, p[i].first - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (dp[i] != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                dp[i] = (dp[i] -</span><br><span class="line">                         Comb(p[i].second - p[j].second - d * (p[i].first - p[j].first) +</span><br><span class="line">                              (p[i].first - p[j].first) - <span class="number">1</span>,</span><br><span class="line">                              (p[i].first - p[j].first) - <span class="number">1</span>) * dp[j] % mod + mod) % mod;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    LL ans = l[L];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        ans = (ans - dp[i] * l[L - p[i].second] % mod + mod) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"运行时间:"</span> &lt;&lt; <span class="number">1.0</span> * (clock() - prostart) / CLOCKS_PER_SEC &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
 
       
     </div>
@@ -550,7 +542,7 @@
           
             <a href="/tags/牛客暑期多校训练营/" rel="tag"># 牛客暑期多校训练营</a>
           
-            <a href="/tags/暴力/" rel="tag"># 暴力</a>
+            <a href="/tags/容斥/" rel="tag"># 容斥</a>
           
         </div>
       
@@ -583,8 +575,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/19/2019牛客暑期多校训练营（第一场）C/" rel="next" title="2019牛客暑期多校训练营(第一场) C Euclidean Distance">
-                <i class="fa fa-chevron-left"></i> 2019牛客暑期多校训练营(第一场) C Euclidean Distance
+              <a href="/2019/08/13/2019牛客暑期多校训练营(第八场)Flower Dance/" rel="next" title="2019牛客暑期多校训练营(第八场)Flower Dance(有坑)">
+                <i class="fa fa-chevron-left"></i> 2019牛客暑期多校训练营(第八场)Flower Dance(有坑)
               </a>
             
           </div>
@@ -592,10 +584,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/20/FFT快速傅里叶变换简解/" rel="prev" title="FFT快速傅里叶变换简解">
-                FFT快速傅里叶变换简解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -647,17 +635,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -806,7 +785,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -869,23 +850,6 @@
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2019牛客暑期多校训练营（第二场）F-MAZE"><span class="nav-number">1.</span> <span class="nav-text">2019牛客暑期多校训练营（第二场）F MAZE</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
 
@@ -928,7 +892,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">447k</span>
+    <span title="站点总字数">451k</span>
   
 
   
@@ -937,7 +901,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:46</span>
+    <span title="站点阅读时长">6:50</span>
   
 </div>
 
@@ -1115,7 +1079,7 @@
   function renderGitment() {
 
     var gitment = new Gitment({
-      id: '1563622306000',
+      id: '1565789953000',
       owner: 'ETBUBBLE',
       repo: 'ETBUBBLE.github.io',
       

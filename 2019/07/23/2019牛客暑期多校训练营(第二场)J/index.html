@@ -107,18 +107,23 @@
 
 
 
-  <meta name="description" content="做自己不会做的事被称之为学习">
-<meta name="keywords" content="ACM">
+  <meta name="description" content="2019牛客暑期多校训练营（第二场）J Subarray题意：长度为$1e9$的区间$A$下标为$[0,1e9-1]$,数输入$n$个区间，$[l_i,r_i]$区间类的值为1，其余为-1，问有多少区间和大于0.题解：看了来自大佬的博客，能够产生贡献的点最多只有$3e7$个,意思是先求一个前缀和，然后画成图应该是这样。最差就是这样了，能够有影响的就只有这$3e7$个点 (可能是分段的) ，那么问题">
+<meta name="keywords" content="牛客暑期多校训练营,巧解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20190810222138">
-<meta property="og:url" content="https://etbubble.github.io/2019/08/10/20190810222138/index.html">
+<meta property="og:title" content="2019牛客暑期多校训练营（第二场）J Subarray">
+<meta property="og:url" content="https://etbubble.github.io/2019/07/23/2019牛客暑期多校训练营(第二场)J/index.html">
 <meta property="og:site_name" content="ET_BUBBLE 的博客">
-<meta property="og:description" content="做自己不会做的事被称之为学习">
+<meta property="og:description" content="2019牛客暑期多校训练营（第二场）J Subarray题意：长度为$1e9$的区间$A$下标为$[0,1e9-1]$,数输入$n$个区间，$[l_i,r_i]$区间类的值为1，其余为-1，问有多少区间和大于0.题解：看了来自大佬的博客，能够产生贡献的点最多只有$3e7$个,意思是先求一个前缀和，然后画成图应该是这样。最差就是这样了，能够有影响的就只有这$3e7$个点 (可能是分段的) ，那么问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-10T14:21:38.356Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/24/5d37b651d9d2043876.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/24/5d37b6400f3a060238.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/24/5d37b1bbe3dd954762.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/24/5d37b294ec65e28742.png">
+<meta property="og:updated_time" content="2019-08-13T14:03:25.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20190810222138">
-<meta name="twitter:description" content="做自己不会做的事被称之为学习">
+<meta name="twitter:title" content="2019牛客暑期多校训练营（第二场）J Subarray">
+<meta name="twitter:description" content="2019牛客暑期多校训练营（第二场）J Subarray题意：长度为$1e9$的区间$A$下标为$[0,1e9-1]$,数输入$n$个区间，$[l_i,r_i]$区间类的值为1，其余为-1，问有多少区间和大于0.题解：看了来自大佬的博客，能够产生贡献的点最多只有$3e7$个,意思是先求一个前缀和，然后画成图应该是这样。最差就是这样了，能够有影响的就只有这$3e7$个点 (可能是分段的) ，那么问题">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/24/5d37b651d9d2043876.png">
 
 
 
@@ -127,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://etbubble.github.io/2019/08/10/20190810222138/">
+  <link rel="canonical" href="https://etbubble.github.io/2019/07/23/2019牛客暑期多校训练营(第二场)J/">
 
 
 
@@ -137,7 +142,7 @@
   };
 </script>
 
-  <title>20190810222138 | ET_BUBBLE 的博客</title>
+  <title>2019牛客暑期多校训练营（第二场）J Subarray | ET_BUBBLE 的博客</title>
   
 
 
@@ -369,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/08/10/20190810222138/">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/07/23/2019牛客暑期多校训练营(第二场)J/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="尘">
@@ -386,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">20190810222138
+          <h1 class="post-title" itemprop="name headline">2019牛客暑期多校训练营（第二场）J Subarray
 
               
             
@@ -412,12 +417,53 @@
                 
               
 
-              <time title="创建时间：2019-08-10 22:21:38" itemprop="dateCreated datePublished" datetime="2019-08-10T22:21:38+08:00">2019-08-10</time>
+              <time title="创建时间：2019-07-23 23:03:10" itemprop="dateCreated datePublished" datetime="2019-07-23T23:03:10+08:00">2019-07-23</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-13 22:03:25" itemprop="dateModified" datetime="2019-08-13T22:03:25+08:00">2019-08-13</time>
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ACM/比赛/" itemprop="url" rel="index"><span itemprop="name">比赛</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -448,7 +494,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">0</span>
+                <span title="本文字数">4.5k</span>
               
 
               
@@ -462,7 +508,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -482,7 +528,12 @@
       
 
       
-        
+        <h1 id="2019牛客暑期多校训练营（第二场）J-Subarray"><a href="#2019牛客暑期多校训练营（第二场）J-Subarray" class="headerlink" title="2019牛客暑期多校训练营（第二场）J Subarray"></a><a href="https://ac.nowcoder.com/acm/contest/882/J" target="_blank" rel="noopener">2019牛客暑期多校训练营（第二场）J Subarray</a></h1><p><strong>题意：</strong>长度为$1e9$的区间$A$下标为$[0,1e9-1]$,数输入$n$个区间，$[l_i,r_i]$区间类的值为1，其余为-1，问有多少区间和大于0.<br><strong>题解：</strong>看了来自大佬的博客，能够产生贡献的点最多只有$3e7$个,意思是先求一个前缀和，然后画成图应该是这样。<br><img src="https://i.loli.net/2019/07/24/5d37b651d9d2043876.png" alt><br>最差就是这样了，能够有影响的就只有这$3e7$个点 <strong><em>(可能是分段的)</em></strong> ，那么问题来了，怎么求出这$3e7$个点。<br>来自<a href="https://www.cnblogs.com/FST-stay-night/p/11218660.html" target="_blank" rel="noopener">大佬的博客</a><br><img src="https://i.loli.net/2019/07/24/5d37b6400f3a060238.png" alt><br>为什么呢？在大佬眼里很简单，我画了个图才理解。<br><img src="https://i.loli.net/2019/07/24/5d37b1bbe3dd954762.png" alt><br>显然前面一个的$f[i]$加后面$g[i+1]$比两个区间之间的长度大就事连在一起的。<del>(我果然太菜了)</del><br>然后处理完之后，就相当于处理<br><img src="https://i.loli.net/2019/07/24/5d37b294ec65e28742.png" alt><br>一个这样的前缀和，求所有位置有几个在他前面前缀比他小。如果范围小一点就用树状数组求一下就没了，$3e7log(3e7)$显然超时了。<br>看到这个前缀和，前后项最大只差了$1$,上下界最大差值不超过$3e7$,这再做个前缀和 sum 。用一个数组表示一个数字出现的次数，然后$sum[m]=sum[m-1]+b[m]$,更新前缀和,答案就是$ans+=sum[m-1]$。<br>中间有一些细节要处理<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"bits/stdc++.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> uLL;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; P;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">double</span> ld;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> VNAME(value) (#value)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> bug printf(<span class="meta-string">"*********\n"</span>);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(x) cout&lt;&lt;<span class="meta-string">"["</span>&lt;&lt;VNAME(x)&lt;&lt;<span class="meta-string">" = "</span>&lt;&lt;(x)&lt;&lt;<span class="meta-string">"]"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mid (l+r)/2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chl 2*k+1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> chr 2*k+2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lson l,mid,chl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rson mid+1,r,chr</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a, b) memset(a,b,sizeof(a));</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">const</span> LL inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fin</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    freopen(<span class="string">"../data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line"><span class="keyword">clock_t</span> start = clock();</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">LL l[maxn], r[maxn];</span><br><span class="line">LL f[maxn], g[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    LL l, r, x;</span><br><span class="line">&#125; dat[maxn * <span class="number">5</span>];</span><br><span class="line">LL sum[maxn * <span class="number">30</span> + <span class="number">20</span>], b[maxn * <span class="number">30</span> + <span class="number">20</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    fin();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;l[i], &amp;r[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">1</span>] = r[<span class="number">1</span>] - l[<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        f[i] = max(<span class="number">0L</span>L, f[i - <span class="number">1</span>] - (l[i] - r[i - <span class="number">1</span>] - <span class="number">1</span>)) + r[i] - l[i] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    g[n] = r[n] - l[n] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        g[i] = max(<span class="number">0L</span>L, g[i + <span class="number">1</span>] - (l[i + <span class="number">1</span>] - r[i] - <span class="number">1</span>)) + r[i] - l[i] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    LL ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= n) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = i + <span class="number">1</span>;</span><br><span class="line">        LL mi = <span class="number">0</span>, mx = <span class="number">0</span>, pos = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//mi 下界,mx 上界</span></span><br><span class="line">        <span class="keyword">while</span> (j &lt;= n &amp;&amp; g[j] + f[j - <span class="number">1</span>] &gt;= l[j] - r[j - <span class="number">1</span>] - <span class="number">1</span>) &#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        j--;</span><br><span class="line">        <span class="keyword">int</span> t = i, num = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// [i,j] 区间是相互影响的</span></span><br><span class="line">        <span class="keyword">for</span> (; t &lt;= j; t++) &#123;  <span class="comment">// 把每一段处理到 dat里面</span></span><br><span class="line">            <span class="keyword">if</span> (num == <span class="number">1</span>)dat[num].l = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (l[t] - r[t - <span class="number">1</span>] == <span class="number">1</span>) dat[num].l = pos + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> dat[num].l = pos;</span><br><span class="line">            pos += r[t] - l[t] + <span class="number">1</span>;</span><br><span class="line">            dat[num].r = pos;</span><br><span class="line">            dat[num++].x = <span class="number">1</span>;</span><br><span class="line">            mx = max(mx, pos);</span><br><span class="line">            <span class="keyword">if</span> (t != j) &#123;</span><br><span class="line">                dat[num].r = pos - <span class="number">1</span>;</span><br><span class="line">                pos -= l[t + <span class="number">1</span>] - r[t] - <span class="number">1</span>;</span><br><span class="line">                dat[num].l = pos + <span class="number">1</span>;</span><br><span class="line">                dat[num++].x = <span class="number">0</span>;  <span class="comment">// 0 表示下降 ,1 表示上升</span></span><br><span class="line">                mi = min(pos, mi);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dat[num].r = pos - <span class="number">1</span>;</span><br><span class="line">                dat[num].l = max(mi, pos - ((<span class="keyword">int</span>) <span class="number">1e9</span> - <span class="number">1</span> - r[t]));</span><br><span class="line">                dat[num++].x = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dat[<span class="number">0</span>].r = min(mx, l[i]);</span><br><span class="line">        dat[<span class="number">0</span>].l = <span class="number">1</span>;</span><br><span class="line">        dat[<span class="number">0</span>].x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= mx - mi + <span class="number">200</span>; k++)b[k] = sum[k] = <span class="number">0</span>;</span><br><span class="line">        assert(mx - mi &lt; maxn * <span class="number">30</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; num; ++k) &#123;</span><br><span class="line">            dat[k].l += -mi;   <span class="comment">//全部向上移动一个下届，保证最小值等于0</span></span><br><span class="line">            dat[k].r += -mi;</span><br><span class="line">            <span class="keyword">if</span> (dat[k].x == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> m = dat[k].l; m &lt;= dat[k].r; ++m) &#123;</span><br><span class="line">                    b[m]++;</span><br><span class="line">                    sum[m] = sum[m - <span class="number">1</span>] + b[m];</span><br><span class="line">                    <span class="keyword">if</span> (m &gt;= <span class="number">1</span>)ans += sum[m - <span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                LL tmp = <span class="number">0</span>;  </span><br><span class="line">                <span class="keyword">if</span> (dat[k].l &gt; <span class="number">0</span>)tmp = sum[dat[k].l - <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> m = dat[k].l; m &lt;= dat[k].r; ++m) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (m &gt;= <span class="number">1</span>)ans += tmp;</span><br><span class="line">                    tmp = sum[m];  <span class="comment">//如果是下降的 ，从小往上处理是不能把当前更新加进去因当前这个在他后面</span></span><br><span class="line">                    b[m]++;</span><br><span class="line">                    sum[m] = sum[m - <span class="number">1</span>] + b[m];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        i = j + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"RUNTIME:"</span> &lt;&lt; (<span class="number">1.0</span> * clock() - start) / <span class="number">1000</span> &lt;&lt; <span class="string">"ms"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong>给几组数据你去试试</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">5 9</span><br><span class="line">12 17</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line">3 5</span><br><span class="line">6 6</span><br><span class="line">7 9</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line">3 5</span><br><span class="line">8 8</span><br><span class="line">9 10</span><br><span class="line"></span><br><span class="line">1</span><br><span class="line">999999998 999999999</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">200</span><br><span class="line"></span><br><span class="line">76</span><br><span class="line"></span><br><span class="line">49</span><br><span class="line"></span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -502,6 +553,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/牛客暑期多校训练营/" rel="tag"># 牛客暑期多校训练营</a>
+          
+            <a href="/tags/巧解/" rel="tag"># 巧解</a>
+          
+        </div>
       
 
       
@@ -532,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/09/2019牛客暑期多校训练营(第七场)-E-Find-the-median/" rel="next" title="2019牛客暑期多校训练营(第七场) E Find the median">
-                <i class="fa fa-chevron-left"></i> 2019牛客暑期多校训练营(第七场) E Find the median
+              <a href="/2019/07/22/牛客多校--待补/" rel="next" title="牛客多校--待补">
+                <i class="fa fa-chevron-left"></i> 牛客多校--待补
               </a>
             
           </div>
@@ -542,8 +601,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/13/2019牛客暑期多校训练营(第八场)Distance/" rel="prev" title="2019牛客暑期多校训练营(第八场) Distance">
-                2019牛客暑期多校训练营(第八场) Distance <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/24/2019-Multi-University-Training-Contest-2-1012/" rel="prev" title="2019 Multi-University Training Contest 2 1012 Longest Subarray">
+                2019 Multi-University Training Contest 2 1012 Longest Subarray <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -596,8 +655,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -746,7 +814,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -809,6 +879,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2019牛客暑期多校训练营（第二场）J-Subarray"><span class="nav-number">1.</span> <span class="nav-text">2019牛客暑期多校训练营（第二场）J Subarray</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -851,7 +938,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">447k</span>
+    <span title="站点总字数">451k</span>
   
 
   
@@ -860,7 +947,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:46</span>
+    <span title="站点阅读时长">6:50</span>
   
 </div>
 
@@ -1038,7 +1125,7 @@
   function renderGitment() {
 
     var gitment = new Gitment({
-      id: '1565446898000',
+      id: '1563894190000',
       owner: 'ETBUBBLE',
       repo: 'ETBUBBLE.github.io',
       
