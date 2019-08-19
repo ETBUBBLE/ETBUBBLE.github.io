@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-08-14T14:03:27.581Z</updated>
+  <updated>2019-08-19T13:40:07.063Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019 Multi-University Training Contest 9 1007 Rikka with Travels</title>
+    <link href="https://etbubble.github.io/2019/08/19/2019-Multi-University-Training-Contest-9-1007/"/>
+    <id>https://etbubble.github.io/2019/08/19/2019-Multi-University-Training-Contest-9-1007/</id>
+    <published>2019-08-19T13:02:48.000Z</published>
+    <updated>2019-08-19T13:40:07.063Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;http://acm.hdu.edu.cn/showproblem.php?pid=6686&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;HDU 6686 Rikka with
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="DP" scheme="https://etbubble.github.io/categories/ACM/DP/"/>
+    
+    
+      <category term="树形DP" scheme="https://etbubble.github.io/tags/%E6%A0%91%E5%BD%A2DP/"/>
+    
+  </entry>
   
   <entry>
     <title>2019牛客暑期多校训练营(第八场)Just Jump</title>
@@ -583,36 +611,6 @@
     
     
       <category term="FFT/NTT/FWT" scheme="https://etbubble.github.io/tags/FFT-NTT-FWT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019牛客暑期多校训练营（第二场）F MAZE</title>
-    <link href="https://etbubble.github.io/2019/07/20/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%BA%8C%E5%9C%BA)F/"/>
-    <id>https://etbubble.github.io/2019/07/20/2019牛客暑期多校训练营(第二场)F/</id>
-    <published>2019-07-20T11:31:46.000Z</published>
-    <updated>2019-08-13T14:03:23.075Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;2019牛客暑期多校训练营（第二场）F-MAZE&quot;&gt;&lt;a href=&quot;#2019牛客暑期多校训练营（第二场）F-MAZE&quot; class=&quot;headerlink&quot; title=&quot;2019牛客暑期多校训练营（第二场）F MAZE&quot;&gt;&lt;/a&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
-    
-    
-      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
-    
-      <category term="暴力" scheme="https://etbubble.github.io/tags/%E6%9A%B4%E5%8A%9B/"/>
     
   </entry>
   
