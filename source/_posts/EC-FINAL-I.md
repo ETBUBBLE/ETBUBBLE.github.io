@@ -2,10 +2,10 @@
 title: EC-FINAL I Misunderstood Missing
 date: 2019-04-25 20:40:39
 tags:
-    - dp
+    - DP
 categories:
     - ACM
-    - dp
+    - 动态规划
 ---
 ## 写此篇记录EC-FINAL 铁牌。 ##
 ### I [Misunderstood … Missing](https://ac.nowcoder.com/acm/contest/366/I)  ###

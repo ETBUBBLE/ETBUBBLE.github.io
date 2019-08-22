@@ -4,8 +4,8 @@ date: 2019-07-13 10:27:17
 tags:
     - codeforces
 categories:
-    - codeforces
-    - div2
+    - ACM
+    - 比赛
 ---
 ## [A - Tokitsukaze and Enhancement](https://codeforces.com/contest/1191/problem/A)
 简单题不与说明
