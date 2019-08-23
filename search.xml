@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2019牛客暑期多校训练营(第十场) J Wood Processing]]></title>
+    <url>%2F2019%2F08%2F23%2F2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E5%8D%81%E5%9C%BA%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题意: $n$快木板，合成$k$块木板。相同高度可以合并，不同高度，需要把高的木板砍成和低的木板一样高。问合成$k$块最少浪费多大木板面积。题解: dp[i][j] 表示前j个合成i个木板最小花费面积。转移方程为 dp[i][j]=min(dp[i-1][k]+sum[j]-sum[k]+h[k+1] * (w[j]-w[k]),dp[i][j])其中$w$表示表示宽度前缀和，$sum$表示面积前缀和，转移的贡献就是， 假设从$k$转移优于$l$，有如下: dp[i-1][k]+sum[j]-sum[k]-h[k+1] * (w[j]-[k])=dp[i-1][l]+sum[j]-sum[l]+h[l+1] * (w[j]-w[l])合并同类项化简， \frac{(dp[i-1][k]-sum[k]+h[k+1] * w[k])-(dp[i-1][l]-sum[l]+h[l+1] * w[l])}{w[k]-w[l]}]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>DP</category>
+      </categories>
+      <tags>
+        <tag>斜率优化DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[斜率优化DP]]></title>
+    <url>%2F2019%2F08%2F23%2F%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96DP%2F</url>
+    <content type="text"><![CDATA[什么是斜率优化DP？顾名思义，用斜率优化的DP。推荐一波博客这个大哥将的不错。斜率优化DP，一开始会化成一个式子，像 \frac{f(j)-f(k)}{g(j)-g(k)}]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>DP</category>
+      </categories>
+      <tags>
+        <tag>斜率优化DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[出神入化的分块 Educational Codeforces Round 71 (Rated for Div. 2) E Remainder Problem]]></title>
+    <url>%2F2019%2F08%2F23%2F%E5%87%BA%E7%A5%9E%E5%85%A5%E5%8C%96%E7%9A%84%E5%88%86%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[Educational Codeforces Round 71 (Rated for Div. 2) E Remainder Problem题意: 两种操作，一种$a_x+y$,第二种查询 \sum_{i=y}^{5e5}a_i,(i\%x==y)所有模$x$等于$y$位置的和.题解: $\%x=y$ 这不就是分块么，就是分块的性质啊，直接处理不就OK了？？，想什么线段树。真6.123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293#include "bits/stdc++.h" using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid ((l + r) &gt;&gt; 1)#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define eb(x) emplace_back(x)#define pb(x) emplace_back(x)#define mem(a, b) memset(a, b, sizeof(a)); const LL mod = (LL) 1e9 + 7;const int maxn = (int) 1e3 + 5;const LL INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8; #ifndef ONLINE_JUDGEclock_t prostart = clock();#endif void f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125; //typedef __int128 LLL; template&lt;typename T&gt;void read(T &amp;w) &#123;//读入 char c; while (!isdigit(c = getchar())); w = c &amp; 15; while (isdigit(c = getchar())) w = w * 10 + (c &amp; 15);&#125; template&lt;typename T&gt;void output(T x) &#123; if (x &lt; 0) putchar('-'), x = -x; int ss[55], sp = 0; do ss[++sp] = x % 10; while (x /= 10); while (sp) putchar(48 + ss[sp--]);&#125; int n, m; const int B = 1e3;LL q[maxn][maxn];LL a[maxn * 1000]; int main() &#123; f(); read(n); while (n--) &#123; int op, x, y; scanf("%d%d%d", &amp;op, &amp;x, &amp;y); if (op == 1) &#123; a[x] += y; for (int i = 1; i &lt;= B; i++) &#123; q[i][x % i] += y; &#125; &#125; else &#123; if (x &lt;= B) &#123; printf("%lld\n", q[x][y]); &#125; else &#123; LL res = 0; while (y &lt;= 500000) &#123; res += a[y]; y += x; &#125; printf("%lld\n", res); &#125; &#125; &#125; #ifndef ONLINE_JUDGE cout &lt;&lt; "运行时间:" &lt;&lt; 1.0 * (clock() - prostart) / CLOCKS_PER_SEC &lt;&lt; endl;#endif return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>分块</category>
+      </categories>
+      <tags>
+        <tag>分块</tag>
+        <tag>出神入化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2019 Multi-University Training Contest 10 1011 Make Rounddog Happy]]></title>
     <url>%2F2019%2F08%2F22%2F2019-Multi-University-Training-Contest-10-1011-Make-Rounddog-Happy%2F</url>
     <content type="text"><![CDATA[HDU 6701 Make Rounddog Happy题意 ： 给你$n$个数，和$k$,找到区间[l,r] $max(a_l,\dots,a_r)-(r-l+1)&lt;=k$ 的数量（区间内不能出现有相同数字）。题解： 相当于找区间长度大于区间最大值-k 的区间数量，第一个想到入手的肯定就是区间最大值，然后枚举左边或右边的边界，然后找另外一边的的上界。假设寻找区间最大值，st表能够实现$O(1)$的查找，假设我们找到[l,r]区间的最大值下标为MID，这个MID很显然不会恰好在正中间，那么我们肯定是向里边界近的方向枚举，然后查询另一端的情况。(这个叫启发式分治 队友告诉我是$O(nlog(n))$) 。假设枚举右端下标为当前下标i,另一端的情况怎么获取呢，$O(n)$找肯定不行，另一端上界up肯定是$i-a[MID]-k$,下届呢？从i开始第一个出现相同数字的位置。这个可以$O(n)$ 预处理出来，每个位置上的数上一次出现的位置可以直接求出来，然后从某一个位置到第一个出现相同值的下标肯定是单调的，所以能$O(n)$预处理出第一个从i位置往前最长不出现相同值的位置，和向后最长不出现相同值的位置 这个地方卡了点常，我用2个ST表卡极限时间过了，实际上两个数组就能解决，找区间最大值实际上也能用单调栈解决可以不用ST表。画个图理解一下如果是，枚举左边一样的处理。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176#include "bits/stdc++.h"using namespace std;typedef long long LL;typedef unsigned long long uLL;typedef pair&lt;int, int&gt; P;#define VNAME(value) (#value)#define bug printf("*********\n");#define debug(x) cout&lt;&lt;"["&lt;&lt;VNAME(x)&lt;&lt;" = "&lt;&lt;x&lt;&lt;"]"&lt;&lt;endl;#define mid ((l + r) &gt;&gt; 1)#define chl 2 * k + 1#define chr 2 * k + 2#define lson l, mid, chl#define rson mid + 1, r, chr#define eb(x) emplace_back(x)#define pb(x) emplace_back(x)#define mem(a, b) memset(a, b, sizeof(a));const LL mod = (LL) 1e9 + 7;const int maxn = (int) 3e5 + 5;const LL INF = 0x7fffffff;const LL inf = 0x3f3f3f3f;const double eps = 1e-8;#ifndef ONLINE_JUDGEclock_t prostart = clock();#endifvoid f() &#123;#ifndef ONLINE_JUDGE freopen("../data.in", "r", stdin);#endif&#125;//typedef __int128 LLL;void read(int &amp;w) &#123;//读入 char c; while (!isdigit(c = getchar())); w = c &amp; 15; while (isdigit(c = getchar())) w = w * 10 + (c &amp; 15);&#125;void output(LL x) &#123; if (x &lt; 0) putchar('-'), x = -x; int ss[55], sp = 0; do ss[++sp] = x % 10; while (x /= 10); while (sp) putchar(48 + ss[sp--]);&#125;const int MXN = 3e5 + 10;int a[maxn];int pre[maxn], nxt[maxn];int dp[MXN][20], pos[MXN][20];int lg[maxn];void init(int n) &#123; int LOG = lg[n] + 1; for (int j = 1; j &lt; LOG; ++j) &#123; if ((1 &lt;&lt; (j - 1)) &gt; n) break; for (int i = 1; i + (1 &lt;&lt; j) - 1 &lt;= n; ++i) &#123; if (dp[i][j - 1] &gt;= dp[i + (1 &lt;&lt; (j - 1))][j - 1]) &#123; dp[i][j] = dp[i][j - 1]; pos[i][j] = pos[i][j - 1]; &#125; else &#123; dp[i][j] = dp[i + (1 &lt;&lt; (j - 1))][j - 1]; pos[i][j] = pos[i + (1 &lt;&lt; (j - 1))][j - 1]; &#125; &#125; &#125;&#125;inline int query(int l, int r) &#123; int k = lg[r - l + 1]; if (dp[l][k] &gt;= dp[r - (1 &lt;&lt; k) + 1][k]) return pos[l][k]; return pos[r - (1 &lt;&lt; k) + 1][k];&#125;inline int query1(int l, int r) &#123; return pre[r];&#125;inline int query2(int l, int r) &#123; return nxt[l];&#125;int n, k;LL ans = 0;void solve(int l, int r) &#123; if (l &gt; r) return; if (l == r) &#123; if (a[l] - 1 &lt;= k) ++ans; return; &#125; int MID = query(l, r);//最大值的位置 if (r - MID &gt; MID - l) &#123; int up = min(query2(MID, r) - 1, r), low; for (int i = MID; i &gt;= l; --i) &#123;//枚举左端点 up = min(nxt[i] - 1, up); low = i + (a[MID] - k) - 1; low = max(low, MID); if (up &lt; MID)break; if (low &gt; up)continue; else &#123; ans += up - low + 1; &#125; &#125; &#125; else &#123; int up, low = max(query1(l, MID) + 1, l); for (int i = MID; i &lt;= r; ++i) &#123;//枚举右端点 low = max(pre[i] + 1, low); up = i - (a[MID] - k) + 1; up = min(up, MID); if (low &gt; MID)break; if (low &gt; up)continue; else &#123; ans += up - low + 1; &#125; &#125; &#125; solve(l, MID - 1); solve(MID + 1, r);&#125;int p[maxn];int main() &#123; f(); int T; read(T); for (int i = 1; i &lt;= 3e5; i++) &#123; lg[i] = log2(i); &#125; while (T--) &#123; read(n); read(k); for (int i = 1; i &lt;= n; i++) &#123; read(a[i]); dp[i][0] = a[i]; pos[i][0] = i; &#125; for (int i = 1; i &lt;= n; i++) &#123; p[i] = 0; &#125; for (int i = 1; i &lt;= n; i++) &#123; pre[i] = p[a[i]]; if (i != 1)pre[i] = max(pre[i], pre[i - 1]); p[a[i]] = i; &#125; for (int i = 1; i &lt;= n; i++) &#123; p[i] = n + 1; &#125; for (int i = n; i &gt;= 1; i--) &#123; nxt[i] = p[a[i]]; if (i != n)nxt[i] = min(nxt[i], nxt[i + 1]); p[a[i]] = i; &#125; for (int i = 1; i &lt;= n; ++i) &#123;// dp1[i][0] = pre[i];// dp2[i][0] = nxt[i]; &#125; init(n); ans = 0; solve(1, n); output(ans); puts(""); &#125; return 0;&#125;]]></content>
@@ -177,8 +214,8 @@
         <category>动态规划</category>
       </categories>
       <tags>
-        <tag>杭电多校</tag>
         <tag>DP</tag>
+        <tag>杭电多校</tag>
       </tags>
   </entry>
   <entry>
@@ -218,8 +255,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>FFT/NTT/FWT</tag>
         <tag>杭电多校</tag>
+        <tag>FFT/NTT/FWT</tag>
       </tags>
   </entry>
   <entry>

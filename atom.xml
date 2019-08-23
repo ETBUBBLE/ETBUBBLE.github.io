@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-08-22T07:39:18.993Z</updated>
+  <updated>2019-08-23T12:06:28.404Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019牛客暑期多校训练营(第十场) J	Wood Processing</title>
+    <link href="https://etbubble.github.io/2019/08/23/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5%EF%BC%88%E7%AC%AC%E5%8D%81%E5%9C%BA%EF%BC%89/"/>
+    <id>https://etbubble.github.io/2019/08/23/2019牛客暑期多校训练营（第十场）/</id>
+    <published>2019-08-23T11:43:04.000Z</published>
+    <updated>2019-08-23T12:06:28.404Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;题意:&lt;/strong&gt; $n$快木板，合成$k$块木板。相同高度可以合并，不同高度，需要把高的木板砍成和低的木板一样高。问合成$k$块最少浪费多大木板面积。&lt;br&gt;&lt;strong&gt;题解:&lt;/strong&gt; &lt;code&gt;dp[i][j]&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="DP" scheme="https://etbubble.github.io/categories/ACM/DP/"/>
+    
+    
+      <category term="斜率优化DP" scheme="https://etbubble.github.io/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>斜率优化DP</title>
+    <link href="https://etbubble.github.io/2019/08/23/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96DP/"/>
+    <id>https://etbubble.github.io/2019/08/23/斜率优化DP/</id>
+    <published>2019-08-23T11:21:19.000Z</published>
+    <updated>2019-08-23T12:06:26.762Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;什么是斜率优化DP？顾名思义，用斜率优化的DP。&lt;br&gt;推荐一波&lt;a href=&quot;https://www.cnblogs.com/orzzz/p/7885971.html&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="DP" scheme="https://etbubble.github.io/categories/ACM/DP/"/>
+    
+    
+      <category term="斜率优化DP" scheme="https://etbubble.github.io/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>出神入化的分块 Educational Codeforces Round 71 (Rated for Div. 2) E Remainder Problem</title>
+    <link href="https://etbubble.github.io/2019/08/23/%E5%87%BA%E7%A5%9E%E5%85%A5%E5%8C%96%E7%9A%84%E5%88%86%E5%9D%97/"/>
+    <id>https://etbubble.github.io/2019/08/23/出神入化的分块/</id>
+    <published>2019-08-23T01:55:56.000Z</published>
+    <updated>2019-08-23T02:06:59.098Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1207/problem/F&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Educational Codeforces Round 71 (Rated for Div.
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="分块" scheme="https://etbubble.github.io/categories/ACM/%E5%88%86%E5%9D%97/"/>
+    
+    
+      <category term="分块" scheme="https://etbubble.github.io/tags/%E5%88%86%E5%9D%97/"/>
+    
+      <category term="出神入化" scheme="https://etbubble.github.io/tags/%E5%87%BA%E7%A5%9E%E5%85%A5%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>2019 Multi-University Training Contest 10 1011 Make Rounddog Happy</title>
@@ -432,9 +518,9 @@
       <category term="动态规划" scheme="https://etbubble.github.io/categories/ACM/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     
-      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
-    
       <category term="DP" scheme="https://etbubble.github.io/tags/DP/"/>
+    
+      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
     
   </entry>
   
@@ -527,91 +613,9 @@
       <category term="数论" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E8%AE%BA/"/>
     
     
+      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
+    
       <category term="FFT/NTT/FWT" scheme="https://etbubble.github.io/tags/FFT-NTT-FWT/"/>
-    
-      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019 Multi-University Training Contest 2 1012 Longest Subarray</title>
-    <link href="https://etbubble.github.io/2019/07/24/2019-Multi-University-Training-Contest-2-1012/"/>
-    <id>https://etbubble.github.io/2019/07/24/2019-Multi-University-Training-Contest-2-1012/</id>
-    <published>2019-07-24T15:14:14.000Z</published>
-    <updated>2019-07-25T13:58:17.302Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Longest-Subarray-HDU-6602&quot;&gt;&lt;a href=&quot;#Longest-Subarray-HDU-6602&quot; class=&quot;headerlink&quot; title=&quot;Longest Subarray HDU 6602&quot;&gt;&lt;/a&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    
-      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
-    
-      <category term="线段树" scheme="https://etbubble.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019牛客暑期多校训练营（第二场）J Subarray</title>
-    <link href="https://etbubble.github.io/2019/07/23/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%BA%8C%E5%9C%BA)J/"/>
-    <id>https://etbubble.github.io/2019/07/23/2019牛客暑期多校训练营(第二场)J/</id>
-    <published>2019-07-23T15:03:10.000Z</published>
-    <updated>2019-08-13T14:03:25.283Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;2019牛客暑期多校训练营（第二场）J-Subarray&quot;&gt;&lt;a href=&quot;#2019牛客暑期多校训练营（第二场）J-Subarray&quot; class=&quot;headerlink&quot; title=&quot;2019牛客暑期多校训练营（第二场）J
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="比赛" scheme="https://etbubble.github.io/categories/ACM/%E6%AF%94%E8%B5%9B/"/>
-    
-    
-      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
-    
-      <category term="巧解" scheme="https://etbubble.github.io/tags/%E5%B7%A7%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>牛客多校--待补</title>
-    <link href="https://etbubble.github.io/2019/07/22/%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1--%E5%BE%85%E8%A1%A5/"/>
-    <id>https://etbubble.github.io/2019/07/22/牛客多校--待补/</id>
-    <published>2019-07-22T12:23:27.000Z</published>
-    <updated>2019-07-26T08:42:56.452Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;第一场-D-Parity-of-Tuples&quot;&gt;&lt;a href=&quot;#第一场-D-Parity-of-Tuples&quot; class=&quot;headerlink&quot; title=&quot;第一场 D Parity of Tuples&quot;&gt;&lt;/a&gt;&lt;a
-        
-      
-    
-    </summary>
-    
     
   </entry>
   
