@@ -467,7 +467,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">7.3k</span>
+                <span title="本文字数">7.4k</span>
               
 
               
@@ -513,17 +513,17 @@
 <p> Tamref love random numbers, but he hates recurrent relations, Tamref thinks that mainstream random generators like the linear congruent generator suck. That’s why he decided to invent his own random generator.</p>
 <p> As any reasonable competitive programmer, he loves trees. His generator starts with a tree with numbers on each node. To compute a new random number, he picks a rooted subtree and multiply the values of each node on the subtree. He also needs to compute the number of divisors of the generated number (because of cryptographical applications).</p>
 <p> In order to modify the tree (and hence create different numbers on the future), Tamref decided to perform another query: pick a node, and multiply its value by a given number.</p>
-<p> Given a initial tree <em>T</em>, where <em>T__u</em> corresponds to the value on the node <em>u</em>, the operations can be summarized as follows:</p>
+<p> Given a initial tree _T_, where _T__u_ corresponds to the value on the node _u_, the operations can be summarized as follows:</p>
 <ul>
-<li>RAND: Given a node <em>u</em> compute <img src="http://codeforces.com/predownloaded/1a/39/1a39380d5908a5d7b4e39b99d332d9b059982c73.png" alt> and count its divisors, where <em>T</em>(<em>u</em>) is the set of nodes that belong to the subtree rooted at <em>u</em>. </li>
-<li><p>SEED: Given a node <em>u</em> and a number <em>x</em>, multiply <em>T__u</em> by <em>x</em>. Tamref is quite busy trying to prove that his method indeed gives integers uniformly distributed, in the meantime, he wants to test his method with a set of queries, and check which numbers are generated. He wants you to write a program that given the tree, and some queries, prints the generated numbers and count its divisors.</p>
-<p>Tamref has told you that the largest prime factor of both <em>T__u</em> and <em>x</em> is at most the Tamref’s favourite prime: 13. He also told you that the root of <em>T</em> is always node 0.</p>
+<li>RAND: Given a node _u_ compute <img src="http://codeforces.com/predownloaded/1a/39/1a39380d5908a5d7b4e39b99d332d9b059982c73.png" alt> and count its divisors, where _T_(_u_) is the set of nodes that belong to the subtree rooted at _u_. </li>
+<li><p>SEED: Given a node _u_ and a number _x_, multiply _T__u_ by _x_. Tamref is quite busy trying to prove that his method indeed gives integers uniformly distributed, in the meantime, he wants to test his method with a set of queries, and check which numbers are generated. He wants you to write a program that given the tree, and some queries, prints the generated numbers and count its divisors.</p>
+<p>Tamref has told you that the largest prime factor of both _T__u_ and _x_ is at most the Tamref’s favourite prime: 13. He also told you that the root of _T_ is always node 0.</p>
 <p><img src="http://codeforces.com/predownloaded/f3/8a/f38a31b4b86b0af223b98dbb630c3eed57bf684d.png" alt></p>
 <p>The figure shows the sample test case. The numbers inside the squares are the values on each node of the tree. The subtree rooted at node 1 is colored. The RAND query for the subtree rooted at node 1 would generate 14400, which has 63 divisors.</p>
 <p>Input</p>
-<p>The first line is an integer <em>n</em> (1 ≤ <em>n</em> ≤ 105), the number of nodes in the tree <em>T</em>. Then there are <em>n</em> - 1 lines, each line contains two integers <em>u_and _v</em> (0 ≤ <em>u</em>, <em>v</em> &lt; <em>n</em>) separated by a single space, it represents that <em>u</em> is a parent of <em>v</em> in <em>T</em>. The next line contains <em>n</em> integers, where the <em>i</em> - <em>th</em> integer corresponds to <em>T__i</em> (1 ≤ <em>T__i</em> ≤ 109). The next line contains a number <em>Q</em> (1 ≤ <em>Q</em> ≤ 105), the number of queries. The final <em>Q</em> lines contain a query per line, in the form “<em>RAND</em> <em>u</em>“ or “SEED <em>u</em> <em>x</em>“ (0 ≤ <em>u</em> &lt; <em>n</em>, 1 ≤ <em>x</em> ≤ 109).</p>
+<p>The first line is an integer _n_ (1 ≤ _n_ ≤ 105), the number of nodes in the tree _T_. Then there are _n_ - 1 lines, each line contains two integers _u_and _v_ (0 ≤ _u_, _v_ &lt; _n_) separated by a single space, it represents that _u_ is a parent of _v_ in _T_. The next line contains _n_ integers, where the _i_ - _th_ integer corresponds to _T<strong>i_ (1 ≤ _T</strong>i_ ≤ 109). The next line contains a number _Q_ (1 ≤ _Q_ ≤ 105), the number of queries. The final _Q_ lines contain a query per line, in the form “_RAND_ _u_” or “SEED _u_ _x_” (0 ≤ _u_ &lt; _n_, 1 ≤ _x_ ≤ 109).</p>
 <p>Output</p>
-<p>For each <em>RAND</em> query, print one line with the generated number and its number of divisors separated by a space. As this number can be very long, the generated number and its divisors must be printed modulo 109 + 7.</p>
+<p>For each _RAND_ query, print one line with the generated number and its number of divisors separated by a space. As this number can be very long, the generated number and its divisors must be printed modulo 109 + 7.</p>
 <p>Example</p>
 <p>input</p>
 <p>Copy</p>
