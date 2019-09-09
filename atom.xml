@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-08-24T03:38:09.893Z</updated>
+  <updated>2019-09-09T12:47:55.494Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FWT快速沃尔什变换-简解及证明</title>
+    <link href="https://etbubble.github.io/2019/09/09/FWT%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2-%E7%AE%80%E8%A7%A3%E5%8F%8A%E8%AF%81%E6%98%8E/"/>
+    <id>https://etbubble.github.io/2019/09/09/FWT快速沃尔什变换-简解及证明/</id>
+    <published>2019-09-09T12:46:45.000Z</published>
+    <updated>2019-09-09T12:47:55.494Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>FWT快速沃尔什变换-简解及证明</title>
+    <link href="https://etbubble.github.io/2019/09/09/FWT%E7%AE%80%E8%A7%A3/"/>
+    <id>https://etbubble.github.io/2019/09/09/FWT简解/</id>
+    <published>2019-09-09T12:46:45.000Z</published>
+    <updated>2019-09-09T14:10:48.420Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;FWT简介&quot;&gt;&lt;a href=&quot;#FWT简介&quot; class=&quot;headerlink&quot; title=&quot;FWT简介&quot;&gt;&lt;/a&gt;FWT简介&lt;/h2&gt;&lt;p&gt;FWT 用来求卷积，和&lt;code&gt;FFT&lt;/code&gt;很像.&lt;br&gt;三个公式&lt;/p&gt;
+&lt;script
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="数论" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E8%AE%BA/"/>
+    
+    
+      <category term="FFT/NTT/FWT" scheme="https://etbubble.github.io/tags/FFT-NTT-FWT/"/>
+    
+  </entry>
   
   <entry>
     <title>树链剖分原理和实现</title>
@@ -219,7 +262,7 @@
     <link href="https://etbubble.github.io/2019/08/14/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E5%85%AB%E5%9C%BA)J.Just-Jump/"/>
     <id>https://etbubble.github.io/2019/08/14/2019牛客暑期多校训练营(第八场)J.Just-Jump/</id>
     <published>2019-08-14T13:39:13.000Z</published>
-    <updated>2019-08-25T01:56:16.360Z</updated>
+    <updated>2019-08-30T10:55:17.424Z</updated>
     
     <summary type="html">
     
@@ -227,7 +270,7 @@
       
         
         
-          &lt;p&gt;&lt;strong&gt;题意：&lt;/strong&gt; 终点位置为$L$，中间点是$1,2,\cdots,L-1$ ，开始位置在$0$，每次必须走至少$d$步,在第。$t_i$&lt;br&gt;步不能出现在 $p_i$ 这个位置，问从 $0$ 到 $L$ ，有多少种走法。&lt;br&gt;
+          &lt;p&gt;&lt;a href=&quot;https://ac.nowcoder.com/acm/contest/888/J&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;2019牛客暑期多校训练营(第八场)Just
         
       
     
@@ -549,71 +592,6 @@
       <category term="DP" scheme="https://etbubble.github.io/tags/DP/"/>
     
       <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单调栈和单调队列</title>
-    <link href="https://etbubble.github.io/2019/07/26/%E5%8D%95%E8%B0%83%E6%A0%88%E5%92%8C%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
-    <id>https://etbubble.github.io/2019/07/26/单调栈和单调队列/</id>
-    <published>2019-07-26T08:55:06.000Z</published>
-    <updated>2019-07-26T12:19:12.242Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;理解单调栈和单单调队列之前，要明白一种技巧，叫做尺取法。&lt;/p&gt;
-&lt;h2 id=&quot;尺取法&quot;&gt;&lt;a href=&quot;#尺取法&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    
-      <category term="单调队列" scheme="https://etbubble.github.io/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
-    
-      <category term="巧解" scheme="https://etbubble.github.io/tags/%E5%B7%A7%E8%A7%A3/"/>
-    
-      <category term="笔记" scheme="https://etbubble.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="单调栈" scheme="https://etbubble.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019牛客暑期多校训练营（第三场）F Planting Trees</title>
-    <link href="https://etbubble.github.io/2019/07/26/2019%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5(%E7%AC%AC%E4%B8%89%E5%9C%BA)F/"/>
-    <id>https://etbubble.github.io/2019/07/26/2019牛客暑期多校训练营(第三场)F/</id>
-    <published>2019-07-26T08:22:35.000Z</published>
-    <updated>2019-08-13T14:03:02.105Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;https://ac.nowcoder.com/acm/contest/883/F&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;2019牛客暑期多校训练营（第三场）F Planting
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="数据结构" scheme="https://etbubble.github.io/categories/ACM/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    
-      <category term="牛客暑期多校训练营" scheme="https://etbubble.github.io/tags/%E7%89%9B%E5%AE%A2%E6%9A%91%E6%9C%9F%E5%A4%9A%E6%A0%A1%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
-    
-      <category term="单调队列" scheme="https://etbubble.github.io/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
     
   </entry>
   
