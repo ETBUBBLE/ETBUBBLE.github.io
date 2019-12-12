@@ -7,6 +7,8 @@
     <mapping directory="$PROJECT_DIR$/themes/fan" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/themes/next" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/themes/next/source/lib/canvas-nest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/themes/next/source/lib/needsharebutton" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/themes/next/source/lib/pace" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/themes/the" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/themes/vn" vcs="Git" />
   </component>
