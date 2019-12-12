@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2019-11-13T03:58:35.312Z</updated>
+  <updated>2019-12-12T10:06:59.647Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,100 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux0.11-sched.h、sched.c内核源码分析</title>
+    <link href="https://etbubble.github.io/2019/12/12/linux0.11-sched.h%E3%80%81sched.c%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <id>https://etbubble.github.io/2019/12/12/linux0.11-sched.h、sched.c内核源码分析/</id>
+    <published>2019-12-12T10:05:00.000Z</published>
+    <updated>2019-12-12T10:06:59.647Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这篇文章 只是学习笔记，如有错误或疑问，欢迎指出。&lt;br&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统" scheme="https://etbubble.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="UNIX" scheme="https://etbubble.github.io/tags/UNIX/"/>
+    
+      <category term="linux" scheme="https://etbubble.github.io/tags/linux/"/>
+    
+      <category term="源码" scheme="https://etbubble.github.io/tags/%E6%BA%90%E7%A0%81/"/>
+    
+      <category term="进程调度" scheme="https://etbubble.github.io/tags/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode-4. 寻找两个有序数组的中位数</title>
+    <link href="https://etbubble.github.io/2019/12/12/leetcode-4.-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
+    <id>https://etbubble.github.io/2019/12/12/leetcode-4.-寻找两个有序数组的中位数/</id>
+    <published>2019-12-12T00:44:27.000Z</published>
+    <updated>2019-12-12T00:47:23.166Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这题挺有意思的，一开始想了半天怎么处理细节，想了半天，没想出来，要不暴力所有情况，结果特么还跑的飞快。&lt;/p&gt;
+&lt;p&gt;这题看一眼肯定知道是二分，两个有序数组，找合并之后的中位数。难搞的就是会出现相同数字，和数组长度是偶数。所以我就搞了一个函数 直接找第 k
+        
+      
+    
+    </summary>
+    
+      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
+    
+      <category term="二分" scheme="https://etbubble.github.io/categories/ACM/%E4%BA%8C%E5%88%86/"/>
+    
+    
+      <category term="二分" scheme="https://etbubble.github.io/tags/%E4%BA%8C%E5%88%86/"/>
+    
+      <category term="leetcode" scheme="https://etbubble.github.io/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统-进程管理</title>
+    <link href="https://etbubble.github.io/2019/12/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"/>
+    <id>https://etbubble.github.io/2019/12/12/操作系统-进程管理/</id>
+    <published>2019-12-12T00:39:34.000Z</published>
+    <updated>2019-12-12T03:01:28.737Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;del&gt;大部分基知识看看就行&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统" scheme="https://etbubble.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="Linux" scheme="https://etbubble.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/"/>
+    
+    
+      <category term="进程" scheme="https://etbubble.github.io/tags/%E8%BF%9B%E7%A8%8B/"/>
+    
+      <category term="线程" scheme="https://etbubble.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>Splay 树学习笔记</title>
@@ -516,96 +610,6 @@
       <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
     
       <category term="构造" scheme="https://etbubble.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>后缀数组和高度数组(LCP)学习笔记(有坑)</title>
-    <link href="https://etbubble.github.io/2019/07/30/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%92%8C%E9%AB%98%E5%BA%A6%E6%95%B0%E7%BB%84(LCP)%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://etbubble.github.io/2019/07/30/后缀数组和高度数组(LCP)学习笔记/</id>
-    <published>2019-07-30T13:22:27.000Z</published>
-    <updated>2019-07-30T14:32:02.973Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;后缀数组&quot;&gt;&lt;a href=&quot;#后缀数组&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="字符串" scheme="https://etbubble.github.io/categories/ACM/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    
-      <category term="笔记" scheme="https://etbubble.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="后缀数组" scheme="https://etbubble.github.io/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019 Multi-University Training Contest 3 1011 Squrirrel</title>
-    <link href="https://etbubble.github.io/2019/07/30/2019-Multi-University-Training-Contest-3-1011/"/>
-    <id>https://etbubble.github.io/2019/07/30/2019-Multi-University-Training-Contest-3-1011/</id>
-    <published>2019-07-30T02:20:55.000Z</published>
-    <updated>2019-07-30T02:39:05.185Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;http://acm.hdu.edu.cn/showproblem.php?pid=6613&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;HDU 6613 Squrirrel&lt;/a&gt;&lt;br&gt;&lt;strong&gt;题意：&lt;/strong&gt;
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="动态规划" scheme="https://etbubble.github.io/categories/ACM/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    
-      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
-    
-      <category term="树形DP" scheme="https://etbubble.github.io/tags/%E6%A0%91%E5%BD%A2DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019 Multi-University Training Contest 1 1001 Blank</title>
-    <link href="https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/"/>
-    <id>https://etbubble.github.io/2019/07/27/2019-Multi-University-Training-Contest-1-1001/</id>
-    <published>2019-07-27T12:04:06.000Z</published>
-    <updated>2019-07-30T02:39:46.790Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;http://acm.hdu.edu.cn/showproblem.php?pid=6578&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;HDU 6578 Blank&lt;/a&gt;&lt;br&gt;&lt;strong&gt;题意：&lt;/strong&gt;
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="动态规划" scheme="https://etbubble.github.io/categories/ACM/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    
-      <category term="杭电多校" scheme="https://etbubble.github.io/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/"/>
-    
-      <category term="DP" scheme="https://etbubble.github.io/tags/DP/"/>
     
   </entry>
   

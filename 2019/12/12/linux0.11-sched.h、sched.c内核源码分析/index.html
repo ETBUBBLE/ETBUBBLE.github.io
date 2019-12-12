@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这篇文章 只是学习笔记，如有错误或疑问，欢迎指出。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
+<meta name="keywords" content="UNIX,linux,源码,进程调度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux0.11-sched.h、sched.c内核源码分析">
+<meta property="og:url" content="https://etbubble.github.io/2019/12/12/linux0.11-sched.h、sched.c内核源码分析/index.html">
+<meta property="og:site_name" content="ET_BUBBLE 的博客">
+<meta property="og:description" content="这篇文章 只是学习笔记，如有错误或疑问，欢迎指出。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019121215481494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191212154926724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-12-12T10:06:59.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux0.11-sched.h、sched.c内核源码分析">
+<meta name="twitter:description" content="这篇文章 只是学习笔记，如有错误或疑问，欢迎指出。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019121215481494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ET_BUBBLE 的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://etbubble.github.io/2019/12/12/linux0.11-sched.h、sched.c内核源码分析/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>linux0.11-sched.h、sched.c内核源码分析 | ET_BUBBLE 的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ET_BUBBLE 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">两件事一定不能停 学习和运动</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/12/12/linux0.11-sched.h、sched.c内核源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="尘">
+      <meta itemprop="description" content="做自己不会做的事被称之为学习">
+      <meta itemprop="image" content="/images/tou.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ET_BUBBLE 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux0.11-sched.h、sched.c内核源码分析
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-12 18:05:00 / 修改时间：18:06:59" itemprop="dateCreated datePublished" datetime="2019-12-12T18:05:00+08:00">2019-12-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">23k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">20 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇文章 只是学习笔记，如有错误或疑问，欢迎指出。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _SCHED_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _SCHED_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NR_TASKS 64  <span class="comment">//系统最多的进程数</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HZ 100       <span class="comment">// 系统时钟频率 100HZ</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FIRST_TASK task[0]      <span class="comment">//任务0是  比较特殊 init()</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LAST_TASK task[NR_TASKS-1]  <span class="comment">//任务数组里面最后一个</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/head.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/fs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/mm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (NR_OPEN &gt; 32)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">error</span> <span class="meta-string">"Currently the close-on-exec-flags are in one word, max 32 files/proc"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//前面说过的 几种状态  当前版本只有这么几个</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_RUNNING		0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_INTERRUPTIBLE	1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_UNINTERRUPTIBLE	2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_ZOMBIE		3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_STOPPED		4</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NULL</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL ((void *) 0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">// 几个具体的函数  后面会在sched.c 里面会讲实现</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 复制 进程 目录页表</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">copy_page_tables</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> from, <span class="keyword">unsigned</span> <span class="keyword">long</span> to, <span class="keyword">long</span> size)</span></span>;</span><br><span class="line"><span class="comment">//释放页表所指定的 内存 和页表本身</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">free_page_tables</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> from, <span class="keyword">unsigned</span> <span class="keyword">long</span> size)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化调度</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">sched_init</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">//调度程序</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">schedule</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//异常中断处理 ，设置中断调用门，并开启中断</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">trap_init</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示出错信息，然后死循环</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">panic</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * str)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在 tty 上显示制定长度信息</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">tty_write</span><span class="params">(<span class="keyword">unsigned</span> minor,<span class="keyword">char</span> * buf,<span class="keyword">int</span> count)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个函数指针类型</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*fn_ptr)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个暂时不用管  是数学处理器使用的结构，我也不知道具体是干啥的</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">i387_struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">long</span>	cwd;</span><br><span class="line">	<span class="keyword">long</span>	swd;</span><br><span class="line">	<span class="keyword">long</span>	twd;</span><br><span class="line">	<span class="keyword">long</span>	fip;</span><br><span class="line">	<span class="keyword">long</span>	fcs;</span><br><span class="line">	<span class="keyword">long</span>	foo;</span><br><span class="line">	<span class="keyword">long</span>	fos;</span><br><span class="line">	<span class="keyword">long</span>	st_space[<span class="number">20</span>];	<span class="comment">/* 8*10 bytes for each FP-reg = 80 bytes */</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 任务状态段数据结构 也不知道干啥的</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tss_struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">long</span>	back_link;	<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	esp0;</span><br><span class="line">	<span class="keyword">long</span>	ss0;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	esp1;</span><br><span class="line">	<span class="keyword">long</span>	ss1;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	esp2;</span><br><span class="line">	<span class="keyword">long</span>	ss2;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	cr3;</span><br><span class="line">	<span class="keyword">long</span>	eip;</span><br><span class="line">	<span class="keyword">long</span>	eflags;</span><br><span class="line">	<span class="keyword">long</span>	eax,ecx,edx,ebx;</span><br><span class="line">	<span class="keyword">long</span>	esp;</span><br><span class="line">	<span class="keyword">long</span>	ebp;</span><br><span class="line">	<span class="keyword">long</span>	esi;</span><br><span class="line">	<span class="keyword">long</span>	edi;</span><br><span class="line">	<span class="keyword">long</span>	es;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	cs;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	ss;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	ds;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	fs;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	gs;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	ldt;		<span class="comment">/* 16 high bits zero */</span></span><br><span class="line">	<span class="keyword">long</span>	trace_bitmap;	<span class="comment">/* bits: trace 0, bitmap 16-31 */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">i387_struct</span> <span class="title">i387</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//1ong 1eader会话首领。</span></span><br><span class="line"><span class="comment">//long start_time进程开始运行时刻。</span></span><br><span class="line"><span class="comment">//unsigned short used_math 标志：是否使用了协处理器。</span></span><br><span class="line"><span class="comment">//int tty进程使用tty的子设备号。-1表示没有使用。//unsigned short umask文件创建属性屏蔽位。</span></span><br><span class="line"><span class="comment">//struct minode*pwd 当前工作目录i节点结构。//struct m inode*root 根目录i节点结构。</span></span><br><span class="line"><span class="comment">//struct m inode*executable执行文件i节点结构。</span></span><br><span class="line"><span class="comment">//unsigned 1ong close_on_exec执行时关闭文件句柄位图标志。（参见include/fcntl.h）</span></span><br><span class="line"><span class="comment">//struct file*filp[NR_OPEN]进程使用的文件表结构。</span></span><br><span class="line"><span class="comment">//struct desc_struct 1dt[3]本任务的局部表描述符。0-空，1-代码段cs，2-数据和堆栈段ds&amp;ss。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重头戏，也就是我们说的 PCB</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line"><span class="comment">/* these are hardcoded - don't touch */</span></span><br><span class="line">	<span class="keyword">long</span> state;	<span class="comment">/* -1 unrunnable, 0 runnable, &gt;0 stopped */</span></span><br><span class="line">	<span class="keyword">long</span> counter;</span><br><span class="line">	<span class="keyword">long</span> priority;</span><br><span class="line">	<span class="keyword">long</span> signal;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//信号执行属性结构，对应信号将要执行的操作</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">sigaction</span>[32];</span></span><br><span class="line">	<span class="comment">// 进程信号屏蔽码，计算机组成原理上面 有详细解释</span></span><br><span class="line">	<span class="keyword">long</span> blocked;	<span class="comment">/* bitmap of masked signals */</span></span><br><span class="line"><span class="comment">/* various fields */</span></span><br><span class="line">    <span class="comment">// 任务执行退出码，给父进程用的</span></span><br><span class="line">	<span class="keyword">int</span> exit_code;</span><br><span class="line">	<span class="comment">//代码段信息 开始 结束  数据段信息 总长度 堆栈地址</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> start_code,end_code,end_data,brk,start_stack;</span><br><span class="line">	<span class="comment">// 自己 父亲（新版本中 懂事直接用 父亲指针 指向他的PCB） 组号，会话号，会话首领</span></span><br><span class="line">	<span class="keyword">long</span> pid,father,pgrp,session,leader;</span><br><span class="line">    <span class="comment">//unsigned short uid 用户标识号（用户id）。</span></span><br><span class="line"><span class="comment">//euid 有效用户id。suid 保存的用户id。</span></span><br><span class="line"><span class="comment">// gid组标识号（组id）egid有效组id。sgid保存的组id。</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> uid,euid,suid;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> gid,egid,sgid;</span><br><span class="line"><span class="comment">//1ong alarm报警定时值（滴答数）。</span></span><br><span class="line">	<span class="keyword">long</span> alarm;</span><br><span class="line"><span class="comment">//1ong utime用户态运行时间（滴答数）。</span></span><br><span class="line"><span class="comment">//long stime系统态运行时间（滴答数）。</span></span><br><span class="line"><span class="comment">//1ong cutime子进程用户态运行时间。</span></span><br><span class="line"><span class="comment">// 1ong cstime子进程系统态运行时间。</span></span><br><span class="line"><span class="comment">// start_time 开始运行时间</span></span><br><span class="line">	<span class="keyword">long</span> utime,stime,cutime,cstime,start_time;</span><br><span class="line">	<span class="comment">// 是否使用了协处理器</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> used_math;</span><br><span class="line"><span class="comment">/* file system info */</span></span><br><span class="line"><span class="comment">// tty 设备 -1 表示没有用</span></span><br><span class="line">	<span class="keyword">int</span> tty;		<span class="comment">/* -1 if no tty, so it must be signed */</span></span><br><span class="line">	<span class="comment">// 文件穿件属性屏蔽位</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> umask;</span><br><span class="line">	<span class="comment">// 当前工作目录i 节点结构</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">m_inode</span> * <span class="title">pwd</span>;</span></span><br><span class="line">	<span class="comment">// 更目录 i 节点结构</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">m_inode</span> * <span class="title">root</span>;</span></span><br><span class="line">	<span class="comment">// 执行文件 i 节点结构</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">m_inode</span> * <span class="title">executable</span>;</span></span><br><span class="line">	<span class="comment">// 关闭文件句柄位 图标志</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> close_on_exec;</span><br><span class="line">	<span class="comment">// 进程使用的文件表 结构</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">file</span> * <span class="title">filp</span>[<span class="title">NR_OPEN</span>];</span></span><br><span class="line"><span class="comment">/* ldt for this task 0 - zero 1 - cs 2 - ds&amp;ss */</span></span><br><span class="line"><span class="comment">// 任务局部表描述符，  0 空  1代码段 2 数据和堆栈段 ds &amp;ss</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> <span class="title">ldt</span>[3];</span></span><br><span class="line"><span class="comment">/* tss for this task */</span></span><br><span class="line">    <span class="comment">//  本进程的任务状态信息结构</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">tss_struct</span> <span class="title">tss</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  INIT_TASK is used to set up the first task table, touch at</span></span><br><span class="line"><span class="comment"> * your own risk!. Base=0, limit=0x9ffff (=640kB)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个 用于 设置第一个任务表   别动就行</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INIT_TASK \</span></span><br><span class="line"><span class="comment">/* state etc */</span>	&#123; <span class="number">0</span>,<span class="number">15</span>,<span class="number">15</span>, \</span><br><span class="line"><span class="comment">/* signals */</span>	<span class="number">0</span>,&#123;&#123;&#125;,&#125;,<span class="number">0</span>, \</span><br><span class="line"><span class="comment">/* ec,brk... */</span>	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>, \</span><br><span class="line"><span class="comment">/* pid etc.. */</span>	<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>, \</span><br><span class="line"><span class="comment">/* uid etc */</span>	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>, \</span><br><span class="line"><span class="comment">/* alarm */</span>	<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>, \</span><br><span class="line"><span class="comment">/* math */</span>	<span class="number">0</span>, \</span><br><span class="line"><span class="comment">/* fs info */</span>	<span class="number">-1</span>,<span class="number">0022</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="number">0</span>, \</span><br><span class="line"><span class="comment">/* filp */</span>	&#123;<span class="literal">NULL</span>,&#125;, \</span><br><span class="line">	&#123; \</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>&#125;, \</span><br><span class="line"><span class="comment">/* ldt */</span>	&#123;<span class="number">0x9f</span>,<span class="number">0xc0fa00</span>&#125;, \</span><br><span class="line">		&#123;<span class="number">0x9f</span>,<span class="number">0xc0f200</span>&#125;, \</span><br><span class="line">	&#125;, \</span><br><span class="line"><span class="comment">/*tss*/</span>	&#123;<span class="number">0</span>,PAGE_SIZE+(<span class="keyword">long</span>)&amp;init_task,<span class="number">0x10</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,(<span class="keyword">long</span>)&amp;pg_dir,\</span><br><span class="line">	 <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>, \</span><br><span class="line">	 <span class="number">0</span>,<span class="number">0</span>,<span class="number">0x17</span>,<span class="number">0x17</span>,<span class="number">0x17</span>,<span class="number">0x17</span>,<span class="number">0x17</span>,<span class="number">0x17</span>, \</span><br><span class="line">	 _LDT(<span class="number">0</span>),<span class="number">0x80000000</span>, \</span><br><span class="line">		&#123;&#125; \</span><br><span class="line">	&#125;, \</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//任务指针数组</span></span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">task</span>[<span class="title">NR_TASKS</span>];</span></span><br><span class="line">    <span class="comment">//上一个使用过 协处理器的进程</span></span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">last_task_used_math</span>;</span></span><br><span class="line"><span class="comment">//当前进程</span></span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">current</span>;</span></span><br><span class="line"><span class="comment">//开机时开始技术滴答数  10ms/滴答</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">long</span> <span class="keyword">volatile</span> jiffies;</span><br><span class="line"><span class="comment">//开机时间。从 1970:0:0:0 开始计时  秒为单位</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">long</span> startup_time;</span><br><span class="line"></span><br><span class="line"><span class="comment">//当前时间</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CURRENT_TIME (startup_time+jiffies/HZ)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加定时器 到时间执行函数</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">add_timer</span><span class="params">(<span class="keyword">long</span> jiffies, <span class="keyword">void</span> (*fn)(<span class="keyword">void</span>))</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不可中断的等待睡眠</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">sleep_on</span><span class="params">(struct task_struct ** p)</span></span>;</span><br><span class="line"><span class="comment">// 可中断的</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">interruptible_sleep_on</span><span class="params">(struct task_struct ** p)</span></span>;</span><br><span class="line"><span class="comment">//唤醒程序</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">wake_up</span><span class="params">(struct task_struct ** p)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Entry into gdt where to find first TSS. 0-nul, 1-cs, 2-ds, 3-syscall</span></span><br><span class="line"><span class="comment"> * 4-TSS0, 5-LDT0, 6-TSS1 etc ...</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FIRST_TSS_ENTRY 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FIRST_LDT_ENTRY (FIRST_TSS_ENTRY+1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _TSS(n) ((((unsigned long) n)&lt;&lt;4)+(FIRST_TSS_ENTRY&lt;&lt;3))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _LDT(n) ((((unsigned long) n)&lt;&lt;4)+(FIRST_LDT_ENTRY&lt;&lt;3))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ltr(n) __asm__(<span class="meta-string">"ltr %%ax"</span>::<span class="meta-string">"a"</span> (_TSS(n)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lldt(n) __asm__(<span class="meta-string">"lldt %%ax"</span>::<span class="meta-string">"a"</span> (_LDT(n)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> str(n) \</span></span><br><span class="line">__asm__(<span class="string">"str %%ax\n\t"</span> \</span><br><span class="line">	<span class="string">"subl %2,%%eax\n\t"</span> \</span><br><span class="line">	<span class="string">"shrl $4,%%eax"</span> \</span><br><span class="line">	:<span class="string">"=a"</span> (n) \</span><br><span class="line">	:<span class="string">"a"</span> (<span class="number">0</span>),<span class="string">"i"</span> (FIRST_TSS_ENTRY&lt;&lt;<span class="number">3</span>))</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *	switch_to(n) should switch tasks to task nr n, first</span></span><br><span class="line"><span class="comment"> * checking that n isn't the current task, in which case it does nothing.</span></span><br><span class="line"><span class="comment"> * This also clears the TS-flag if the task we switched to has used</span></span><br><span class="line"><span class="comment"> * tha math co-processor latest.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//这是一个很重要的跳转 ，用于上下文切换</span></span><br><span class="line"><span class="comment">/*switch_to（n）将切换当前任务到任务nr，即n。首先检测任务n不是当前任务，</span></span><br><span class="line"><span class="comment">*如果是则什么也不做退出。如果我们切换到的任务最近（上次运行）使用过数学</span></span><br><span class="line"><span class="comment">        *协处理器的话，则还需复位控制寄存器cr0中的TS标志。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转到一个任务的TSS段选择符组成的地址处会造成CPU进行任务切换操作。//输入：%0-指向tmp；%1-指向tmp.b处，用于存放新TSS的选择符；</span></span><br><span class="line"><span class="comment">//dx-新任务n的TSS段选择符；ecx-新任务n的任务结构指针task[n]。</span></span><br><span class="line"><span class="comment">//其中临时数据结构tmp用 跳转（farjump）指令的操作数。该操作数由4字节偏移</span></span><br><span class="line"><span class="comment">//地址和2字节的段选择符组成。因此tmp中a的值是32位偏移值，而b的低2字节是新TSS段的</span></span><br><span class="line"><span class="comment">//选择符（高2字节不用）。跳转到TSS段选择符会造成任务切换到该TSS对应的进程。对于造成任务//切换的长跳转，a值无用。177行上的内存间接跳转指令使用6字节操作数作为跳转目的地的长指针，</span></span><br><span class="line"><span class="comment">//其格式为：jmp16位段选择符：32位偏移值。但在内存中操作数的表示顺序与这里正好相反。//任务切换回来之后，在判断原任务上次执行是否使用过协处理器时，是通过将原任务指针与保存在</span></span><br><span class="line"><span class="comment">//last_task used math变量中的上次使用过协处理器任务指针进行比较而作出的，参见文件</span></span><br><span class="line"><span class="comment">//kernel/sched.c中有关math state restore）函数的说明。</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> switch_to(n) &#123;\</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span><span class="keyword">long</span> a,b;&#125; __tmp; \</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * __asm__("cmpl %%ecx,_current\n\t" \          比较是不是当前运行的进程</span></span><br><span class="line"><span class="comment">	"je 1f\n\t" \                           是的话啥都不做</span></span><br><span class="line"><span class="comment">	"movw %%dx,%1\n\t" \                将新任务TSS 的16位 选择符存入 __tmp.b中</span></span><br><span class="line"><span class="comment">	"xchgl %%ecx,_current\n\t" \            //current=task[n] ecx=被换出的任务</span></span><br><span class="line"><span class="comment">	"ljmp %0\n\t" \                     跳到 *&amp;__tmp,任务切换   这个时候已经不在这里了</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">必须要等到那个任务  执行完后 重新回到这里</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	"cmpl %%ecx,_last_task_used_math\n\t" \   //原任务使用过协处理器吗</span></span><br><span class="line"><span class="comment">	"jne 1f\n\t" \                              //没有则跳转 退出</span></span><br><span class="line"><span class="comment">	"clts\n" \                                  //使用过，清楚cr0任务切换</span></span><br><span class="line"><span class="comment">	"1:" \                                      //标志 TS</span></span><br><span class="line"><span class="comment">	::"m" (*&amp;__tmp.a),"m" (*&amp;__tmp.b), \</span></span><br><span class="line"><span class="comment">	"d" (_TSS(n)),"c" ((long) task[n])); \</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">__asm__(<span class="string">"cmpl %%ecx,_current\n\t"</span> \</span><br><span class="line">	<span class="string">"je 1f\n\t"</span> \</span><br><span class="line">	<span class="string">"movw %%dx,%1\n\t"</span> \</span><br><span class="line">	<span class="string">"xchgl %%ecx,_current\n\t"</span> \</span><br><span class="line">	<span class="string">"ljmp %0\n\t"</span> \</span><br><span class="line">	<span class="string">"cmpl %%ecx,_last_task_used_math\n\t"</span> \</span><br><span class="line">	<span class="string">"jne 1f\n\t"</span> \</span><br><span class="line">	<span class="string">"clts\n"</span> \</span><br><span class="line">	<span class="string">"1:"</span> \</span><br><span class="line">	::<span class="string">"m"</span> (*&amp;__tmp.a),<span class="string">"m"</span> (*&amp;__tmp.b), \</span><br><span class="line">	<span class="string">"d"</span> (_TSS(n)),<span class="string">"c"</span> ((<span class="keyword">long</span>) task[n])); \</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PAGE_ALIGN(n) (((n)+0xfff)&amp;0xfffff000)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _set_base(addr,base) \</span></span><br><span class="line">__asm__(<span class="string">"movw %%dx,%0\n\t"</span> \</span><br><span class="line">	<span class="string">"rorl $16,%%edx\n\t"</span> \</span><br><span class="line">	<span class="string">"movb %%dl,%1\n\t"</span> \</span><br><span class="line">	<span class="string">"movb %%dh,%2"</span> \</span><br><span class="line">	::<span class="string">"m"</span> (*((addr)+<span class="number">2</span>)), \</span><br><span class="line">	  <span class="string">"m"</span> (*((addr)+<span class="number">4</span>)), \</span><br><span class="line">	  <span class="string">"m"</span> (*((addr)+<span class="number">7</span>)), \</span><br><span class="line">	  <span class="string">"d"</span> (base) \</span><br><span class="line">	:<span class="string">"dx"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _set_limit(addr,limit) \</span></span><br><span class="line">__asm__(<span class="string">"movw %%dx,%0\n\t"</span> \</span><br><span class="line">	<span class="string">"rorl $16,%%edx\n\t"</span> \</span><br><span class="line">	<span class="string">"movb %1,%%dh\n\t"</span> \</span><br><span class="line">	<span class="string">"andb $0xf0,%%dh\n\t"</span> \</span><br><span class="line">	<span class="string">"orb %%dh,%%dl\n\t"</span> \</span><br><span class="line">	<span class="string">"movb %%dl,%1"</span> \</span><br><span class="line">	::<span class="string">"m"</span> (*(addr)), \</span><br><span class="line">	  <span class="string">"m"</span> (*((addr)+<span class="number">6</span>)), \</span><br><span class="line">	  <span class="string">"d"</span> (limit) \</span><br><span class="line">	:<span class="string">"dx"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> set_base(ldt,base) _set_base( ((char *)&amp;(ldt)) , base )</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> set_limit(ldt,limit) _set_limit( ((char *)&amp;(ldt)) , (limit-1)&gt;&gt;12 )</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _get_base(addr) (&#123;\</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> __base; \</span><br><span class="line">__asm__(<span class="string">"movb %3,%%dh\n\t"</span> \</span><br><span class="line">	<span class="string">"movb %2,%%dl\n\t"</span> \</span><br><span class="line">	<span class="string">"shll $16,%%edx\n\t"</span> \</span><br><span class="line">	<span class="string">"movw %1,%%dx"</span> \</span><br><span class="line">	:<span class="string">"=d"</span> (__base) \</span><br><span class="line">	:<span class="string">"m"</span> (*((addr)+<span class="number">2</span>)), \</span><br><span class="line">	 <span class="string">"m"</span> (*((addr)+<span class="number">4</span>)), \</span><br><span class="line">	 <span class="string">"m"</span> (*((addr)+<span class="number">7</span>))); \</span><br><span class="line">__base;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> get_base(ldt) _get_base( ((char *)&amp;(ldt)) )</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> get_limit(segment) (&#123; \</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> __limit; \</span><br><span class="line">__asm__(<span class="string">"lsll %1,%0\n\tincl %0"</span>:<span class="string">"=r"</span> (__limit):<span class="string">"r"</span> (segment)); \</span><br><span class="line">__limit;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://img-blog.csdnimg.cn/2019121215481494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191212154926724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>关于 sleep_on    wait。<br>这是两个 帮助 理解 的图片<br>重点 是 sleep  可wake<br>注意 进程 本身代码段  和PCB  不是 同一个东西。</p>
+<p>sleep_on 中 调用 了 schedule();<br>等到 他返回的时候 ，你换这个进程已经唤醒了，也就是 说 ，当前进程唤醒之后，实际上还在sleep on() 里面.</p>
+<p>wake() 只是 把 PCB 调入了唤醒状态 ，实际上 ，代码段 并没有执行，他还需要等待调度，wake() 只是修改了状态，并不是立马调度。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  linux/kernel/sched.c</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  (C) 1991  Linus Torvalds</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 'sched.c' is the main kernel file. It contains scheduling primitives</span></span><br><span class="line"><span class="comment"> * (sleep_on, wakeup, schedule etc) as well as a number of simple system</span></span><br><span class="line"><span class="comment"> * call functions (type getpid(), which just extracts a field from</span></span><br><span class="line"><span class="comment"> * current-task</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/sys.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/fdreg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/system.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/io.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/segment.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="comment">// 读取 nr 在信号位图中  对应的二进制数值</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _S(nr) (1&lt;&lt;((nr)-1))</span></span><br><span class="line"><span class="comment">// 除了 下面两个 信号 其他都是可阻塞的信号</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _BLOCKABLE (~(_S(SIGKILL) | _S(SIGSTOP)))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//内核调试函数 不用详细解释了把</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_task</span><span class="params">(<span class="keyword">int</span> nr,struct task_struct * p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j = <span class="number">4096</span>-<span class="keyword">sizeof</span>(struct task_struct);</span><br><span class="line"><span class="comment">// 进程Nr 的 进程号  状态 以及 堆栈空闲字节数</span></span><br><span class="line">	printk(<span class="string">"%d: pid=%d, state=%d, "</span>,nr,p-&gt;pid,p-&gt;state);</span><br><span class="line">	i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i&lt;j &amp;&amp; !((<span class="keyword">char</span> *)(p+<span class="number">1</span>))[i])<span class="comment">//检查指定任务结构以后等于 0的字节数</span></span><br><span class="line">		i++;</span><br><span class="line">	printk(<span class="string">"%d (of %d) chars free in kernel stack\n\r"</span>,i,j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用前面那个函数 ，非空进程就打印</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_stat</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;NR_TASKS;i++)</span><br><span class="line">		<span class="keyword">if</span> (task[i])</span><br><span class="line">			show_task(i,task[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//频率 / HZ</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LATCH (1193180/HZ)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">mem_use</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//时钟中断处理 具体见 system_call.s</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">timer_interrupt</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">//系统 中断处理 具体见 system_call.s</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">system_call</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 任务堆栈段  ，任务内核态堆栈结构</span></span><br><span class="line"><span class="keyword">union</span> task_union &#123;<span class="comment">//任务联合，任务结构体 和stack字符数组成员</span></span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> <span class="title">task</span>;</span>  <span class="comment">//任务数据结构和内核态堆栈 在同意内存页</span></span><br><span class="line">	<span class="keyword">char</span> <span class="built_in">stack</span>[PAGE_SIZE];   <span class="comment">//所以 ss 可以或得其数据段选择符号</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化任务结构  就是第一个进程任务</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">union</span> task_union init_task = &#123;INIT_TASK,&#125;;</span><br><span class="line"><span class="comment">//从开机开始算起的滴答数时间值全局变量（10ms/滴答）。系统时钟中断每发生一次即一个滴答。//前面的限定符volatile，英文解释是易改变的、不稳定的意思。这个限定词的含义是向编译器</span></span><br><span class="line"><span class="comment">//指明变量的内容可能会由于被其他程序修改而变化。通常在程序中中明一个变量时，编译器会</span></span><br><span class="line"><span class="comment">//尽量把它存放在通用寄存器中，例如ebx，以提高访问效率。当CPU把其值放到ebx中后一般</span></span><br><span class="line"><span class="comment">//就不会再关心该变量对应内存位置中的内容。若此时其他程序（例如内核程序或一个中断过程）</span></span><br><span class="line"><span class="comment">//修改了内存中该变量的值，ebx中的值并不会随之更新。为了解决这种情况就创建了volatile</span></span><br><span class="line"><span class="comment">//限定符，让代码在引用该变量时一定要从指定内存位置中取得其值。这里即是要求gcc不要对</span></span><br><span class="line"><span class="comment">//jiffies 进行优化处理，也不要挪动位置，并且需要从内存中取其值。因为时钟中断处理过程</span></span><br><span class="line"><span class="comment">//等程序会修改它的值。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">volatile</span> jiffies=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//讲过了  开机时间</span></span><br><span class="line"><span class="keyword">long</span> startup_time=<span class="number">0</span>;</span><br><span class="line"><span class="comment">// 当前任务   一开始就是第一个任务  现在是init()程序</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">current</span> = &amp;(<span class="title">init_task</span>.<span class="title">task</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用过协处理器任务指针</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">last_task_used_math</span> = <span class="title">NULL</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//任务列表，一开始 就是 init（）</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> * <span class="title">task</span>[<span class="title">NR_TASKS</span>] = &#123;</span>&amp;(init_task.task), &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户堆栈</span></span><br><span class="line"><span class="comment">//定义用户堆栈，共1K项，容量4K字节。在内核初始化操作过程中被用作内核栈，初始化完成</span></span><br><span class="line"><span class="comment">//以后将被用作任务0的用户态堆栈。在运行任务0之前它是内核栈，以后用作任务0和1的用</span></span><br><span class="line"><span class="comment">//户态栈。下面结构用于设置堆栈ss:esp（数据段选择符，指针），见head.s，第23行。</span></span><br><span class="line"><span class="comment">//ss被设置为内核数据段选择符（0x10），指针esp指在user_stack数组最后一项后面。这是</span></span><br><span class="line"><span class="comment">//因为IntelCPU执行堆栈操作时是先递减堆栈指针sp值，然后在sp指针处保存入栈内容。</span></span><br><span class="line"><span class="keyword">long</span> user_stack [ PAGE_SIZE&gt;&gt;<span class="number">2</span> ] ;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">long</span> * a;</span><br><span class="line">	<span class="keyword">short</span> b;</span><br><span class="line">	&#125; stack_start = &#123; &amp; user_stack [PAGE_SIZE&gt;&gt;<span class="number">2</span>] , <span class="number">0x10</span> &#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  'math_state_restore()' saves the current math information in the</span></span><br><span class="line"><span class="comment"> * old math state array, and gets the new ones from the current task</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 将党建内容 保存 到 老处理器状态数组中</span></span><br><span class="line"><span class="comment"> * 并回将当前任务的协处理器内容加载到协处理器中</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//此函数用于上下文切换  ，  当任务 被调度交换以后，该函数用以保存协处理器状态（上下文）</span></span><br><span class="line"><span class="comment">// 并恢复新的调度进来的当前任务的协处理器转台</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">math_state_restore</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 任务没有改变 就直接返回</span></span><br><span class="line">	<span class="keyword">if</span> (last_task_used_math == current)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">//在发送协处理器命令之前要发 wait 指令，如果上一个任务使用了协处理器 就要保存</span></span><br><span class="line">	__asm__(<span class="string">"fwait"</span>);</span><br><span class="line">	<span class="keyword">if</span> (last_task_used_math) &#123;</span><br><span class="line">		__asm__(<span class="string">"fnsave %0"</span>::<span class="string">"m"</span> (last_task_used_math-&gt;tss.i387));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//协处理器指向自己</span></span><br><span class="line">	last_task_used_math=current;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//如果第一用 就初始化 协处理器 否则 直接回复状态</span></span><br><span class="line">	<span class="keyword">if</span> (current-&gt;used_math) &#123;</span><br><span class="line">		__asm__(<span class="string">"frstor %0"</span>::<span class="string">"m"</span> (current-&gt;tss.i387));</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		__asm__(<span class="string">"fninit"</span>::);<span class="comment">//像协处理器发送初始化命令</span></span><br><span class="line">		current-&gt;used_math=<span class="number">1</span>;<span class="comment">//表示自己使用协处理器</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  'schedule()' is the scheduler function. This is GOOD CODE! There</span></span><br><span class="line"><span class="comment"> * probably won't be any reason to change this, as it should work well</span></span><br><span class="line"><span class="comment"> * in all circumstances (ie gives IO-bound processes good response etc).</span></span><br><span class="line"><span class="comment"> * The one thing you might take a look at is the signal-handler code here.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   NOTE!!  Task 0 is the 'idle' task, which gets called when no other</span></span><br><span class="line"><span class="comment"> * tasks can run. It can not be killed, and it cannot sleep. The 'state'</span></span><br><span class="line"><span class="comment"> * information in task[0] is never used.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 上面告诉 你 schedule 是个很好的东西 没有要改的必要，任何环境下都能工作。</span></span><br><span class="line"><span class="comment"> * 你只需要注意信号处理代码即可</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 注意!! 任务0 比是一个闲置任务，只有没有其他任务运行的时候你才能调用 ，</span></span><br><span class="line"><span class="comment"> * 他不能杀死 也不能睡眠，他的state 从来不用。</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">schedule</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,next,c;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> ** <span class="title">p</span>;</span> <span class="comment">//指向任务结构指针的指针</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* check alarm, wake up any interruptible tasks that have got a signal */</span></span><br><span class="line"><span class="comment">/*  检测到alarm（进程的报警定时器），唤醒任何已经得到信号的可中断任务*/</span></span><br><span class="line">/</span><br><span class="line"></span><br><span class="line"><span class="comment">//从后往前遍历 任务，跳过 空指针</span></span><br><span class="line">	<span class="keyword">for</span>(p = &amp;LAST_TASK ; p &gt; &amp;FIRST_TASK ; --p)</span><br><span class="line">		<span class="keyword">if</span> (*p) &#123;</span><br><span class="line">		    <span class="comment">// 如果设置了警报，且经过 过期，就设置signal然后清除alarm</span></span><br><span class="line">			<span class="keyword">if</span> ((*p)-&gt;alarm &amp;&amp; (*p)-&gt;alarm &lt; jiffies) &#123;</span><br><span class="line">					(*p)-&gt;signal |= (<span class="number">1</span>&lt;&lt;(SIGALRM<span class="number">-1</span>));</span><br><span class="line">					(*p)-&gt;alarm = <span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			<span class="comment">//如果信号位图中被阻塞的信号外还有其他信号，并且任务处于可中断转台，酒吧任务变为就绪</span></span><br><span class="line">			<span class="comment">// ~(_BLOCKABLE &amp; (*p)-&gt;blocked))用于忽略阻塞信号</span></span><br><span class="line">			<span class="keyword">if</span> (((*p)-&gt;signal &amp; ~(_BLOCKABLE &amp; (*p)-&gt;blocked)) &amp;&amp;</span><br><span class="line">			(*p)-&gt;state==TASK_INTERRUPTIBLE)</span><br><span class="line">				(*p)-&gt;state=TASK_RUNNING;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* this is the scheduler proper: */</span></span><br><span class="line">    <span class="comment">//调度的核心</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">		c = <span class="number">-1</span>;</span><br><span class="line">		next = <span class="number">0</span>;</span><br><span class="line">		i = NR_TASKS;</span><br><span class="line">		p = &amp;task[NR_TASKS];</span><br><span class="line">		<span class="keyword">while</span> (--i) &#123;</span><br><span class="line">		    <span class="comment">//如果是空指针就跳过</span></span><br><span class="line">			<span class="keyword">if</span> (!*--p)</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="comment">//比较所有 就绪状态 counter 的大小，找到最大的</span></span><br><span class="line">			<span class="keyword">if</span> ((*p)-&gt;state == TASK_RUNNING &amp;&amp; (*p)-&gt;counter &gt; c)</span><br><span class="line">				c = (*p)-&gt;counter, next = i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//如果找到了就跳出去</span></span><br><span class="line">		<span class="keyword">if</span> (c) <span class="keyword">break</span>;</span><br><span class="line">        <span class="comment">// 如果最大的counter = 0  就更新 counter ，就是下面这个算法  ，就是当前值 /2  +priority ......好敷衍的感觉</span></span><br><span class="line">		<span class="keyword">for</span>(p = &amp;LAST_TASK ; p &gt; &amp;FIRST_TASK ; --p)</span><br><span class="line">			<span class="keyword">if</span> (*p)</span><br><span class="line">				(*p)-&gt;counter = ((*p)-&gt;counter &gt;&gt; <span class="number">1</span>) +</span><br><span class="line">						(*p)-&gt;priority;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//下面这个就是跳转执行  如果next=0  实际上又回到了这个函数</span></span><br><span class="line">	switch_to(next);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//暂停当前进程，调度下一个</span></span><br><span class="line"><span class="comment">//调用当前函数 会使当前 进程进入睡眠 直到 收到一个信号</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_pause</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	current-&gt;state = TASK_INTERRUPTIBLE;</span><br><span class="line">	schedule();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 函数 将当前 进程 睡眠 等待wakeup</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// **p 是 等待队列头指针的指针</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sleep_on</span><span class="params">(struct task_struct **p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">tmp</span>;</span></span><br><span class="line">	<span class="comment">//如果等待队列是空指针 则 无效</span></span><br><span class="line">	<span class="keyword">if</span> (!p)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// 如果 当前是任务 0  就死机了</span></span><br><span class="line">	<span class="keyword">if</span> (current == &amp;(init_task.task))</span><br><span class="line">		panic(<span class="string">"task[0] trying to sleep"</span>);</span><br><span class="line"></span><br><span class="line">	tmp = *p;</span><br><span class="line">	*p = current;</span><br><span class="line">	<span class="comment">//把当前状态 阻塞，直到调用wakeup</span></span><br><span class="line">	current-&gt;state = TASK_UNINTERRUPTIBLE;</span><br><span class="line">	<span class="comment">//调度</span></span><br><span class="line">	schedule();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//当调度 完成之后 重新唤醒这个进程 代码在这继续执行</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (tmp)        <span class="comment">//如果后面还有进程就把 下一个也唤醒</span></span><br><span class="line">		tmp-&gt;state=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 举个例子 ，如果有误欢迎指出</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * A sleep  调用 B  然后再  sleep 调用 C 然后C调用wake 唤醒了B ，如果A  B 在同一个队列 ，B 也会唤醒A</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">interruptible_sleep_on</span><span class="params">(struct task_struct **p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">tmp</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!p)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (current == &amp;(init_task.task))</span><br><span class="line">		panic(<span class="string">"task[0] trying to sleep"</span>);</span><br><span class="line">	tmp=*p;</span><br><span class="line">	*p=current;</span><br><span class="line">	<span class="comment">//前面都是一样的..</span></span><br><span class="line">	<span class="comment">//设置当前中断等待状态</span></span><br><span class="line">repeat:	current-&gt;state = TASK_INTERRUPTIBLE;</span><br><span class="line">	schedule();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//如果当前执行的 进程 并不是 当前等待进程队列的第一个 那么 就把他重新丢回去，再调度一次</span></span><br><span class="line">	<span class="keyword">if</span> (*p &amp;&amp; *p != current) &#123;</span><br><span class="line">		(**p).state=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">goto</span> repeat;</span><br><span class="line">	&#125;</span><br><span class="line">	*p=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span> (tmp)</span><br><span class="line">		tmp-&gt;state=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接唤醒</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wake_up</span><span class="params">(struct task_struct **p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (p &amp;&amp; *p) &#123;</span><br><span class="line">		(**p).state=<span class="number">0</span>;</span><br><span class="line">		*p=<span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 后面的代码  有兴趣的可以自己搜索 理解一下...</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * OK, here are some floppy things that shouldn't be in the kernel</span></span><br><span class="line"><span class="comment"> * proper. They are here because the floppy needs a timer, and this</span></span><br><span class="line"><span class="comment"> * was the easiest way of doing it.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> * <span class="title">wait_motor</span>[4] = &#123;</span><span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span>  mon_timer[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> moff_timer[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> current_DOR = <span class="number">0x0C</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ticks_to_floppy_on</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> nr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">extern</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> selected;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> mask = <span class="number">0x10</span> &lt;&lt; nr;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (nr&gt;<span class="number">3</span>)</span><br><span class="line">		panic(<span class="string">"floppy_on: nr&gt;3"</span>);</span><br><span class="line">	moff_timer[nr]=<span class="number">10000</span>;		<span class="comment">/* 100 s = very big :-) */</span></span><br><span class="line">	cli();				<span class="comment">/* use floppy_off to turn it off */</span></span><br><span class="line">	mask |= current_DOR;</span><br><span class="line">	<span class="keyword">if</span> (!selected) &#123;</span><br><span class="line">		mask &amp;= <span class="number">0xFC</span>;</span><br><span class="line">		mask |= nr;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (mask != current_DOR) &#123;</span><br><span class="line">		outb(mask,FD_DOR);</span><br><span class="line">		<span class="keyword">if</span> ((mask ^ current_DOR) &amp; <span class="number">0xf0</span>)</span><br><span class="line">			mon_timer[nr] = HZ/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (mon_timer[nr] &lt; <span class="number">2</span>)</span><br><span class="line">			mon_timer[nr] = <span class="number">2</span>;</span><br><span class="line">		current_DOR = mask;</span><br><span class="line">	&#125;</span><br><span class="line">	sti();</span><br><span class="line">	<span class="keyword">return</span> mon_timer[nr];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//等待制定软驱马达启动一段时间然后返回。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">floppy_on</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> nr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cli();  <span class="comment">//这个是禁止中断</span></span><br><span class="line">	<span class="keyword">while</span> (ticks_to_floppy_on(nr))</span><br><span class="line">		sleep_on(nr+wait_motor);</span><br><span class="line">	sti();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//置关闭相应 的软驱马达停转  3s  不设置 是 100s</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">floppy_off</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> nr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	moff_timer[nr]=<span class="number">3</span>*HZ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//软盘定时处理子程序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_floppy_timer</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> mask = <span class="number">0x10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span> ; i&lt;<span class="number">4</span> ; i++,mask &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!(mask &amp; current_DOR))</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (mon_timer[i]) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!--mon_timer[i])</span><br><span class="line">				wake_up(i+wait_motor);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!moff_timer[i]) &#123;</span><br><span class="line">			current_DOR &amp;= ~mask;</span><br><span class="line">			outb(current_DOR,FD_DOR);</span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">			moff_timer[i]--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TIME_REQUESTS 64</span></span><br><span class="line"><span class="comment">// 定时器链表结构和定时器数组</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">timer_list</span> &#123;</span></span><br><span class="line">	<span class="keyword">long</span> jiffies;</span><br><span class="line">	<span class="keyword">void</span> (*fn)();</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">timer_list</span> * <span class="title">next</span>;</span></span><br><span class="line">&#125; timer_list[TIME_REQUESTS], * next_timer = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//  添加定时器输入时间 和相应的处理函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_timer</span><span class="params">(<span class="keyword">long</span> jiffies, <span class="keyword">void</span> (*fn)(<span class="keyword">void</span>))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">timer_list</span> * <span class="title">p</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!fn)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	cli();</span><br><span class="line">	<span class="keyword">if</span> (jiffies &lt;= <span class="number">0</span>)</span><br><span class="line">		(fn)();</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> (p = timer_list ; p &lt; timer_list + TIME_REQUESTS ; p++)</span><br><span class="line">			<span class="keyword">if</span> (!p-&gt;fn)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span> (p &gt;= timer_list + TIME_REQUESTS)</span><br><span class="line">			panic(<span class="string">"No more time requests free"</span>);</span><br><span class="line">		p-&gt;fn = fn;</span><br><span class="line">		p-&gt;jiffies = jiffies;</span><br><span class="line">		p-&gt;next = next_timer;</span><br><span class="line">		next_timer = p;</span><br><span class="line">		<span class="keyword">while</span> (p-&gt;next &amp;&amp; p-&gt;next-&gt;jiffies &lt; p-&gt;jiffies) &#123;</span><br><span class="line">			p-&gt;jiffies -= p-&gt;next-&gt;jiffies;</span><br><span class="line">			fn = p-&gt;fn;</span><br><span class="line">			p-&gt;fn = p-&gt;next-&gt;fn;</span><br><span class="line">			p-&gt;next-&gt;fn = fn;</span><br><span class="line">			jiffies = p-&gt;jiffies;</span><br><span class="line">			p-&gt;jiffies = p-&gt;next-&gt;jiffies;</span><br><span class="line">			p-&gt;next-&gt;jiffies = jiffies;</span><br><span class="line">			p = p-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	sti();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//时间中断处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_timer</span><span class="params">(<span class="keyword">long</span> cpl)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">extern</span> <span class="keyword">int</span> beepcount;</span><br><span class="line">	<span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">sysbeepstop</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (beepcount)</span><br><span class="line">		<span class="keyword">if</span> (!--beepcount)</span><br><span class="line">			sysbeepstop();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (cpl)</span><br><span class="line">		current-&gt;utime++;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		current-&gt;stime++;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (next_timer) &#123;</span><br><span class="line">		next_timer-&gt;jiffies--;</span><br><span class="line">		<span class="keyword">while</span> (next_timer &amp;&amp; next_timer-&gt;jiffies &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">void</span> (*fn)(<span class="keyword">void</span>);</span><br><span class="line">			</span><br><span class="line">			fn = next_timer-&gt;fn;</span><br><span class="line">			next_timer-&gt;fn = <span class="literal">NULL</span>;</span><br><span class="line">			next_timer = next_timer-&gt;next;</span><br><span class="line">			(fn)();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (current_DOR &amp; <span class="number">0xf0</span>)</span><br><span class="line">		do_floppy_timer();</span><br><span class="line">	<span class="keyword">if</span> ((--current-&gt;counter)&gt;<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">	current-&gt;counter=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (!cpl) <span class="keyword">return</span>;</span><br><span class="line">	schedule();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个是设置报警时间（秒）</span></span><br><span class="line"><span class="comment">//seconds 大于0  设置新时间 并返回 老时间还差多少秒。否则返回 0</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_alarm</span><span class="params">(<span class="keyword">long</span> seconds)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> old = current-&gt;alarm;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (old)</span><br><span class="line">		old = (old - jiffies) / HZ;</span><br><span class="line">	current-&gt;alarm = (seconds&gt;<span class="number">0</span>)?(jiffies+HZ*seconds):<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> (old);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//后面这是一大堆获取当前的一些值的函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_getpid</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> current-&gt;pid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_getppid</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> current-&gt;father;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_getuid</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> current-&gt;uid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_geteuid</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> current-&gt;euid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_getgid</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> current-&gt;gid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_getegid</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> current-&gt;egid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//降低优先权</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_nice</span><span class="params">(<span class="keyword">long</span> increment)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (current-&gt;priority-increment&gt;<span class="number">0</span>)</span><br><span class="line">		current-&gt;priority -= increment;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这是一个内核初始化程序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sched_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> * <span class="title">p</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">sizeof</span>(struct sigaction) != <span class="number">16</span>)</span><br><span class="line">		panic(<span class="string">"Struct sigaction MUST be 16 bytes"</span>);</span><br><span class="line">	set_tss_desc(gdt+FIRST_TSS_ENTRY,&amp;(init_task.task.tss));</span><br><span class="line">	set_ldt_desc(gdt+FIRST_LDT_ENTRY,&amp;(init_task.task.ldt));</span><br><span class="line">	p = gdt+<span class="number">2</span>+FIRST_TSS_ENTRY;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;NR_TASKS;i++) &#123;</span><br><span class="line">		task[i] = <span class="literal">NULL</span>;</span><br><span class="line">		p-&gt;a=p-&gt;b=<span class="number">0</span>;</span><br><span class="line">		p++;</span><br><span class="line">		p-&gt;a=p-&gt;b=<span class="number">0</span>;</span><br><span class="line">		p++;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">/* Clear NT, so that we won't have troubles with that later on */</span></span><br><span class="line">	__asm__(<span class="string">"pushfl ; andl $0xffffbfff,(%esp) ; popfl"</span>);</span><br><span class="line">	ltr(<span class="number">0</span>);</span><br><span class="line">	lldt(<span class="number">0</span>);</span><br><span class="line">	outb_p(<span class="number">0x36</span>,<span class="number">0x43</span>);		<span class="comment">/* binary, mode 3, LSB/MSB, ch 0 */</span></span><br><span class="line">	outb_p(LATCH &amp; <span class="number">0xff</span> , <span class="number">0x40</span>);	<span class="comment">/* LSB */</span></span><br><span class="line">	outb(LATCH &gt;&gt; <span class="number">8</span> , <span class="number">0x40</span>);	<span class="comment">/* MSB */</span></span><br><span class="line">	set_intr_gate(<span class="number">0x20</span>,&amp;timer_interrupt);</span><br><span class="line">	outb(inb_p(<span class="number">0x21</span>)&amp;~<span class="number">0x01</span>,<span class="number">0x21</span>);</span><br><span class="line">	set_system_gate(<span class="number">0x80</span>,&amp;system_call);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UNIX/" rel="tag"># UNIX</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/源码/" rel="tag"># 源码</a>
+          
+            <a href="/tags/进程调度/" rel="tag"># 进程调度</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/12/leetcode-4.-寻找两个有序数组的中位数/" rel="next" title="leetcode-4. 寻找两个有序数组的中位数">
+                <i class="fa fa-chevron-left"></i> leetcode-4. 寻找两个有序数组的中位数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
+            
+              <p class="site-author-name" itemprop="name">尘</p>
+              <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">111</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ETBUBBLE" title="GitHub &rarr; https://github.com/ETBUBBLE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40871466" title="https://blog.csdn.net/qq_40871466" rel="noopener" target="_blank">csdn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=549159342&auto=1&height=66"></iframe>
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://your.com/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/model/tia/model.json");
+      </script>
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">516k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">7:49</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.0</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    <!-- LOCAL: You can save these files to your site and update links -->
+
+  
+     <!-- <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script> -->
+<script src="https://billts.site/js/gitment.js"></script>
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/> -->
+<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+
+<!-- END LOCAL -->
+
+<style>
+#gitment-container a {
+  border-bottom: none;
+}
+
+</style>
+
+<script>
+  function renderGitment() {
+
+    var gitment = new Gitment({
+      id: '1576145100000',
+      owner: 'ETBUBBLE',
+      repo: 'ETBUBBLE.github.io',
+      
+      oauth: {
+      
+      
+        client_secret: '0fd4f83bc7834795c0575404ee5c7a2c82067749',
+      
+        client_id: '008c7d3ffa7d973b8437'
+      }
+    });
+    gitment.render('gitment-container');
+  }
+
+  
+    renderGitment();
+  
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

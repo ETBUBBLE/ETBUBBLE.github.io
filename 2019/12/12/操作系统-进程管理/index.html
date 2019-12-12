@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="大部分基知识看看就行 定义进程是具有独立功能的程序关于某个数据集合上的一次运行活动，是系统进行资源分配和调度的独立单位  进程是程序的一次执行过程，一个程序执行多次那是不同的进程 是正在运行的程序的抽象，或者说是对CPU的一个抽象 将一个CPU变换成多个虚拟的CPU 系统资源以进程为单位分配，如内存、文件等，操作系统为每个独立的进程分配了独立的地址空间 操作系统将CPU调度给需要的进程，即将CPU">
+<meta name="keywords" content="进程,线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统-进程管理">
+<meta property="og:url" content="https://etbubble.github.io/2019/12/12/操作系统-进程管理/index.html">
+<meta property="og:site_name" content="ET_BUBBLE 的博客">
+<meta property="og:description" content="大部分基知识看看就行 定义进程是具有独立功能的程序关于某个数据集合上的一次运行活动，是系统进行资源分配和调度的独立单位  进程是程序的一次执行过程，一个程序执行多次那是不同的进程 是正在运行的程序的抽象，或者说是对CPU的一个抽象 将一个CPU变换成多个虚拟的CPU 系统资源以进程为单位分配，如内存、文件等，操作系统为每个独立的进程分配了独立的地址空间 操作系统将CPU调度给需要的进程，即将CPU">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://etbubble.github.io/操作系统-进程管理/20191212085804191.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/tEHjphyL16aBwOr.png">
+<meta property="og:image" content="https://etbubble.github.io/操作系统-进程管理/20191212090253694.png">
+<meta property="og:image" content="https://etbubble.github.io/操作系统-进程管理/20191212092411156.png">
+<meta property="og:image" content="https://etbubble.github.io/操作系统-进程管理/20191212092455315.png">
+<meta property="og:image" content="https://etbubble.github.io/操作系统-进程管理/20191212094258564.png">
+<meta property="og:image" content="https://etbubble.github.io/操作系统-进程管理/20191212102102697.png">
+<meta property="og:updated_time" content="2019-12-12T03:01:28.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统-进程管理">
+<meta name="twitter:description" content="大部分基知识看看就行 定义进程是具有独立功能的程序关于某个数据集合上的一次运行活动，是系统进行资源分配和调度的独立单位  进程是程序的一次执行过程，一个程序执行多次那是不同的进程 是正在运行的程序的抽象，或者说是对CPU的一个抽象 将一个CPU变换成多个虚拟的CPU 系统资源以进程为单位分配，如内存、文件等，操作系统为每个独立的进程分配了独立的地址空间 操作系统将CPU调度给需要的进程，即将CPU">
+<meta name="twitter:image" content="https://etbubble.github.io/操作系统-进程管理/20191212085804191.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ET_BUBBLE 的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://etbubble.github.io/2019/12/12/操作系统-进程管理/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>操作系统-进程管理 | ET_BUBBLE 的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ET_BUBBLE 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">两件事一定不能停 学习和运动</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2019/12/12/操作系统-进程管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="尘">
+      <meta itemprop="description" content="做自己不会做的事被称之为学习">
+      <meta itemprop="image" content="/images/tou.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ET_BUBBLE 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统-进程管理
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-12 08:39:34 / 修改时间：11:01:28" itemprop="dateCreated datePublished" datetime="2019-12-12T08:39:34+08:00">2019-12-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">8.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">8 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><del>大部分基知识看看就行</del></p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>进程是具有独立功能的程序关于某个数据集合上的一次运行活动，是系统进行资源分配和调度的独立单位</p>
+<ul>
+<li>进程是程序的一次执行过程，一个程序执行多次那是不同的进程</li>
+<li>是正在运行的程序的抽象，或者说是对CPU的一个抽象</li>
+<li>将一个CPU变换成多个虚拟的CPU</li>
+<li>系统资源以进程为单位分配，如内存、文件等，操作系统为每个独立的进程分配了独立的地址空间</li>
+<li>操作系统将CPU调度给需要的进程，即将CPU的控制权交给某个进程就称为调度</li>
+</ul>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>结构性：由数据段、程序段、PCB构成</li>
+<li>动态性：可以被动态地创建、执行、撤销</li>
+<li>并发性：同一时间内有多个进程在运行</li>
+<li>独立性：独立运行以及获得OS资源的基本单位</li>
+<li>异步性：异步执行</li>
+</ul>
+<h2 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h2><ul>
+<li>运行状态<ul>
+<li>进程已经占有CPU，在CPU上运行</li>
+</ul>
+</li>
+<li>就绪状态<ul>
+<li>具备运行条件，但是由于无CPU，暂时不能运行</li>
+</ul>
+</li>
+<li><p>阻塞状态</p>
+<ul>
+<li>等待信号不能运行</li>
+</ul>
+<h3 id="三态转换"><a href="#三态转换" class="headerlink" title="三态转换"></a>三态转换</h3><p><img src="/操作系统-进程管理/20191212085804191.png" alt></p>
+<h3 id="五态转换"><a href="#五态转换" class="headerlink" title="五态转换"></a>五态转换</h3><p><img src="https://i.loli.net/2019/12/12/tEHjphyL16aBwOr.png" alt></p>
+<h3 id="Linux-下的进程状态"><a href="#Linux-下的进程状态" class="headerlink" title="Linux 下的进程状态"></a>Linux 下的进程状态</h3><p><strong><em>版本不同可能状态不同</em></strong></p>
+</li>
+<li><p>可运行态</p>
+<ul>
+<li>就绪(TASK_RUNNING)：在就绪队列中等待调度。</li>
+<li>运行：已经在运行的进程</li>
+</ul>
+</li>
+<li>阻塞状态<ul>
+<li>可中断阻塞态(TASK_INTERRUPTIBLE)： 进程处于某个等待队列中，它能够被信号（signal）或中断唤醒。等待资源的请求满足时，也被唤醒。</li>
+<li>不可中断阻塞态（TASK_UNINTERRUPTIBLE）：进程处于某个等待队列中，不能被信号或中断唤醒，只有等待的资源被满足时才被唤醒。例如当进程打开一个设备文件时，使用TASK_UNINTERRUPTIBLE.</li>
+</ul>
+</li>
+<li>僵死状态(TASK_ZOMBIE):进程已经停止，但还没有释放进程控制块</li>
+<li>停止态（TASK_STOPPED）:该状态表示进程的执行被暂停。例如正在接受调试的进程处于这种状态。</li>
+<li>死亡态(TASK_DEAD):处于僵死进程的控制块由其父进程回收后的状态。<br><img src="/操作系统-进程管理/20191212090253694.png" alt><h2 id="进程控制块（PCB）"><a href="#进程控制块（PCB）" class="headerlink" title="进程控制块（PCB）"></a>进程控制块（PCB）</h2><strong>作用：</strong>描述进程状态、资源、和与相关进程关系的数据结构。<br>创建进程时创建PCB；进程撤销后PCB同时撤销。</li>
+</ul>
+<p><img src="/操作系统-进程管理/20191212092411156.png" alt><br><img src="/操作系统-进程管理/20191212092455315.png" alt></p>
+<h3 id="源码部分解析"><a href="#源码部分解析" class="headerlink" title="源码部分解析"></a>源码部分解析</h3><p>源码下载，去Linux官网下载即可，可以下载内核代码，如果嫌下载太慢可以去：<a href="http://ftp.sjtu.edu.cn/sites/ftp.kernel.org/pub/linux/kernel/" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/sites/ftp.kernel.org/pub/linux/kernel/</a><br>上面没有 <code>0.11</code>的内核，需要去其他地方下载</p>
+<p>文件在：<code>$你的内核目录$/include/linux/sched.h</code><br>如果找不到 ，可以用<code>find -name sched.h</code> 命令寻找</p>
+<p>建议用学习的时候用，Linux低一点的版本，虽然少了很多新东西，但是学习起来更简单。<br>Linux 1.0 源码<br>前面介绍的几种状态的定义<br><img src="/操作系统-进程管理/20191212094258564.png" alt><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_RUNNING		0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_INTERRUPTIBLE	1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_UNINTERRUPTIBLE	2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_ZOMBIE		3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_STOPPED		4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_SWAPPING		5</span></span><br></pre></td></tr></table></figure></p>
+<p>到了 linux 2.6.38,代码明显复杂了许多，而且使用二进制的第几位来表示状态。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_RUNNING		0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_INTERRUPTIBLE	1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_UNINTERRUPTIBLE	2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __TASK_STOPPED		4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __TASK_TRACED		8</span></span><br><span class="line"><span class="comment">/* in tsk-&gt;exit_state */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXIT_ZOMBIE		16</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXIT_DEAD		32</span></span><br><span class="line"><span class="comment">/* in tsk-&gt;state again */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_DEAD		64</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_WAKEKILL		128</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_WAKING		256</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_STATE_MAX		512</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_STATE_TO_CHAR_STR <span class="meta-string">"RSDTtZXxKW"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">char</span> ___assert_task_state[<span class="number">1</span> - <span class="number">2</span>*!!(</span><br><span class="line">		<span class="keyword">sizeof</span>(TASK_STATE_TO_CHAR_STR)<span class="number">-1</span> != ilog2(TASK_STATE_MAX)+<span class="number">1</span>)];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Convenience macros for the sake of set_task_state */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_KILLABLE		(TASK_WAKEKILL | TASK_UNINTERRUPTIBLE)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_STOPPED		(TASK_WAKEKILL | __TASK_STOPPED)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_TRACED		(TASK_WAKEKILL | __TASK_TRACED)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Convenience macros for the sake of wake_up */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_NORMAL		(TASK_INTERRUPTIBLE | TASK_UNINTERRUPTIBLE)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_ALL		(TASK_NORMAL | __TASK_STOPPED | __TASK_TRACED)</span></span><br></pre></td></tr></table></figure></p>
+<p>linux1.0 里面的PCB 结构体,写了一部分其他，具体的自己可以去搜索 sched.h 的源码剖析，可以用<code>grep -rn &quot;内柔&quot;</code>查找函数实现<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  前面所介绍的 几种 状态</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_RUNNING		0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_INTERRUPTIBLE	1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_UNINTERRUPTIBLE	2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_ZOMBIE		3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_STOPPED		4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TASK_SWAPPING		5</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NULL</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL ((void *) 0) <span class="comment">//空指针</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __KERNEL__</span></span><br><span class="line"><span class="comment">//调度程序初始化函数 实现 在（kernel/sched.c）</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">sched_init</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">//显示</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">show_state</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">// 异常中断初始化函数 实现在(kernel/traps.c)</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">trap_init</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">//进程调度函数。实现在(kernel/sched.c),</span></span><br><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">schedule</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* __KERNEL__ */</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line"><span class="comment">/* these are hardcoded - don't touch */</span></span><br><span class="line">	<span class="comment">//运行状态</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">long</span> state;	<span class="comment">/* -1 unrunnable, 0 runnable, &gt;0 stopped */</span></span><br><span class="line">	<span class="comment">// 时间片</span></span><br><span class="line">    <span class="keyword">long</span> counter;</span><br><span class="line">	<span class="comment">// 运行优先数 ，任务开始运行时counter = priority，越大运行越长。</span></span><br><span class="line">    <span class="keyword">long</span> priority;</span><br><span class="line">    <span class="comment">//信号。是位图，每个比特位代表一种信号，信号值=位偏移值+1</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> signal;</span><br><span class="line">	<span class="comment">//进程信号屏蔽码（对应信号位图）</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> blocked;	<span class="comment">/* bitmap of masked signals */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> flags;	<span class="comment">/* per process flags, defined below */</span></span><br><span class="line">	<span class="keyword">int</span> errno;</span><br><span class="line">	<span class="keyword">int</span> debugreg[<span class="number">8</span>];  <span class="comment">/* Hardware debugging registers */</span></span><br><span class="line"><span class="comment">/* various fields */</span></span><br><span class="line">	<span class="comment">//下一个 以及上一个 进程</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">next_task</span>, *<span class="title">prev_task</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">sigaction</span>[32];</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> saved_kernel_stack;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_stack_page;</span><br><span class="line">	<span class="keyword">int</span> exit_code, exit_signal;</span><br><span class="line">	<span class="keyword">int</span> elf_executable:<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> dumpable:<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> swappable:<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> did_exec:<span class="number">1</span>;</span><br><span class="line">	<span class="comment">//代码段信息</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> start_code,end_code,end_data,start_brk,brk,start_stack,start_mmap;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> arg_start, arg_end, env_start, env_end;</span><br><span class="line">	<span class="comment">//long pid 进程标识号(进程号)</span></span><br><span class="line">	<span class="keyword">int</span> pid,pgrp,session,leader;</span><br><span class="line">	<span class="keyword">int</span>	groups[NGROUPS];</span><br><span class="line">	<span class="comment">/* </span></span><br><span class="line"><span class="comment">	 * pointers to (original) parent process, youngest child, younger sibling,</span></span><br><span class="line"><span class="comment">	 * older sibling, respectively.  (p-&gt;father can be replaced with </span></span><br><span class="line"><span class="comment">	 * p-&gt;p_pptr-&gt;pid)</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">     <span class="comment">// p_pptr 父亲进程</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">p_opptr</span>,*<span class="title">p_pptr</span>, *<span class="title">p_cptr</span>, *<span class="title">p_ysptr</span>, *<span class="title">p_osptr</span>;</span></span><br><span class="line">    <span class="comment">//等待的儿子</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">wait_queue</span> *<span class="title">wait_chldexit</span>;</span>	<span class="comment">/* for wait4() */</span></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * For ease of programming... Normal sleeps don't need to</span></span><br><span class="line"><span class="comment">	 * keep track of a wait-queue: every task has an entry of its own</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">    <span class="comment">// long pid 进程标识号(进程号)。</span></span><br><span class="line">    <span class="comment">// unsigned short euid 有效用户id。</span></span><br><span class="line"><span class="comment">// unsigned short suid 保存的用户id。</span></span><br><span class="line"><span class="comment">// unsigned short gid 组标识号（组id）。</span></span><br><span class="line"><span class="comment">// unsigned short egid 有效组id。</span></span><br><span class="line"><span class="comment">// unsigned short sgid 保存的组id。</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> uid,euid,suid;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> gid,egid,sgid;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> timeout;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> it_real_value, it_prof_value, it_virt_value;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> it_real_incr, it_prof_incr, it_virt_incr;</span><br><span class="line"><span class="comment">// long utime 用户态运行时间（滴答数）。</span></span><br><span class="line"><span class="comment">// long stime 系统态运行时间（滴答数）。</span></span><br><span class="line"><span class="comment">// long cutime 子进程用户态运行时间。</span></span><br><span class="line"><span class="comment">// long cstime 子进程系统态运行时间。</span></span><br><span class="line">	<span class="keyword">long</span> utime,stime,cutime,cstime,start_time;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> min_flt, maj_flt;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> cmin_flt, cmaj_flt;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">rlimit</span> <span class="title">rlim</span>[<span class="title">RLIM_NLIMITS</span>];</span> </span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> used_math;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> rss;	<span class="comment">/* number of resident pages */</span></span><br><span class="line">	<span class="keyword">char</span> comm[<span class="number">16</span>];</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">vm86_struct</span> * <span class="title">vm86_info</span>;</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> screen_bitmap;</span><br><span class="line"><span class="comment">/* file system info */</span></span><br><span class="line">	<span class="keyword">int</span> link_count;</span><br><span class="line">	<span class="keyword">int</span> tty;		<span class="comment">/* -1 if no tty, so it must be signed */</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> umask;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">inode</span> * <span class="title">pwd</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">inode</span> * <span class="title">root</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">inode</span> * <span class="title">executable</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">vm_area_struct</span> * <span class="title">mmap</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">shm_desc</span> *<span class="title">shm</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sem_undo</span> *<span class="title">semun</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">file</span> * <span class="title">filp</span>[<span class="title">NR_OPEN</span>];</span></span><br><span class="line">	fd_set close_on_exec;</span><br><span class="line"><span class="comment">/* ldt for this task - used by Wine.  If NULL, default_ldt is used */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> *<span class="title">ldt</span>;</span></span><br><span class="line"><span class="comment">/* tss for this task */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">tss_struct</span> <span class="title">tss</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> NEW_SWAP</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> old_maj_flt;	<span class="comment">/* old value of maj_flt */</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> dec_flt;		<span class="comment">/* page fault count of the last time */</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> swap_cnt;		<span class="comment">/* number of pages to swap on next pass */</span></span><br><span class="line">	<span class="keyword">short</span> swap_table;		<span class="comment">/* current page table */</span></span><br><span class="line">	<span class="keyword">short</span> swap_page;		<span class="comment">/* current page */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> NEW_SWAP</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">vm_area_struct</span> *<span class="title">stk_vma</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>通常PCB 会有<br><img src="/操作系统-进程管理/20191212102102697.png" alt></p>
+<p><strong>原语：</strong>完成某种特定功能的一段程序，具有不可分割性或不可中断性，即原语的执行必须是连续的，在执行过程中不允许被中断。又称原子操作。</p>
+<p>进程控制操作完成进程各状态之间的转换，由具有特定功能的原语（其实就是程序，只是这些程序不许与被中断）完成。关于进程控制的原语如下：</p>
+<ul>
+<li>进程创建原语</li>
+<li>进程撤销原语</li>
+<li>阻塞原语</li>
+<li>唤醒原语</li>
+<li>激活原语</li>
+<li>改变进程优先级</li>
+</ul>
+<p>是否 看见<code>sched.h</code>里面又一部分 函数的声明。<br>在<code>sched.c</code>里面有 具体的实现</p>
+<h3 id="sched-init"><a href="#sched-init" class="headerlink" title="sched_init"></a>sched_init</h3><p>调度初始化，初始化很多都看不懂，知道他是干啥的就行。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">sched_init(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">desc_struct</span> * <span class="title">p</span>;</span></span><br><span class="line"></span><br><span class="line">	bh_base[TIMER_BH].routine = timer_bh;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">sizeof</span>(struct sigaction) != <span class="number">16</span>)</span><br><span class="line">		panic(<span class="string">"Struct sigaction MUST be 16 bytes"</span>);</span><br><span class="line">	set_tss_desc(gdt+FIRST_TSS_ENTRY,&amp;init_task.tss);</span><br><span class="line">	set_ldt_desc(gdt+FIRST_LDT_ENTRY,&amp;default_ldt,<span class="number">1</span>);</span><br><span class="line">	set_system_gate(<span class="number">0x80</span>,&amp;system_call);</span><br><span class="line">	p = gdt+<span class="number">2</span>+FIRST_TSS_ENTRY;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span> ; i&lt;NR_TASKS ; i++) &#123;</span><br><span class="line">		task[i] = <span class="literal">NULL</span>;</span><br><span class="line">		p-&gt;a=p-&gt;b=<span class="number">0</span>;</span><br><span class="line">		p++;</span><br><span class="line">		p-&gt;a=p-&gt;b=<span class="number">0</span>;</span><br><span class="line">		p++;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">/* Clear NT, so that we won't have troubles with that later on */</span></span><br><span class="line">	__asm__(<span class="string">"pushfl ; andl $0xffffbfff,(%esp) ; popfl"</span>);</span><br><span class="line">	load_TR(<span class="number">0</span>);</span><br><span class="line">	load_ldt(<span class="number">0</span>);</span><br><span class="line">	outb_p(<span class="number">0x34</span>,<span class="number">0x43</span>);		<span class="comment">/* binary, mode 2, LSB/MSB, ch 0 */</span></span><br><span class="line">	outb_p(LATCH &amp; <span class="number">0xff</span> , <span class="number">0x40</span>);	<span class="comment">/* LSB */</span></span><br><span class="line">	outb(LATCH &gt;&gt; <span class="number">8</span> , <span class="number">0x40</span>);	<span class="comment">/* MSB */</span></span><br><span class="line">	<span class="keyword">if</span> (request_irq(TIMER_IRQ,(<span class="keyword">void</span> (*)(<span class="keyword">int</span>)) do_timer)!=<span class="number">0</span>)</span><br><span class="line">		panic(<span class="string">"Could not allocate timer IRQ!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="show-task和show-state"><a href="#show-task和show-state" class="headerlink" title="show_task和show_state"></a>show_task和show_state</h3><p>着两个不用多说吧<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show_task</span><span class="params">(<span class="keyword">int</span> nr,struct task_struct * p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> * stat_nam[] = &#123; <span class="string">"R"</span>, <span class="string">"S"</span>, <span class="string">"D"</span>, <span class="string">"Z"</span>, <span class="string">"T"</span>, <span class="string">"W"</span> &#125;; <span class="comment">// 6 种状态</span></span><br><span class="line"></span><br><span class="line">	printk(<span class="string">"%-8s %3d "</span>, p-&gt;comm, (p == current) ? -nr : nr);</span><br><span class="line">	<span class="keyword">if</span> (((<span class="keyword">unsigned</span>) p-&gt;state) &lt; <span class="keyword">sizeof</span>(stat_nam)/<span class="keyword">sizeof</span>(<span class="keyword">char</span> *))</span><br><span class="line">		printk(stat_nam[p-&gt;state]);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		printk(<span class="string">" "</span>);</span><br><span class="line">	<span class="keyword">if</span> (p == current)</span><br><span class="line">		printk(<span class="string">" current  "</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		printk(<span class="string">" %08lX "</span>, ((<span class="keyword">unsigned</span> <span class="keyword">long</span> *)p-&gt;tss.esp)[<span class="number">3</span>]);</span><br><span class="line">	printk(<span class="string">"%5lu %5d %6d "</span>,</span><br><span class="line">		p-&gt;tss.esp - p-&gt;kernel_stack_page, p-&gt;pid, p-&gt;p_pptr-&gt;pid);</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;p_cptr)</span><br><span class="line">		printk(<span class="string">"%5d "</span>, p-&gt;p_cptr-&gt;pid);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		printk(<span class="string">"      "</span>);</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;p_ysptr)</span><br><span class="line">		printk(<span class="string">"%7d"</span>, p-&gt;p_ysptr-&gt;pid);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		printk(<span class="string">"       "</span>);</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;p_osptr)</span><br><span class="line">		printk(<span class="string">" %5d\n"</span>, p-&gt;p_osptr-&gt;pid);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		printk(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_state</span><span class="params">(<span class="keyword">void</span>)</span>  <span class="comment">//调用上面那个信息</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	printk(<span class="string">"                         free                        sibling\n"</span>);</span><br><span class="line">	printk(<span class="string">"  task             PC    stack   pid father child younger older\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span> ; i&lt;NR_TASKS ; i++)</span><br><span class="line">		<span class="keyword">if</span> (task[i])</span><br><span class="line">			show_task(i,task[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="重头戏"><a href="#重头戏" class="headerlink" title="重头戏"></a>重头戏</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/进程/" rel="tag"># 进程</a>
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/12/Splay-树学习笔记/" rel="next" title="Splay 树学习笔记">
+                <i class="fa fa-chevron-left"></i> Splay 树学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/12/leetcode-4.-寻找两个有序数组的中位数/" rel="prev" title="leetcode-4. 寻找两个有序数组的中位数">
+                leetcode-4. 寻找两个有序数组的中位数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
+            
+              <p class="site-author-name" itemprop="name">尘</p>
+              <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">111</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ETBUBBLE" title="GitHub &rarr; https://github.com/ETBUBBLE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40871466" title="https://blog.csdn.net/qq_40871466" rel="noopener" target="_blank">csdn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=549159342&auto=1&height=66"></iframe>
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态"><span class="nav-number">3.</span> <span class="nav-text">状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三态转换"><span class="nav-number">3.1.</span> <span class="nav-text">三态转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五态转换"><span class="nav-number">3.2.</span> <span class="nav-text">五态转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-下的进程状态"><span class="nav-number">3.3.</span> <span class="nav-text">Linux 下的进程状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程控制块（PCB）"><span class="nav-number">4.</span> <span class="nav-text">进程控制块（PCB）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码部分解析"><span class="nav-number">4.1.</span> <span class="nav-text">源码部分解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sched-init"><span class="nav-number">4.2.</span> <span class="nav-text">sched_init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show-task和show-state"><span class="nav-number">4.3.</span> <span class="nav-text">show_task和show_state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重头戏"><span class="nav-number">4.4.</span> <span class="nav-text">重头戏</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://your.com/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/model/tia/model.json");
+      </script>
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">516k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">7:49</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.0</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    <!-- LOCAL: You can save these files to your site and update links -->
+
+  
+     <!-- <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script> -->
+<script src="https://billts.site/js/gitment.js"></script>
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/> -->
+<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+
+<!-- END LOCAL -->
+
+<style>
+#gitment-container a {
+  border-bottom: none;
+}
+
+</style>
+
+<script>
+  function renderGitment() {
+
+    var gitment = new Gitment({
+      id: '1576111174000',
+      owner: 'ETBUBBLE',
+      repo: 'ETBUBBLE.github.io',
+      
+      oauth: {
+      
+      
+        client_secret: '0fd4f83bc7834795c0575404ee5c7a2c82067749',
+      
+        client_id: '008c7d3ffa7d973b8437'
+      }
+    });
+    gitment.render('gitment-container');
+  }
+
+  
+    renderGitment();
+  
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
