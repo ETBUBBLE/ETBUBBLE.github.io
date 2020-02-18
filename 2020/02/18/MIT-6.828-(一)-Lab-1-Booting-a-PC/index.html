@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="获取完资源就开始干了。我这里就做了个大概的内容分析，具体的还是跟着那几个大佬吧 前面一大堆都是没用的，就是告诉一些作业的提交。 Part 1: PC Bootstrap这个并没有要你做啥，就是让你 熟悉下汇编。 然后让你知道怎么运行那个内核的，这些都是些不用讲的东西，看看就行了。说一下，这个内核退出说是ctrl+a x,意思是先按ctrl+a,再按x 然后就开始来重点了，第一个是让你知道现在计算机">
+<meta name="keywords" content="MIT6.828">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT6.828(一)Lab1:Booting a PC">
+<meta property="og:url" content="https://etbubble.github.io/2020/02/18/MIT-6.828-(一)-Lab-1-Booting-a-PC/index.html">
+<meta property="og:site_name" content="ET_BUBBLE 的博客">
+<meta property="og:description" content="获取完资源就开始干了。我这里就做了个大概的内容分析，具体的还是跟着那几个大佬吧 前面一大堆都是没用的，就是告诉一些作业的提交。 Part 1: PC Bootstrap这个并没有要你做啥，就是让你 熟悉下汇编。 然后让你知道怎么运行那个内核的，这些都是些不用讲的东西，看看就行了。说一下，这个内核退出说是ctrl+a x,意思是先按ctrl+a,再按x 然后就开始来重点了，第一个是让你知道现在计算机">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200106095347686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200106095551424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200106100013258.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200106142336627.png">
+<meta property="og:updated_time" content="2020-02-18T14:00:28.813Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MIT6.828(一)Lab1:Booting a PC">
+<meta name="twitter:description" content="获取完资源就开始干了。我这里就做了个大概的内容分析，具体的还是跟着那几个大佬吧 前面一大堆都是没用的，就是告诉一些作业的提交。 Part 1: PC Bootstrap这个并没有要你做啥，就是让你 熟悉下汇编。 然后让你知道怎么运行那个内核的，这些都是些不用讲的东西，看看就行了。说一下，这个内核退出说是ctrl+a x,意思是先按ctrl+a,再按x 然后就开始来重点了，第一个是让你知道现在计算机">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200106095347686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ET_BUBBLE 的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://etbubble.github.io/2020/02/18/MIT-6.828-(一)-Lab-1-Booting-a-PC/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MIT6.828(一)Lab1:Booting a PC | ET_BUBBLE 的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ET_BUBBLE 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">两件事一定不能停 学习和运动</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2020/02/18/MIT-6.828-(一)-Lab-1-Booting-a-PC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="尘">
+      <meta itemprop="description" content="做自己不会做的事被称之为学习">
+      <meta itemprop="image" content="/images/tou.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ET_BUBBLE 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MIT6.828(一)Lab1:Booting a PC
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-18 21:37:19 / 修改时间：22:00:28" itemprop="dateCreated datePublished" datetime="2020-02-18T21:37:19+08:00">2020-02-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/MIT6-828/" itemprop="url" rel="index"><span itemprop="name">MIT6.828</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">10 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>获取完资源就开始干了。<br>我这里就做了个大概的内容分析，具体的还是跟着那几个大佬吧</p>
+<p>前面一大堆都是没用的，就是告诉一些作业的提交。</p>
+<h2 id="Part-1-PC-Bootstrap"><a href="#Part-1-PC-Bootstrap" class="headerlink" title="Part 1: PC Bootstrap"></a>Part 1: PC Bootstrap</h2><p>这个并没有要你做啥，就是让你 熟悉下汇编。</p>
+<p>然后让你知道怎么运行那个内核的，这些都是些不用讲的东西，看看就行了。<br><strong>说一下，这个内核退出说是<code>ctrl+a x</code>,意思是先按<code>ctrl+a</code>,再按<code>x</code></strong></p>
+<p>然后就开始来重点了，第一个是让你知道现在计算机内存的分布。</p>
+<h3 id="The-PC’s-Physical-Address-Space（PC的物理地址空间）"><a href="#The-PC’s-Physical-Address-Space（PC的物理地址空间）" class="headerlink" title="The PC’s Physical Address Space（PC的物理地址空间）"></a>The PC’s Physical Address Space（PC的物理地址空间）</h3><p><img src="https://img-blog.csdnimg.cn/20200106095347686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="The-ROM-BIOS"><a href="#The-ROM-BIOS" class="headerlink" title="The ROM BIOS"></a>The ROM BIOS</h3><p>后面就比较直接了，直接让你去运行这个内核，一步步来看他是怎么运行的。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200106095551424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>就是让你这样运行两个终端，跑GDB 调试，第一个运行<code>make qemu-gdb</code>,第二个运行<code>make gdb</code>。<br>不出意外，在<code>make gdb</code> 里面出现的第一条指令是跳转指令。<br><img src="https://img-blog.csdnimg.cn/20200106100013258.png" alt="在这里插入图片描述"><br>跳到了哪里去，这个地址官方是给了你解释的，就是段地址*16加偏移地纸，很显然，他的地址是在BIOS中。<br>然后回让你一步步执行看发生了什么。<br>不难发现，计算机的运行最先开始的是  BIOS。</p>
+<p>后面一步步，执行的内容我就看不懂，只知道他就做了一些初始化工作，想了解的去看看<a href="https://www.cnblogs.com/fatsheep9146/p/5078179.html" target="_blank" rel="noopener">大佬的博客</a>吧。</p>
+<h2 id="Part-2-The-Boot-Loader"><a href="#Part-2-The-Boot-Loader" class="headerlink" title="Part 2: The Boot Loader"></a>Part 2: The Boot Loader</h2><p>初始化完成BIOS 之后，就运行Boot Loader，就是引导操作系统，这个东西一直都是放在计算机磁盘的第一个扇区（也用可能是其他的引导，这个百度搜一搜能搜出来，另外一个最常见的就是U盘启动，学计算机的重装系统至少也有十次八次了吧，所以这个很容易理解，我们重装系统的步骤不就是现在BIOS里面选了U盘引导，干的就是这个了）。然后BIOS会把这个运行的引导程序装入到内存<code>0x7c00-0x7dff</code>。我不知道现代操作系统是不是这，但是这个系统是的。<br>这个引导系统主要就干了两件事：</p>
+<ol>
+<li>实模式转换成保护模式，区别百度一下有讲解的，另外发现了另一个操作系统<a href="https://objectkuan.gitbooks.io/ucore-docs/content/lab1/lab1_3_2_1_protection_mode.html" target="_blank" rel="noopener">学习资源</a>,好像文档还挺齐全的。</li>
+<li>引导加载程序通过x86的特殊I / O指令直接访问IDE磁盘设备寄存器，从而从硬盘读取内核。</li>
+</ol>
+<p>后面会让你去看源码，知道怎么运行的Boot Loader，这个各位就自己翻翻博客吧，我就不细讲了，贴个自己的大致介绍。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/mmu.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"># Start the CPU: <span class="keyword">switch</span> to <span class="number">32</span>-bit <span class="keyword">protected</span> mode, jump into C.</span><br><span class="line"># The BIOS loads <span class="keyword">this</span> code from the first sector of the hard disk into</span><br><span class="line"><span class="meta"># memory at physical address 0x7c00 and starts executing in real mode</span></span><br><span class="line"><span class="meta"># with %cs=0 %ip=7c00.</span></span><br><span class="line"></span><br><span class="line">.<span class="built_in">set</span> PROT_MODE_CSEG, <span class="number">0x8</span>         <span class="meta"># kernel code segment selector</span></span><br><span class="line">.<span class="built_in">set</span> PROT_MODE_DSEG, <span class="number">0x10</span>        <span class="meta"># kernel data segment selector</span></span><br><span class="line">.<span class="built_in">set</span> CR0_PE_ON,      <span class="number">0x1</span>         <span class="meta"># protected mode enable flag</span></span><br><span class="line"></span><br><span class="line">.globl start</span><br><span class="line">start:			      # 开始程序首先关了中断，和串处理操作的移动指针(这个暂时不用管)</span><br><span class="line">  .code16                     # Assemble <span class="keyword">for</span> <span class="number">16</span>-bit mode</span><br><span class="line">  cli                         # Disable interrupts</span><br><span class="line">  cld                         # String operations increment</span><br><span class="line">#初始化  数据段 扩展段  和 栈 的段寄存器 用于保护模式</span><br><span class="line">  # Set up the important data segment registers (DS, ES, SS).</span><br><span class="line">  xorw    %ax,%ax             # Segment number zero</span><br><span class="line">  movw    %ax,%ds             # -&gt; Data Segment</span><br><span class="line">  movw    %ax,%es             # -&gt; Extra Segment</span><br><span class="line">  movw    %ax,%ss             # -&gt; Stack Segment</span><br><span class="line"></span><br><span class="line">  # Enable A20:</span><br><span class="line">  #   For backwards compatibility with the earliest PCs, physical</span><br><span class="line">  <span class="meta">#   address <span class="meta-keyword">line</span> 20 is tied low, so that addresses higher than</span></span><br><span class="line">  #   <span class="number">1</span>MB wrap around to zero by <span class="keyword">default</span>.  This code undoes <span class="keyword">this</span>.</span><br><span class="line">seta20<span class="number">.1</span>:  #开启A20为了兼容 低版本的 处理器</span><br><span class="line">  inb     $<span class="number">0x64</span>,%al               # Wait <span class="keyword">for</span> <span class="keyword">not</span> busy</span><br><span class="line">  testb   $<span class="number">0x2</span>,%al</span><br><span class="line">  jnz     seta20<span class="number">.1</span></span><br><span class="line"></span><br><span class="line">  movb    $<span class="number">0xd1</span>,%al               # <span class="number">0xd1</span> -&gt; port <span class="number">0x64</span></span><br><span class="line">  outb    %al,$<span class="number">0x64</span></span><br><span class="line"></span><br><span class="line">seta20<span class="number">.2</span>:</span><br><span class="line">  inb     $<span class="number">0x64</span>,%al               # Wait <span class="keyword">for</span> <span class="keyword">not</span> busy</span><br><span class="line">  testb   $<span class="number">0x2</span>,%al</span><br><span class="line">  jnz     seta20<span class="number">.2</span></span><br><span class="line"></span><br><span class="line">  movb    $<span class="number">0xdf</span>,%al               # <span class="number">0xdf</span> -&gt; port <span class="number">0x60</span></span><br><span class="line">  outb    %al,$<span class="number">0x60</span></span><br><span class="line"></span><br><span class="line">  # Switch from real to <span class="keyword">protected</span> mode, <span class="keyword">using</span> a bootstrap GDT</span><br><span class="line">  <span class="meta"># and segment translation that makes virtual addresses </span></span><br><span class="line">  <span class="meta"># identical to their physical addresses, so that the </span></span><br><span class="line">  <span class="meta"># effective memory map does not change during the switch.</span></span><br><span class="line">  lgdt    gdtdesc 		# 存放 GDT表信息</span><br><span class="line">  movl    %cr0, %eax		# 用或操作 把最后一位置<span class="number">1</span>  开启保护模式</span><br><span class="line">  orl     $CR0_PE_ON, %eax</span><br><span class="line">  movl    %eax, %cr0</span><br><span class="line">  </span><br><span class="line">  # Jump to next instruction, but in <span class="number">32</span>-bit code segment.</span><br><span class="line">  # Switches processor into <span class="number">32</span>-bit mode.</span><br><span class="line">  ljmp    $PROT_MODE_CSEG, $protcseg	# 这个时候跳到了 <span class="number">32</span>模式下了</span><br><span class="line"></span><br><span class="line">  .code32                     # Assemble <span class="keyword">for</span> <span class="number">32</span>-bit mode</span><br><span class="line">protcseg:	# 这个修改一些寄存器的值，具体做了啥也不清楚 应该是规定的一些操作</span><br><span class="line">  # Set up the <span class="keyword">protected</span>-mode data segment registers</span><br><span class="line">  movw    $PROT_MODE_DSEG, %ax    # Our data segment selector </span><br><span class="line">  movw    %ax, %ds                # -&gt; DS: Data Segment</span><br><span class="line">  movw    %ax, %es                # -&gt; ES: Extra Segment</span><br><span class="line">  movw    %ax, %fs                # -&gt; FS</span><br><span class="line">  movw    %ax, %gs                # -&gt; GS</span><br><span class="line">  movw    %ax, %ss                # -&gt; SS: Stack Segment</span><br><span class="line">  # 简单来讲 上面 就是初始化了一些寄存器，然后就去 boot main 里面了</span><br><span class="line">  # Set up the <span class="built_in">stack</span> pointer <span class="keyword">and</span> call into C.</span><br><span class="line">  movl    $start, %esp</span><br><span class="line">  call bootmain</span><br><span class="line"></span><br><span class="line">  # If bootmain returns (it shouldn't), loop.</span><br><span class="line">spin:	# 这个翻译上面英文就好</span><br><span class="line">  jmp spin</span><br><span class="line"></span><br><span class="line"># Bootstrap GDT</span><br><span class="line">.p2align <span class="number">2</span>                                <span class="meta"># force 4 byte alignment</span></span><br><span class="line">gdt:	# GDT 表信息，具体的不清楚</span><br><span class="line">  SEG_NULL				<span class="meta"># null seg</span></span><br><span class="line">  SEG(STA_X|STA_R, <span class="number">0x0</span>, <span class="number">0xffffffff</span>)	<span class="meta"># code seg</span></span><br><span class="line">  SEG(STA_W, <span class="number">0x0</span>, <span class="number">0xffffffff</span>)	        <span class="meta"># data seg</span></span><br><span class="line"></span><br><span class="line">gdtdesc:</span><br><span class="line">  .word   <span class="number">0x17</span>                            <span class="meta"># sizeof(gdt) - 1</span></span><br><span class="line">  .<span class="keyword">long</span>   gdt                             <span class="meta"># address gdt</span></span><br></pre></td></tr></table></figure></p>
+<p>由上面这注释，应该很容易得出他问的问题的答案。</p>
+<p>后面有一个让你运行一个C语言指针程序，那个有点基础应该就看得懂。就不多说了。</p>
+<p>main.c里面，主要是加载ELF文件，也就是你的操作系统，什么是ELF，这个可以在百度百科里面了解到。</p>
+<p><strong>boot main.c</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/x86.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/elf.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**********************************************************************</span></span><br><span class="line"><span class="comment"> * This a dirt simple boot loader, whose sole job is to boot</span></span><br><span class="line"><span class="comment"> * an ELF kernel image from the first IDE hard disk.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * DISK LAYOUT</span></span><br><span class="line"><span class="comment"> *  * This program(boot.S and main.c) is the bootloader.  It should</span></span><br><span class="line"><span class="comment"> *    be stored in the first sector of the disk.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  * The 2nd sector onward holds the kernel image.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  * The kernel image must be in ELF format.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * BOOT UP STEPS</span></span><br><span class="line"><span class="comment"> *  * when the CPU boots it loads the BIOS into memory and executes it</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  * the BIOS intializes devices, sets of the interrupt routines, and</span></span><br><span class="line"><span class="comment"> *    reads the first sector of the boot device(e.g., hard-drive)</span></span><br><span class="line"><span class="comment"> *    into memory and jumps to it.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  * Assuming this boot loader is stored in the first sector of the</span></span><br><span class="line"><span class="comment"> *    hard-drive, this code takes over...</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  * control starts in boot.S -- which sets up protected mode,</span></span><br><span class="line"><span class="comment"> *    and a stack so C code then run, then calls bootmain()</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  * bootmain() in this file takes over, reads in the kernel and jumps to it.</span></span><br><span class="line"><span class="comment"> **********************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECTSIZE	512</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ELFHDR		((struct Elf *) 0x10000) <span class="comment">// scratch space</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">readsect</span><span class="params">(<span class="keyword">void</span>*, <span class="keyword">uint32_t</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">readseg</span><span class="params">(<span class="keyword">uint32_t</span>, <span class="keyword">uint32_t</span>, <span class="keyword">uint32_t</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">bootmain(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Proghdr</span> *<span class="title">ph</span>, *<span class="title">eph</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// read 1st page off disk 把内核的起始地址第一个页加载到内存,ELFHDR处 一页为 512*8=4M</span></span><br><span class="line">	readseg((<span class="keyword">uint32_t</span>) ELFHDR, SECTSIZE*<span class="number">8</span>, <span class="number">0</span>);<span class="comment">//一般是操作系统映象文件的elf 头部</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// is this a valid ELF?  是一个ELF文件 就继续否侧失败</span></span><br><span class="line">	<span class="keyword">if</span> (ELFHDR-&gt;e_magic != ELF_MAGIC)</span><br><span class="line">		<span class="keyword">goto</span> bad;</span><br><span class="line">	<span class="comment">//加载 程序表头到 ph</span></span><br><span class="line">	<span class="comment">// load each program segment (ignores ph flags)</span></span><br><span class="line">	ph = (struct Proghdr *) ((<span class="keyword">uint8_t</span> *) ELFHDR + ELFHDR-&gt;e_phoff);</span><br><span class="line">	eph = ph + ELFHDR-&gt;e_phnum;<span class="comment">//这个是 表未  e_phnum 存的是表项个数</span></span><br><span class="line">	<span class="keyword">for</span> (; ph &lt; eph; ph++) <span class="comment">//这个就是把表里面的都加载到内存</span></span><br><span class="line">		<span class="comment">// p_pa is the load address of this segment (as well</span></span><br><span class="line">		<span class="comment">// as the physical address)</span></span><br><span class="line">		readseg(ph-&gt;p_pa, ph-&gt;p_memsz, ph-&gt;p_offset);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// call the entry point from the ELF header</span></span><br><span class="line">	<span class="comment">// note: does not return!</span></span><br><span class="line">	((<span class="keyword">void</span> (*)(<span class="keyword">void</span>)) (ELFHDR-&gt;e_entry))();<span class="comment">//e_entry 是程序运行的入口 也就是在这个时候 操作系统开始加载了</span></span><br><span class="line"></span><br><span class="line">bad:	<span class="comment">//具体干啥的  我不知道 如果没猜错 就是执行 没有加载到系统的操作，</span></span><br><span class="line">	outw(<span class="number">0x8A00</span>, <span class="number">0x8A00</span>);</span><br><span class="line">	outw(<span class="number">0x8A00</span>, <span class="number">0x8E00</span>);</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">		<span class="comment">/* do nothing */</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Read 'count' bytes at 'offset' from kernel into physical address 'pa'.</span></span><br><span class="line"><span class="comment">// Might copy more than asked  </span></span><br><span class="line"><span class="comment">// 顾名思义 ，就是加载 偏移量为 offset 的 连续  count 个字节 到地址 pa</span></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">readseg(<span class="keyword">uint32_t</span> pa, <span class="keyword">uint32_t</span> count, <span class="keyword">uint32_t</span> offset)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">uint32_t</span> end_pa;</span><br><span class="line"></span><br><span class="line">	end_pa = pa + count;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// round down to sector boundary</span></span><br><span class="line">	pa &amp;= ~(SECTSIZE - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// translate from bytes to sectors, and kernel starts at sector 1</span></span><br><span class="line">	offset = (offset / SECTSIZE) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// If this is too slow, we could read lots of sectors at a time.</span></span><br><span class="line">	<span class="comment">// We'd write more to memory than asked, but it doesn't matter --</span></span><br><span class="line">	<span class="comment">// we load in increasing order.</span></span><br><span class="line">	<span class="keyword">while</span> (pa &lt; end_pa) &#123;</span><br><span class="line">		<span class="comment">// Since we haven't enabled paging yet and we're using</span></span><br><span class="line">		<span class="comment">// an identity segment mapping (see boot.S), we can</span></span><br><span class="line">		<span class="comment">// use physical addresses directly.  This won't be the</span></span><br><span class="line">		<span class="comment">// case once JOS enables the MMU.</span></span><br><span class="line">		readsect((<span class="keyword">uint8_t</span>*) pa, offset);</span><br><span class="line">		pa += SECTSIZE;</span><br><span class="line">		offset++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">waitdisk(<span class="keyword">void</span>)</span><br><span class="line">&#123;	<span class="comment">// 判磁盘是不是准备 好了      </span></span><br><span class="line">	<span class="comment">// wait for disk reaady</span></span><br><span class="line">	<span class="keyword">while</span> ((inb(<span class="number">0x1F7</span>) &amp; <span class="number">0xC0</span>) != <span class="number">0x40</span>)</span><br><span class="line">		<span class="comment">/* do nothing */</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">readsect(<span class="keyword">void</span> *dst, <span class="keyword">uint32_t</span> offset)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// wait for disk to be ready</span></span><br><span class="line">	waitdisk();</span><br><span class="line"></span><br><span class="line">	outb(<span class="number">0x1F2</span>, <span class="number">1</span>);		<span class="comment">// count = 1</span></span><br><span class="line">	outb(<span class="number">0x1F3</span>, offset);</span><br><span class="line">	outb(<span class="number">0x1F4</span>, offset &gt;&gt; <span class="number">8</span>);</span><br><span class="line">	outb(<span class="number">0x1F5</span>, offset &gt;&gt; <span class="number">16</span>);</span><br><span class="line">	outb(<span class="number">0x1F6</span>, (offset &gt;&gt; <span class="number">24</span>) | <span class="number">0xE0</span>);</span><br><span class="line">	outb(<span class="number">0x1F7</span>, <span class="number">0x20</span>);	<span class="comment">// cmd 0x20 - read sectors</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// wait for disk to be ready</span></span><br><span class="line">	waitdisk();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// read a sector 读一个扇区</span></span><br><span class="line">	insl(<span class="number">0x1F0</span>, dst, SECTSIZE/<span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>后面几步还是要自己好好坐一坐，我没有做什么详细的介绍。<br><a href="https://www.cnblogs.com/fatsheep9146/p/5220004.html" target="_blank" rel="noopener">一如既往大佬博客</a>,像我这样的菜鸡是无法理解的。</p>
+<p>最后让你做个测试，运行Boot Loader 前看下<code>0x00100000</code>处的8个内存字，运行后再看一下,发现原本是 全是 <code>0</code>，后面就有了一大堆乱七八糟的值。这个不是很明显吗，看我上面<code>main.c</code>的注释，明显有个函数把硬盘里面的值读到了内存。</p>
+<h2 id="Part-3-The-Kernel"><a href="#Part-3-The-Kernel" class="headerlink" title="Part 3: The Kernel"></a>Part 3: The Kernel</h2><p>后面的实验，这个<a href="https://github.com/clpsz/mit-jos-2014/tree/master/Lab1/Exercise07" target="_blank" rel="noopener">大佬的GitHub</a>就全都有了。</p>
+<p>我做个简单的笔记。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">movl %eax, %cr0</span><br></pre></td></tr></table></figure></p>
+<p>这条语句实现了，映射，将高地址映射到了物理地址的低地址，这是因为计算机希望操作系统是运行在高地址，用户运行在低地址，详细内容，下一次实验会讲清楚。</p>
+<p>练习8  让你完善那个<code>printf</code>里面的<code>%o</code>也就是8进制输出。</p>
+<p>这个很容易了，把前面16进制输出复制一遍就行了，不做详细介绍了。</p>
+<p>然后你需要回答4个问题</p>
+<ol>
+<li><code>printf</code>之间的关系依旧找<a href="https://www.cnblogs.com/fatsheep9146/p/5066690.html" target="_blank" rel="noopener">大佬的博客</a></li>
+<li><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>      <span class="keyword">if</span> (crt_pos &gt;= CRT_SIZE) &#123;</span><br><span class="line"><span class="number">2</span>              <span class="keyword">int</span> i;</span><br><span class="line"><span class="number">3</span>              memmove(crt_buf, crt_buf + CRT_COLS, (CRT_SIZE - CRT_COLS) * <span class="keyword">sizeof</span>(<span class="keyword">uint16_t</span>));</span><br><span class="line"><span class="number">4</span>              <span class="keyword">for</span> (i = CRT_SIZE - CRT_COLS; i &lt; CRT_SIZE; i++)</span><br><span class="line"><span class="number">5</span>                      crt_buf[i] = <span class="number">0x0700</span> | <span class="string">' '</span>;</span><br><span class="line"><span class="number">6</span>              crt_pos -= CRT_COLS;</span><br><span class="line"><span class="number">7</span>      &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>解释这个，看起来就是如果超过了一页，就把最前面的那一行删掉？？，然后继续输出下一行？？？不知道理解对没。</p>
+<ol>
+<li>这个是个重点 ，这个实验很容易看出来C语言压栈的顺序是从后往前压栈。</li>
+<li>这个不说了，就是按格式输出</li>
+<li>这个就是，我们经常用的<code>printf</code>，如果少了一个参数会咋样，通过看内存应该就知道，会输出一个随机值。多一个多的其实就没啥用。</li>
+<li>这个就是压栈是从后往前压，所以可以实现，多个参数。如果是从前往后压该怎么办？我还不知道怎么处理。</li>
+</ol>
+<p>练习9 问啥时候初始化堆栈，这个看看<a href="https://www.cnblogs.com/fatsheep9146/p/5079177.html" target="_blank" rel="noopener">大佬的博客</a>就行.<br>练习10  这个就是让你明白是怎么调用函数的，又是怎么返回的。</p>
+<p>一般来说，栈基地址指向的是栈底，栈指针指向的是栈顶。<br><img src="https://img-blog.csdnimg.cn/20200106142336627.png" alt="在这里插入图片描述"><br>大概调用一个函数就是这么干的，怎么返回的就不用我说了吧。<br>调用参数也就是通过栈来的，如果超过了五个参数我也不知道会发生啥，反正这上面没说。<br>练习 11 也就是让你写个输出栈里面的内容。</p>
+<p>练习 12 让你实现一个调试信息的指令。<br>改三个地方。<br>前两个都在<code>kern/monitor.c</code>。<br>第一个<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">Command</span> <span class="title">commands</span>[] = &#123;</span></span><br><span class="line">          &#123; <span class="string">"help"</span>, <span class="string">"Display this list of commands"</span>, mon_help &#125;,</span><br><span class="line">          &#123; <span class="string">"kerninfo"</span>, <span class="string">"Display information about the kernel"</span>, mon_kerninfo &#125;,</span><br><span class="line">          &#123;<span class="string">"backtrace"</span>,<span class="string">"Display stack backtrace"</span>, mon_backtrace&#125;,</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>后面那个是多加的，前面那两个很眼熟吧。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">mon_backtrace(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv, struct Trapframe *tf)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="comment">// Your code here.</span></span><br><span class="line">        <span class="comment">//      return 0;</span></span><br><span class="line">        <span class="keyword">uint32_t</span> ebp,eip,*p;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">Eipdebuginfo</span> <span class="title">info</span>;</span></span><br><span class="line">        ebp=read_ebp();</span><br><span class="line">        <span class="keyword">while</span>(ebp!=<span class="number">0</span>)&#123;</span><br><span class="line">                p=(<span class="keyword">uint32_t</span>*)ebp;</span><br><span class="line">                eip=p[<span class="number">1</span>];</span><br><span class="line">                cprintf(<span class="string">"ebp %x eip %x args %08x %08x %08x %08x %08x\n"</span>,ebp,p[<span class="number">1</span>],p[<span class="number">2</span>],p[<span class="number">3</span>],p[<span class="number">4</span>],p[<span class="number">5</span>],p[<span class="number">6</span>]);</span><br><span class="line">                <span class="keyword">if</span>(debuginfo_eip(eip,&amp;info)==<span class="number">0</span>)&#123;</span><br><span class="line">                        <span class="keyword">int</span> fn_offset=eip-info.eip_fn_addr;</span><br><span class="line">                        cprintf(<span class="string">"%s:%d:%.*s+%d\n"</span>,info.eip_file,info.eip_line,info.eip_fn_namelen,info.eip_fn_name,fn_offset);</span><br><span class="line">                &#125;</span><br><span class="line">                ebp=p[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个也很眼熟吧，前面改过。<br>到这个地方实际上已经能够运行了，只是没有行号。</p>
+<p>最后一个在<code>kern/kdebug.c</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">stab_binsearch(stabs, &amp;lfun, &amp;rfun, N_SLINE, addr - info-&gt;eip_fn_add    r);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> (lfun &lt;= rfun)</span><br><span class="line">&#123;</span><br><span class="line">        info-&gt;eip_line = stabs[lfun].n_desc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个具体原理我也不知道，抄别人的。<a href="https://www.cnblogs.com/wuhualong/p/lab01_exercise12_print_more_info.html" target="_blank" rel="noopener">百度能搜到</a>。<br>到此，实验一就全部完成了，目前我能了解的就这么多。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MIT6-828/" rel="tag"># MIT6.828</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/18/manjaro18-xfce版-终端字体间距贼大/" rel="next" title="manjaro18 xfce版 终端字体间距贼大">
+                <i class="fa fa-chevron-left"></i> manjaro18 xfce版 终端字体间距贼大
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/18/MIT-6.828-(二)-Lab-2-Memory-management/" rel="prev" title="MIT6.828(二)Lab2:Memory management">
+                MIT6.828(二)Lab2:Memory management <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
+            
+              <p class="site-author-name" itemprop="name">尘</p>
+              <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ETBUBBLE" title="GitHub &rarr; https://github.com/ETBUBBLE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40871466" title="https://blog.csdn.net/qq_40871466" rel="noopener" target="_blank">csdn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=549159342&auto=1&height=66"></iframe>
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-1-PC-Bootstrap"><span class="nav-number">1.</span> <span class="nav-text">Part 1: PC Bootstrap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-PC’s-Physical-Address-Space（PC的物理地址空间）"><span class="nav-number">1.1.</span> <span class="nav-text">The PC’s Physical Address Space（PC的物理地址空间）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-ROM-BIOS"><span class="nav-number">1.2.</span> <span class="nav-text">The ROM BIOS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-2-The-Boot-Loader"><span class="nav-number">2.</span> <span class="nav-text">Part 2: The Boot Loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-3-The-Kernel"><span class="nav-number">3.</span> <span class="nav-text">Part 3: The Kernel</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://your.com/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/model/tia/model.json");
+      </script>
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">806k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">12:13</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.0</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    <!-- LOCAL: You can save these files to your site and update links -->
+
+  
+     <!-- <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script> -->
+<script src="https://billts.site/js/gitment.js"></script>
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/> -->
+<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+
+<!-- END LOCAL -->
+
+<style>
+#gitment-container a {
+  border-bottom: none;
+}
+
+</style>
+
+<script>
+  function renderGitment() {
+
+    var gitment = new Gitment({
+      id: '1582033039000',
+      owner: 'ETBUBBLE',
+      repo: 'ETBUBBLE.github.io',
+      
+      oauth: {
+      
+      
+        client_secret: '0fd4f83bc7834795c0575404ee5c7a2c82067749',
+      
+        client_id: '008c7d3ffa7d973b8437'
+      }
+    });
+    gitment.render('gitment-container');
+  }
+
+  
+    renderGitment();
+  
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

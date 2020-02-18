@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这是最后一个实验，做完这个一个基本的内核就做完了。这章需要自己去看的东西特么的多，所以大部分，我们就看看实现了什么，不会专门一个个细节的看了。 Lab 6: Network Driver (default final project)IntroductionLab6 是最后一个实验了，做完这个，一个简单的内核就已经实现了，现在你可以自己做自己的内核。现在，你有一个文件系统，操作系统没有网络堆栈。在">
+<meta name="keywords" content="MIT6.282">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT6.828(六)Lab6:Network Driver(default final project)">
+<meta property="og:url" content="https://etbubble.github.io/2020/02/18/MIT-6.828-(六)-Lab-6-Network-Driver-(default-final-project)/index.html">
+<meta property="og:site_name" content="ET_BUBBLE 的博客">
+<meta property="og:description" content="这是最后一个实验，做完这个一个基本的内核就做完了。这章需要自己去看的东西特么的多，所以大部分，我们就看看实现了什么，不会专门一个个细节的看了。 Lab 6: Network Driver (default final project)IntroductionLab6 是最后一个实验了，做完这个，一个简单的内核就已经实现了，现在你可以自己做自己的内核。现在，你有一个文件系统，操作系统没有网络堆栈。在">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204135511818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206122105695.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206122230419.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206142554572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-02-18T14:03:00.253Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MIT6.828(六)Lab6:Network Driver(default final project)">
+<meta name="twitter:description" content="这是最后一个实验，做完这个一个基本的内核就做完了。这章需要自己去看的东西特么的多，所以大部分，我们就看看实现了什么，不会专门一个个细节的看了。 Lab 6: Network Driver (default final project)IntroductionLab6 是最后一个实验了，做完这个，一个简单的内核就已经实现了，现在你可以自己做自己的内核。现在，你有一个文件系统，操作系统没有网络堆栈。在">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200204135511818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ET_BUBBLE 的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://etbubble.github.io/2020/02/18/MIT-6.828-(六)-Lab-6-Network-Driver-(default-final-project)/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MIT6.828(六)Lab6:Network Driver(default final project) | ET_BUBBLE 的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ET_BUBBLE 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">两件事一定不能停 学习和运动</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://etbubble.github.io/2020/02/18/MIT-6.828-(六)-Lab-6-Network-Driver-(default-final-project)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="尘">
+      <meta itemprop="description" content="做自己不会做的事被称之为学习">
+      <meta itemprop="image" content="/images/tou.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ET_BUBBLE 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MIT6.828(六)Lab6:Network Driver(default final project)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-18 21:45:38 / 修改时间：22:03:00" itemprop="dateCreated datePublished" datetime="2020-02-18T21:45:38+08:00">2020-02-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/MIT6-828/" itemprop="url" rel="index"><span itemprop="name">MIT6.828</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">41k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">37 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是最后一个实验，做完这个一个基本的内核就做完了。这章需要自己去看的东西特么的多，所以大部分，我们就看看实现了什么，不会专门一个个细节的看了。</p>
+<h1 id="Lab-6-Network-Driver-default-final-project"><a href="#Lab-6-Network-Driver-default-final-project" class="headerlink" title="Lab 6: Network Driver (default final project)"></a><a href="https://pdos.csail.mit.edu/6.828/2018/labs/lab6/" target="_blank" rel="noopener">Lab 6: Network Driver (default final project)</a></h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><code>Lab6</code> 是最后一个实验了，做完这个，一个简单的内核就已经实现了，现在你可以自己做自己的内核。<br>现在，你有一个文件系统，操作系统没有网络堆栈。在这个实验室里你要编写一个网络接口卡的驱动程序。该卡将基于<code>Intel 82540EM</code>芯片，也被称为<code>E1000</code>上。</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>先切换个分支。</p>
+<p>除了编写驱动程序之外，您还需要创建一个系统调用接口来授予对驱动程序的访问权限。您将实现缺少的网络服务器代码，以在网络堆栈和驱动程序之间传输数据包。您还将通过完成<code>Web</code>服务器将所有内容捆绑在一起。使用新的<code>Web</code>服务器，您将能够从文件系统提供文件。</p>
+<p>您必须从头开始编写许多内核设备驱动程序代码。与以前的实验相比，本实验提供的指导要少得多：没有框架文件，没有任何固定的系统调用接口，许多设计决策都由您自己决定。因此，我们建议您在开始任何练习之前，先阅读整个作业记录。许多学生发现本实验比以前的实验困难得多，因此请相应地计划您的时间。<br><strong>最终你会发现这个主要难点就是看文档写驱动。</strong><br>根据他的推荐让我们先看看整个任务，直接用谷歌流浪器，翻译整个页面，然后大致看看。</p>
+<p>看完之后发现并没有什么卵用，还是不懂，还是慢慢来。</p>
+<h2 id="QEMU’s-virtual-network"><a href="#QEMU’s-virtual-network" class="headerlink" title="QEMU’s virtual network"></a>QEMU’s virtual network</h2><p>我们将使用<code>QEMU</code>的用户模式网络堆栈，因为它不需要运行任何管理权限。<code>QEMU</code>的文档在这里有更多关于<code>user-net</code>的信息。我们已经更新了<code>makefile</code>，以启用<code>QEMU</code>的用户模式网络堆栈和虚拟<code>E1000</code>网卡。</p>
+<p>默认情况下，<code>QEMU</code>提供运行在<code>IP</code> <code>10.0.2.2</code>上的虚拟路由器，并将为<code>JOS</code>分配<code>IP</code>地址<code>10.0.2.15</code>。为了简单起见，我们将这些默认值硬编码到<code>net/ns.h</code>中的网络服务器中。<br>我们简单看一下这个文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/ns.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/lib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IP <span class="meta-string">"10.0.2.15"</span>	<span class="comment">//IP</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MASK <span class="meta-string">"255.255.255.0"</span> <span class="comment">//ZIYANMA</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEFAULT <span class="meta-string">"10.0.2.2"</span>	<span class="comment">//这是个虚拟路由</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TIMER_INTERVAL 250 <span class="comment">//应该是时间中断时间</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Virtual address at which to receive page mappings containing client requests.</span></span><br><span class="line"><span class="comment">//在这个虚拟地址接收 包含客户端请求的 页面映射。</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> QUEUE_SIZE	20</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> REQVA		(0x0ffff000 - QUEUE_SIZE * PGSIZE)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* timer.c */</span> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">timer</span><span class="params">(<span class="keyword">envid_t</span> ns_envid, <span class="keyword">uint32_t</span> initial_to)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* input.c */</span> <span class="comment">/*这两个函数是我们的目标，就是为了实现这两个函数*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">envid_t</span> ns_envid)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* output.c */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">output</span><span class="params">(<span class="keyword">envid_t</span> ns_envid)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>尽管<code>QEMU</code>的虚拟网络允许<code>JOS</code>进行到<code>Internet</code>的任意连接，但<code>JOS</code>的<code>10.0.2.15</code>地址在<code>QEMU</code>内部运行的虚拟网络外部没有任何意义（即<code>QEMU</code>充当<code>NAT</code>），因此我们无法直接连接到服务器即使在运行<code>QEMU</code>的主机中，也可以在<code>JOS</code>内部运行。为了解决这个问题，我们将<code>QEMU</code>配置为在主机上某个端口上运行服务器，该服务器仅连接到<code>JOS</code>中的某个端口，并在真实主机和虚拟网络之间来回穿梭数据。</p>
+<p>您将在端口<code>7</code>（回显）和<code>80</code>（http）上运行<code>JOS</code>服务器。为避免在共享的<code>Athena</code>机器上发生冲突，<code>makefile</code>会根据您的用户<code>ID</code>为这些机器生成转发端口。要查找<code>QEMU</code>将要转发到您的开发主机上的端口，请运行<code>make which-ports</code>。为了方便起见，<code>makefile</code>还提供<code>make nc-7</code>和<code>make nc-80</code>，使您可以直接与在终端中这些端口上运行的服务器进行交互。（这些目标仅连接到正在运行的<code>QEMU</code>实例；您必须单独启动<code>QEMU</code>本身。）<br><strong>通俗点来讲，就是 这个JOS服务器用的是 7 和80端口，但是你的虚拟机上面可能已经用了，所以帮你转发到另一个端口了。</strong></p>
+<h2 id="Packet-Inspection"><a href="#Packet-Inspection" class="headerlink" title="Packet Inspection"></a>Packet Inspection</h2><p>生成文件还配置<code>QEMU</code>的网络堆栈，以将所有传入和传出数据包记录到您的实验室目录中的<code>qemu.pcap</code>。</p>
+<p>要获取捕获的数据包的<code>hex/ASCII</code>，请使用<code>tcpdump</code>，如下所示：<br><code>tcpdump -XXnr qemu.pcap</code>或者，您可以使用<code>Wireshark</code>以图形方式检查<code>pcap文</code>件。<code>Wireshark</code>还知道如何解码和检查数百种网络协议。如果您使用的是<code>Athena</code>，则必须使用<code>Wireshark</code>的前身<code>ethereal</code>，它位于<code>sipbnet locker</code>。</p>
+<h2 id="Debugging-the-E1000"><a href="#Debugging-the-E1000" class="headerlink" title="Debugging the E1000"></a>Debugging the E1000</h2><p>我们很幸运能够使用仿真硬件。由于<code>E1000</code>在软件中运行，因此仿真的<code>E1000</code>可以以用户可读的格式向我们报告其内部状态以及遇到的任何问题。通常，使用裸机编写驱动程序的开发人员将无法获得这种奢侈。</p>
+<p><code>E1000</code>可以产生很多调试输出，因此您必须启用特定的日志记录通道。您可能会发现有用的一些渠道是：</p>
+<table align="center">
+  <tbody><tr><th align="left">Flag</th><th align="left">Meaning</th></tr>
+  <tr><td>tx</td><td>    日志包发送操作</td></tr>
+  <tr><td>txerr</td><td>记录传输环错误</td></tr>
+  <tr><td>rx</td><td>将更改记录到RCTL</td></tr>
+  <tr><td>rxfilter</td><td>传入数据包的日志过滤</td></tr>
+  <tr><td>rxerr</td><td>日志接收振铃错误</td></tr>
+  <tr><td>unknown</td><td>日志读取和写入未知寄存器</td></tr>
+  <tr><td>eeprom</td><td>从EEPROM读取日志</td></tr>
+  <tr><td>interrupt</td><td>记录中断和更改到中断寄存器。</td></tr>
+</tbody></table>
+
+<p>例如，要启用<code>tx</code>和<code>txerr</code>日志记录，请使用<code>make E1000_DEBUG=tx,txerr ...</code>。</p>
+<p>注意： <code>E1000_DEBUG</code>标志仅在<code>6.828</code>版本的<code>QEMU</code>中起作用。</p>
+<p>您可以进一步使用软件仿真的硬件进行调试。如果您陷入困境并且不了解<code>E1000</code>为什么没有按预期方式做出响应，则可以在<code>hw/net/e1000.c</code>中查看<code>QEMU</code>的<code>E1000</code>实现。</p>
+<h2 id="The-Network-Server"><a href="#The-Network-Server" class="headerlink" title="The Network Server"></a>The Network Server</h2><p>从头开始编写网络堆栈是一项艰巨的工作。相反，我们将使用<code>lwIP</code>，这是一个开源的轻量级<code>TCP/IP</code>协议套件，其中包括一个网络堆栈。您可以在此处找到有关<code>lwIP</code>的更多信息 。就此而言，就我们而言，<code>lwIP</code>是一个黑箱，它实现了<code>BSD</code>套接字接口，并具有一个数据包输入端口和一个数据包输出端口。</p>
+<p>网络服务器实际上是四个环境的组合：</p>
+<ul>
+<li>核心网络服务器环境（包括套接字调用分派器和<code>lwIP</code>）</li>
+<li>输入环境</li>
+<li>输出环境</li>
+<li>计时器环境</li>
+</ul>
+<p>下图显示了不同的环境及其关系。该图显示了包括设备驱动程序在内的整个系统，稍后将进行介绍。在本实验中，您将实现以绿色突出显示的部分。<br><img src="https://img-blog.csdnimg.cn/20200204135511818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这个地方已经告诉你我们要实现什么了</p>
+<ul>
+<li>实现<code>E1000</code>驱动里面的<code>TX</code> 用于传输数据,<code>RX</code>用于发送数据。</li>
+<li>实现<code>发送环境</code>和<code>输出环境</code>，<code>时钟环境</code>已经帮我们实现好了，我们后面会去看看</li>
+<li><code>http</code> 服务器，这些事具体应用服务器了。<h2 id="The-Core-Network-Server-Environment"><a href="#The-Core-Network-Server-Environment" class="headerlink" title="The Core Network Server Environment"></a>The Core Network Server Environment</h2>核心网络服务器环境由套接字调用分派器和<code>lwIP</code>本身组成。套接字调用调度程序的工作方式与文件服务器完全相同。用户环境使用存根（可在<code>lib/nsipc.c</code>中找到）将<code>IPC</code>消息发送到核心网络环境。如果查看 <code>lib/nsipc.c</code>，您会发现我们找到核心网络服务器的方式与找到文件服务器的方式相同：<code>i386_init</code>使用<code>NS_TYPE_NS</code>创建<code>NS</code>环境，因此我们扫描<code>envs</code>，寻找这种特殊的环境类型。对于每个用户环境<code>IPC</code>，网络服务器中的调度程序代表用户调用<code>lwIP</code>提供的相应<code>BSD</code>套接字接口功能。<br>我们来简单看看这些东西。大部分都是一样的，我们就看看就行。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Virtual address at which to receive page mappings containing client requests.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> REQVA		0x0ffff000</span></span><br><span class="line"><span class="keyword">union</span> Nsipc nsipcbuf __attribute__((aligned(PGSIZE)));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Send an IP request to the network server, and wait for a reply.</span></span><br><span class="line"><span class="comment">// The request body should be in nsipcbuf, and parts of the response</span></span><br><span class="line"><span class="comment">// may be written back to nsipcbuf.</span></span><br><span class="line"><span class="comment">// type: request code, passed as the simple integer IPC value.</span></span><br><span class="line"><span class="comment">// Returns 0 if successful, &lt; 0 on failure.</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">nsipc(<span class="keyword">unsigned</span> type) <span class="comment">//和 文件发送一模一样，自己看看</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">envid_t</span> nsenv;</span><br><span class="line">	<span class="keyword">if</span> (nsenv == <span class="number">0</span>)</span><br><span class="line">		nsenv = ipc_find_env(ENV_TYPE_NS);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>(nsipcbuf) == PGSIZE);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (debug)</span><br><span class="line">		cprintf(<span class="string">"[%08x] nsipc %d\n"</span>, thisenv-&gt;env_id, type);</span><br><span class="line"></span><br><span class="line">	ipc_send(nsenv, type, &amp;nsipcbuf, PTE_P|PTE_W|PTE_U);</span><br><span class="line">	<span class="keyword">return</span> ipc_recv(<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct sockaddr &#123;</span></span><br><span class="line"><span class="comment">  u8_t sa_len;</span></span><br><span class="line"><span class="comment">  u8_t sa_family;</span></span><br><span class="line"><span class="comment">  char sa_data[14];</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">nsipc_accept(<span class="keyword">int</span> s, struct sockaddr *addr, <span class="keyword">socklen_t</span> *addrlen) <span class="comment">//接受函数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> r;</span><br><span class="line"></span><br><span class="line">	nsipcbuf.accept.req_s = s;</span><br><span class="line">	nsipcbuf.accept.req_addrlen = *addrlen;</span><br><span class="line">	<span class="keyword">if</span> ((r = nsipc(NSREQ_ACCEPT)) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">Nsret_accept</span> *<span class="title">ret</span> = &amp;<span class="title">nsipcbuf</span>.<span class="title">acceptRet</span>;</span></span><br><span class="line">		memmove(addr, &amp;ret-&gt;ret_addr, ret-&gt;ret_addrlen);</span><br><span class="line">		*addrlen = ret-&gt;ret_addrlen;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>再看看<code>init.c</code>，多了这么几行，看架势是创建了一个网络服务器。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(TEST_NO_NS)</span></span><br><span class="line">	<span class="comment">// Start ns.</span></span><br><span class="line">	ENV_CREATE(net_ns, ENV_TYPE_NS);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>不出意外我们在<code>net/serv.c</code>成功找到了<code>umian</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">umain(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">envid_t</span> ns_envid = sys_getenvid();</span><br><span class="line"></span><br><span class="line">	binaryname = <span class="string">"ns"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// fork off the timer thread which will send us periodic messages</span></span><br><span class="line">	timer_envid = fork();<span class="comment">//创建定时器</span></span><br><span class="line">	<span class="keyword">if</span> (timer_envid &lt; <span class="number">0</span>)</span><br><span class="line">		panic(<span class="string">"error forking"</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (timer_envid == <span class="number">0</span>) &#123;</span><br><span class="line">		timer(ns_envid, TIMER_INTERVAL);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// fork off the input thread which will poll the NIC driver for input</span></span><br><span class="line">	<span class="comment">// packets</span></span><br><span class="line">	input_envid = fork();<span class="comment">//输入环境</span></span><br><span class="line">	<span class="keyword">if</span> (input_envid &lt; <span class="number">0</span>)</span><br><span class="line">		panic(<span class="string">"error forking"</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (input_envid == <span class="number">0</span>) &#123;</span><br><span class="line">		input(ns_envid);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// fork off the output thread that will send the packets to the NIC</span></span><br><span class="line">	<span class="comment">// driver</span></span><br><span class="line">	output_envid = fork();<span class="comment">//输出环境</span></span><br><span class="line">	<span class="keyword">if</span> (output_envid &lt; <span class="number">0</span>)</span><br><span class="line">		panic(<span class="string">"error forking"</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (output_envid == <span class="number">0</span>) &#123;</span><br><span class="line">		output(ns_envid);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// lwIP requires a user threading library; start the library and jump</span></span><br><span class="line">	<span class="comment">// into a thread to continue initialization.</span></span><br><span class="line">	thread_init();<span class="comment">//线程初始化 //做实现开始之前回来好好分析一下</span></span><br><span class="line">	thread_create(<span class="number">0</span>, <span class="string">"main"</span>, tmain, <span class="number">0</span>);<span class="comment">//线程创建</span></span><br><span class="line">	thread_yield();<span class="comment">//线程调度？？？</span></span><br><span class="line">	<span class="comment">// never coming here!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>常规用户环境不会<code>nsipc_*</code>直接使用呼叫。相反，它们使用<code>lib/ sockets.c</code>中的函数，该函数提供了基于文件描述符的套接字<code>API</code>。因此，用户环境通过文件描述符引用套接字，就像它们引用磁盘文件一样。多个操作（<code>connect</code>，<code>accept</code>等）特定于插座，但是<code>read</code>，<code>write</code>和 <code>close</code>经过在正常文件描述符设备分派代码<code>lib/fd.c</code>。就像文件服务器为所有打开的文件维护内部唯一<code>ID</code>的方式一样，<code>lwIP</code>还会为所有打开的套接字生成唯一的<code>ID</code>。在文件服务器和网络服务器中，我们都使用存储在其中的信息将<code>struct Fd</code>每个环境的文件描述符映射到这些唯一的<code>ID</code>空间。</p>
+<p>我们去看看<code>lib/sockets.c</code>和前面的文件服务调用的接口也是一样的。</p>
+<p>即使文件服务器和网络服务器的<code>IPC</code>调度程序看起来似乎相同，也存在关键区别。<code>BSD</code>套接字调用<code>like accept</code>和<code>recv</code>可以无限期阻塞。如果调度程序要让<code>lwIP</code>执行这些阻塞调用之一，则调度程序也将阻塞，并且整个系统一次只能有一个未完成的网络调用。由于这是不可接受的，因此网络服务器使用用户级线程来避免阻塞整个服务器环境。对于每个传入的<code>IPC</code>消息，调度程序都会创建一个线程并在新创建的线程中处理请求。如果线程阻塞，则只有该线程进入睡眠状态，而其他线程继续运行。</p>
+<p>除了核心网络环境外，还有三个帮助程序环境。除了接受来自用户应用程序的消息外，核心网络环境的调度程序还接受来自输入和计时器环境的消息。<br><strong>核心服务器环境，本质上就是一个文件服务器，他负责和高层的数据交换，比如说，<code>http</code>要用<code>socket.c</code>,就调用<code>socket.c</code>里面的一个操作，然后进行转发传到<code>输入/输出</code>环境,他在在<code>E1000</code>来进行硬件操作。</strong></p>
+<h2 id="The-Output-Environment"><a href="#The-Output-Environment" class="headerlink" title="The Output Environment"></a>The Output Environment</h2><p>为用户环境套接字调用提供服务时，<code>lwIP</code>将生成数据包供网卡传输。<code>LwIP</code>将使用<code>NSREQ_OUTPUTIPC</code>消息将每个要发送的数据包发送到输出帮助程序环境，并将该数据包附加在<code>IPC</code>消息的<code>page</code>参数中。输出环境负责接受这些消息，并通过即将创建的系统调用接口将数据包转发到设备驱动程序。</p>
+<h2 id="The-Input-Environment"><a href="#The-Input-Environment" class="headerlink" title="The Input Environment"></a>The Input Environment</h2><p>网卡收到的数据包需要注入<code>lwIP</code>。对于设备驱动程序收到的每个数据包，输入环境（使用您将实现的内核系统调用）将数据包拉出内核空间，然后使用<code>NSREQ_INPUTIPC</code>消息将数据包发送到核心服务器环境。</p>
+<p>数据包输入功能与核心网络环境分开，因为<code>JOS</code>使其难以同时接受<code>IPC</code>消息以及轮询或等待来自设备驱动程序的数据包。我们<code>select</code> 在<code>JOS</code>中没有系统调用，该调用允许环境监视多个输入源以标识准备好处理哪些输入。</p>
+<p>如果你看看<code>net/input.c</code>和<code>net/output.c</code>你会看到，都需要执行。这主要是因为实现取决于您的系统调用接口。在实现驱动程序和系统调用接口之后，将为两个帮助程序环境编写代码。</p>
+<h2 id="The-Timer-Environment"><a href="#The-Timer-Environment" class="headerlink" title="The Timer Environment"></a>The Timer Environment</h2><p>计时器环境会定期向<code>NSREQ_TIMER</code>核心网络服务器发送消息类型，通知其计时器已过期。<code>lwIP</code>使用此线程的计时器消息来实现各种网络超时。</p>
+<p><strong>通过这些我们大致知道这个网络的流程了，实际上核心服务器和文件服务器是一模一样的，让我们再做一次实际上也就是把上次的代码在看一遍。至于输出环境，输入环境和时钟环境，就是让我们实现的东西。</strong></p>
+<h1 id="前置代码分析"><a href="#前置代码分析" class="headerlink" title="前置代码分析"></a>前置代码分析</h1><p>到这个地方，我们已经知道了基本的结构，但是我们还是对代码没啥了解。所以我们来看看多的代码做了什么。<br>一如既往，一切的起点，肯定<code>init</code>,前面我们已经看过一点了。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Lab 6 hardware initialization functions//多了这些东西，看注释事硬件初始化</span></span><br><span class="line">time_init(); <span class="comment">//这个后面第一个实验就会讲是什么，是给内核添加时钟的概念用的</span></span><br><span class="line">pci_init();	<span class="comment">//这个是 PCI初始化，也就是搜索所有 用PCI连接的硬件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(TEST_NO_NS)</span></span><br><span class="line">	<span class="comment">// Start ns.</span></span><br><span class="line">	ENV_CREATE(net_ns, ENV_TYPE_NS);<span class="comment">//这个说过了就是核心环境启动，而且通过这个fork 除了 输入/输出/时钟环境</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>我们知道这些之后，我们再去看看<code>net</code>里面的东西.<br>我靠一进去看里面的<code>lwip</code>目录，我靠那么多东西，看个鬼，告辞。我们还是继续看看<code>serv.c</code>,这个<code>input.c</code>和<code>output.c</code>,是输入输出，后面主要要做的。<br>一开始我们已经看了一部分，我们直接看看这个<code>线程</code>。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thread_init();</span><br><span class="line">thread_create(<span class="number">0</span>, <span class="string">"main"</span>, tmain, <span class="number">0</span>);</span><br><span class="line">thread_yield();</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lwpic/jos/thread.c</span></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">thread_init(<span class="keyword">void</span>) &#123;</span><br><span class="line">    threadq_init(&amp;thread_queue);<span class="comment">//进去看这个函数</span></span><br><span class="line">    max_tid = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//lwpic/jos/threadq.h</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> </span><br><span class="line">threadq_init(struct thread_queue *tq)</span><br><span class="line">&#123;</span><br><span class="line">    tq-&gt;tq_first = <span class="number">0</span>;</span><br><span class="line">    tq-&gt;tq_last = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">thread_context</span>;</span><span class="comment">//一个这个表示一个进程</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">thread_queue</span> //一个线程池，或许应该叫线程队列</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_context</span> *<span class="title">tq_first</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_context</span> *<span class="title">tq_last</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">thread_context</span> &#123;</span> <span class="comment">//线程结构题  也就是TCB</span></span><br><span class="line">    <span class="keyword">thread_id_t</span>		tc_tid;  <span class="comment">//线程ID</span></span><br><span class="line">    <span class="keyword">void</span>		*tc_stack_bottom;<span class="comment">//线程栈</span></span><br><span class="line">    <span class="keyword">char</span> 		tc_name[name_size];<span class="comment">//线程名</span></span><br><span class="line">    <span class="keyword">void</span>		(*tc_entry)(<span class="keyword">uint32_t</span>);<span class="comment">//线程指令地址 ，实现过线程这个很好理解</span></span><br><span class="line">    <span class="keyword">uint32_t</span>		tc_arg;<span class="comment">//参数</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">jos_jmp_buf</span>	<span class="title">tc_jb</span>;</span><span class="comment">//这个可以简单理解为 保存CPU的内容</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">uint32_t</span>	*tc_wait_addr;</span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">char</span>	tc_wakeup;</span><br><span class="line">    <span class="keyword">void</span>		(*tc_onhalt[THREAD_NUM_ONHALT])(<span class="keyword">thread_id_t</span>);</span><br><span class="line">    <span class="keyword">int</span>			tc_nonhalt;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_context</span> *<span class="title">tc_queue_link</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后我们运行了线程创建<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">thread_create(<span class="keyword">thread_id_t</span> *tid, <span class="keyword">const</span> <span class="keyword">char</span> *name, </span><br><span class="line">		<span class="keyword">void</span> (*entry)(<span class="keyword">uint32_t</span>), <span class="keyword">uint32_t</span> arg) &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_context</span> *<span class="title">tc</span> = <span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">thread_context</span>));</span><span class="comment">//分配一个空间</span></span><br><span class="line">    <span class="keyword">if</span> (!tc)</span><br><span class="line">	<span class="keyword">return</span> -E_NO_MEM;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(tc, <span class="number">0</span>, <span class="keyword">sizeof</span>(struct thread_context));</span><br><span class="line">    </span><br><span class="line">    thread_set_name(tc, name);<span class="comment">//这个不用多说了</span></span><br><span class="line">    tc-&gt;tc_tid = alloc_tid();<span class="comment">//自己看</span></span><br><span class="line"></span><br><span class="line">    tc-&gt;tc_stack_bottom = <span class="built_in">malloc</span>(stack_size);<span class="comment">//每个线程应该有独立的栈，但是一个进程的线程内存是共享的，因为共用一个页表。  很明显的能够看出来，TCB没有页表，所以内存都是共享的，所以理论上来说，是可以跨线程访问栈的。 </span></span><br><span class="line">    <span class="keyword">if</span> (!tc-&gt;tc_stack_bottom) &#123;</span><br><span class="line">	<span class="built_in">free</span>(tc);</span><br><span class="line">	<span class="keyword">return</span> -E_NO_MEM;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> *stacktop = tc-&gt;tc_stack_bottom + stack_size;</span><br><span class="line">    <span class="comment">// Terminate stack unwinding</span></span><br><span class="line">    stacktop = stacktop - <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">memset</span>(stacktop, <span class="number">0</span>, <span class="number">4</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">memset</span>(&amp;tc-&gt;tc_jb, <span class="number">0</span>, <span class="keyword">sizeof</span>(tc-&gt;tc_jb));</span><br><span class="line">    tc-&gt;tc_jb.jb_esp = (<span class="keyword">uint32_t</span>)stacktop;<span class="comment">//初始化栈顶</span></span><br><span class="line">    tc-&gt;tc_jb.jb_eip = (<span class="keyword">uint32_t</span>)&amp;thread_entry;<span class="comment">//初始化入口，函数指针</span></span><br><span class="line">    tc-&gt;tc_entry = entry;</span><br><span class="line">    tc-&gt;tc_arg = arg;<span class="comment">//参数</span></span><br><span class="line"></span><br><span class="line">    threadq_push(&amp;thread_queue, tc);<span class="comment">//加入线程队列</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (tid)</span><br><span class="line">	*tid = tc-&gt;tc_tid;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后调用了线程调度<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">thread_yield(<span class="keyword">void</span>) &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_context</span> *<span class="title">next_tc</span> = <span class="title">threadq_pop</span>(&amp;<span class="title">thread_queue</span>);</span><span class="comment">//弹出了一个线程</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!next_tc)</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cur_tc) &#123;</span><br><span class="line">	<span class="keyword">if</span> (jos_setjmp(&amp;cur_tc-&gt;tc_jb) != <span class="number">0</span>)</span><br><span class="line">	    <span class="keyword">return</span>;</span><br><span class="line">	threadq_push(&amp;thread_queue, cur_tc);<span class="comment">//保存当前线程</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cur_tc = next_tc;</span><br><span class="line">    jos_longjmp(&amp;cur_tc-&gt;tc_jb, <span class="number">1</span>);<span class="comment">//将下一个线程对应的thread_context结构的tc_jb字段恢复到CPU继续执行</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//所以从这个地方就跑去了运行线程main函数了。</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">tmain(<span class="keyword">uint32_t</span> arg) &#123;</span><br><span class="line">	serve_init(inet_addr(IP),</span><br><span class="line">		   inet_addr(MASK),</span><br><span class="line">		   inet_addr(DEFAULT));<span class="comment">//初始化了一点东西</span></span><br><span class="line">	serve();<span class="comment">//然后就是这个服务了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>serve()</code>里面主要是和另外两个环境通信。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">serve(<span class="keyword">void</span>) &#123;</span><br><span class="line">	<span class="keyword">int32_t</span> reqno;</span><br><span class="line">	<span class="keyword">uint32_t</span> whom;</span><br><span class="line">	<span class="keyword">int</span> i, perm;</span><br><span class="line">	<span class="keyword">void</span> *va;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// ipc_recv will block the entire process, so we flush</span></span><br><span class="line">		<span class="comment">// all pending work from other threads.  We limit the</span></span><br><span class="line">		<span class="comment">// number of yields in case there's a rogue thread.</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; thread_wakeups_pending() &amp;&amp; i &lt; <span class="number">32</span>; ++i)</span><br><span class="line">			thread_yield();</span><br><span class="line"></span><br><span class="line">		perm = <span class="number">0</span>;</span><br><span class="line">		va = get_buffer();</span><br><span class="line">		reqno = ipc_recv((<span class="keyword">int32_t</span> *) &amp;whom, (<span class="keyword">void</span> *) va, &amp;perm);<span class="comment">//在这个地方进行通信</span></span><br><span class="line">		<span class="keyword">if</span> (debug) &#123;</span><br><span class="line">			cprintf(<span class="string">"ns req %d from %08x\n"</span>, reqno, whom);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// first take care of requests that do not contain an argument page</span></span><br><span class="line">		<span class="keyword">if</span> (reqno == NSREQ_TIMER) &#123;<span class="comment">//这个就是如果通信来自时钟</span></span><br><span class="line">			process_timer(whom);</span><br><span class="line">			put_buffer(va);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// All remaining requests must contain an argument page</span></span><br><span class="line">		<span class="keyword">if</span> (!(perm &amp; PTE_P)) &#123;</span><br><span class="line">			cprintf(<span class="string">"Invalid request from %08x: no argument page\n"</span>, whom);</span><br><span class="line">			<span class="keyword">continue</span>; <span class="comment">// just leave it hanging...</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Since some lwIP socket calls will block, create a thread and</span></span><br><span class="line">		<span class="comment">// process the rest of the request in the thread.</span></span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">st_args</span> *<span class="title">args</span> = <span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">st_args</span>));</span></span><br><span class="line">		<span class="keyword">if</span> (!args)</span><br><span class="line">			panic(<span class="string">"could not allocate thread args structure"</span>);</span><br><span class="line"></span><br><span class="line">		args-&gt;reqno = reqno;</span><br><span class="line">		args-&gt;whom = whom;</span><br><span class="line">		args-&gt;req = va;</span><br><span class="line"></span><br><span class="line">		thread_create(<span class="number">0</span>, <span class="string">"serve_thread"</span>, serve_thread, (<span class="keyword">uint32_t</span>)args);<span class="comment">//给他创建一个线程去处理。</span></span><br><span class="line">		thread_yield(); <span class="comment">// let the thread created run</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>serve()</code>经历了一大堆，最终处理事件的函数是<code>serve_thread</code>了,可以在里面明确的看出是啥。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">serve_thread(<span class="keyword">uint32_t</span> a) &#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">st_args</span> *<span class="title">args</span> = (<span class="title">struct</span> <span class="title">st_args</span> *)<span class="title">a</span>;</span></span><br><span class="line">	<span class="keyword">union</span> Nsipc *req = args-&gt;req;</span><br><span class="line">	<span class="keyword">int</span> r;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> (args-&gt;reqno) &#123;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_ACCEPT:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">Nsret_accept</span> <span class="title">ret</span>;</span></span><br><span class="line">		ret.ret_addrlen = req-&gt;accept.req_addrlen;</span><br><span class="line">		r = lwip_accept(req-&gt;accept.req_s, &amp;ret.ret_addr,</span><br><span class="line">				&amp;ret.ret_addrlen);</span><br><span class="line">		memmove(req, &amp;ret, <span class="keyword">sizeof</span> ret);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_BIND:</span><br><span class="line">		r = lwip_bind(req-&gt;bind.req_s, &amp;req-&gt;bind.req_name,</span><br><span class="line">			      req-&gt;bind.req_namelen);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_SHUTDOWN:</span><br><span class="line">		r = lwip_shutdown(req-&gt;shutdown.req_s, req-&gt;shutdown.req_how);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_CLOSE:</span><br><span class="line">		r = lwip_close(req-&gt;close.req_s);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_CONNECT:</span><br><span class="line">		r = lwip_connect(req-&gt;connect.req_s, &amp;req-&gt;connect.req_name,</span><br><span class="line">				 req-&gt;connect.req_namelen);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_LISTEN:</span><br><span class="line">		r = lwip_listen(req-&gt;listen.req_s, req-&gt;listen.req_backlog);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_RECV:</span><br><span class="line">		<span class="comment">// Note that we read the request fields before we</span></span><br><span class="line">		<span class="comment">// overwrite it with the response data.</span></span><br><span class="line">		r = lwip_recv(req-&gt;recv.req_s, req-&gt;recvRet.ret_buf,</span><br><span class="line">			      req-&gt;recv.req_len, req-&gt;recv.req_flags);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_SEND:</span><br><span class="line">		r = lwip_send(req-&gt;send.req_s, &amp;req-&gt;send.req_buf,</span><br><span class="line">			      req-&gt;send.req_size, req-&gt;send.req_flags);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_SOCKET:</span><br><span class="line">		r = lwip_socket(req-&gt;socket.req_domain, req-&gt;socket.req_type,</span><br><span class="line">				req-&gt;socket.req_protocol);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NSREQ_INPUT:</span><br><span class="line">		jif_input(&amp;nif, (<span class="keyword">void</span> *)&amp;req-&gt;pkt);</span><br><span class="line">		r = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		cprintf(<span class="string">"Invalid request code %d from %08x\n"</span>, args-&gt;whom, args-&gt;req);</span><br><span class="line">		r = -E_INVAL;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (r == <span class="number">-1</span>) &#123;</span><br><span class="line">		<span class="keyword">char</span> buf[<span class="number">100</span>];</span><br><span class="line">		<span class="built_in">snprintf</span>(buf, <span class="keyword">sizeof</span> buf, <span class="string">"ns req type %d"</span>, args-&gt;reqno);</span><br><span class="line">		perror(buf);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (args-&gt;reqno != NSREQ_INPUT)</span><br><span class="line">		ipc_send(args-&gt;whom, r, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	put_buffer(args-&gt;req);</span><br><span class="line">	sys_page_unmap(<span class="number">0</span>, (<span class="keyword">void</span>*) args-&gt;req);</span><br><span class="line">	<span class="built_in">free</span>(args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后就从其中调用了<code>lwip</code>的一些函数,这个里面有一个<code>socket.c</code>和<code>lib/socket.c</code>有点不一样，也不知道有啥区别，个人觉得是<code>lib/socket.c</code>是系统里面的调用给用户用的这个文件里面的应该是进行底层调用的。具体就不分析了，有兴趣的自己去看看。</p>
+<p>其他三个环境后面再看。</p>
+<h1 id="Part-A-Initialization-and-transmitting-packets"><a href="#Part-A-Initialization-and-transmitting-packets" class="headerlink" title="Part A: Initialization and transmitting packets"></a>Part A: Initialization and transmitting packets</h1><p>您的内核没有时间概念，因此我们需要添加它。当前，硬件每<code>10</code>毫秒产生一次时钟中断。在每个时钟中断处，我们都可以增加一个变量以指示时间提前了<code>10</code>ms。这是在<code>kern/ time.c</code>中实现的，但尚未完全集成到您的内核中。<br>不着急做实验，我们先去看看<code>kern/ time.c</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;kern/time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> ticks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">time_init(<span class="keyword">void</span>)<span class="comment">//初始化时钟</span></span><br><span class="line">&#123;</span><br><span class="line">	ticks = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This should be called once per timer interrupt.  A timer interrupt</span></span><br><span class="line"><span class="comment">// fires every 10 ms.</span></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">time_tick(<span class="keyword">void</span>)<span class="comment">//时间增加</span></span><br><span class="line">&#123;</span><br><span class="line">	ticks++;</span><br><span class="line">	<span class="keyword">if</span> (ticks * <span class="number">10</span> &lt; ticks)</span><br><span class="line">		panic(<span class="string">"time_tick: time overflowed"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span></span><br><span class="line">time_msec(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> ticks * <span class="number">10</span>;<span class="comment">//返回时间</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>看了这个<code>练习1</code>就简单了。<code>练习1</code>就是让我们把他加入内核。我们已经在内核里面初始化了，现在我们需要时钟跳动。那么什么时候时钟增加呢。我们已经实现了时钟中断，所以我们在这个时候调用就行了。另外一个添加一个系统调用获取时钟就行了。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">		<span class="keyword">case</span> IRQ_OFFSET + IRQ_TIMER:&#123;</span><br><span class="line">			lapic_eoi();</span><br><span class="line">			time_tick();<span class="comment">//时钟中断  时钟增加</span></span><br><span class="line">			sched_yield();</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line"><span class="comment">// Return the current time.</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">sys_time_msec(<span class="keyword">void</span>)<span class="comment">//获取时钟</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// LAB 6: Your code here.</span></span><br><span class="line">	<span class="comment">//panic("sys_time_msec not implemented");</span></span><br><span class="line">	<span class="keyword">return</span> time_msec();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//这个绝对不要完了再syscall()里面添加</span></span><br><span class="line">		<span class="keyword">case</span> SYS_time_msec:</span><br><span class="line">			<span class="keyword">return</span> sys_time_msec();</span><br></pre></td></tr></table></figure></p>
+<p>我们现在可以实现是时钟环境，我们去看看<code>net/time.c</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">timer(<span class="keyword">envid_t</span> ns_envid, <span class="keyword">uint32_t</span> initial_to) &#123;</span><br><span class="line">	<span class="keyword">int</span> r;</span><br><span class="line">	<span class="keyword">uint32_t</span> stop = sys_time_msec() + initial_to;</span><br><span class="line"></span><br><span class="line">	binaryname = <span class="string">"ns_timer"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">while</span>((r = sys_time_msec()) &lt; stop &amp;&amp; r &gt;= <span class="number">0</span>) &#123;<span class="comment">//没到到时间</span></span><br><span class="line">			sys_yield();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r &lt; <span class="number">0</span>)</span><br><span class="line">			panic(<span class="string">"sys_time_msec: %e"</span>, r);</span><br><span class="line"></span><br><span class="line">		ipc_send(ns_envid, NSREQ_TIMER, <span class="number">0</span>, <span class="number">0</span>);<span class="comment">//到了时钟就给核心服务程序发了一个信息</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">uint32_t</span> to, whom;</span><br><span class="line">			to = ipc_recv((<span class="keyword">int32_t</span> *) &amp;whom, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (whom != ns_envid) &#123;</span><br><span class="line">				cprintf(<span class="string">"NS TIMER: timer thread got IPC message from env %x not NS\n"</span>, whom);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			stop = sys_time_msec() + to;<span class="comment">//时钟改变</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="The-Network-Interface-Card"><a href="#The-Network-Interface-Card" class="headerlink" title="The Network Interface Card"></a>The Network Interface Card</h2><p>编写驱动程序需要深入了解硬件和提供给软件的接口。该实验文本将提供有关如何与<code>E1000</code>进行交互的高级概述，但是您在编写驱动程序时需要充分利用<code>Intel</code>的手册。<br><code>练习2</code>让我门看看手册。因为是全英文的又不能翻译所以没看。后面告诉我们需要什么我们去看什么。</p>
+<p>后面才是真的魔鬼。</p>
+<h2 id="PCI-Interface"><a href="#PCI-Interface" class="headerlink" title="PCI Interface"></a>PCI Interface</h2><p><code>E1000</code>是<code>PCI</code>设备，这意味着它已插入主板上的<code>PCI</code>总线。<code>PCI</code>总线具有地址，数据和中断线，并允许<code>CPU</code>与<code>PCI</code>设备进行通信，并且<code>PCI</code>设备可以读写存储器。在使用<code>PCI</code>设备之前，需要先对其进行发现和初始化。发现是遍历<code>PCI</code>总线以查找连接的设备的过程。初始化是分配<code>I/O</code>和内存空间以及协商设备要使用的<code>IRQ</code>线的过程。</p>
+<p>我们在<code>kern/pci.c</code>中为您提供了PCI代码。要在引导过程中执行<code>PCI</code>初始化，<code>PCI</code>代码将遍历<code>PCI</code>总线以查找设备。找到设备后，它将读取其<code>供应商ID</code>和<code>设备ID</code>，并将这两个值用作搜索<code>pci_attach_vendor</code>阵列的键。该数组由以下<code>struct pci_driver</code>条目组成 ：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pci_driver</span> &#123;</span></span><br><span class="line">    <span class="keyword">uint32_t</span> key1, key2;</span><br><span class="line">    <span class="keyword">int</span> (*attachfn) (struct pci_func *pcif);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>如果发现的设备的<code>供应商ID</code>和<code>设备ID</code>与阵列中的条目匹配，则<code>PCI</code>代码将调用该条目的<code>attachfn</code>来执行设备初始化。（设备也可以通过类来标识，这是<code>kern/pci.c</code>中其他驱动程序表的作用。）</p>
+<p><code>Attach</code>函数通过<code>PCI</code>函数进行初始化。尽管<code>E1000</code>仅提供一种功能，但<code>PCI</code>卡可以提供多种功能。这是我们在<code>JOS</code>中表示<code>PCI</code>功能的方式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pci_func</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pci_bus</span> *<span class="title">bus</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span> dev;</span><br><span class="line">    <span class="keyword">uint32_t</span> func;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span> dev_id;</span><br><span class="line">    <span class="keyword">uint32_t</span> dev_class;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span> reg_base[<span class="number">6</span>];</span><br><span class="line">    <span class="keyword">uint32_t</span> reg_size[<span class="number">6</span>];</span><br><span class="line">    <span class="keyword">uint8_t</span> irq_line;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>以上结构反映了开发人员手册第<code>4.1</code>节<code>表4-1</code>中的某些条目。(大家可以去看看)后三个条目 <code>struct pci_func</code>对我们特别有意义，因为它们记录了设备的协商内存，<code>I/O</code>和中断资源。在<code>reg_base</code>与<code>reg_size</code>阵列包含多达六个基地址寄存器或条信息。<code>reg_base</code>存储用于内存映射的<code>I/O</code>区域（或用于<code>I/O</code>端口资源的基本<code>I/O</code>端口）的基本内存地址， <code>reg_size</code>包含来自的相应基本值的字节大小或<code>I/O</code>端口数<code>reg_base</code>，并<code>irq_line</code>包含分配给设备的<code>IRQ</code>线路用于中断。<code>E1000 BAR</code>的具体含义在<code>表4-2</code>的后半部分给出。</p>
+<p>调用设备的附加功能时，已找到该设备但尚未启用。这意味着<code>PCI</code>代码尚未确定分配给设备的资源，例如地址空间和<code>IRQ</code>线，因此该<code>struct pci_func</code>结构的最后三个元素尚未填写。<code>attach</code>函数应调用 <code>pci_func_enable</code>，将启用设备，协商这些资源并填写<code>struct pci_func</code>。</p>
+<p>看到这个时候应该和我一样云里雾里的，这他妈都在讲些啥啊。<br><strong>我们简单来说，我们现在需要把设备启动，然后把供应商ID和设备ID对上号，然后需要一个函数启动这个设备。怎么初始化，怎么启动，先不去管他。</strong><br>我们来分析<code>pci_init</code>怎么执行的。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">pci_init(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">pci_bus</span> <span class="title">root_bus</span>;</span><span class="comment">//这是个总线结构体就是他提供的。</span></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	struct pci_bus &#123;</span></span><br><span class="line"><span class="comment">    struct pci_func *parent_bridge;</span></span><br><span class="line"><span class="comment">    uint32_t busno;//总线号，因为可能存在多总线</span></span><br><span class="line"><span class="comment">	&#125;;</span></span><br><span class="line"><span class="comment">	struct pci_func &#123;</span></span><br><span class="line"><span class="comment">    struct pci_bus *bus;	// Primary bus for bridges 主要的总线</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    uint32_t dev;//这些介绍全在文档里面</span></span><br><span class="line"><span class="comment">    uint32_t func;//</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    uint32_t dev_id;//</span></span><br><span class="line"><span class="comment">    uint32_t dev_class;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    uint32_t reg_base[6];</span></span><br><span class="line"><span class="comment">    uint32_t reg_size[6];</span></span><br><span class="line"><span class="comment">    uint8_t irq_line;</span></span><br><span class="line"><span class="comment">	&#125;;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="built_in">memset</span>(&amp;root_bus, <span class="number">0</span>, <span class="keyword">sizeof</span>(root_bus));</span><br><span class="line">	<span class="keyword">return</span> pci_scan_bus(&amp;root_bus);<span class="comment">//然后开始扫描</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">pci_scan_bus(struct pci_bus *bus)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> totaldev = <span class="number">0</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pci_func</span> <span class="title">df</span>;</span></span><br><span class="line">	<span class="built_in">memset</span>(&amp;df, <span class="number">0</span>, <span class="keyword">sizeof</span>(df));</span><br><span class="line">	df.bus = bus;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (df.dev = <span class="number">0</span>; df.dev &lt; <span class="number">32</span>; df.dev++) &#123;</span><br><span class="line">		<span class="keyword">uint32_t</span> bhlc = pci_conf_read(&amp;df, PCI_BHLC_REG);<span class="comment">//在df里面找PCI_BHLC_REG ，具体就不用去关心了</span></span><br><span class="line">		<span class="keyword">if</span> (PCI_HDRTYPE_TYPE(bhlc) &gt; <span class="number">1</span>)	    <span class="comment">// Unsupported or no device不支持设备或者没有这个设备</span></span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">		totaldev++;<span class="comment">//设备数+1</span></span><br><span class="line"></span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">pci_func</span> <span class="title">f</span> = <span class="title">df</span>;</span></span><br><span class="line">		<span class="keyword">for</span> (f.func = <span class="number">0</span>; f.func &lt; (PCI_HDRTYPE_MULTIFN(bhlc) ? <span class="number">8</span> : <span class="number">1</span>);</span><br><span class="line">		     f.func++) &#123;</span><br><span class="line">			<span class="class"><span class="keyword">struct</span> <span class="title">pci_func</span> <span class="title">af</span> = <span class="title">f</span>;</span></span><br><span class="line"></span><br><span class="line">			af.dev_id = pci_conf_read(&amp;f, PCI_ID_REG);<span class="comment">//读取ID</span></span><br><span class="line">			<span class="keyword">if</span> (PCI_VENDOR(af.dev_id) == <span class="number">0xffff</span>)</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">uint32_t</span> intr = pci_conf_read(&amp;af, PCI_INTERRUPT_REG);<span class="comment">//读取中断</span></span><br><span class="line">			af.irq_line = PCI_INTERRUPT_LINE(intr);</span><br><span class="line"></span><br><span class="line">			af.dev_class = pci_conf_read(&amp;af, PCI_CLASS_REG);<span class="comment">//读取class</span></span><br><span class="line">			<span class="keyword">if</span> (pci_show_devs)<span class="comment">//打印获取到的设备信息</span></span><br><span class="line">				pci_print_func(&amp;af);</span><br><span class="line">			pci_attach(&amp;af);<span class="comment">//这个函数我们进去看看</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> totaldev;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">pci_attach(struct pci_func *f)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">		pci_attach_match(PCI_CLASS(f-&gt;dev_class),</span><br><span class="line">				 PCI_SUBCLASS(f-&gt;dev_class),</span><br><span class="line">				 &amp;pci_attach_class[<span class="number">0</span>], f) ||</span><br><span class="line">		pci_attach_match(PCI_VENDOR(f-&gt;dev_id),</span><br><span class="line">				 PCI_PRODUCT(f-&gt;dev_id),</span><br><span class="line">				 &amp;pci_attach_vendor[<span class="number">0</span>], f);</span><br><span class="line">&#125;</span><br><span class="line">pci_attach_match(<span class="keyword">uint32_t</span> key1, <span class="keyword">uint32_t</span> key2,</span><br><span class="line">		 struct pci_driver *<span class="built_in">list</span>, struct pci_func *pcif)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">uint32_t</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; <span class="built_in">list</span>[i].attachfn; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">list</span>[i].key1 == key1 &amp;&amp; <span class="built_in">list</span>[i].key2 == key2) &#123;<span class="comment">//如果匹配上了</span></span><br><span class="line">			<span class="keyword">int</span> r = <span class="built_in">list</span>[i].attachfn(pcif);<span class="comment">//这样去运行了</span></span><br><span class="line">			<span class="keyword">if</span> (r &gt; <span class="number">0</span>)</span><br><span class="line">				<span class="keyword">return</span> r;</span><br><span class="line">			<span class="keyword">if</span> (r &lt; <span class="number">0</span>)</span><br><span class="line">				cprintf(<span class="string">"pci_attach_match: attaching "</span></span><br><span class="line">					<span class="string">"%x.%x (%p): e\n"</span>,</span><br><span class="line">					key1, key2, <span class="built_in">list</span>[i].attachfn, r);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>简单思考了下，<code>pci_init</code> 应该就是扫描了一下总线把总线里面的所有设备，然后初始化了他们，然后返回了总共的设备数量。</strong><br>在 <code>pci_attach</code> 我们调用了<code>pci_attach_vendor</code>，我们看到这个东西，现在里面啥都没有。所以我们现在要做的就是把我们的<code>网卡驱动</code>添进去初始化。<br><code>练习3</code>然我们添加他，并添加初始化函数。<br>我们运行内核很容易看出来网卡的信息。<br><img src="https://img-blog.csdnimg.cn/20200206122105695.png" alt="在这里插入图片描述"><br>同样我们在文档<code>5.1节</code>的表里找到了这个东西<br><img src="https://img-blog.csdnimg.cn/20200206122230419.png" alt="在这里插入图片描述"><br>那么还有个问题，厂商号、设备号有了，怎么初始化？？？？实验的要求是让我写在<code>e1000.h</code>和<code>e1000.c</code>先不管这些，我们先把函数定义好。<br>先在<code>e1000.h</code>里面定义<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;kern/pci.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">e1000_init</span><span class="params">(struct pci_func *pcif)</span></span>;</span><br><span class="line"><span class="comment">//记得先把在 pic.c里面添加头文件 #include &lt;kern/e1000.h&gt; </span></span><br><span class="line"><span class="comment">//然后修改pci_driver</span></span><br><span class="line"><span class="comment">// pci_attach_vendor matches the vendor ID and device ID of a PCI device. key1</span></span><br><span class="line"><span class="comment">// and key2 should be the vendor ID and device ID respectively</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PCI_E1000_VENDOR_ID                           0x8086</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PCI_E1000_DEVICE_ID                           0x100E</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pci_driver</span> <span class="title">pci_attach_vendor</span>[] = &#123;</span></span><br><span class="line">	&#123; PCI_E1000_VENDOR_ID, PCI_E1000_DEVICE_ID, &amp;e1000_init&#125;,</span><br><span class="line">	&#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span> &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>在我万般无奈的时候看到了一句练习里面的提示<code>For now, just enable the E1000 device via pci_func_enable. We&#39;ll add more initialization throughout the lab.</code>你他妈在逗我,告辞，两行解决。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uint32_t</span> *pci_e1000;</span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">e1000_init(struct pci_func *pcif)</span><br><span class="line">&#123;</span><br><span class="line">        pci_func_enable(pcif);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为会用到其他头文件的的函数，所以先把头文件加入好，最终会用到<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;kern/e1000.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;kern/pmap.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/string.h&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>出现头文件问题自己去看看少了啥。</p>
+<p>软件通过内存映射的<code>I/O</code>（<code>MMIO</code>）与<code>E1000</code>通信。您在JOS中已经看过两次了：<code>CGA</code>控制台和<code>LAPIC</code>都是通过写入和读取“内存”来控制和查询的设备。但是这些读和写操作不会存储到<code>DRAM</code>中。他们直接去这些设备。</p>
+<p><code>pci_func_enable</code>与<code>E1000</code>协商<code>MMIO</code>区域，并将其基数和大小存储在<code>BAR 0</code>（即 <code>reg_base[0]</code>和<code>reg_size[0]</code>）中。这是分配给设备的一系列物理内存地址，这意味着您必须做一些事情才能通过虚拟地址访问它。由于<code>MMIO</code>区域分配了很高的物理地址（通常大于<code>3GB</code>），<code>KADDR</code>因此由于<code>JOS</code>的<code>256MB</code>限制，您不能使用它来访问它。因此，您必须创建一个新的内存映射。我们将使用<code>MMIOBASE</code>上方的区域（您 <code>mmio_map_region</code>在实验4中将确保我们不会覆盖<code>LAPIC</code>使用的映射）。由于<code>PCI</code>设备初始化发生在<code>JOS</code>创建用户环境之前，因此您可以在其中创建映射，<code>kern_pgdir</code>并且该映射将始终可用。</p>
+<p><code>练习4</code> 实现<code>mmio_map_region</code>为<code>E1000</code>的<code>BAR 0</code>创建虚拟内存映射,<code>lapic = mmio_map_region(lapicaddr, 4096);</code>仿着这个写一个。然后让我们打印状态，但是状态在哪。后面给了提示<br>提示：您将需要很多常量，例如寄存器的位置和位掩码的值。尝试将这些内容从开发人员手册中复制出来很容易出错，而错误可能导致痛苦的调试会话。我们建议改用QEMU的<code>e1000_hw.h</code>标头作为指导。我们不建议逐字复制它，因为它定义的内容远远超出您的实际需要，并且可能无法按照您需要的方式进行定义，但这是一个很好的起点。<br>我们下载那个文件，然后<code>ctrl+f</code>查找<code>statu</code>找到了这个<code>#define E1000_STATUS   0x00008  /* Device Status - RO */</code>，所以添进去就行了。</p>
+<p>所以随便添加一点就行了。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uint32_t</span> *pci_e1000;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_STATUS   0x00008  <span class="comment">/* Device Status - RO  建议写到头文件里面*/</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">e1000_init(struct pci_func *pcif)</span><br><span class="line">&#123;</span><br><span class="line">        pci_func_enable(pcif);</span><br><span class="line">        pci_e1000 = mmio_map_region(pcif-&gt;reg_base[<span class="number">0</span>], pcif-&gt;reg_size[<span class="number">0</span>]);</span><br><span class="line">        cprintf(<span class="string">"the E1000 status register: [%08x]\n"</span>, *(pci_e1000+(E1000_STATUS&gt;&gt;<span class="number">2</span>)));</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h2><p>您可以想象通过写入和读取<code>E1000</code>的寄存器来发送和接收数据包，但这会很慢，并且需要<code>E1000</code>在内部缓冲数据包数据。相反，<code>E1000</code>使用直接内存访问或<code>DMA</code>直接从内存读取和写入数据包数据，而无需使用<code>CPU</code>。驱动程序负责为发送和接收队列分配内存，设置<code>DMA</code>描述符，并使用这些队列的位置配置<code>E1000</code>，但之后的所有操作都是异步的。为了发送数据包，驱动程序将其复制到发送队列中的下一个<code>DMA</code>描述符中，并通知<code>E1000</code>另一个数据包可用。当有时间发送数据包时，<code>E1000</code>会将数据从描述符中复制出来。同样，当<code>E1000</code>接收到一个数据包时，它会将其复制到接收队列中的下一个<code>DMA</code>描述符中，驱动程序可以在下一次机会读取该描述符。</p>
+<p>在高层，接收和发送队列非常相似。两者都由一系列描述符组成。尽管这些描述符的确切结构有所不同，但是每个描述符都包含一些标志和包含数据包数据的缓冲区的物理地址（或者是要发送给卡的数据包数据，或者是<code>OS</code>为卡分配的缓冲区，用于将接收到的数据包写入卡）。</p>
+<p>队列被实现为圆形阵列，这意味着当卡或驱动程序到达阵列的末尾时，它会回绕到开头。两者都有一个头指针和一个尾指针队列的内容是这两个指针之间的描述符。硬件始终从头消耗描述符并移动头指针，而驱动程序总是向描述符添加描述符并移动尾指针。传输队列中的描述符表示等待发送的数据包（因此，在稳定状态下，传输队列为空）。对于接收队列，队列中的描述符是卡可以接收数据包的空闲描述符（因此，在稳定状态下，接收队列由所有可用的接收描述符组成）。在不混淆<code>E1000</code>的情况下正确更新尾部寄存器非常棘手；小心！<br><strong>这个队列是个圈，也就是取个模</strong><br>指向这些数组的指针以及描述符中的数据包缓冲区的地址都必须是物理地址， 因为硬件无需通过<code>MMU</code>即可直接在物理<code>RAM</code>之间进行<code>DMA</code>操作。<br><strong>简单来说就是给一块内存用作缓冲区，让硬件能够直接访问DMA</strong></p>
+<h2 id="Transmitting-Packets"><a href="#Transmitting-Packets" class="headerlink" title="Transmitting Packets"></a>Transmitting Packets</h2><p><code>E1000</code>的发送和接收功能基本上彼此独立，因此我们可以一次完成一个工作。我们将首先攻击发送数据包的原因仅仅是因为我们无法在不发送“我在这里！”的情况下测试接收。数据包优先。</p>
+<p>首先，您必须按照<code>14.5节</code>中所述的步骤初始化要传输的卡（不必担心这些小节）。传输初始化的第一步是设置传输队列。队列的精确结构在<code>3.4节</code>中描述，描述符的结构在<code>3.3.3节</code>中描述。我们将不会使用<code>E1000</code>的<code>TCP</code>卸载功能，因此您可以专注于“旧版传输描述符格式”。您现在应该阅读这些部分，并熟悉这些结构。</p>
+<h2 id="C-Structures"><a href="#C-Structures" class="headerlink" title="C Structures"></a>C Structures</h2><p>您会发现使用<code>C struct</code>来描述<code>E1000</code>的结构很方便。如您所见<code>struct Trapframe</code>，使用<code>C struct</code> 等结构可以 使您精确地在内存中布置数据。<code>C</code>可以在字段之间插入填充，但是<code>E1000</code>的结构布局使得这不成问题。如果确实遇到字段对齐问题，请查看<code>GCC</code>的“打包”属性。</p>
+<p>例如，请考虑手册<code>表3-8</code>中给出并在此处复制的旧版传输描述符：</p>
+<pre style="text-align: center">  63            48 47   40 39   32 31   24 23   16 15             0
+  +---------------------------------------------------------------+
+  |                         Buffer address                        |
+  +---------------+-------+-------+-------+-------+---------------+
+  |    Special    |  CSS  | Status|  Cmd  |  CSO  |    Length     |
+  +---------------+-------+-------+-------+-------+---------------+
+</pre>
+
+<p>结构的第一个字节从右上角开始，因此要将其转换为<code>C struct</code>，从右到左，从上到下读取。如果布局正确，您会发现所有字段甚至都非常适合标准大小的类型：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tx_desc</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">uint64_t</span> addr;</span><br><span class="line">	<span class="keyword">uint16_t</span> length;</span><br><span class="line">	<span class="keyword">uint8_t</span> cso;</span><br><span class="line">	<span class="keyword">uint8_t</span> cmd;</span><br><span class="line">	<span class="keyword">uint8_t</span> status;</span><br><span class="line">	<span class="keyword">uint8_t</span> css;</span><br><span class="line">	<span class="keyword">uint16_t</span> special;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>您的驱动程序将必须为传输描述符数组和传输描述符指向的数据包缓冲区保留内存。有多种方法可以执行此操作，从动态分配页面到简单地在全局变量中声明页面都可以。无论您选择什么，请记住<code>E1000</code>直接访问物理内存，这意味着它访问的任何缓冲区必须在物理内存中是连续的。</p>
+<p>还有多种处理数据包缓冲区的方法。我们建议最简单的方法是，在驱动程序初始化期间为每个描述符为数据包缓冲区保留空间，并简单地将数据包数据复制到这些预分配的缓冲区中或从其中复制出来。以太网数据包的最大大小为<code>1518</code>字节，这限制了这些缓冲区的大小。更复杂的驱动程序可以动态分配数据包缓冲区（例如，以在网络使用率较低时减少内存开销），甚至可以传递用户空间直接提供的缓冲区（一种称为“零复制”的技术），但是最好还是从简单开始。</p>
+<blockquote>
+<p><code>练习5</code>执行<code>第14.5节</code>（但不包括其小节）中描述的初始化步骤。使用<code>第13节</code>作为初始化过程所引用的寄存器的参考，并使用<code>3.3.3</code>和<code>3.4</code>节作为发送描述符和发送描述符数组的参考。<br>请注意对发送描述符数组的对齐要求以及对该数组长度的限制。由于<code>TDLEN</code>必须对齐<code>128</code>字节，每个传输描述符为<code>16</code>字节，因此您的传输描述符数组将需要<code>8</code>个传输描述符的某个倍数。但是，请勿使用超过<code>64</code>个的描述符，否则我们的测试将无法测试传输环溢出。<br>对于<code>TCTL.COLD</code>，您可以假定为全双工操作。对于<code>TIPG</code>，请参阅<code>第13.4.34节</code>的<code>表13-77</code>中描述的<code>IEEE 802.3</code>标准<code>IPG</code>的默认值（不要使用第<code>14.5节</code>的表中的值）。</p>
+</blockquote>
+<p>。。。对于这个，我真看不懂是啥。<br>按照<code>14.5节</code>的描述初始化。步骤如下：</p>
+<ol>
+<li>分配一块内存用作发送描述符队列，起始地址要<code>16</code>字节对齐。用基地址填充(<code>TDBAL/TDBAH</code>) 寄存器。</li>
+<li>设置<code>(TDLEN)</code>寄存器，该寄存器保存发送描述符队列长度，必须<code>128</code>字节对齐。</li>
+<li>设置<code>(TDH/TDT)</code>寄存器，这两个寄存器都是发送描述符队列的下标。分别指向头部和尾部。应该初始化为<code>0</code>。</li>
+<li>初始化<code>TCTL</code>寄存器。设置<code>TCTL.EN</code>位为<code>1</code>，设置<code>TCTL.PSP</code>位为<code>1</code>。设置<code>TCTL.CT</code>为<code>10h</code>。设置<code>TCTL.COLD</code>为<code>40h</code>。</li>
+<li>设置<code>TIPG</code>寄存器。<br>我们先把这些东西加<code>e1000.h</code>中,在把结构定义出来。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL     0x00400  <span class="comment">/* TX Control - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDBAL    0x03800  <span class="comment">/* TX Descriptor Base Address Low - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDBAH    0x03804  <span class="comment">/* TX Descriptor Base Address High - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDLEN    0x03808  <span class="comment">/* TX Descriptor Length - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDH      0x03810  <span class="comment">/* TX Descriptor Head - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDT      0x03818  <span class="comment">/* TX Descripotr Tail - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TIPG     0x00410  <span class="comment">/* TX Inter-packet gap -RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_EN            0x00000002    <span class="comment">/* enable tx */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_BCE           0x00000004    <span class="comment">/* busy check enable */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_PSP           0x00000008    <span class="comment">/* pad short packets */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_CT            0x00000ff0    <span class="comment">/* collision threshold */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_COLD          0x003ff000    <span class="comment">/* collision distance */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TXD_CMD_RS         0x08000000     <span class="comment">/* Report Status */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TXD_STAT_DD        0x00000001     <span class="comment">/* Descriptor Done */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TXD_CMD_EOP         0x01000000 <span class="comment">/* End of Packet */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TX_MAX         64	<span class="comment">//发送包的最大数量</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFSIZE        2048</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tx_desc</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">uint64_t</span> addr;</span><br><span class="line">	<span class="keyword">uint16_t</span> length;</span><br><span class="line">	<span class="keyword">uint8_t</span> cso;</span><br><span class="line">	<span class="keyword">uint8_t</span> cmd;</span><br><span class="line">	<span class="keyword">uint8_t</span> status;</span><br><span class="line">	<span class="keyword">uint8_t</span> css;</span><br><span class="line">	<span class="keyword">uint16_t</span> special;</span><br><span class="line">&#125;__attribute__((packed));</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tx_desc</span> <span class="title">tx_list</span>[<span class="title">TX_MAX</span>];</span><span class="comment">//描述符</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">packets</span>&#123;</span></span><br><span class="line">        <span class="keyword">char</span> buffer[BUFSIZE];<span class="comment">//16对齐</span></span><br><span class="line">&#125;__attribute__((packed));</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">packets</span> <span class="title">tx_buf</span>[<span class="title">TX_MAX</span>];</span><span class="comment">//缓冲区</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>具体实现，我只是看别人的看懂了。。。。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个初始化函数是要在前面那个初始化e1000_init里面调用，不然不会运行</span></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">e1000_transmit_init()&#123;</span><br><span class="line">		<span class="comment">//初始化</span></span><br><span class="line">        <span class="built_in">memset</span>(tx_list, <span class="number">0</span>, <span class="keyword">sizeof</span>(struct tx_desc)*TX_MAX);</span><br><span class="line">        <span class="built_in">memset</span>(tx_buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(struct packets)*TX_MAX);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;TX_MAX; i++)&#123;</span><br><span class="line">                tx_list[i].addr = PADDR(tx_buf[i].buffer);</span><br><span class="line">                tx_list[i].cmd = (E1000_TXD_CMD_EOP&gt;&gt;<span class="number">24</span>) | (E1000_TXD_CMD_RS&gt;&gt;<span class="number">24</span>);</span><br><span class="line">                tx_list[i].status = E1000_TXD_STAT_DD;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//填充E1000_TDBAL/E1000_TDBAH</span></span><br><span class="line">        pci_e1000[E1000_TDBAL&gt;&gt;<span class="number">2</span>] = PADDR(tx_list);</span><br><span class="line">        pci_e1000[E1000_TDBAH&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//设置长度</span></span><br><span class="line">        pci_e1000[E1000_TDLEN&gt;&gt;<span class="number">2</span>] = TX_MAX*<span class="keyword">sizeof</span>(struct tx_desc);</span><br><span class="line">        <span class="comment">//初始化头尾</span></span><br><span class="line">        pci_e1000[E1000_TDH&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        pci_e1000[E1000_TDT&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//设置寄存器的值</span></span><br><span class="line">        pci_e1000[E1000_TCTL&gt;&gt;<span class="number">2</span>] |= (E1000_TCTL_EN | E1000_TCTL_PSP |</span><br><span class="line">                                     (E1000_TCTL_CT &amp; (<span class="number">0x10</span>&lt;&lt;<span class="number">4</span>)) |</span><br><span class="line">                                     (E1000_TCTL_COLD &amp; (<span class="number">0x40</span>&lt;&lt;<span class="number">12</span>)));</span><br><span class="line">        pci_e1000[E1000_TIPG&gt;&gt;<span class="number">2</span>] |= (<span class="number">10</span>) | (<span class="number">4</span>&lt;&lt;<span class="number">10</span>) | (<span class="number">6</span>&lt;&lt;<span class="number">20</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在，传输已初始化，您将必须编写代码以传输数据包，并使其通过系统调用可在用户空间访问。要传输数据包，您必须将其添加到传输队列的末尾，这意味着将数据包数据复制到下一个数据包缓冲区，然后更新<code>TDT</code>（传输描述符末尾）寄存器以通知卡中存在另一个数据包。传输队列。（请注意，<code>TDT</code>是传输描述符数组的索引，而不是字节偏移量；文档对此并不十分清楚。）</p>
+<p>但是，发送队列只有这么大。如果卡落后于传输数据包并且传输队列已满怎么办？为了检测到这种情况，您需要<code>E1000</code>的一些反馈。不幸的是，您不能只使用<code>TDH</code>（发送描述符头）寄存器。该文档明确指出，从软件读取该寄存器是不可靠的。但是，如果您在发送描述符的命令字段中设置了<code>RS</code>位，则当卡已在该描述符中发送了数据包时，卡将在描述符的状态字段中将<code>DD</code>位置为<code>1</code>。如果已将描述符的<code>DD</code>位置<code>1</code>，则可以安全地回收该描述符并使用它传输另一个数据包。</p>
+<p>如果用户呼叫您的传输系统调用，但未设置下一个描述符的<code>DD</code>位，表明传输队列已满怎么办？您必须决定在这种情况下该怎么做。您可以简单地丢弃数据包。网络协议对此具有一定的弹性，但是如果丢弃大量的数据包，则该协议可能无法恢复。您可以改为告诉用户环境必须重试，就像您对所做的一样<code>sys_ipc_try_send</code>。这样做的好处是可以推迟生成数据的环境。</p>
+<p>前面已经初始化了发送，现在就是要你实现发送功能。<br><code>练习6</code>通过检查下一个描述符是否空闲，将包数据复制到下一个描述符并更新<code>TDT</code>，编写一个函数来发送数据包。确保处理传输队列已满。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">fit_txd_for_E1000_transmit(<span class="keyword">void</span> *addr, <span class="keyword">int</span> length)&#123;</span><br><span class="line">        <span class="keyword">int</span> tail = pci_e1000[E1000_TDT&gt;&gt;<span class="number">2</span>];<span class="comment">//取队尾</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">tx_desc</span> *<span class="title">tx_next</span> = &amp;<span class="title">tx_list</span>[<span class="title">tail</span>];</span><span class="comment">//获取结构体</span></span><br><span class="line">        <span class="keyword">if</span>(length &gt; <span class="keyword">sizeof</span>(struct packets))<span class="comment">//长度不能超过最大值</span></span><br><span class="line">                length = <span class="keyword">sizeof</span>(struct packets); </span><br><span class="line">        <span class="keyword">if</span>((tx_next-&gt;status &amp; E1000_TXD_STAT_DD) == E1000_TXD_STAT_DD)&#123;<span class="comment">//通过这个标志位实现判断</span></span><br><span class="line">                memmove(KADDR(tx_next-&gt;addr), addr, length);</span><br><span class="line">                tx_next-&gt;status &amp;= !E1000_TXD_STAT_DD;</span><br><span class="line">                tx_next-&gt;length = (<span class="keyword">uint16_t</span>)length;</span><br><span class="line">                pci_e1000[E1000_TDT&gt;&gt;<span class="number">2</span>] = (tail + <span class="number">1</span>)%TX_MAX;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>练习7</code> 将他在系统调用里面调用。这个就简单了。<br>添加一个新的系统调用，自己命名就行。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">sys_packet_try_send(<span class="keyword">void</span> *addr, <span class="keyword">uint32_t</span> len)&#123;</span><br><span class="line">    user_mem_assert(curenv, addr, len, PTE_U); </span><br><span class="line">    <span class="keyword">return</span> fit_txd_for_E1000_transmit(addr, len);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//添加case 注意这个SYS_packet_try_send 是没有的 要在syscall.h 的头文件里面的enum 添加了。</span></span><br><span class="line">		<span class="keyword">case</span> (SYS_packet_try_send):</span><br><span class="line">        	<span class="keyword">return</span> sys_packet_try_send((<span class="keyword">void</span> *)a1,a2);</span><br></pre></td></tr></table></figure></p>
+<p>在这个地方添加之后要写到<code>lib/syscall.c</code>里面<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_packet_try_send</span><span class="params">(<span class="keyword">void</span> *data_va, <span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span>  (<span class="keyword">int</span>) syscall(SYS_packet_try_send, <span class="number">0</span> , (<span class="keyword">uint32_t</span>)data_va, len, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//还要在 inc/lib.h里面声明 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_packet_try_send</span><span class="params">(<span class="keyword">void</span> *data_va, <span class="keyword">int</span> len)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>到这里就有系统调用发送东西了。</p>
+<h2 id="Transmitting-Packets-Network-Server"><a href="#Transmitting-Packets-Network-Server" class="headerlink" title="Transmitting Packets: Network Server"></a>Transmitting Packets: Network Server</h2><p>现在，您已经在设备驱动程序的发送端有了一个系统调用接口，是时候发送数据包了。输出帮助程序环境的目标是循环执行以下操作：接受<code>NSREQ_OUTPUT</code>来自核心网络服务器的<code>IPC</code>消息，并使用上面添加的系统调用将伴随这些<code>IPC</code>消息的数据包发送到网络设备驱动程序。该<code>NSREQ_OUTPUT</code> <code>IPC</code>的由发送<code>low_level_output</code>功能在 <code>net/lwip/jos/jif/jif.c</code>，该胶合的<code>LWIP</code>的堆书的网络系统。每个<code>IPC</code>都将包含一个页面，该页面由<code>union Nsipc</code>其<code>struct jif_pkt pkt</code>字段中包含数据包 （请参见<code>inc / ns.h</code>）。 <code>struct jif_pkt</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">jif_pkt</span> &#123;</span> </span><br><span class="line">    <span class="keyword">int</span> jp_len; </span><br><span class="line">    <span class="keyword">char</span> jp_data [<span class="number">0</span>]; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><code>jp_len</code>表示数据包的长度。<code>IPC</code>页面上的所有后续字节专用于数据包内容。<code>jp_data</code>在结构的末尾使用零长度数组是一种常见的<code>C</code>技巧，用于表示没有预定长度的缓冲区。由于<code>C</code>不会进行数组边界检查，因此只要您确保该结构后面有足够的未使用内存，就可以将其<code>jp_data</code>用作任何大小的数组。</p>
+<p>当设备驱动程序的传输队列中没有更多空间时，请注意设备驱动程序，输出环境和核心网络服务器之间的交互。核心网络服务器使用<code>IPC</code>将数据包发送到输出环境。如果由于发送数据包系统调用而导致输出环境暂停，因为驱动程序没有更多的缓冲区可容纳新数据包，则核心网络服务器将阻止等待输出服务器接受<code>IPC</code>调用。<br>盗个图</p>
+<p><img src="https://img-blog.csdnimg.cn/20200206142554572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODcxNDY2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这就是整个的流程了。<br>最终实现也简单。<code>练习8</code>实现<code>output.c</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">union</span> Nsipc nsipcbuf;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">output(<span class="keyword">envid_t</span> ns_envid)</span><br><span class="line">&#123;</span><br><span class="line">	binaryname = <span class="string">"ns_output"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// LAB 6: Your code here:</span></span><br><span class="line">	<span class="comment">// 	- read a packet from the network server</span></span><br><span class="line">	<span class="comment">//	- send the packet to the device driver</span></span><br><span class="line">	<span class="keyword">envid_t</span> from_env;</span><br><span class="line">	<span class="keyword">int</span> perm;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;       </span><br><span class="line">        <span class="keyword">if</span>( ipc_recv(&amp;from_env, &amp;nsipcbuf, &amp;perm) != NSREQ_OUTPUT)</span><br><span class="line">        	<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">while</span>(sys_packet_try_send(nsipcbuf.pkt.jp_data, nsipcbuf.pkt.jp_len)&lt;<span class="number">0</span>)</span><br><span class="line">        	sys_yield();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Part-B-Receiving-packets-and-the-web-server"><a href="#Part-B-Receiving-packets-and-the-web-server" class="headerlink" title="Part B: Receiving packets and the web server"></a>Part B: Receiving packets and the web server</h1><p>我都不想说话了，整个和前面那个基本上一模一样。我直接给代码了<br><code>e100..h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> JOS_KERN_E1000_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> JOS_KERN_E1000_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;kern/pci.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_STATUS   0x00008  <span class="comment">/* Device Status - RO */</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">e1000_init</span><span class="params">(struct pci_func *pcif)</span></span>;</span><br><span class="line">        </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL     0x00400  <span class="comment">/* TX Control - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDBAL    0x03800  <span class="comment">/* TX Descriptor Base Address Low - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDBAH    0x03804  <span class="comment">/* TX Descriptor Base Address High - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDLEN    0x03808  <span class="comment">/* TX Descriptor Length - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDH      0x03810  <span class="comment">/* TX Descriptor Head - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TDT      0x03818  <span class="comment">/* TX Descripotr Tail - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TIPG     0x00410  <span class="comment">/* TX Inter-packet gap -RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_EN            0x00000002    <span class="comment">/* enable tx */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_BCE           0x00000004    <span class="comment">/* busy check enable */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_PSP           0x00000008    <span class="comment">/* pad short packets */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_CT            0x00000ff0    <span class="comment">/* collision threshold */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TCTL_COLD          0x003ff000    <span class="comment">/* collision distance */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TXD_CMD_RS         0x08000000     <span class="comment">/* Report Status */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TXD_STAT_DD        0x00000001     <span class="comment">/* Descriptor Done */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_TXD_CMD_EOP         0x01000000 <span class="comment">/* End of Packet */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TX_MAX         64</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFSIZE        2048</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tx_desc</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">uint64_t</span> addr;</span><br><span class="line">	<span class="keyword">uint16_t</span> length;</span><br><span class="line">	<span class="keyword">uint8_t</span> cso;</span><br><span class="line">	<span class="keyword">uint8_t</span> cmd;</span><br><span class="line">	<span class="keyword">uint8_t</span> status;</span><br><span class="line">	<span class="keyword">uint8_t</span> css;</span><br><span class="line">	<span class="keyword">uint16_t</span> special;</span><br><span class="line">&#125;__attribute__((packed));</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tx_desc</span> <span class="title">tx_list</span>[<span class="title">TX_MAX</span>];</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">packets</span>&#123;</span></span><br><span class="line">        <span class="keyword">char</span> buffer[BUFSIZE];</span><br><span class="line">&#125;__attribute__((packed));</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">packets</span> <span class="title">tx_buf</span>[<span class="title">TX_MAX</span>];</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">e1000_transmit_init</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">fit_txd_for_E1000_transmit(<span class="keyword">void</span> *addr, <span class="keyword">int</span> length);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RX_MAX          128</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_EN             0x00000002    <span class="comment">/* enable */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_SBP            0x00000004    <span class="comment">/* store bad packet */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_UPE            0x00000008    <span class="comment">/* unicast promiscuous enable */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_MPE            0x00000010    <span class="comment">/* multicast promiscuous enab */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_LPE            0x00000020    <span class="comment">/* long packet enable */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_LBM_NO         0x00000000    <span class="comment">/* no loopback mode */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_BAM            0x00008000    <span class="comment">/* broadcast enable */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_SZ_2048        0x00000000    <span class="comment">/* rx buffer size 2048 */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL_SECRC          0x04000000    <span class="comment">/* Strip Ethernet CRC */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RXD_STAT_DD       0x01    <span class="comment">/* Descriptor Done */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RXD_STAT_EOP      0x02    <span class="comment">/* End of Packet */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RCTL     0x00100  <span class="comment">/* RX Control - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RDBAL    0x02800  <span class="comment">/* RX Descriptor Base Address Low - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RDBAH    0x02804  <span class="comment">/* RX Descriptor Base Address High - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RDLEN    0x02808  <span class="comment">/* RX Descriptor Length - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RDH      0x02810  <span class="comment">/* RX Descriptor Head - RW */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RDT      0x02818  <span class="comment">/* RX Descriptor Tail - RW */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_MTA      0x05200  <span class="comment">/* Multicast Table Array - RW Array */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RA       0x05400  <span class="comment">/* Receive Address - RW Array */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> E1000_RAH_AV  0x80000000        <span class="comment">/* Receive descriptor valid */</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rx_desc</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">        <span class="keyword">uint64_t</span> addr;</span><br><span class="line">        <span class="keyword">uint16_t</span> length;</span><br><span class="line">        <span class="keyword">uint16_t</span> pcs;</span><br><span class="line">        <span class="keyword">uint8_t</span> status;</span><br><span class="line">        <span class="keyword">uint8_t</span> errors;</span><br><span class="line">        <span class="keyword">uint16_t</span> special;</span><br><span class="line">&#125;__attribute__((packed));</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rx_desc</span> <span class="title">rx_list</span>[<span class="title">RX_MAX</span>];</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read_rxd_after_E1000_receive</span><span class="params">(<span class="keyword">void</span> *addr)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">packets</span> <span class="title">rx_buf</span>[<span class="title">RX_MAX</span>];</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">e1000_receive_init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read_rxd_after_E1000_receive</span><span class="params">(<span class="keyword">void</span> *addr)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>  <span class="comment">// SOL &gt;= 6</span></span></span><br></pre></td></tr></table></figure>
+<p>最终的<code>e1000.c</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;kern/e1000.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;kern/pmap.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inc/string.h&gt;</span></span></span><br><span class="line"><span class="comment">// LAB 6: Your driver code here</span></span><br><span class="line"><span class="keyword">uint32_t</span> *pci_e1000;</span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">e1000_init(struct pci_func *pcif)</span><br><span class="line">&#123;</span><br><span class="line">        pci_func_enable(pcif);</span><br><span class="line">        pci_e1000 = mmio_map_region(pcif-&gt;reg_base[<span class="number">0</span>], pcif-&gt;reg_size[<span class="number">0</span>]);</span><br><span class="line">        cprintf(<span class="string">"the E1000 status register: [%08x]\n"</span>, *(pci_e1000+(E1000_STATUS&gt;&gt;<span class="number">2</span>)));</span><br><span class="line">        e1000_transmit_init();</span><br><span class="line">        e1000_receive_init();</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">e1000_transmit_init()&#123;</span><br><span class="line">        <span class="built_in">memset</span>(tx_list, <span class="number">0</span>, <span class="keyword">sizeof</span>(struct tx_desc)*TX_MAX);</span><br><span class="line">        <span class="built_in">memset</span>(tx_buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(struct packets)*TX_MAX);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;TX_MAX; i++)&#123;</span><br><span class="line">                tx_list[i].addr = PADDR(tx_buf[i].buffer);</span><br><span class="line">                tx_list[i].cmd = (E1000_TXD_CMD_EOP&gt;&gt;<span class="number">24</span>) | (E1000_TXD_CMD_RS&gt;&gt;<span class="number">24</span>);</span><br><span class="line">                tx_list[i].status = E1000_TXD_STAT_DD;</span><br><span class="line">        &#125;</span><br><span class="line">        pci_e1000[E1000_TDBAL&gt;&gt;<span class="number">2</span>] = PADDR(tx_list);</span><br><span class="line">        pci_e1000[E1000_TDBAH&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        pci_e1000[E1000_TDLEN&gt;&gt;<span class="number">2</span>] = TX_MAX*<span class="keyword">sizeof</span>(struct tx_desc);</span><br><span class="line">        pci_e1000[E1000_TDH&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        pci_e1000[E1000_TDT&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        pci_e1000[E1000_TCTL&gt;&gt;<span class="number">2</span>] |= (E1000_TCTL_EN | E1000_TCTL_PSP |</span><br><span class="line">                                     (E1000_TCTL_CT &amp; (<span class="number">0x10</span>&lt;&lt;<span class="number">4</span>)) |</span><br><span class="line">                                     (E1000_TCTL_COLD &amp; (<span class="number">0x40</span>&lt;&lt;<span class="number">12</span>)));</span><br><span class="line">        pci_e1000[E1000_TIPG&gt;&gt;<span class="number">2</span>] |= (<span class="number">10</span>) | (<span class="number">4</span>&lt;&lt;<span class="number">10</span>) | (<span class="number">6</span>&lt;&lt;<span class="number">20</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">fit_txd_for_E1000_transmit(<span class="keyword">void</span> *addr, <span class="keyword">int</span> length)&#123;</span><br><span class="line">        <span class="keyword">int</span> tail = pci_e1000[E1000_TDT&gt;&gt;<span class="number">2</span>];</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">tx_desc</span> *<span class="title">tx_next</span> = &amp;<span class="title">tx_list</span>[<span class="title">tail</span>];</span></span><br><span class="line">        <span class="keyword">if</span>(length &gt; <span class="keyword">sizeof</span>(struct packets))</span><br><span class="line">                length = <span class="keyword">sizeof</span>(struct packets); </span><br><span class="line">        <span class="keyword">if</span>((tx_next-&gt;status &amp; E1000_TXD_STAT_DD) == E1000_TXD_STAT_DD)&#123;</span><br><span class="line">                memmove(KADDR(tx_next-&gt;addr), addr, length);</span><br><span class="line">                tx_next-&gt;status &amp;= !E1000_TXD_STAT_DD;</span><br><span class="line">                tx_next-&gt;length = (<span class="keyword">uint16_t</span>)length;</span><br><span class="line">                pci_e1000[E1000_TDT&gt;&gt;<span class="number">2</span>] = (tail + <span class="number">1</span>)%TX_MAX;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">e1000_receive_init()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;RX_MAX; i++)&#123;</span><br><span class="line">                <span class="built_in">memset</span>(&amp;rx_list[i], <span class="number">0</span>, <span class="keyword">sizeof</span>(struct rx_desc));</span><br><span class="line">                <span class="built_in">memset</span>(&amp;rx_buf[i], <span class="number">0</span>, <span class="keyword">sizeof</span>(struct packets));</span><br><span class="line">                rx_list[i].addr = PADDR(rx_buf[i].buffer); </span><br><span class="line">        &#125;</span><br><span class="line">        pci_e1000[E1000_MTA&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        pci_e1000[E1000_RDBAL&gt;&gt;<span class="number">2</span>] = PADDR(rx_list);</span><br><span class="line">        pci_e1000[E1000_RDBAH&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        pci_e1000[E1000_RDLEN&gt;&gt;<span class="number">2</span>] = RX_MAX*<span class="keyword">sizeof</span>(struct rx_desc);</span><br><span class="line">        pci_e1000[E1000_RDH&gt;&gt;<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        pci_e1000[E1000_RDT&gt;&gt;<span class="number">2</span>] = RX_MAX - <span class="number">1</span>;</span><br><span class="line">        pci_e1000[E1000_RCTL&gt;&gt;<span class="number">2</span>] = (E1000_RCTL_EN | E1000_RCTL_BAM |</span><br><span class="line">                                     E1000_RCTL_SZ_2048 |</span><br><span class="line">                                     E1000_RCTL_SECRC);</span><br><span class="line">        pci_e1000[E1000_RA&gt;&gt;<span class="number">2</span>] = <span class="number">0x52</span> | (<span class="number">0x54</span>&lt;&lt;<span class="number">8</span>) | (<span class="number">0x00</span>&lt;&lt;<span class="number">16</span>) | (<span class="number">0x12</span>&lt;&lt;<span class="number">24</span>);</span><br><span class="line">        pci_e1000[(E1000_RA&gt;&gt;<span class="number">2</span>) + <span class="number">1</span>] = (<span class="number">0x34</span>) | (<span class="number">0x56</span>&lt;&lt;<span class="number">8</span>) | E1000_RAH_AV;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">read_rxd_after_E1000_receive(<span class="keyword">void</span> *addr)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="keyword">int</span> head = pci_e1000[E1000_RDH&gt;&gt;<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> tail = pci_e1000[E1000_RDT&gt;&gt;<span class="number">2</span>];</span><br><span class="line">        tail = (tail + <span class="number">1</span>) % RX_MAX;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">rx_desc</span> *<span class="title">rx_hold</span> = &amp;<span class="title">rx_list</span>[<span class="title">tail</span>];</span></span><br><span class="line">        <span class="keyword">if</span>((rx_hold-&gt;status &amp; E1000_TXD_STAT_DD) == E1000_TXD_STAT_DD)&#123;</span><br><span class="line">                <span class="keyword">int</span> len = rx_hold-&gt;length;</span><br><span class="line">                <span class="built_in">memcpy</span>(addr, rx_buf[tail].buffer, len);</span><br><span class="line">                pci_e1000[E1000_RDT&gt;&gt;<span class="number">2</span>] = tail;</span><br><span class="line">                <span class="keyword">return</span> len;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>添加 系统调用的就不贴了都一样。<br><code>input.c</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">union</span> Nsipc nsipcbuf;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">sleep(<span class="keyword">int</span> msec)<span class="comment">//简单的延迟函数</span></span><br><span class="line">&#123;</span><br><span class="line">       <span class="keyword">unsigned</span> now = sys_time_msec();</span><br><span class="line">       <span class="keyword">unsigned</span> end = now + msec;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> ((<span class="keyword">int</span>)now &lt; <span class="number">0</span> &amp;&amp; (<span class="keyword">int</span>)now &gt; -MAXERROR)</span><br><span class="line">               panic(<span class="string">"sys_time_msec: %e"</span>, (<span class="keyword">int</span>)now);</span><br><span class="line">       <span class="keyword">while</span> (sys_time_msec() &lt; end)</span><br><span class="line">               sys_yield();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">input(<span class="keyword">envid_t</span> ns_envid)</span><br><span class="line">&#123;</span><br><span class="line">	binaryname = <span class="string">"ns_input"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// LAB 6: Your code here:</span></span><br><span class="line">	<span class="comment">// 	- read a packet from the device driver</span></span><br><span class="line">	<span class="comment">//	- send it to the network server</span></span><br><span class="line">	<span class="comment">// Hint: When you IPC a page to the network server, it will be</span></span><br><span class="line">	<span class="comment">// reading from it for a while, so don't immediately receive</span></span><br><span class="line">	<span class="comment">// another packet in to the same physical page.</span></span><br><span class="line">	<span class="keyword">char</span> my_buf[<span class="number">2048</span>];</span><br><span class="line">	<span class="keyword">int</span> length;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;       </span><br><span class="line">        <span class="keyword">while</span>((length = sys_packet_try_recv(my_buf))&lt;<span class="number">0</span>)</span><br><span class="line">            sys_yield();</span><br><span class="line">		nsipcbuf.pkt.jp_len=length;</span><br><span class="line">        <span class="built_in">memcpy</span>(nsipcbuf.pkt.jp_data, my_buf, length);</span><br><span class="line">		ipc_send(ns_envid, NSREQ_INPUT, &amp;nsipcbuf, PTE_U | PTE_P);</span><br><span class="line">		sleep(<span class="number">50</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到这个地方基本上已经全部结束了。最后让你实现<code>http</code>的部分代码。我也直接给了，因为如果要理解要看全部的<code>http</code>源码。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">send_data(struct http_request *req, <span class="keyword">int</span> fd)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// LAB 6: Your code here.</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">char</span> buf[BUFFSIZE];</span><br><span class="line">	<span class="keyword">while</span>((n=read(fd,buf,(<span class="keyword">long</span>)<span class="keyword">sizeof</span>(buf)))&gt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(write(req-&gt;sock,buf,n)!=n)&#123;</span><br><span class="line">			die(<span class="string">"Failed to send file to client"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">	<span class="comment">//panic("send_data not implemented");</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">send_file(struct http_request *req)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> r;</span><br><span class="line">	<span class="keyword">off_t</span> file_size = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">int</span> fd;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// open the requested url for reading</span></span><br><span class="line">	<span class="comment">// if the file does not exist, send a 404 error using send_error</span></span><br><span class="line">	<span class="comment">// if the file is a directory, send a 404 error using send_error</span></span><br><span class="line">	<span class="comment">// set file_size to the size of the file</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// LAB 6: Your code here.</span></span><br><span class="line">		<span class="keyword">if</span> ((fd = open(req-&gt;url, O_RDONLY)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		send_error(req, <span class="number">404</span>);</span><br><span class="line">		<span class="keyword">goto</span> end;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Stat</span> <span class="title">stat</span>;</span></span><br><span class="line">	fstat(fd, &amp;stat);</span><br><span class="line">	<span class="keyword">if</span> (stat.st_isdir) &#123;</span><br><span class="line">		send_error(req, <span class="number">404</span>);</span><br><span class="line">		<span class="keyword">goto</span> end;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//panic("send_file not implemented");</span></span><br><span class="line">	<span class="keyword">if</span> ((r = send_header(req, <span class="number">200</span>)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> end;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((r = send_size(req, file_size)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> end;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((r = send_content_type(req)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> end;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((r = send_header_fin(req)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> end;</span><br><span class="line"></span><br><span class="line">	r = send_data(req, fd);</span><br><span class="line"></span><br><span class="line">end:</span><br><span class="line">	close(fd);</span><br><span class="line">	<span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此<code>all is over</code> 。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MIT6-282/" rel="tag"># MIT6.282</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/18/MIT-6.828-(五)-Lab-5-File-system,-Spawn-and-Shell/" rel="next" title="MIT6.828 (五)Lab5:File system, Spawn and Shell">
+                <i class="fa fa-chevron-left"></i> MIT6.828 (五)Lab5:File system, Spawn and Shell
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/18/C++-虚拟继承对象布局/" rel="prev" title="C++ 虚拟继承对象布局">
+                C++ 虚拟继承对象布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/tou.jpeg" alt="尘">
+            
+              <p class="site-author-name" itemprop="name">尘</p>
+              <p class="site-description motion-element" itemprop="description">做自己不会做的事被称之为学习</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ETBUBBLE" title="GitHub &rarr; https://github.com/ETBUBBLE" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40871466" title="https://blog.csdn.net/qq_40871466" rel="noopener" target="_blank">csdn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=549159342&auto=1&height=66"></iframe>
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-6-Network-Driver-default-final-project"><span class="nav-number">1.</span> <span class="nav-text">Lab 6: Network Driver (default final project)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.2.</span> <span class="nav-text">Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QEMU’s-virtual-network"><span class="nav-number">1.3.</span> <span class="nav-text">QEMU’s virtual network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Packet-Inspection"><span class="nav-number">1.4.</span> <span class="nav-text">Packet Inspection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debugging-the-E1000"><span class="nav-number">1.5.</span> <span class="nav-text">Debugging the E1000</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Network-Server"><span class="nav-number">1.6.</span> <span class="nav-text">The Network Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Core-Network-Server-Environment"><span class="nav-number">1.7.</span> <span class="nav-text">The Core Network Server Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Output-Environment"><span class="nav-number">1.8.</span> <span class="nav-text">The Output Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Input-Environment"><span class="nav-number">1.9.</span> <span class="nav-text">The Input Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Timer-Environment"><span class="nav-number">1.10.</span> <span class="nav-text">The Timer Environment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前置代码分析"><span class="nav-number">2.</span> <span class="nav-text">前置代码分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-A-Initialization-and-transmitting-packets"><span class="nav-number">3.</span> <span class="nav-text">Part A: Initialization and transmitting packets</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Network-Interface-Card"><span class="nav-number">3.1.</span> <span class="nav-text">The Network Interface Card</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCI-Interface"><span class="nav-number">3.2.</span> <span class="nav-text">PCI Interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DMA"><span class="nav-number">3.3.</span> <span class="nav-text">DMA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transmitting-Packets"><span class="nav-number">3.4.</span> <span class="nav-text">Transmitting Packets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Structures"><span class="nav-number">3.5.</span> <span class="nav-text">C Structures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transmitting-Packets-Network-Server"><span class="nav-number">3.6.</span> <span class="nav-text">Transmitting Packets: Network Server</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-B-Receiving-packets-and-the-web-server"><span class="nav-number">4.</span> <span class="nav-text">Part B: Receiving packets and the web server</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://your.com/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/model/tia/model.json");
+      </script>
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">尘</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">806k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">12:13</span>
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.0</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    <!-- LOCAL: You can save these files to your site and update links -->
+
+  
+     <!-- <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script> -->
+<script src="https://billts.site/js/gitment.js"></script>
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/> -->
+<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+
+<!-- END LOCAL -->
+
+<style>
+#gitment-container a {
+  border-bottom: none;
+}
+
+</style>
+
+<script>
+  function renderGitment() {
+
+    var gitment = new Gitment({
+      id: '1582033538000',
+      owner: 'ETBUBBLE',
+      repo: 'ETBUBBLE.github.io',
+      
+      oauth: {
+      
+      
+        client_secret: '0fd4f83bc7834795c0575404ee5c7a2c82067749',
+      
+        client_id: '008c7d3ffa7d973b8437'
+      }
+    });
+    gitment.render('gitment-container');
+  }
+
+  
+    renderGitment();
+  
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
