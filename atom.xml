@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://etbubble.github.io/"/>
-  <updated>2020-03-14T03:21:27.316Z</updated>
+  <updated>2020-04-07T04:33:39.151Z</updated>
   <id>https://etbubble.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单记录一下春招旅程-腾讯&amp;字节</title>
+    <link href="https://etbubble.github.io/2020/04/07/%E7%AE%80%E5%8D%95%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E6%98%A5%E6%8B%9B%E6%97%85%E7%A8%8B-%E8%85%BE%E8%AE%AF&amp;%E5%AD%97%E8%8A%82/"/>
+    <id>https://etbubble.github.io/2020/04/07/简单记录一下春招旅程-腾讯&amp;字节/</id>
+    <published>2020-04-07T04:32:55.000Z</published>
+    <updated>2020-04-07T04:33:39.151Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;去了字节，腾讯offer 给的太慢了，等了两个星期。本来以为没时间面字节了，结果字节两天全部搞定了。。。，给了口头offer。&lt;br&gt;投腾讯有点毒瘤，点了一下内推链接，直接把我简历投递了。然后顺便就过了。&lt;/p&gt;
+&lt;h2 id=&quot;腾讯两面&quot;&gt;&lt;a href=&quot;#腾讯两面&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="面经" scheme="https://etbubble.github.io/categories/%E9%9D%A2%E7%BB%8F/"/>
+    
+    
+      <category term="面经" scheme="https://etbubble.github.io/tags/%E9%9D%A2%E7%BB%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>简单做个实验分析一下 new/new[] 和 delete/delete[]</title>
@@ -48,11 +75,11 @@
   </entry>
   
   <entry>
-    <title>C++ 对象布局</title>
-    <link href="https://etbubble.github.io/2020/02/18/C++-%E5%AF%B9%E8%B1%A1%E5%B8%83%E5%B1%80/"/>
-    <id>https://etbubble.github.io/2020/02/18/C++-对象布局/</id>
+    <title>简单研究C++ 对象内存布局</title>
+    <link href="https://etbubble.github.io/2020/02/18/%E7%AE%80%E5%8D%95%E7%A0%94%E7%A9%B6C++%20%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/"/>
+    <id>https://etbubble.github.io/2020/02/18/简单研究C++ 对象内存布局/</id>
     <published>2020-02-18T13:47:56.000Z</published>
-    <updated>2020-02-18T13:48:47.902Z</updated>
+    <updated>2020-04-07T04:34:29.716Z</updated>
     
     <summary type="html">
     
@@ -304,11 +331,11 @@
   </entry>
   
   <entry>
-    <title>MIT6.828(零)提前做好送人头准备随时跑路</title>
-    <link href="https://etbubble.github.io/2020/02/17/MIT6.828(%E9%9B%B6)%E6%8F%90%E5%89%8D%E5%81%9A%E5%A5%BD%E9%80%81%E4%BA%BA%E5%A4%B4%E5%87%86%E5%A4%87%E9%9A%8F%E6%97%B6%E8%B7%91%E8%B7%AF/"/>
-    <id>https://etbubble.github.io/2020/02/17/MIT6.828(零)提前做好送人头准备随时跑路/</id>
+    <title>MIT-6.828(零)提前做好送人头准备随时跑路</title>
+    <link href="https://etbubble.github.io/2020/02/17/MIT-6.828(%E9%9B%B6)%E6%8F%90%E5%89%8D%E5%81%9A%E5%A5%BD%E9%80%81%E4%BA%BA%E5%A4%B4%E5%87%86%E5%A4%87%E9%9A%8F%E6%97%B6%E8%B7%91%E8%B7%AF/"/>
+    <id>https://etbubble.github.io/2020/02/17/MIT-6.828(零)提前做好送人头准备随时跑路/</id>
     <published>2020-02-17T14:05:31.000Z</published>
-    <updated>2020-02-18T14:06:52.925Z</updated>
+    <updated>2020-04-07T04:32:31.406Z</updated>
     
     <summary type="html">
     
@@ -564,36 +591,6 @@
     
     
       <category term="斜率优化DP" scheme="https://etbubble.github.io/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>出神入化的分块 Educational Codeforces Round 71 (Rated for Div. 2) E Remainder Problem</title>
-    <link href="https://etbubble.github.io/2019/08/23/%E5%87%BA%E7%A5%9E%E5%85%A5%E5%8C%96%E7%9A%84%E5%88%86%E5%9D%97/"/>
-    <id>https://etbubble.github.io/2019/08/23/出神入化的分块/</id>
-    <published>2019-08-23T01:55:56.000Z</published>
-    <updated>2019-08-23T02:06:59.098Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1207/problem/F&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Educational Codeforces Round 71 (Rated for Div.
-        
-      
-    
-    </summary>
-    
-      <category term="ACM" scheme="https://etbubble.github.io/categories/ACM/"/>
-    
-      <category term="分块" scheme="https://etbubble.github.io/categories/ACM/%E5%88%86%E5%9D%97/"/>
-    
-    
-      <category term="分块" scheme="https://etbubble.github.io/tags/%E5%88%86%E5%9D%97/"/>
-    
-      <category term="出神入化" scheme="https://etbubble.github.io/tags/%E5%87%BA%E7%A5%9E%E5%85%A5%E5%8C%96/"/>
     
   </entry>
   

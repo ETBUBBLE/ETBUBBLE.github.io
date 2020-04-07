@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[简单记录一下春招旅程-腾讯&字节]]></title>
+    <url>%2F2020%2F04%2F07%2F%E7%AE%80%E5%8D%95%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E6%98%A5%E6%8B%9B%E6%97%85%E7%A8%8B-%E8%85%BE%E8%AE%AF%26%E5%AD%97%E8%8A%82%2F</url>
+    <content type="text"><![CDATA[去了字节，腾讯offer 给的太慢了，等了两个星期。本来以为没时间面字节了，结果字节两天全部搞定了。。。，给了口头offer。投腾讯有点毒瘤，点了一下内推链接，直接把我简历投递了。然后顺便就过了。 腾讯两面一面linux 进程 和内存共享内存了解吗有哪些锁机制编译器 选项用过哪些Linux命令 (说了一些常用的)shell 脚本了解吗 (这个没用过就没问了)C++有什么特点浮点数是怎么储存的讲一下类的布局 deine 和函数模板的区别new 和mallocstatic_cast和dynamic_castslecet和epoll 的区别TCP和UDP的区别他们的首部是什么样的游戏适合用哪个有人说用高层协议实现的可靠UDP为什么不直接用TCP呢写个发牌算法，高度自由，随便你写，主要看编码风格你对你自己还有什么要补充的。你还有什么想问的吗?(面试官突然问了一下)负载均衡算法 二面项目相关send返回值recv呢粘包C类构造函数的全过程类里面的普通成员如果没有初始化会怎么样。构造函数调用虚函数会怎么样调用纯虚函数呢一个基类指针怎么判断他指向了派生类还是基类。虚继承呢单例模式怎么设计。宏定义和内联函数的区别模板函数呢宏参数的副作用内联函数编译器，没有内联是因为什么。linux 怎么创建进程 都比较基础，基本上都答上来了。面试感觉还是挺好的，面试官也挺和蔼的。 字节跳动字节跳动就比较夸张，一天面完所有技术面，第二天HR给了口头OFFER😓，这速度真的快。 面试内容不多。 一面一面比较简单，两个算法题，直接秒了。 输出一个数 ，这个数左边所有数比他小的，右边所有数比他大。有多个随便输出一个1 3 2 7 8上面 1 7 8 都可以 一个图，你可以往右边走，下面走，问从左上角走到右下角，最多可以转K个弯，x是不能走的。s 0 x 00 0 0 00 0 0 t 二面 写个线程安全的hashmap，可以替代unordered_map 短网址 系统，你怎么设计？ （懵逼 你说啥? 三面说一下STL,用过哪些，介绍下原理。写个线程安全的队列。 写了之后问了下notify_all和notify_one 的区别，用哪个好。。讨论一下 消费者越多越好，还是什么。还有一些很神奇的东西，我和面试官思考的点一直对不上，我一度怀疑我是不是没学过多线程。（最后他说实际上你原本说的没错，只不过在这种情况下，不符合。。。 还问了一下 tcp和udp ，就问了一下 tcp 握手的必要性，问了一下发送数据的的流程。 无锁队列和互斥量的区别，为啥无锁队列块，为啥互斥量快。然后又出现了回答的问题不到点上。 到此结束，告辞。基础什么的，C++语言基础啥都没问。好在过了。哈哈哈哈。]]></content>
+      <categories>
+        <category>面经</category>
+      </categories>
+      <tags>
+        <tag>面经</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[简单做个实验分析一下 new/new[] 和 delete/delete[]]]></title>
     <url>%2F2020%2F03%2F14%2F%E7%AE%80%E5%8D%95%E5%81%9A%E4%B8%AA%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90%E4%B8%80%E4%B8%8B-new-new%5B%5D-%E5%92%8C-delete-delete%5B%5D%2F</url>
     <content type="text"><![CDATA[先来介绍下流程。 new/new[],他的流程是先开辟了一个空间，然后调用了构造函数。 delete/delete[]先调用析构函数，然后释放内存。 那么如果new/delete和new[]/deletep[]没有配对会出现什么问题。对于这个问题我做了简单的实验。 非基础类型也就是自己写的类。先说下结论 delete释放new[]只会调用第一个的析构函数，导致内存泄漏。 delete[]释放new会出bug。 测试如下123456789101112131415161718192021222324252627class A&#123; int a;public: A():a(0xffff)&#123; cout&lt;&lt;"A()\n"; &#125; ~A()&#123; cout&lt;&lt;"~A()\n"; &#125; virtual void func()&#123; cout&lt;&lt;"func\n"; &#125;&#125;;int main() &#123; A *b=new A[4]; delete [] b; b =new A(); delete b; b=new A[4]; delete b; A *a=new A(); delete[] a; return 0;&#125; 输出结果是123456789101112131415161718A()A()A()A()~A()~A()~A()~A()//4个析构A()~A()//一个析构A()A()A()A()~A()//一个析构A()Process finished with exit code -1073741819 (0xC0000005)//直接RE了 问题已经看出来，那么是为什呢。我们去看看内存。看到了吗，十分明显的一个数字，表示分配了多少个，后面很明显吧。一个虚函数指针，和一个值。然后执行下一行释放内存。看出内存的变化了吗，全部都释放掉了，前面那个4 也没了。执行到这，用new创建的明显没有一个表示多少个的。执行下一行然后没了被释放了。 执行后面错误的。看看用delele删除new[]。 执行完后，他们全部都在，我都怀疑内存到底有没有释放。很显然全部都还没有释放掉。 然后后面那个为啥会RE不用我说了吧。前面那个表述个数的数字这么大。。你想怎么搞。。。 小问题1不要慌对于这个实验，如果把虚函数删掉，就不会是内存错误而是一个非常大的循环。至于为什么自己思考。 结论：用new参数的非基础类型，只会开辟一个对象内存空间，new[]还会保存一个数组大小。delete[]删除的时候会根据 删除地址前面的4个字节表示的数字大小来删除后面的对象。 为了保证正确性，我来做个有意思的事，我们来手写一个new[]。12345678910111213141516171819202122232425class A&#123; int a;public: A():a(0xffff)&#123; cout&lt;&lt;"A()\n"; &#125; ~A()&#123; cout&lt;&lt;"~A()\n"; &#125; virtual void func()&#123; cout&lt;&lt;"func\n"; &#125;&#125;;int main() &#123; void *p=::operator new(sizeof(A)*4+sizeof(int));//这个可以用malloc来是一样的结果。 int *size=(int *)p; *size=4;//这个设置一下大小 A *a=(A *)(size+1);//这个就是new[] 的实现 new(a)A(); new(a+1)A(); new(a+2)A(); new(a+3)A(); delete[] a;//显然这个是释放 return 0;&#125; 理论上delete []也能手写实现，具体怎么实现读者自己动手操作，切忌拿来主义。 基本类型对于基本类型和非基本类型有什么区别呢？？？，emmmm好像没啥区别。但是他确实不一样。1234567891011121314int main() &#123; int *b=new int[4]&#123;0xfff,0xffff,0xfff,0xfff&#125;; delete [] b; b =new int(); delete b; b=new int[4]&#123;0xfff,0xffff,0xfff,0xfff&#125;; delete b; int *a=new int(); delete[] a; return 0;&#125; 运行这个你会发现，没有任何问题！！！！，确实就是，没有任何问题。为什么会这样???。我们照着前面那个的来。看到了吗，没有那个表示数组长度的东西了。delete之后内存变了。 后面的自己看，你会发现，用delet删除new[]完全没问题。。。delet[]删除new,好像也没啥问题。 那么问题来了，他们是怎么知道要释放多少内存的。这个就比较复杂了。他和free是一个性质，内存分配是交给操作系统完成的，具体怎么操作的还是和内核有关。应该也能很清楚的看见，每次释放内存，改变的不仅仅是你需要的的内存大小，而是一整块内存。所以用delete/delete[]释放内存的时候，实际上是直接把那一块内存释放了。 结论:对于基础类型，用delete/delete[]删除实际上是一样的,主要原因应该还是因为，他没有调用构造和析构的必要。如果一个类里面封装了一个指针，然后new了一个对象，如果不调用析构函数，就会出现内存泄漏。]]></content>
@@ -12,8 +23,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[C++ 对象布局]]></title>
-    <url>%2F2020%2F02%2F18%2FC%2B%2B-%E5%AF%B9%E8%B1%A1%E5%B8%83%E5%B1%80%2F</url>
+    <title><![CDATA[简单研究C++ 对象内存布局]]></title>
+    <url>%2F2020%2F02%2F18%2F%E7%AE%80%E5%8D%95%E7%A0%94%E7%A9%B6C%2B%2B%20%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80%2F</url>
     <content type="text"><![CDATA[关于C++对象布局 看了大佬的博客,大佬的博客过于久远格式比较清奇，我整理了，顺便改了程序能够在 64位机运行。 单一的一般继承通俗的讲，一层层下去。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include&lt;iostream&gt;using namespace std;class Parent&#123;public: long iparent;//因为是64位机，所以改成了 long Parent() : iparent(10) &#123;&#125; virtual void f() &#123; cout &lt;&lt; " Parent::f()" &lt;&lt; endl; &#125; virtual void g() &#123; cout &lt;&lt; " Parent::g()" &lt;&lt; endl; &#125; virtual void h() &#123; cout &lt;&lt; " Parent::h()" &lt;&lt; endl; &#125;&#125;;class Child : public Parent&#123;public: long ichild; Child() : ichild(100) &#123;&#125; virtual void f() &#123; cout &lt;&lt; "Child::f()" &lt;&lt; endl; &#125; virtual void g_child() &#123; cout &lt;&lt; "Child::g_child()" &lt;&lt; endl; &#125; virtual void h_child() &#123; cout &lt;&lt; "Child::h_child()" &lt;&lt; endl; &#125;&#125;;class GrandChild : public Child&#123;public: long igrandchild; GrandChild() : igrandchild(1000) &#123;&#125; virtual void f() &#123; cout &lt;&lt; "GrandChild::f()" &lt;&lt; endl; &#125; virtual void g_child() &#123; cout &lt;&lt; "GrandChild::g_child()" &lt;&lt; endl; &#125; virtual void h_grandchild() &#123; cout &lt;&lt; "GrandChild::h_grandchild()" &lt;&lt; endl; &#125;&#125;;typedef void (*Fun)(void);int main()&#123; GrandChild gc; long **pVtab = (long **)&amp;gc; Fun pFun; cout &lt;&lt; "[0] GrandChild::_vptr-&gt;" &lt;&lt; endl; for (int i = 0; (Fun)pVtab[0][i] != NULL; i += 2) &#123; pFun = (Fun)pVtab[0][i]; cout &lt;&lt; " [" &lt;&lt; i &lt;&lt; "] "; pFun(); &#125; printf("start offet:%llx\n", pVtab); cout &lt;&lt; "[1] Parent.iparent = " &lt;&lt; (long)((pVtab[1])) &lt;&lt; endl; cout &lt;&lt; "[2] Child.ichild = " &lt;&lt; (long)(pVtab[2]) &lt;&lt; endl; cout &lt;&lt; "[3] GrandChild.igrandchild = " &lt;&lt; (long)(pVtab[3]) &lt;&lt; endl;&#125; 输出结果12345678[0] GrandChild::_vptr-&gt; [0] GrandChild::f() [2] Parent::h() [4] Child::h_child()start offet:7ffee4956f80[1] Parent.iparent = 10[2] Child.ichild = 100[3] GrandChild.igrandchild = 1000 顺便我们用gdb 看一下。12345678910111213141516171819202122GNU gdb (Debian 7.12-6) 7.12.0.20161007-gitlist40 &#123;41 pFun = (Fun)pVtab[0][i];42 cout &lt;&lt; " [" &lt;&lt; i &lt;&lt; "] ";43 pFun();44 &#125;45 printf("start offet:%llx\n", pVtab);46 cout &lt;&lt; "[1] Parent.iparent = " &lt;&lt; (long)((pVtab[1])) &lt;&lt; endl;47 cout &lt;&lt; "[2] Child.ichild = " &lt;&lt; (long)(pVtab[2]) &lt;&lt; endl;48 cout &lt;&lt; "[3] GrandChild.igrandchild = " &lt;&lt; (long)(pVtab[3]) &lt;&lt; endl;49 &#125;p pVtab$1 = (long **) 0x7fffffffcb90x /10xg 0x7fffffffcb900x7fffffffcb90: 0x0000555555755ce0(你可以继续找下去可以找到具体函数地址) 0x000000000000000a(10)0x7fffffffcba0: 0x0000000000000064(100) 0x00000000000003e8(1000)0x7fffffffcbb0: 0x000000000000008e 0x000055555555509a0x7fffffffcbc0: 0x00007fffffffcb90 0x0000000655554bf00x7fffffffcbd0: 0x00007fffffffccc0 0x0000000000000000 多重继承12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697#include&lt;iostream&gt;using namespace std;class Base1&#123;public: long ibase1; Base1() : ibase1(0x10) &#123;&#125; virtual void f() &#123; cout &lt;&lt; "Base1::f()" &lt;&lt; endl; &#125; virtual void g() &#123; cout &lt;&lt; "Base1::g()" &lt;&lt; endl; &#125; virtual void h() &#123; cout &lt;&lt; "Base1::h()" &lt;&lt; endl; &#125;&#125;;class Base2&#123;public: long ibase2; Base2() : ibase2(0x20) &#123;&#125; virtual void f() &#123; cout &lt;&lt; "Base2::f()" &lt;&lt; endl; &#125; virtual void g() &#123; cout &lt;&lt; "Base2::g()" &lt;&lt; endl; &#125; virtual void h() &#123; cout &lt;&lt; "Base2::h()" &lt;&lt; endl; &#125;&#125;;class Base3&#123;public: long ibase3; Base3() : ibase3(0x30) &#123;&#125; virtual void f() &#123; cout &lt;&lt; "Base3::f()" &lt;&lt; endl; &#125; virtual void g() &#123; cout &lt;&lt; "Base3::g()" &lt;&lt; endl; &#125; virtual void h() &#123; cout &lt;&lt; "Base3::h()" &lt;&lt; endl; &#125;&#125;;class Derive : public Base1, public Base2, public Base3&#123;public: long iderive; Derive() : iderive(0x100) &#123;&#125; virtual void f() &#123; cout &lt;&lt; "Derive::f()" &lt;&lt; endl; &#125; virtual void g1() &#123; cout &lt;&lt; "Derive::g1()" &lt;&lt; endl; &#125;&#125;;typedef void (*Fun)(void);int main()&#123; Derive d; long **pVtab = (long **)&amp;d; Fun pFun; cout&lt;&lt;hex; cout &lt;&lt; "[0] Base1::_vptr-&gt;" &lt;&lt; endl; pFun = (Fun)pVtab[0][0]; cout &lt;&lt; " [0] "; pFun(); pFun = (Fun)pVtab[0][1]; cout &lt;&lt; " [1] "; pFun(); pFun = (Fun)pVtab[0][2]; cout &lt;&lt; " [2] "; pFun(); pFun = (Fun)pVtab[0][3]; cout &lt;&lt; " [3] "; pFun(); pFun = (Fun)pVtab[0][4]; cout &lt;&lt; " [4] "; cout &lt;&lt; pFun &lt;&lt; endl; cout &lt;&lt; "[1] Base1.ibase1 = " &lt;&lt; (long)(pVtab[1]) &lt;&lt; endl; long s = sizeof(Base1) / 8; cout &lt;&lt; "[" &lt;&lt; s &lt;&lt; "] Base2::_vptr-&gt;" &lt;&lt; endl; pFun = (Fun)pVtab[s][0]; cout &lt;&lt; " [0] "; pFun(); cout &lt;&lt; " [1] "; pFun=(Fun)pVtab[s][1]; pFun(); pFun = (Fun)pVtab[s][2]; cout &lt;&lt; " [2] "; pFun(); pFun = (Fun)pVtab[s][3]; cout &lt;&lt; " [3] "; cout &lt;&lt; pFun &lt;&lt; endl; cout &lt;&lt; "[" &lt;&lt; s + 1 &lt;&lt; "] Base2.ibase2 = " &lt;&lt; (long)(pVtab[s + 1]) &lt;&lt; endl; s = s + sizeof(Base2) / 8; cout &lt;&lt; "[" &lt;&lt; s &lt;&lt; "] Base3::_vptr-&gt;" &lt;&lt; endl; pFun = (Fun)pVtab[s][0]; cout &lt;&lt; " [0] "; pFun(); pFun = (Fun)pVtab[s][1]; cout &lt;&lt; " [1] "; pFun(); pFun = (Fun)pVtab[s][2]; cout &lt;&lt; " [2] "; pFun(); pFun = (Fun)pVtab[s][3]; cout &lt;&lt; " [3] "; cout &lt;&lt; pFun &lt;&lt; endl; s++; cout &lt;&lt; "[" &lt;&lt; s &lt;&lt; "] Base3.ibase3 = " &lt;&lt; (long)pVtab[s] &lt;&lt; endl; s++; cout &lt;&lt; "[" &lt;&lt; s &lt;&lt; "] Derive.iderive = " &lt;&lt; (long)pVtab[s] &lt;&lt; endl;&#125; 运行结果1234567891011121314151617181920[0] Base1::_vptr-&gt; [0] Derive::f() [1] Base1::g() [2] Base1::h() [3] Derive::g1() [4] 1//这个表示最后一个[1] Base1.ibase1 = 10[2] Base2::_vptr-&gt; [0] Derive::f() [1] Base2::g() [2] Base2::h() [3] 1[3] Base2.ibase2 = 20[4] Base3::_vptr-&gt; [0] Derive::f() [1] Base3::g() [2] Base3::h() [3] 0[5] Base3.ibase3 = 30[6] Derive.iderive = 100 用GDB看看1234567891011121314151617181920212223-exec p pVtab$1 = (long **) 0x7fffffffcb80-exec x /10xg 0x7fffffffcb800x7fffffffcb80: 0x0000555555756c50 0x00000000000000100x7fffffffcb90: 0x0000555555756c80 0x00000000000000200x7fffffffcba0: 0x0000555555756ca8 0x00000000000000300x7fffffffcbb0: 0x0000000000000100 0x00000000000000000x7fffffffcbc0: 0x000055555555583e 0x00007fffffffcb80-exec x /10xg 0x0000555555756c500x555555756c50 &lt;_ZTV6Derive+16&gt;: 0x000055555555583e 0x00005555555555be0x555555756c60 &lt;_ZTV6Derive+32&gt;: 0x00005555555555f6 0x00005555555558820x555555756c70 &lt;_ZTV6Derive+48&gt;: 0xfffffffffffffff0 0x0000555555756d380x555555756c80 &lt;_ZTV6Derive+64&gt;: 0x000055555555587b 0x000055555555568c0x555555756c90 &lt;_ZTV6Derive+80&gt;: 0x00005555555556c4 0xffffffffffffffe0-exec x /10xg 0x000055555555583e (不知道为啥其他查看其他几个虚表，和这个值不一样，但是也指向这个函数)0x55555555583e &lt;Derive::f()&gt;: 0x10ec8348e5894855 0x57358d48f87d89480x55555555584e &lt;Derive::f()+16&gt;: 0x18083d8d48000001 0x48fffff453e800200x55555555585e &lt;Derive::f()+32&gt;: 0x201791058b48c289 0xe8d78948c68948000x55555555586e &lt;Derive::f()+48&gt;: 0x48c3c990fffff45e 0xef8348c3eb20ef830x55555555587e &lt;_ZThn16_N6Derive1fEv+3&gt;: 0xe589485590bdeb10 0xf87d894810ec8348 重复继承123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161#include &lt;iostream&gt;using namespace std;class B&#123;public: long ib; char cb;public: B() : ib(0), cb('B') &#123; &#125; virtual void f() &#123; cout &lt;&lt; "B::f()" &lt;&lt; endl; &#125; virtual void Bf() &#123; cout &lt;&lt; "B::Bf()" &lt;&lt; endl; &#125;&#125;;class B1 : public B&#123;public: long ib1; char cb1;public: B1() : ib1(11), cb1('1') &#123; &#125; virtual void f() &#123; cout &lt;&lt; "B1::f()" &lt;&lt; endl; &#125; virtual void f1() &#123; cout &lt;&lt; "B1::f1()" &lt;&lt; endl; &#125; virtual void Bf1() &#123; cout &lt;&lt; "B1::Bf1()" &lt;&lt; endl; &#125;&#125;;class B2 : public B&#123;public: long ib2; char cb2;public: B2() : ib2(12), cb2('2') &#123; &#125; virtual void f() &#123; cout &lt;&lt; "B2::f()" &lt;&lt; endl; &#125; virtual void f2() &#123; cout &lt;&lt; "B2::f2()" &lt;&lt; endl; &#125; virtual void Bf2() &#123; cout &lt;&lt; "B2::Bf2()" &lt;&lt; endl; &#125;&#125;;class D : public B1, public B2&#123;public: long id; char cd;public: D() : id(100), cd('D') &#123; &#125; virtual void f() &#123; cout &lt;&lt; "D::f()" &lt;&lt; endl; &#125; virtual void f1() &#123; cout &lt;&lt; "D::f1()" &lt;&lt; endl; &#125; virtual void f2() &#123; cout &lt;&lt; "D::f2()" &lt;&lt; endl; &#125; virtual void Df() &#123; cout &lt;&lt; "D::Df()" &lt;&lt; endl; &#125;&#125;;typedef void (*Fun)(void);int main()&#123; long **pVtab = NULL; Fun pFun = NULL; D d; pVtab = (long **)&amp;d; cout &lt;&lt; "[0] D::B1::_vptr-&gt;" &lt;&lt; endl; pFun = (Fun)pVtab[0][0]; cout &lt;&lt; " [0] "; pFun(); pFun = (Fun)pVtab[0][1]; cout &lt;&lt; " [1] "; pFun(); pFun = (Fun)pVtab[0][2]; cout &lt;&lt; " [2] "; pFun(); pFun = (Fun)pVtab[0][3]; cout &lt;&lt; " [3] "; pFun(); pFun = (Fun)pVtab[0][4]; cout &lt;&lt; " [4] "; pFun(); pFun = (Fun)pVtab[0][5]; cout &lt;&lt; " [5] 0x" &lt;&lt; pFun &lt;&lt; endl; cout &lt;&lt; "[1] B::ib = " &lt;&lt; (long)pVtab[1] &lt;&lt; endl; cout &lt;&lt; "[2] B::cb = " &lt;&lt; static_cast&lt;char&gt;((long)(pVtab[2])) &lt;&lt; endl; cout &lt;&lt; "[3] B1::ib1 = " &lt;&lt; (long)pVtab[3] &lt;&lt; endl; cout &lt;&lt; "[4] B1::cb1 = " &lt;&lt; (static_cast&lt;char&gt;((long)(pVtab[4]))) &lt;&lt; endl; cout &lt;&lt; "[5] D::B2::_vptr-&gt;" &lt;&lt; endl; pFun = (Fun)pVtab[5][0]; cout &lt;&lt; " [0] "; pFun(); pFun = (Fun)pVtab[5][1]; cout &lt;&lt; " [1] "; pFun(); pFun = (Fun)pVtab[5][2]; cout &lt;&lt; " [2] "; pFun(); pFun = (Fun)pVtab[5][3]; cout &lt;&lt; " [3] "; pFun(); pFun = (Fun)pVtab[5][4]; cout &lt;&lt; " [4] 0x" &lt;&lt; pFun &lt;&lt; endl; cout &lt;&lt; "[6] B::ib = " &lt;&lt; (long)pVtab[6] &lt;&lt; endl; cout &lt;&lt; "[7] B::cb = " &lt;&lt; (static_cast&lt;char&gt;((long)pVtab[7])) &lt;&lt; endl; cout &lt;&lt; "[8] B2::ib2 = " &lt;&lt; (long)pVtab[8] &lt;&lt; endl; cout &lt;&lt; "[9] B2::cb2 = " &lt;&lt; (static_cast&lt;char&gt;((long)pVtab[9])) &lt;&lt; endl; cout &lt;&lt; "[10] D::id = " &lt;&lt; (long)pVtab[10] &lt;&lt; endl; cout &lt;&lt; "[11] D::cd = " &lt;&lt; (static_cast&lt;char&gt;((long)pVtab[11])) &lt;&lt; endl;&#125; 输出结果1234567891011121314151617181920212223[0] D::B1::_vptr-&gt; [0] D::f() [1] B::Bf() [2] D::f1() [3] B1::Bf1() [4] D::f2() [5] 0x1[1] B::ib = 0[2] B::cb = B[3] B1::ib1 = 11[4] B1::cb1 = 1[5] D::B2::_vptr-&gt; [0] D::f() [1] B::Bf() [2] D::f2() [3] B2::Bf2() [4] 0x0[6] B::ib = 0[7] B::cb = B[8] B2::ib2 = 12[9] B2::cb2 = 2[10] D::id = 100[11] D::cd = D GDB调试 1234567x /12x 0x7fffffffcb600x7fffffffcb60: 0x0000555555756c58 0x00000000000001230x7fffffffcb70: 0x0000555555756c55 0x00000000000001110x7fffffffcb80: 0x0000000000000011 0x0000555555756c980x7fffffffcb90: 0x0000000000000123 0x00005555555555550x7fffffffcba0: 0x0000000000000212 0x0000555555555a220x7fffffffcbb0: 0x0000000000000100 0x0000000000000033 虚拟继承大佬偷懒了，那我们完了啊。 对于这个虚拟继承，和64位机好像有点不一样，我也不知道为啥。如果有人看懂了回来私信我（留个言也行）。告诉我为啥。 我贴一个自己的实验。不保证正确性。]]></content>
       <categories>
         <category>计算机语言</category>
@@ -119,8 +130,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MIT6.828(零)提前做好送人头准备随时跑路]]></title>
-    <url>%2F2020%2F02%2F17%2FMIT6.828(%E9%9B%B6)%E6%8F%90%E5%89%8D%E5%81%9A%E5%A5%BD%E9%80%81%E4%BA%BA%E5%A4%B4%E5%87%86%E5%A4%87%E9%9A%8F%E6%97%B6%E8%B7%91%E8%B7%AF%2F</url>
+    <title><![CDATA[MIT-6.828(零)提前做好送人头准备随时跑路]]></title>
+    <url>%2F2020%2F02%2F17%2FMIT-6.828(%E9%9B%B6)%E6%8F%90%E5%89%8D%E5%81%9A%E5%A5%BD%E9%80%81%E4%BA%BA%E5%A4%B4%E5%87%86%E5%A4%87%E9%9A%8F%E6%97%B6%E8%B7%91%E8%B7%AF%2F</url>
     <content type="text"><![CDATA[被某个大佬带入坑，看看了评价好像确实不错，所以就开始干了。首先第一件事就是搜索资源，像我这么菜的，要是没人告诉我怎么做，基本上是没啥希望的。 资源第一个肯定就是官方的了，另外还有，2019的. 然后就是一些比较好的大佬的资源。知乎超级详细的某个大佬2014 大佬github这个也是有些应该够用了，也许够了，嗯，也许够了，因为我也只是刚开始。。 虚拟机如果做的事 2018年之前的 随便用啥系统 ，如果事 2019 的建议 用manjaro 。 如果用的虚拟机注意下，内存要大于 4G ，如果小了的话，这个内核是运行不了的 环境搭建安装环境，这文章确实够用了 然后祝你好运。。。]]></content>
       <categories>
         <category>操作系统</category>
@@ -300,8 +311,8 @@
       </categories>
       <tags>
         <tag>线段树</tag>
-        <tag>离散化</tag>
         <tag>牛客暑期多校训练营</tag>
+        <tag>离散化</tag>
         <tag>并查集</tag>
       </tags>
   </entry>
@@ -329,8 +340,8 @@
       </categories>
       <tags>
         <tag>线段树</tag>
-        <tag>离散化</tag>
         <tag>牛客暑期多校训练营</tag>
+        <tag>离散化</tag>
       </tags>
   </entry>
   <entry>
@@ -355,8 +366,8 @@
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>回文树</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +379,8 @@
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>AC自动机</tag>
         <tag>notes</tag>
+        <tag>AC自动机</tag>
       </tags>
   </entry>
   <entry>
@@ -420,8 +431,8 @@
         <category>动态规划</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>杭电多校</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -448,8 +459,8 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>牛客暑期多校训练营</tag>
         <tag>单调队列</tag>
+        <tag>牛客暑期多校训练营</tag>
       </tags>
   </entry>
   <entry>
@@ -461,8 +472,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>杭电多校</tag>
         <tag>FFT/NTT/FWT</tag>
+        <tag>杭电多校</tag>
       </tags>
   </entry>
   <entry>
@@ -717,8 +728,8 @@
         <category>配置</category>
       </categories>
       <tags>
-        <tag>配置</tag>
         <tag>hexo</tag>
+        <tag>配置</tag>
       </tags>
   </entry>
   <entry>
